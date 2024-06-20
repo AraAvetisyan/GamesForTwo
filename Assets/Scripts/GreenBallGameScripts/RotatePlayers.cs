@@ -10,6 +10,13 @@ public class RotatePlayers : MonoBehaviour
    
     void Update()
     {
-
+        if (playerOne)
+        {
+            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        }
+        if (playerTwo)
+        {
+            transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
+        }
     }
 }
