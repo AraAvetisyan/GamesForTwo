@@ -6,6 +6,8 @@ public class FishSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject eatableFishReference, notEatableFishReference, stanCounter;
     public bool FishIsActive;
+    [SerializeField] private PlayerOneScript _playerOneScript;
+    [SerializeField] private PlayerTwoScript _playerTwoScript;
     void Start()
     {
         StartCoroutine(WaitForSpawn());
@@ -21,11 +23,12 @@ public class FishSpawner : MonoBehaviour
             eatableFishReference.SetActive(true);
             stanCounter.SetActive(false);
         }
-        if(choiser == 1)
+        if (choiser == 1)
         {
             notEatableFishReference.SetActive(true);
             stanCounter.SetActive(false);
             FishIsActive = true;
+
             StartCoroutine(WaitToCloseFish());
         }
     }
@@ -34,10 +37,13 @@ public class FishSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         if (FishIsActive)
         {
-            stanCounter.SetActive(true);
-            FishIsActive = false;
-            notEatableFishReference.SetActive(false);
-            StartCoroutine(WaitForSpawn());
+            
+                stanCounter.SetActive(true);
+                FishIsActive = false;
+                notEatableFishReference.SetActive(false);
+
+                StartCoroutine(WaitForSpawn());
+            
         }
     }
 }

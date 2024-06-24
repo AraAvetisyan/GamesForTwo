@@ -13,6 +13,7 @@ public class TimerGost : MonoBehaviour
     public void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
+        Debug.Log("RRR");
         buttonGost.SetActive(true);
     }
 

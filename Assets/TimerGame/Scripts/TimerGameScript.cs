@@ -17,8 +17,18 @@ public class TimerGameScript : MonoBehaviour
     private float timerForGame;
     private float compareForOne, compareForTwo;
     [SerializeField] private GameObject endPanel;
+    private bool isMobile;
     private void Start()
     {
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+            Debug.Log("IsMobile");
+        }
+        else
+        {
+            isMobile = false;
+        }
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
 
@@ -44,6 +54,14 @@ public class TimerGameScript : MonoBehaviour
         {
             Counter++;
             EndGame();
+        }
+        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        {
+            PressedPlTwoButton();
+        }
+        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        {
+            PressedPlOneButton();
         }
     }
     public void EndGame()
@@ -119,7 +137,7 @@ public class TimerGameScript : MonoBehaviour
 
     public void PressedHome()
     {
-        SceneManager.LoadScene("MineMenu");
+        SceneManager.LoadScene("MainMenu");
 
     }
     public void PressedRestart()

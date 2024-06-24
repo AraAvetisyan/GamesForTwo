@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GamesForTwo/CatPaw.unity
     guid: 8df05b4d63af57d4280cf0d6c5273ca0
+  - enabled: 1
+    path: Assets/ChickenGame/Scenes/ChickenGameOne.unity
+    guid: ae6b83c896bb7f24fa641bb2b5d68aa1
+  - enabled: 1
+    path: Assets/ChickenGame/Scenes/ChickenGameThree.unity
+    guid: 64163cc4770dfe149ae84022d4f80482
+  - enabled: 1
+    path: Assets/ChickenGame/Scenes/ChickenGameTwo.unity
+    guid: b237891ea71dc5e4aaeb917dac0eb149
   m_configObjects: {}

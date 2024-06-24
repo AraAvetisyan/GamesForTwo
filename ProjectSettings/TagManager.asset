@@ -12,6 +12,8 @@ TagManager:
   - NoteatableFish
   - Counter
   - GoBack
+  - Trigger
+  - NotTrigger
   layers:
   - Default
   - TransparentFX

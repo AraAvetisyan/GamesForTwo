@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.AudioSettings;
 
 public class GreenBallGameUIController : MonoBehaviour
 {
@@ -11,14 +12,25 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private GameObject activatorPlOneGreen, activatorPlOneRed, activatorPlTwoGreen, activatorPlTwoRed;
     [SerializeField] private RotatePlayers _rotatePlayers;
     [SerializeField] private float shootingForce;
-
+    private bool isMobile;
+    private void Start()
+    {
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+        }
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedRedButton();
         }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (!isMobile && Input.GetKeyDown(KeyCode.M))
         {
             PressedBlueButton();
         }

@@ -4,8 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PlayerOneScript : MonoBehaviour
+public class PlayerTwoScript : MonoBehaviour
 {
     public int Points;
     private int stanCounter;
@@ -14,38 +13,39 @@ public class PlayerOneScript : MonoBehaviour
     [SerializeField] private FishSpawner _fishSpawner;
     [SerializeField] private CatPawGameUIController _catPawGameUIController;
     [SerializeField] private GameObject stan;
-    [SerializeField] private Transform playerOnePosition;
+    [SerializeField] private Transform playerTwoPosition;
     private bool goBack;
     [SerializeField] private float speed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag== "EatableFish")
+        if (collision.gameObject.tag == "EatableFish")
         {
             _catPawGameUIController.ButtonOnePressed = false;
-         //   transform.position = new Vector2(6f, 6f);
+            //   transform.position = new Vector2(6f, 6f);
             goBack = true;
             collision.gameObject.SetActive(false);
             Points += 1;
             pointsText.text = Points.ToString();
-            stanCounter = 0;
-            if (Points != 3)
+            stanCounter = 0; if (Points != 3)
             {
                 StartCoroutine(_fishSpawner.WaitForSpawn());
             }
             stan.SetActive(true);
         }
-        if(collision.gameObject.tag == "NoteatableFish")
+        if (collision.gameObject.tag == "NoteatableFish")
         {
             _catPawGameUIController.ButtonOnePressed = false;
-          //  transform.position = new Vector2(6f, 6f);
-            goBack=true;
+            //  transform.position = new Vector2(6f, 6f);
+            goBack = true;
             collision.gameObject.SetActive(false);
             Points -= 2;
             pointsText.text = Points.ToString();
             stanCounter = 0;
             _fishSpawner.FishIsActive = false;
+
             StartCoroutine(_fishSpawner.WaitForSpawn());
+
             stan.SetActive(true);
         }
         if (collision.gameObject.tag == "Counter")
@@ -57,7 +57,7 @@ public class PlayerOneScript : MonoBehaviour
         }
         if (goBack)
         {
-            if(collision.gameObject.tag == "GoBack")
+            if (collision.gameObject.tag == "GoBack")
             {
                 goBack = false;
             }
@@ -67,7 +67,7 @@ public class PlayerOneScript : MonoBehaviour
     {
         if (stanCounter == 3)
         {
-            StartCoroutine(WaitForStan());            
+            StartCoroutine(WaitForStan());
         }
         if (goBack)
         {
@@ -79,6 +79,6 @@ public class PlayerOneScript : MonoBehaviour
         stanCounter = 0;
         playerOneButton.interactable = false;
         yield return new WaitForSeconds(2);
-        playerOneButton.interactable=true;
+        playerOneButton.interactable = true;
     }
 }
