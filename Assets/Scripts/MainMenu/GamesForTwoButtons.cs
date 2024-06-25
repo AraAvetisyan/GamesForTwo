@@ -35,4 +35,24 @@ public class GamesForTwoButtons : MonoBehaviour
     {
         SceneManager.LoadScene("CatPaw");
     }
+
+    public void PressedSummoGame()
+    {
+        SceneManager.LoadScene("SummoGame");
+    }
+
+    public void PressedRacingLight()
+    {
+        SceneManager.LoadScene("RacingLight");
+    }
+
+    public void PressedUnicorn()
+    {
+        SceneManager.LoadScene("Unicorn");
+    }
+
+    public void PressedFootballBall()
+    {
+        SceneManager.LoadScene("FootballBall");
+    }
 }

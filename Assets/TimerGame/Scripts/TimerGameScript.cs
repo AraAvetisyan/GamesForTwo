@@ -17,6 +17,11 @@ public class TimerGameScript : MonoBehaviour
     private float timerForGame;
     private float compareForOne, compareForTwo;
     [SerializeField] private GameObject endPanel;
+
+    private bool gameEnds;
+    [SerializeField] private GameObject timerClosePlOne1, timerClosePlOne2, timerClosePlOne3, timerClosePlOne4, timerClosePlOne5;
+    [SerializeField] private GameObject timerClosePlTwo1, timerClosePlTwo2, timerClosePlTwo3, timerClosePlTwo4, timerClosePlTwo5;
+
     private bool isMobile;
     private void Start()
     {
@@ -50,6 +55,26 @@ public class TimerGameScript : MonoBehaviour
     }
     private void Update()
     {
+        if(timer >= 1 && !gameEnds)
+        {
+            timerClosePlOne1.SetActive(true);
+            timerClosePlOne2.SetActive(true);
+            timerClosePlTwo1.SetActive(true);
+            timerClosePlTwo2.SetActive(true);
+        }
+        if(timer >= 2 && !gameEnds)
+        {
+            timerClosePlOne3.SetActive(true);
+            timerClosePlOne4.SetActive(true);
+            timerClosePlTwo3.SetActive(true);
+            timerClosePlTwo4.SetActive(true);
+        }
+        if(timer >= 3 && !gameEnds)
+        {
+            timerClosePlOne5.SetActive(true);
+            timerClosePlTwo5.SetActive(true);
+        }
+
         if (Counter == 2)
         {
             Counter++;
@@ -66,6 +91,18 @@ public class TimerGameScript : MonoBehaviour
     }
     public void EndGame()
     {
+        gameEnds = true;
+        timerClosePlOne1.SetActive(false);
+        timerClosePlOne2.SetActive(false);
+        timerClosePlTwo1.SetActive(false);
+        timerClosePlTwo2.SetActive(false);
+        timerClosePlOne3.SetActive(false);
+        timerClosePlOne4.SetActive(false);
+        timerClosePlTwo3.SetActive(false);
+        timerClosePlTwo4.SetActive(false);
+        timerClosePlOne5.SetActive(false);
+        timerClosePlTwo5.SetActive(false);
+
         if (playerOneTime < timerForGame)
         {
             compareForOne = timerForGame - playerOneTime;

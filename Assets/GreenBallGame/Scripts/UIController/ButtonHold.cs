@@ -30,8 +30,7 @@ public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void Update()
     {
         if (isHolding)
-        {
-            
+        {            
             buttonGost.transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
     }

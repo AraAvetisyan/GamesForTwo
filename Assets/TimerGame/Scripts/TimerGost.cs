@@ -13,7 +13,6 @@ public class TimerGost : MonoBehaviour
     public void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
-        Debug.Log("RRR");
         buttonGost.SetActive(true);
     }
 
@@ -30,7 +29,6 @@ public class TimerGost : MonoBehaviour
     {
         if (isHolding)
         {
-            Debug.Log("Gyot");
             buttonGost.transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
     }
