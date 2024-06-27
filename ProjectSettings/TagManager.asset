@@ -16,15 +16,17 @@ TagManager:
   - NotTrigger
   - PlayerOne
   - PlayerTwo
+  - DontDetect
+  - Ball
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - NotTrigger
+  - DontDetect
   - 
   - 
   - 

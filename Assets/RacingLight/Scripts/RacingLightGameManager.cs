@@ -125,7 +125,7 @@ public class RacingLightGameManager : MonoBehaviour
     }
     public IEnumerator WaitToUpdateGame()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         counter = 0;
         playerOneCounter = 0;
         playerTwoCounter = 0;
@@ -138,6 +138,7 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.PlayerTwoIsHolding = false;
         _playerOneRacingButtonsHold.PlayerOneButton.interactable = true;
         _playerTwoRacingButtonsHold.PlayerTwoButton.interactable = true;
+        _playerTwoRacingButtonsHold.SingleCounter = 0;
         _fireLightsScript.StartGame = false;
         _fireLightsScript.Counter = 0;
         StopCoroutine(UpdatePlOneTimer());

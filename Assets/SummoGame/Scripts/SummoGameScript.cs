@@ -6,45 +6,53 @@ using UnityEngine.EventSystems;
 public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private RotatePlayers _rotatePlayers;
-    [SerializeField] private int playerIndex;
+    public int PlayerIndex;
     [SerializeField] private float speed;
     [SerializeField] private GameObject PlayerOne, PlayerTwo;
 
     public bool PlayerOneIsHolding;
     public bool PlayerTwoIsHolding;
 
+    public bool GameEnds;
 
-    private bool isMobile;
+    public bool IsMobile;
+
+    public bool IsSingle;
+    [SerializeField] private float first,second;
 
     private void Start()
     {
-        if (Geekplay.Instance.mobile)
-        {
-            isMobile = true;
-        }
-        else
-        {
-            isMobile = false;
-        }
+        //if (Geekplay.Instance.mobile)
+        //{
+        //    IsMobile = true;
+        //}
+        //else
+        //{
+        //    IsMobile = false;
+        //}
     }
 
     private void Update()
     {
+        if (GameEnds)
+        {
+            speed = 0;
+        }
 
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
         {
             PlayerTwoIsHolding = true;
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle && !GameEnds)
         {            
             PlayerOneIsHolding = true;
         }
-        if(!isMobile && Input.GetKeyUp(KeyCode.Z))
+        if(!IsMobile && Input.GetKeyUp(KeyCode.Z))
         {
             PlayerTwoIsHolding = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
-        if (!isMobile && Input.GetKeyUp(KeyCode.M))
+        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && !IsSingle)
         {
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
@@ -65,12 +73,12 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         
-        if (playerIndex == 1)
+        if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
            
         }
-        if (playerIndex == 2)
+        if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = true;
            
@@ -79,16 +87,25 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (playerIndex == 1)
+        if (PlayerIndex == 1)
         {
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
-        if (playerIndex == 2)
+        if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
     }
     
+    public IEnumerator Single()
+    {
+        float timer = Random.Range(first, second);
+        yield return new WaitForSeconds(timer);
+        PlayerOneIsHolding = true;
+        yield return new WaitForSeconds(.25f);
+        PlayerOneIsHolding = false;
+        _rotatePlayers.PlayerOneRotationSpeed = 300f;
+    }
 }

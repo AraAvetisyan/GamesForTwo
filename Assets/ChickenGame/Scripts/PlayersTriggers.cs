@@ -7,39 +7,54 @@ public class PlayersTriggers : MonoBehaviour
     [SerializeField] private int playerIndex;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
+    [SerializeField] private GameObject playerTwoLose;
     [SerializeField] private PlayerMovement _playersMovement;
     [SerializeField] private CameraScript _cameraScript;
     [SerializeField] private CameraScript _notTriggerScript;
+    public bool EndGame;
+    [SerializeField] private bool isSingle;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NotTrigger")
         {
-            if(playerIndex == 1)
+            if(playerIndex == 1 && !isSingle)
             {
                 playerTwoWin.SetActive(true);
                 _playersMovement.Speed = 0;
                 _cameraScript.Speed = 0;
                 _notTriggerScript.Speed = 0;
                 StartCoroutine(WaitToFinal());
+                EndGame = true;
             }
-            if(playerIndex == 2)
+            if(playerIndex == 2 && !isSingle)
             {
                 playerOneWin.SetActive(true);
                 _playersMovement.Speed = 0;
                 _cameraScript.Speed = 0;
                 _notTriggerScript.Speed = 0;
                 StartCoroutine(WaitToFinal());
+                EndGame = true;
+            }
+            if (playerIndex == 2 && isSingle)
+            {
+                playerTwoLose.SetActive(true);
+                _playersMovement.Speed = 0;
+                _cameraScript.Speed = 0;
+                _notTriggerScript.Speed = 0;
+                StartCoroutine(WaitToFinal());
+                EndGame = true;
             }
         }
         if(collision.gameObject.tag == "Trigger")
         {
-            if(playerIndex == 1)
+            if(playerIndex == 1 && !isSingle)
             {
                 playerOneWin.SetActive(true);
                 _playersMovement.Speed = 0;
                 _cameraScript.Speed = 0;
                 _notTriggerScript.Speed = 0;
                 StartCoroutine(WaitToFinal());
+                EndGame = true;
             }
             if (playerIndex == 2)
             {
@@ -48,6 +63,7 @@ public class PlayersTriggers : MonoBehaviour
                 _cameraScript.Speed = 0;
                 _notTriggerScript.Speed = 0;
                 StartCoroutine(WaitToFinal());
+                EndGame = true;
             }
         }
     }

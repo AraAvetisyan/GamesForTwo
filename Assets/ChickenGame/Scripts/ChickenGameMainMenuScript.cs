@@ -5,18 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class ChickenGameMainMenuScript : MonoBehaviour
 {
-
+    [SerializeField] private bool isSingle;
     public void PressedChickenGameOne()
     {
-        SceneManager.LoadScene("ChickenGameOne");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("ChickenGameOne");
+        }
+        else
+        {
+
+            SceneManager.LoadScene("ChickenGameOneSingle");
+        }
     }
     public void PressedChickenGameTwo()
     {
-        SceneManager.LoadScene("ChickenGameTwo");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("ChickenGameTwo");
+        }
+        else
+        {
+
+            SceneManager.LoadScene("ChickenGameTwoSingle");
+        }
     }
     public void PressedChickenGameThree()
     {
-        SceneManager.LoadScene("ChickenGameThree");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("ChickenGameThree");
+        }
+        else
+        {
+
+            SceneManager.LoadScene("ChickenGameThreeSingle");
+        }
     }
     public void PressedHome()
     {

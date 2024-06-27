@@ -5,13 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class SummoUI : MonoBehaviour
 {
+    [SerializeField] private bool isSingle;
     public void PresedHome()
     {
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()
     {
-        SceneManager.LoadScene("SummoGame");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("SummoGame");
+        }
+        else
+        {
+            SceneManager.LoadScene("SummoGameSingle");
+        }
     }
 
 }

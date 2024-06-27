@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RacingLightUI : MonoBehaviour
+public class FootballUI : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
-    public void PressedHome()
+    public void PresedHome()
     {
         SceneManager.LoadScene("MainMenu");
     }
-    public void PressedRest()
+    public void PressedRestart()
     {
         if (!isSingle)
         {
-            SceneManager.LoadScene("RacingLight");
+            SceneManager.LoadScene("FootballBall");
         }
-        if (isSingle)
+        else
         {
-            SceneManager.LoadScene("RacingLightSingle");
+            SceneManager.LoadScene("FootballBallSingle");
         }
     }
 }

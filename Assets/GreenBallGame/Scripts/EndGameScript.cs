@@ -21,10 +21,12 @@ public class EndGameScript : MonoBehaviour
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
             firstPlayerWin.SetActive(true);
+            StartCoroutine(WaitEndGame());
         }
         if (_secondPlayerZoneTrigger.FirstPlayersPoints < _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
             secondPlayerWin.SetActive(true);
+            StartCoroutine(WaitEndGame());
         }
         if(_secondPlayerZoneTrigger.FirstPlayersPoints == _firstPlayerZoneTrigger.SecondPlayersPoints)
         {

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.ParticleSystem;
 
 public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private RotatePlayers _rotatePlayers;
-    [SerializeField] private int playerIndex;
-    [SerializeField] private float speed;
+    public int PlayerIndex;
+    public float Speed;
     [SerializeField] private GameObject playerOne, playerTwo;
 
     [SerializeField] private Rigidbody2D playerOneRB, playerTwoRB;
@@ -19,16 +20,20 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private bool isMobile;
 
+
+    public bool IsSingle;
+    [SerializeField] private float first, second;
+
     private void Start()
     {
-        if (Geekplay.Instance.mobile)
-        {
-            isMobile = true;
-        }
-        else
-        {
-            isMobile = false;
-        }
+        //if (Geekplay.Instance.mobile)
+        //{
+        //    isMobile = true;
+        //}
+        //else
+        //{
+        //    isMobile = false;
+        //}
     }
 
     private void Update()
@@ -38,7 +43,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             PlayerTwoIsHolding = true;
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds)
+        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds && !IsSingle)
         {
             PlayerOneIsHolding = true;
         }
@@ -60,7 +65,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 
 
-            playerOne.transform.Translate(-Vector3.right * speed * Time.deltaTime);
+            playerOne.transform.Translate(-Vector3.right * Speed * Time.deltaTime);
             //Vector2 runDirection = -playerOne.transform.right;
             //playerOneRB.AddForce(runDirection * speed, ForceMode2D.Force);
 
@@ -70,21 +75,30 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (PlayerTwoIsHolding)
         {
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
-            playerTwo.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
             //Vector2 runDirection = playerTwo.transform.right;
             //playerTwoRB.AddForce(runDirection * speed, ForceMode2D.Force);
             
         }
     }
+    public IEnumerator Single()
+    {
+        float timer = Random.Range(first, second);
+        yield return new WaitForSeconds(timer);
+        PlayerOneIsHolding = true;
+        yield return new WaitForSeconds(1f);
+        PlayerOneIsHolding = false;
+        _rotatePlayers.PlayerOneRotationSpeed = 300f;
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        if (playerIndex == 1)
+        if (PlayerIndex == 1)
         {
             PlayerOneIsHolding = true;
 
         }
-        if (playerIndex == 2)
+        if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = true;
 
@@ -93,12 +107,12 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (playerIndex == 1)
+        if (PlayerIndex == 1)
         {
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
-        if (playerIndex == 2)
+        if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;

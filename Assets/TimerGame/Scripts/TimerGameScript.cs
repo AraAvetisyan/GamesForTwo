@@ -201,7 +201,15 @@ public class TimerGameScript : MonoBehaviour
     }
     public void PressedRestart()
     {
-        SceneManager.LoadScene("TimerGame");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("TimerGame");
+        }
+        else
+        {
+            SceneManager.LoadScene("TimerGameSingle");
+
+        } 
     }
 
 }

@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _greenBallGameUIController: {fileID: 1831455476}
   playerNumber: 1
+  isSingle: 1
 --- !u!50 &30889901
 Rigidbody2D:
   serializedVersion: 4
@@ -2117,6 +2118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _greenBallGameUIController: {fileID: 1831455476}
   playerNumber: 2
+  isSingle: 1
 --- !u!58 &539179054
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3212,6 +3214,7 @@ MonoBehaviour:
   redButton: {fileID: 2040313139}
   CanFireBlue: 1
   CanFireRed: 1
+  _greenBallGameUIController: {fileID: 1831455476}
 --- !u!1 &1085259423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,7 +6410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322b26f953b27b845b4f18f4ebd48e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  single: 1
+  Single: 1
   redBallPrefab: {fileID: 7025093840333829147, guid: 9d579804c9f7c6244bcd7e1d82c03ef9, type: 3}
   blueBallPrefab: {fileID: 285085843609175919, guid: fc92f7e434e5c5e429585efc3b23aeaf, type: 3}
   redBallSpawnPoint: {fileID: 665085562}
@@ -7203,6 +7206,7 @@ MonoBehaviour:
   redButton: {fileID: 2040313139}
   CanFireBlue: 1
   CanFireRed: 1
+  _greenBallGameUIController: {fileID: 1831455476}
 --- !u!1 &2027153850
 GameObject:
   m_ObjectHideFlags: 0

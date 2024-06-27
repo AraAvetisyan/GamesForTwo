@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private int playerOneGravity = -1;
     private int playerTwoGravity = 1;
     private bool changeOne, changeTwo;
+    [SerializeField] private Button plOneButton, plTwoButton;
 
     private bool isMobile;
+
+    [SerializeField] private PlayersTriggers _firstPlayersTriggers, _secondPlayersTriggers;
     private void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -26,15 +30,27 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (_firstPlayersTriggers.EndGame || _secondPlayersTriggers.EndGame)
+        {
+            Speed = 0;
+            plOneButton.interactable = false;
+            plTwoButton.interactable = false;
+        }
         playerOne.transform.Translate(Vector3.right * Speed * Time.deltaTime);
         playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
         if (!isMobile && Input.GetKeyDown(KeyCode.Z))
         {
-            PressedPlayerTwoButton();
+            if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
+            {
+                PressedPlayerTwoButton();
+            }
         }
         if (!isMobile && Input.GetKeyDown(KeyCode.M))
         {
-            PressedPlayerOneButton();
+            if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
+            {
+                PressedPlayerOneButton();
+            }
         }
     }
 

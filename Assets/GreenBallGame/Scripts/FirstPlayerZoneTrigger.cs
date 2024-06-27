@@ -14,6 +14,7 @@ public class FirstPlayerZoneTrigger : MonoBehaviour
     public int SecondPlayersPoints;
     [SerializeField] private Button blueButton, redButton;
     public bool CanFireBlue, CanFireRed;
+    [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     private void Start()
     {
 
@@ -51,5 +52,9 @@ public class FirstPlayerZoneTrigger : MonoBehaviour
         redButton.interactable = true;
         CanFireBlue = true;
         CanFireRed = true;
+        if (_greenBallGameUIController.Single)
+        {
+            StartCoroutine(_greenBallGameUIController.SinglePlayer());
+        }
     }
 }

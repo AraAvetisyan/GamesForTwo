@@ -17,6 +17,7 @@ public class FootballTimer : MonoBehaviour
     [SerializeField] private Rigidbody2D ballRb,plOneRb,plTwoRb;
     [SerializeField] private Button plOneButton, plTwoButton;
     public bool GameEnds;
+    [SerializeField] private BoxCollider2D enemyBox;
     private void Start()
     {
         StartCoroutine(Timer());
@@ -54,6 +55,7 @@ public class FootballTimer : MonoBehaviour
             plOneRb.velocity = Vector2.zero;
             plTwoRb.velocity = Vector2.zero;
             ballRb.velocity = Vector2.zero;
+            enemyBox.enabled = false;
             if (_footballBallTriggers.PlayerOnePoints > _footballBallTriggers.PlayerTwoPoints)
             {
                 playerOneWin.SetActive(true);

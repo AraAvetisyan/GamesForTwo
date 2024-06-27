@@ -6,7 +6,7 @@ using static UnityEngine.AudioSettings;
 
 public class GreenBallGameUIController : MonoBehaviour
 {
-    [SerializeField] private bool single;
+    public bool Single;
     [SerializeField] private GameObject redBallPrefab, blueBallPrefab;
     [SerializeField] private Transform redBallSpawnPoint, blueBallSpawnPoint;
     public bool RedBallActive, BlueBallActive;
@@ -21,7 +21,7 @@ public class GreenBallGameUIController : MonoBehaviour
     float randomTimer;
     private void Start()
     {
-        if (single)
+        if (Single)
         {
             StartCoroutine(SinglePlayer());
         }
@@ -40,7 +40,7 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             PressedRedButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !single)
+        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !Single)
         {
             PressedBlueButton();
         }
@@ -120,11 +120,11 @@ public class GreenBallGameUIController : MonoBehaviour
     }
     public void PressedRestart()
     {
-        if (!single)
+        if (!Single)
         {
             SceneManager.LoadScene("GreenBall");
         }
-        if (single)
+        if (Single)
         {
             SceneManager.LoadScene("GreenBallSingle");
         }

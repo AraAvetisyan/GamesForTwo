@@ -901,7 +901,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonGost: {fileID: 1920245575}
   gostStartTransform: {fileID: 221460863}
-  gostEndTransform: {fileID: 1770626014}
   speed: 0.8
 --- !u!1 &166988556
 GameObject:
@@ -3211,6 +3210,9 @@ MonoBehaviour:
   FirstPlayersPoints: 0
   blueButton: {fileID: 1528268295}
   redButton: {fileID: 2040313139}
+  CanFireBlue: 0
+  CanFireRed: 0
+  _greenBallGameUIController: {fileID: 1831455476}
 --- !u!1 &1085259423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6406,6 +6408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322b26f953b27b845b4f18f4ebd48e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Single: 0
   redBallPrefab: {fileID: 7025093840333829147, guid: 9d579804c9f7c6244bcd7e1d82c03ef9, type: 3}
   blueBallPrefab: {fileID: 285085843609175919, guid: fc92f7e434e5c5e429585efc3b23aeaf, type: 3}
   redBallSpawnPoint: {fileID: 665085562}
@@ -6418,6 +6421,8 @@ MonoBehaviour:
   activatorPlTwoRed: {fileID: 415152698}
   _rotatePlayers: {fileID: 1380391125}
   shootingForce: 7
+  _firstPlayerZoneTrigger: {fileID: 1986415362}
+  _secondPlayerZoneTrigger: {fileID: 1048018520}
 --- !u!1 &1866928845
 GameObject:
   m_ObjectHideFlags: 0
@@ -7197,6 +7202,9 @@ MonoBehaviour:
   SecondPlayersPoints: 0
   blueButton: {fileID: 1528268295}
   redButton: {fileID: 2040313139}
+  CanFireBlue: 0
+  CanFireRed: 0
+  _greenBallGameUIController: {fileID: 1831455476}
 --- !u!1 &2027153850
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class SummoTriggers : MonoBehaviour
 
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] private BoxCollider2D enemyBox;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NotTrigger")
@@ -34,6 +36,8 @@ public class SummoTriggers : MonoBehaviour
                     playerTwoWin.SetActive(true);
                     playerOneButton.interactable = false;
                     playerTwoButton.interactable = false;
+                    _summoGameScriptPlOne.GameEnds = true;
+                    _summoGameScriptPlTwo.GameEnds = true;
                     StartCoroutine(WaitToWin());
                 }
                 Debug.Log("Pl 2 Win");
@@ -51,9 +55,11 @@ public class SummoTriggers : MonoBehaviour
                     playerOneWin.SetActive(true);
                     playerOneButton.interactable = false;
                     playerTwoButton.interactable = false;
+                    _summoGameScriptPlOne.GameEnds = true;
+                    _summoGameScriptPlTwo.GameEnds = true;
+                    enemyBox.enabled = false;
                     StartCoroutine(WaitToWin());
                 }
-                Debug.Log("Pl 1 Win");
             }
         }
     }
