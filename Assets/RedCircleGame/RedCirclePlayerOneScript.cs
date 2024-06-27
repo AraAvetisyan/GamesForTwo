@@ -34,29 +34,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
         {
             inCircle = true;
             Points++;
-            //pointsBuffer++;
-
-            //Debug.Log("Qanaky - " + pointsBuffer);
-            //if (pointsBuffer == 1)
-            //{
-            //    Points+=1;
-            //}
-            //if(pointsBuffer == 2)
-            //{
-            //    Points+=2;
-            //}
-            //if(pointsBuffer == 3)
-            //{
-            //    Points += 3;
-            //}
-            //if(pointsBuffer == 4)
-            //{
-            //    Points += 4;
-            //}
-            //if(pointsBuffer == 5)
-            //{
-            //    Points += 5;
-            //}
+           
             
             pointsText.text = Points.ToString();
             _playerOneCircleChanger.ChangePlOneCircle();

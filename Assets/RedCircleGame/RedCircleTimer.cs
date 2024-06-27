@@ -14,12 +14,20 @@ public class RedCircleTimer : MonoBehaviour
     [SerializeField] private CircularMotion playerOneMove;
     [SerializeField] private CircularMotion playerTwoMove;
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
-    [SerializeField] private Button playerOneButton, playerTwoButton; 
+    [SerializeField] private Button playerOneButton, playerTwoButton;
+    public bool PlOneCantPlay, PlTwoCantPlay;
     private void Start()
     {
         StartCoroutine(Timer());
     }
-
+    private void Update()
+    {
+        if (seconds <= 0)
+        {
+            playerOneMove.Speed = 0;
+            playerTwoMove.Speed = 0;
+        }
+    }
     private IEnumerator Timer()
     {
         yield return new WaitForSecondsRealtime(1);
@@ -27,7 +35,7 @@ public class RedCircleTimer : MonoBehaviour
         {
 
             seconds--;
-            if (seconds > 10)
+            if (seconds >= 10)
             {
                 timerText.text = seconds.ToString();
             }
@@ -44,6 +52,8 @@ public class RedCircleTimer : MonoBehaviour
             playerTwoMove.Speed = 0;
             playerOneButton.interactable = false;
             playerTwoButton.interactable = false;
+            PlOneCantPlay = true;
+            PlTwoCantPlay = true;
             if (_redCirclePlayerOneScript.Points > _redCirclePlayerTwoScript.Points)
             {
                 playerOneWin.SetActive(true);

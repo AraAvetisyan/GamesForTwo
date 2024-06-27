@@ -17,7 +17,7 @@ public class PlayerOneScript : MonoBehaviour
     [SerializeField] private Transform playerOnePosition;
     private bool goBack;
     [SerializeField] private float speed;
-
+    public bool CantPlay;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag== "EatableFish")
@@ -78,7 +78,9 @@ public class PlayerOneScript : MonoBehaviour
     {
         stanCounter = 0;
         playerOneButton.interactable = false;
+        CantPlay = true;
         yield return new WaitForSeconds(2);
-        playerOneButton.interactable=true;
+        playerOneButton.interactable = true;
+        CantPlay = false;
     }
 }

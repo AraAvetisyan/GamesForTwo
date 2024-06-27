@@ -16,17 +16,28 @@ public class DinosaurGame : MonoBehaviour
     [SerializeField] private GameObject plOne, plTwo;
     private bool change;
 
-
+    [SerializeField] private List<int> singleTeeth;
+    private int teethIndex;
+    [SerializeField] bool isSingle;
 
 
     void Start()
     {
+        
+           
+        
         lose = Random.Range(0, 9);
         player = Random.Range(0, 2);
         Debug.Log(lose);
         if(player == 0)
         {
             plOne.SetActive(true);
+            if (isSingle)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(Single());
+            }
         }
         if(player == 1)
         {
@@ -38,6 +49,7 @@ public class DinosaurGame : MonoBehaviour
 
     public void PressedTeetth(int index)
     {
+        singleTeeth.RemoveAt(index);
         change = true;
         teeth[index].interactable = false;
         counter++;
@@ -52,6 +64,7 @@ public class DinosaurGame : MonoBehaviour
                 for (int i = 0; i < teeth.Length; i++)
                 {
                     teeth[i].interactable = false;
+                    
                 }
             }
             if(player == 1)
@@ -91,6 +104,12 @@ public class DinosaurGame : MonoBehaviour
             player = 0;
             plTwo.SetActive(false);
             plOne.SetActive(true);
+            if (isSingle)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(Single());
+            }
         }
         if (player == 0 && change)
         {
@@ -98,7 +117,15 @@ public class DinosaurGame : MonoBehaviour
             player = 1;
             plOne.SetActive(false);
             plTwo.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
+    }
+    public IEnumerator Single()
+    {
+        yield return new WaitForSeconds(0.5f);
+        teethIndex = Random.Range(0, singleTeeth.Count);
+        PressedTeetth(teethIndex);
     }
     public IEnumerator WaitToFinal()
     {
@@ -113,7 +140,14 @@ public class DinosaurGame : MonoBehaviour
     }
     public void PressedRest()
     {
-        SceneManager.LoadScene("DinosaurGame");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("DinosaurGame");
+        }
+        if (isSingle)
+        {
+            SceneManager.LoadScene("DinosaurGameSingle");
+        }
     }
     
 }

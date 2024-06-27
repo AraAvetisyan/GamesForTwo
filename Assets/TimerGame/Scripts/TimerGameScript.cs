@@ -4,6 +4,7 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TimerGameScript : MonoBehaviour
 {
@@ -18,37 +19,51 @@ public class TimerGameScript : MonoBehaviour
     private float compareForOne, compareForTwo;
     [SerializeField] private GameObject endPanel;
 
+    [SerializeField] private bool playerOnePressed, playerTwoPressed;
+    [SerializeField] private Button playerOneButton, playerTwoButton;
+
     private bool gameEnds;
     [SerializeField] private GameObject timerClosePlOne1, timerClosePlOne2, timerClosePlOne3, timerClosePlOne4, timerClosePlOne5;
     [SerializeField] private GameObject timerClosePlTwo1, timerClosePlTwo2, timerClosePlTwo3, timerClosePlTwo4, timerClosePlTwo5;
 
     private bool isMobile;
+
+    [SerializeField] private bool isSingle;
     private void Start()
     {
-        if (Geekplay.Instance.mobile)
-        {
-            isMobile = true;
-            Debug.Log("IsMobile");
-        }
-        else
-        {
-            isMobile = false;
-        }
+        //if (Geekplay.Instance.mobile)
+        //{
+        //    isMobile = true;
+        //    Debug.Log("IsMobile");
+        //}
+        //else
+        //{
+        //    isMobile = false;
+        //}
+      
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
 
         timerForGame = Random.Range(5, 31);
         timerText.text = timerForGame.ToString("F1");
+        if (isSingle)
+        {
+            StartCoroutine(Single());
+        }
     }
 
     public void PressedPlOneButton()
     {
+        playerOneButton.interactable = false;
+        playerOnePressed = true;
         Counter++;
         playerOneStop = true;
         playerOneTime = timer;
     }
     public void PressedPlTwoButton()
     {
+        playerTwoButton.interactable = false;
+        playerTwoPressed = true;
         Counter++;
         playerTwoStop = true;
         playerTwoTime = timer;
@@ -80,14 +95,21 @@ public class TimerGameScript : MonoBehaviour
             Counter++;
             EndGame();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!isMobile && Input.GetKeyDown(KeyCode.Z) && !playerTwoPressed)
         {
             PressedPlTwoButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !isSingle && !playerOnePressed)
         {
             PressedPlOneButton();
         }
+    }
+    public IEnumerator Single()
+    {
+        float singleTimer = Random.Range(timerForGame - 2, timerForGame + 1);
+        yield return new WaitForSecondsRealtime(singleTimer);
+        PressedPlOneButton();
+
     }
     public void EndGame()
     {

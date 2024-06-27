@@ -10,6 +10,7 @@ public class CatPawEndGameManager : MonoBehaviour
     [SerializeField] private GameObject playerOneWinner, playerTwoWinner;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private Button playerOneButton, playerTwoButton;
+    public bool PlOneCantPlay, PlTwoCantPlay;
     void Start()
     {
         
@@ -22,6 +23,8 @@ public class CatPawEndGameManager : MonoBehaviour
         {
             playerOneButton.interactable = false;
             playerTwoButton.interactable = false;
+            PlOneCantPlay = true;
+            PlTwoCantPlay = true;
             playerOneWinner.SetActive(true);
             StartCoroutine(WaitForEnd());
         }
@@ -29,6 +32,9 @@ public class CatPawEndGameManager : MonoBehaviour
         {
             playerOneButton.interactable = false;
             playerTwoButton.interactable = false;
+
+            PlOneCantPlay = true;
+            PlTwoCantPlay = true;
             playerTwoWinner.SetActive(true);
             StartCoroutine(WaitForEnd());
         }

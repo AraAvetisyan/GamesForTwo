@@ -13,7 +13,13 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     [SerializeField] private TextMeshProUGUI firstPlayersPointsText;
     public int FirstPlayersPoints;
     [SerializeField] private Button blueButton, redButton;
-  
+    public bool CanFireBlue, CanFireRed;
+    private void Start()
+    {
+
+        CanFireBlue = true;
+        CanFireRed = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "FirstPlayerWin")
@@ -26,7 +32,10 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
             greenBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             blueButton.interactable = false;
             redButton.interactable = false;
+            CanFireBlue = false;
+            CanFireRed = false;
             StartCoroutine(WaitForWin());
+
         }
     }
     public IEnumerator WaitForWin()
@@ -38,5 +47,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
         firstPlayerGoll.SetActive(false);
         blueButton.interactable = true;
         redButton.interactable = true;
+        CanFireBlue = true;
+        CanFireRed = true;
     }
 }

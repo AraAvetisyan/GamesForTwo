@@ -15,6 +15,7 @@ public class ActivatorScript : MonoBehaviour
             if (playerNumber == 1 && _greenBallGameUIController.BlueBallActive == true)
             {
                 _greenBallGameUIController.BlueBallActive = false;
+                StartCoroutine(_greenBallGameUIController.SinglePlayer());
             }
             if (playerNumber == 2 && _greenBallGameUIController.RedBallActive == true)
             {

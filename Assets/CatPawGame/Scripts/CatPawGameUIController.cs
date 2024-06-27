@@ -12,8 +12,17 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private Transform playerOnePosition, playerTwoPosition;
     public float Timer;
     private bool isMobile;
+    [SerializeField] private bool isSingle;
+    float randomTimer;
+    [SerializeField] private PlayerOneScript _playerOneScript;
+    [SerializeField] private PlayerTwoScript _playerTwoScript;
+    [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     private void Start()
     {
+        if (isSingle)
+        {
+            StartCoroutine(SinglePlayer());
+        }
         if (Geekplay.Instance.mobile)
         {
             isMobile = true;
@@ -30,19 +39,32 @@ public class CatPawGameUIController : MonoBehaviour
         {
             PressedPlayerTwoButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !isSingle)
         {
             PressedPlayerOneButton();
         }
     }
+    public IEnumerator SinglePlayer()
+    {
+        randomTimer = Random.Range(2f, 4.5f);
+        yield return new WaitForSeconds(randomTimer);
+        PressedPlayerOneButton();
+        StartCoroutine(SinglePlayer());
+    }
     public void PressedPlayerOneButton()
     {
-        ButtonOnePressed = true;
+        if (!_playerOneScript.CantPlay && !_catPawEndGameManager.PlOneCantPlay)
+        {
+            ButtonOnePressed = true;
+        }
 
     }
-    public void PressedPlayerTwoButton() 
+    public void PressedPlayerTwoButton()
     {
-        ButtonTwoPressed = true;
+        if (!_playerTwoScript.CantPlay && !_catPawEndGameManager.PlTwoCantPlay)
+        {
+            ButtonTwoPressed = true;
+        }
     }
 
 
@@ -50,8 +72,8 @@ public class CatPawGameUIController : MonoBehaviour
     {
         if (ButtonOnePressed)
         {
-           StartCoroutine(WaitToGoBack());
-           playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
+            StartCoroutine(WaitToGoBack());
+            playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
         if (ButtonTwoPressed)
         {
@@ -67,7 +89,7 @@ public class CatPawGameUIController : MonoBehaviour
         //{
         //    
         //}
-        
+
     }
     public IEnumerator WaitToGoBack()
     {
@@ -84,6 +106,14 @@ public class CatPawGameUIController : MonoBehaviour
     }
     public void PressedRestButton()
     {
-        SceneManager.LoadScene("CatPaw");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("CatPaw");
+
+        }
+        if (isSingle)
+        {
+            SceneManager.LoadScene("CatPawSingle");
+        }
     }
 }

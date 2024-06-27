@@ -16,7 +16,9 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public bool PlayerOneOnTime, PlayerTwoOnTime;
     public Button PlayerOneButton, PlayerTwoButton;
     [SerializeField] RacingLightGameManager _racingLightGameManager;
-    
+
+    [SerializeField] private bool isSingle;
+    private int singleCounter;
     private void Start()
     {
         //if (Geekplay.Instance.mobile)
@@ -81,23 +83,69 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         
     }
+    public IEnumerator Single()
+    {
+        float timer = Random.Range(5, 10);
+        yield return new WaitForSeconds(timer);
+
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         if(playerIndex == 1)
         {
             PlayerOneIsHolding = true;
-
+          //  PlayerOneIsHolding = false;
+            if (isSingle && singleCounter == 0)
+            {
+                StartCoroutine(Single());
+                singleCounter++;
+                PlayerOneIsHolding = true;
+            }
+            if (_fireLightsScript.CanHoldOff)
+            {
+                _racingLightGameManager.counter++;
+                PlayerOneOnTime = true;
+                PlayerOneButton.interactable = false;
+                //   Debug.Log("Player 1 i tivy pahel");
+            }
+            else
+            {
+                _racingLightGameManager.counter++;
+                PlayerOneSoon = true;
+                PlayerOneButton.interactable = false;
+                //   Debug.Log("Player 1 y krvav");
+            }
         }
         if(playerIndex == 2)
         {
-            PlayerTwoIsHolding = true;
+            PlayerTwoIsHolding = true; 
+            if (isSingle && singleCounter == 0)
+            {
+                StartCoroutine(Single());
+                singleCounter++;
+                PlayerOneIsHolding = true;
+            }
+            if (_fireLightsScript.CanHoldOff)
+            {
+                _racingLightGameManager.counter++;
+                PlayerTwoOnTime = true;
+                PlayerTwoButton.interactable = false;
+                //   Debug.Log("Player 1 i tivy pahel");
+            }
+            else
+            {
+                _racingLightGameManager.counter++;
+                PlayerTwoSoon = true;
+                PlayerTwoButton.interactable = false;
+                //   Debug.Log("Player 1 y krvav");
+            }
         }
         Debug.Log("Начало удерживания кнопки");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (playerIndex == 1)
+        if (playerIndex == 1 && !isSingle)
         {
             PlayerOneIsHolding = false;
             if (_fireLightsScript.CanHoldOff)
@@ -115,7 +163,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
              //   Debug.Log("Player 1 y krvav");
             }
         }
-        if (playerIndex == 2)
+        if (playerIndex == 2 )
         {
             PlayerTwoIsHolding = false;
             if (_fireLightsScript.CanHoldOff)

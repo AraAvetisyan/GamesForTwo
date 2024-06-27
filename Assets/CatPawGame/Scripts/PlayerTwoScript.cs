@@ -16,6 +16,7 @@ public class PlayerTwoScript : MonoBehaviour
     [SerializeField] private Transform playerTwoPosition;
     private bool goBack;
     [SerializeField] private float speed;
+    public bool CantPlay;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -78,7 +79,9 @@ public class PlayerTwoScript : MonoBehaviour
     {
         stanCounter = 0;
         playerOneButton.interactable = false;
+        CantPlay = true;
         yield return new WaitForSeconds(2);
         playerOneButton.interactable = true;
+        CantPlay = false;
     }
 }

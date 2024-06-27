@@ -6,6 +6,7 @@ using static UnityEngine.AudioSettings;
 
 public class GreenBallGameUIController : MonoBehaviour
 {
+    [SerializeField] private bool single;
     [SerializeField] private GameObject redBallPrefab, blueBallPrefab;
     [SerializeField] private Transform redBallSpawnPoint, blueBallSpawnPoint;
     public bool RedBallActive, BlueBallActive;
@@ -13,8 +14,17 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private RotatePlayers _rotatePlayers;
     [SerializeField] private float shootingForce;
     private bool isMobile;
+    [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
+    [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
+
+
+    float randomTimer;
     private void Start()
     {
+        if (single)
+        {
+            StartCoroutine(SinglePlayer());
+        }
         if (Geekplay.Instance.mobile)
         {
             isMobile = true;
@@ -30,7 +40,7 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             PressedRedButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !single)
         {
             PressedBlueButton();
         }
@@ -56,9 +66,20 @@ public class GreenBallGameUIController : MonoBehaviour
             activatorPlTwoRed.SetActive(false);
         }
     }
+
+
+    public IEnumerator SinglePlayer()
+    {
+        randomTimer = Random.Range(0.55f, 0.7f);
+        yield return new WaitForSeconds(randomTimer);
+        if (!BlueBallActive)
+        {
+            PressedBlueButton();
+        }
+    }
     public void PressedBlueButton()
     {
-        if (!BlueBallActive)
+        if (!BlueBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             GameObject ball = Instantiate(blueBallPrefab, blueBallSpawnPoint.position, Quaternion.identity);
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
@@ -71,7 +92,7 @@ public class GreenBallGameUIController : MonoBehaviour
     }
     public void PressedRedButton() 
     {
-        if(!RedBallActive)
+        if(!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.identity);
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
@@ -99,7 +120,14 @@ public class GreenBallGameUIController : MonoBehaviour
     }
     public void PressedRestart()
     {
-        SceneManager.LoadScene("GreenBall");
+        if (!single)
+        {
+            SceneManager.LoadScene("GreenBall");
+        }
+        if (single)
+        {
+            SceneManager.LoadScene("GreenBallSingle");
+        }
     }
 
 
