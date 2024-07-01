@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -19,17 +20,28 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public bool IsSingle;
     [SerializeField] private float first,second;
+    [SerializeField] private Image buttonOneBg, buttonTwoBg;
+    [SerializeField] private Image buttonOne, buttonTwo;
 
     private void Start()
     {
-        //if (Geekplay.Instance.mobile)
-        //{
-        //    IsMobile = true;
-        //}
-        //else
-        //{
-        //    IsMobile = false;
-        //}
+        if (Geekplay.Instance.mobile)
+        {
+            IsMobile = true;
+        }
+        else
+        {
+            IsMobile = false;
+            if (!IsSingle)
+            {
+                Color color = buttonOneBg.color;
+                color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+                buttonOneBg.color = color;
+                buttonTwoBg.color = color;
+                buttonOne.color = color;
+                buttonTwo.color = color;
+            }
+        }
     }
 
     private void Update()

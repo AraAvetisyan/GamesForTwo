@@ -29,22 +29,27 @@ public class TimerGameScript : MonoBehaviour
     private bool isMobile;
 
     [SerializeField] private bool isSingle;
+    [SerializeField] private GameObject buttonOne, buttonTwo;
     private void Start()
     {
-        //if (Geekplay.Instance.mobile)
-        //{
-        //    isMobile = true;
-        //    Debug.Log("IsMobile");
-        //}
-        //else
-        //{
-        //    isMobile = false;
-        //}
-      
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+            if (!isSingle)
+            {
+                buttonOne.SetActive(false);
+                buttonTwo.SetActive(false);
+            }
+        }
+
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
 
-        timerForGame = Random.Range(5, 31);
+        timerForGame = Random.Range(5, 15);
         timerText.text = timerForGame.ToString("F1");
         if (isSingle)
         {

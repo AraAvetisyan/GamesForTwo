@@ -10,7 +10,7 @@ public class FootballTimer : MonoBehaviour
     private int minutes = 1;
     private int allTime = 90;
     [SerializeField] private TextMeshProUGUI timerText;
-
+    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
     [SerializeField] private FootballBallTriggers _footballBallTriggers;
@@ -68,8 +68,8 @@ public class FootballTimer : MonoBehaviour
             }
             if (_footballBallTriggers.PlayerTwoPoints == _footballBallTriggers.PlayerOnePoints)
             {
-                playerOneWin.SetActive(true);
-                playerTwoWin.SetActive(true);
+                playerOneDraw.SetActive(true);
+                playerTwoDraw.SetActive(true);
                 StartCoroutine(WaitToFinish());
             }
 

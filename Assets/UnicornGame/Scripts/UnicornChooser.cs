@@ -19,6 +19,7 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
     private int playerOnePoints, playerTwoPoints;
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
+    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
     [SerializeField] private GameObject finalPanel;
     void Start()
     {
@@ -51,7 +52,7 @@ public class UnicornChooser : MonoBehaviour
         if(counter == 1) 
         {
             counter = 2;
-            if (_playerOneChooser.PlayerOneEnds)
+            if (_playerOneChooser.PlayerOneEnds && counter == 2)
             {
                 if(_playerOneChooser.HeadInt == headInt)
                 {
@@ -74,7 +75,7 @@ public class UnicornChooser : MonoBehaviour
                     playerOnePoints += 5;
                 }
             }
-            if (_playerTwoChooser.PlayerTwoEnds)
+            if (_playerTwoChooser.PlayerTwoEnds && counter == 2)
             {
                 if(_playerTwoChooser.HeadInt == headInt)
                 {
@@ -97,6 +98,7 @@ public class UnicornChooser : MonoBehaviour
                     playerTwoPoints += 5;
                 }
             }
+            counter = 3;
             playerOnePointsText.text = playerOnePoints.ToString();
             playerTwoPointsText.text = playerTwoPoints.ToString();
             if (playerOnePoints > playerTwoPoints)
@@ -111,8 +113,8 @@ public class UnicornChooser : MonoBehaviour
             }
             if (playerOnePoints == playerTwoPoints)
             {
-                playerOneWin.SetActive(true);
-                playerTwoWin.SetActive(true);
+                playerOneDraw.SetActive(true);
+                playerTwoDraw.SetActive(true);
                 StartCoroutine(WaitToFinish());
             }
         }

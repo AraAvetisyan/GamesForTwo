@@ -14,6 +14,7 @@ public class PlayerOneChooser : MonoBehaviour
     private bool isMobile;
 
     [SerializeField] bool isSingle;
+    [SerializeField] private GameObject buttonOne, buttonTwo;
     void Start()
     {
 
@@ -24,6 +25,11 @@ public class PlayerOneChooser : MonoBehaviour
         else
         {
             isMobile = false;
+            if (!isSingle)
+            {
+                buttonOne.SetActive(false);
+                buttonTwo.SetActive(false);
+            }
         }
     }
 

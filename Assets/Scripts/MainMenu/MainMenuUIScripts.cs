@@ -6,6 +6,10 @@ public class MainMenuUIScripts : MonoBehaviour
 {
     [SerializeField] private GameObject gamesForOnePanel, gamesForTwoPanel, homeMenuPanel, headerPanel;
 
+    private void Start()
+    {
+        Geekplay.Instance.GameReady();
+    }
     public void PressedGamesForOneButton()
     {
         gamesForOnePanel.SetActive(true);

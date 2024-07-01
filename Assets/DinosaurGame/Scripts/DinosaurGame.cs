@@ -20,7 +20,7 @@ public class DinosaurGame : MonoBehaviour
     private int teethIndex;
     [SerializeField] bool isSingle;
 
-
+    public int teethToPress;
     void Start()
     {
         
@@ -49,7 +49,18 @@ public class DinosaurGame : MonoBehaviour
 
     public void PressedTeetth(int index)
     {
-        singleTeeth.RemoveAt(index);
+
+        if (isSingle)
+        {
+            for(int i = 0; i < singleTeeth.Count; i++)
+            {
+                if(i == index)
+                {
+                    singleTeeth.RemoveAt(i);
+                }
+            }
+            
+        }
         change = true;
         teeth[index].interactable = false;
         counter++;
@@ -125,7 +136,8 @@ public class DinosaurGame : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         teethIndex = Random.Range(0, singleTeeth.Count);
-        PressedTeetth(teethIndex);
+        teethToPress = singleTeeth[teethIndex];
+        PressedTeetth(teethToPress);
     }
     public IEnumerator WaitToFinal()
     {

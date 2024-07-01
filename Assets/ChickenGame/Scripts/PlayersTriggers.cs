@@ -65,6 +65,16 @@ public class PlayersTriggers : MonoBehaviour
                 StartCoroutine(WaitToFinal());
                 EndGame = true;
             }
+
+            
+        }
+        if (collision.gameObject.tag == "ChickenGravity")
+        {
+            if (playerIndex == 1 && isSingle)
+            {
+
+                _playersMovement.PressedPlayerOneButton();
+            }
         }
     }
     public IEnumerator WaitToFinal()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
 public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -22,18 +23,29 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 
     public bool IsSingle;
+    [SerializeField] private Image buttonOne, buttonTwo;
+    [SerializeField] private Image oneBg, twoBG;
     [SerializeField] private float first, second;
 
     private void Start()
     {
-        //if (Geekplay.Instance.mobile)
-        //{
-        //    isMobile = true;
-        //}
-        //else
-        //{
-        //    isMobile = false;
-        //}
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+            if (!IsSingle)
+            {
+                Color color = oneBg.color;
+                color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+                oneBg.color = color;
+                twoBG.color = color;
+                buttonOne.color = color;
+                buttonTwo.color = color;
+            }
+        }
     }
 
     private void Update()

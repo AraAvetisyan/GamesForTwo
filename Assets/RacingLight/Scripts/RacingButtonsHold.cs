@@ -20,17 +20,28 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     [SerializeField] private bool isSingle;
     public int SingleCounter;
-
+    [SerializeField] private Image buttonOneBg, buttonTwoBg;
+    [SerializeField] private Image buttonOne, buttonTwo;
     private void Start()
     {
-        //if (Geekplay.Instance.mobile)
-        //{
-        //    isMobile = true;
-        //}
-        //else
-        //{
-        //    isMobile = false;
-        //}
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+            if (!isSingle)
+            {
+                Color color = buttonOneBg.color;
+                color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+                buttonOneBg.color = color;
+                buttonTwoBg.color = color;
+                buttonOne.color = color;
+                buttonTwo.color = color;
+                
+            }
+        }
     }
     private void Update()
     {

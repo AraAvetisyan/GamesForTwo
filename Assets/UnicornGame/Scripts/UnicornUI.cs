@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class UnicornUI : MonoBehaviour
 {
+    [SerializeField] private bool isSingle;
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
-        SceneManager.LoadScene("Unicorn");
+        if (!isSingle)
+        {
+            SceneManager.LoadScene("Unicorn");
+        }
+        else
+        {
+            SceneManager.LoadScene("UnicornSingle");
+        }
     }
 }

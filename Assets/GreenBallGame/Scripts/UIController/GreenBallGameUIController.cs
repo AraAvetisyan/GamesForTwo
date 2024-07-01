@@ -17,6 +17,8 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
 
+    [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private bool isSingle;
 
     float randomTimer;
     private void Start()
@@ -28,6 +30,11 @@ public class GreenBallGameUIController : MonoBehaviour
         if (Geekplay.Instance.mobile)
         {
             isMobile = true;
+            if (!isSingle)
+            {
+                buttonOne.SetActive(false);
+                buttonTwo.SetActive(false);
+            }
         }
         else
         {

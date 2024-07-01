@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
@@ -66,46 +65,17 @@ public class Geekplay : MonoBehaviour
     public bool canReward;
 
     //ЗНАЧЕНИЯ ЛИДЕРБОРДА
-   // public LeaderboardInGame leaderboardInGame;
-
-    public string[] l;
-    public string[] lN;
+    public List<string> lS;
+    public List<string> lN;
     public int leaderNumber;
     public int leaderNumberN;
-
- //   public LeaderboardInGame leaderboardInGame2;
-
-    public string[] l2;
-    public string[] lN2;
-    public int leaderNumber2;
-    public int leaderNumberN2;
-
-    //public LeaderboardInGame leaderboardInGame3;
-
-    public string[] l3;
-    public string[] lN3;
-    public int leaderNumber3;
-    public int leaderNumberN3;
-
     //public LeaderboardInGame leaderboardInGame;
     public float remainingTimeUntilUpdateLeaderboard;
-    public float timeToUpdateLeaderboard = 180;
+    public float timeToUpdateLeaderboard = 60;
     public string lastLeaderText;
-    public string lastLeaderText2;
-    public string lastLeaderText3;
 
-
-    // Alex fields
     public event Action LeaderboardValuesReady;
     public event Action ShowedAdInEditor;
-    public event Action LockCursorAfterAd;
-    public bool IsAdWarningShowing;
-    public CursorLockMode? cashedCursorModeSilence = null;
-    public int RewardLockTimer;
-    public  Action<int> RewardLockTimeUpdate;
-
-    //public OurGameWindow OurGame;
-
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -132,24 +102,12 @@ public class Geekplay : MonoBehaviour
         }
     }
 
-    public void EnablePlayedGameToggle(int id)
-    {
-       // OurGame.EnabledGameToggle(id);
-    }
-
-    public void DisablePlayedGameToggle(int id)
-    {
-      //  OurGame.DisableGameToggle(id);
-    }
 
     private void Start()
     {
         //GameReady();
 
         //ShowInterstitialAd();
-
-        if (Platform == Platform.Yandex)
-            CheckBuysOnStart(PlayerData.lastBuy);
     }
     public void OnRewarded() //ВОЗНАГРАЖДЕНИЕ ПОСЛЕ ПРОСМОТРА РЕКЛАМЫ
     {
@@ -169,83 +127,48 @@ public class Geekplay : MonoBehaviour
         cor = AdOff();
         StartCoroutine(cor);
     }
-    
-    public void GetLeaders(string value)
+    public void GetLeadersScore(string valueAndName)
     {
-        l[leaderNumber] = value;
+        string[] parts = valueAndName.Split(',');
+        string value = parts[0];
+        string leaderboardName = parts[1];
+
+        lS.Add(value);
 
         if (leaderNumber < 9)
         {
             leaderNumber += 1;
-            Utils.GetLeaderboard("score", leaderNumber, "Buildings");
+            Utils.GetLeaderboard("score", leaderNumber, leaderboardName);
         }
-
-       // leaderboardInGame.SetText();
+        else if (leaderNumber == 9)
+        {
+            EndGetLeaderboardsValue();
+        }
     }
-    public void GetLeadersName(string value)
+
+    public void GetLeadersName(string valueAndName)
     {
-        lN[leaderNumberN] = value;
+        string[] parts = valueAndName.Split(',');
+        string value = parts[0];
+        string leaderboardName = parts[1];
+
+        lN.Add(value);
 
         if (leaderNumberN < 9)
         {
             leaderNumberN += 1;
-            Utils.GetLeaderboard("name", leaderNumberN, "Buildings");
+            Utils.GetLeaderboard("name", leaderNumberN, leaderboardName);
         }
-
-      //  leaderboardInGame.SetText();
     }
-
-    public void GetLeaders2(string value)
+    public void EndGetLeaderboardsValue()
     {
-        l2[leaderNumber2] = value;
+        LeaderboardValuesReady?.Invoke();
+        lN.Clear();
+        lS.Clear();
+        //if (leaderboard == null) Debug.Log("Leaderboard is null");
 
-        if (leaderNumber2 < 9)
-        {
-            leaderNumber2 += 1;
-            Utils.GetLeaderboard("score", leaderNumber2, "Destroy");
-        }
-
-      //  leaderboardInGame2.SetText();
+        //leaderboard.SetLeadersView(lN.ToArray(), lS.ToArray(), lS.Count);
     }
-    public void GetLeadersName2(string value)
-    {
-        lN2[leaderNumberN2] = value;
-
-        if (leaderNumberN2 < 9)
-        {
-            leaderNumberN2 += 1;
-            Utils.GetLeaderboard("name", leaderNumberN2, "Destroy");
-        }
-
-     //   leaderboardInGame2.SetText();
-    }
-
-    public void GetLeaders3(string value)
-    {
-        l3[leaderNumber3] = value;
-
-        if (leaderNumber3 < 9)
-        {
-            leaderNumber3 += 1;
-            Utils.GetLeaderboard("score", leaderNumber3, "Donat");
-        }
-
-       // leaderboardInGame3.SetText();
-    }
-    public void GetLeadersName3(string value)
-    {
-        lN3[leaderNumberN3] = value;
-
-        if (leaderNumberN3 < 9)
-        {
-            leaderNumberN3 += 1;
-            Utils.GetLeaderboard("name", leaderNumberN3, "Donat");
-        }
-
-       // leaderboardInGame3.SetText();
-    }
-
-
     IEnumerator AdOff() //ТАЙМЕР С ВЫКЛЮЧЕНИЕМ РЕКЛАМЫ
     {
         canAd = false;
@@ -306,12 +229,12 @@ public class Geekplay : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.P)) 
-        //{
-        //    PlayerData = new PlayerData();
-        //}
+        if(Input.GetKeyDown(KeyCode.P)) 
+        {
+            PlayerData = new PlayerData();
+        }
 
-        remainingTimeUntilUpdateLeaderboard -= Time.deltaTime;
+       // remainingTimeUntilUpdateLeaderboard -= Time.deltaTime;
     }
 
     IEnumerator CanReward()
@@ -597,8 +520,7 @@ public class Geekplay : MonoBehaviour
                 {
                     PlayerData = new PlayerData();
                 }
-                if(string.IsNullOrEmpty(language))
-                language = "ru"; //ВЫБРАТЬ ЯЗЫК ДЛЯ ТЕСТОВ. ru/en/tr/
+                language = "tr"; //ВЫБРАТЬ ЯЗЫК ДЛЯ ТЕСТОВ. ru/en/tr/
                 Localization();
                 break;
             case Platform.Yandex:
@@ -802,49 +724,15 @@ public class Geekplay : MonoBehaviour
 
     private void OnPurchasedItem() //начислить покупку (при удачной оплате)
     {
+        PlayerData.lastBuy = "";
         for (int i = 0; i < purchasesList.Length; i++)
         {
-            if (purchasedTag == purchasesList[i].itemName && SceneManager.GetActiveScene().name != "MainMenu")
+            if (purchasedTag == purchasesList[i].itemName)
             {
                 purchasesList[i].purchaseEvent.Invoke();
-                Debug.Log("PURCHASED i");
-
-                if (i == 0)
-                {
-                    PlayerData.myDonat += 20;
-                }
-                else if (i == 1)
-                {
-                    PlayerData.myDonat += 45;
-                }
-                else if (i == 2)
-                {
-                    PlayerData.myDonat += 60;
-                }
                 Save();
-                PlayerData.lastBuy = "";
             }
         }
-        if (PlayerData.lastBuy == "Gold1")
-        {
-            PlayerData.Coins += 50;
-            PlayerData.myDonat += 20;
-        }
-        else if (PlayerData.lastBuy == "Gold2")
-        {
-            PlayerData.Coins += 150;
-            PlayerData.myDonat += 45;
-
-            Debug.Log("PURCHASED 2.2");
-        }
-        else if (PlayerData.lastBuy == "Gold3")
-        {
-            PlayerData.Coins += 300;
-            PlayerData.myDonat += 60;
-        }
-        Geekplay.Instance.Leaderboard("Donat", PlayerData.myDonat);
-        PlayerData.lastBuy = "";
-        Save();
     }
 
     public void CheckBuysOnStart(string idOrTag) //проверить покупки на старте
@@ -943,20 +831,11 @@ public class Geekplay : MonoBehaviour
     //ПАУЗА И ПРОДОЛЖЕНИЕ ИГРЫ
     public void StopMusAndGame()
     {
-
-        //cashedCursorModeAd = Cursor.lockState;
-        //Cursor.lockState = CursorLockMode.None;
-
-
         adOpen = true;
         canShowAd = false;
         StartCoroutine(CanAdShow());
         AudioListener.volume = 0;
-        AudioListener.pause = true;
         Time.timeScale = 0;
-
-        //
-
     }
 
     public void ResumeMusAndGame()
@@ -964,8 +843,11 @@ public class Geekplay : MonoBehaviour
         adOpen = false;
         AudioListener.volume = 1;
         Time.timeScale = 1;
-        AudioListener.pause = false;
-        LockCursorAfterAd?.Invoke();
+
+
+
+
+        ////////////////
     }
 
     //ФОКУС И ЗВУК
@@ -982,15 +864,14 @@ public class Geekplay : MonoBehaviour
     private void Silence(bool silence)
     {
         AudioListener.volume = silence ? 0 : 1;
-        AudioListener.pause = silence ? true : false;
         Time.timeScale = silence ? 0 : 1;
 
-        if (adOpen || IsAdWarningShowing)
+        if (adOpen)
         {
             Time.timeScale = 0;
             AudioListener.volume = 0;
-            AudioListener.pause = true;
         }
+        //////////
     }
 
     public void ItIsMobile()

@@ -18,6 +18,7 @@ TagManager:
   - PlayerTwo
   - DontDetect
   - Ball
+  - ChickenGravity
   layers:
   - Default
   - TransparentFX

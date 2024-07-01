@@ -14,6 +14,7 @@ public class RedCircleTimer : MonoBehaviour
     [SerializeField] private CircularMotion playerOneMove;
     [SerializeField] private CircularMotion playerTwoMove;
     [SerializeField] private GameObject playerOneWin, playerTwoWin;
+    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
     private void Start()
@@ -64,8 +65,8 @@ public class RedCircleTimer : MonoBehaviour
             }
             if(_redCirclePlayerTwoScript.Points == _redCirclePlayerOneScript.Points)
             {
-                playerOneWin.SetActive(true);
-                playerTwoWin.SetActive(true);
+                playerOneDraw.SetActive(true);
+                playerTwoDraw.SetActive(true);
             }
         }
     }

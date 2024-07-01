@@ -13,6 +13,8 @@ public class PlayerTwoChooser : MonoBehaviour
     private bool headChosen, hairChosen, cornChosen, faceChosen, eyesChosen;
     public bool PlayerTwoEnds;
     private bool isMobile;
+    [SerializeField] bool isSingle;
+    [SerializeField] private GameObject buttonOne, buttonTwo;
     void Start()
     {
 
@@ -22,7 +24,12 @@ public class PlayerTwoChooser : MonoBehaviour
         }
         else
         {
-            isMobile = false;
+            isMobile = false; 
+            if (!isSingle)
+            {
+                buttonOne.SetActive(false);
+                buttonTwo.SetActive(false);
+            }
         }
     }
 

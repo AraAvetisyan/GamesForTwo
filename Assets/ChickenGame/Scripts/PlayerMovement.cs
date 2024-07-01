@@ -13,8 +13,10 @@ public class PlayerMovement : MonoBehaviour
     private int playerTwoGravity = 1;
     private bool changeOne, changeTwo;
     [SerializeField] private Button plOneButton, plTwoButton;
+    [SerializeField] private GameObject plButtonOne, plButtonTwo;
 
     private bool isMobile;
+    [SerializeField] private bool isSingle;
 
     [SerializeField] private PlayersTriggers _firstPlayersTriggers, _secondPlayersTriggers;
     private void Start()
@@ -26,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isMobile = false;
+            if (!isSingle)
+            {
+                plButtonOne.SetActive(false);
+                plButtonTwo.SetActive(false);
+            }
         }
     }
     private void Update()

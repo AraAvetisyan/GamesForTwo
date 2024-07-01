@@ -17,6 +17,7 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private PlayerOneScript _playerOneScript;
     [SerializeField] private PlayerTwoScript _playerTwoScript;
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
+    [SerializeField] private GameObject playerOneButton, playerTwoButton;
     private void Start()
     {
         if (isSingle)
@@ -26,11 +27,15 @@ public class CatPawGameUIController : MonoBehaviour
         if (Geekplay.Instance.mobile)
         {
             isMobile = true;
-            Debug.Log("IsMobile");
         }
         else
         {
             isMobile = false;
+            if (!isSingle)
+            {
+                playerOneButton.SetActive(false);
+                playerTwoButton.SetActive(false);
+            }
         }
     }
     private void Update()
@@ -46,7 +51,7 @@ public class CatPawGameUIController : MonoBehaviour
     }
     public IEnumerator SinglePlayer()
     {
-        randomTimer = Random.Range(2f, 4.5f);
+        randomTimer = Random.Range(2f, 3f);
         yield return new WaitForSeconds(randomTimer);
         PressedPlayerOneButton();
         StartCoroutine(SinglePlayer());
