@@ -7,32 +7,36 @@ public class RedCircleUIController : MonoBehaviour
 {
     [SerializeField] RedCirclePlayerOneScript _redCirclePlayerOneScript;
     [SerializeField] RedCirclePlayerTwoScript _redCirclePlayerTwoScript;
-    private bool isMobile;
+    public bool IsMobile;
     [SerializeField] private RedCircleTimer _redCircleTimer;
 
-    [SerializeField] private bool isSingle;
-    private void Start()
+    public bool IsSingle;
+    private void Awake()
     {
-        if (isSingle)
-        {
-            StartCoroutine(Single());
-        }
+       
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
+            IsMobile = false;
+        }
+    }
+    private void Start()
+    {
+        if (IsSingle)
+        {
+            StartCoroutine(Single());
         }
     }
     private void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedPlayerTwoButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !isSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
         {
 
             PressedPlayerOneButton();
@@ -40,11 +44,11 @@ public class RedCircleUIController : MonoBehaviour
     }
     public void PressedRest()
     {
-        if (!isSingle)
+        if (!IsSingle)
         {
             SceneManager.LoadScene("RedCircle");
         }
-        if (isSingle)
+        if (IsSingle)
         {
             SceneManager.LoadScene("RedCircleSingle");
         }

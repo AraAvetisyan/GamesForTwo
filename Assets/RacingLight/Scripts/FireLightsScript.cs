@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,22 +7,34 @@ public class FireLightsScript : MonoBehaviour
 {
     public bool StartGame;
     [SerializeField] private RacingButtonsHold _playerOneRacingButtonHold, _playerTwoRacingButtonHold;
-    [SerializeField] private GameObject light1, light2, light3, light4, light5;
+    public GameObject Light1, Light2, Light3, Light4, Light5;
     public int Counter;
     private float timerToClose;
     public bool CanHoldOff;
+    public bool BothSoon;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_playerOneRacingButtonHold.PlayerOneIsHolding && _playerTwoRacingButtonHold.PlayerTwoIsHolding && !StartGame)
+        if (_playerOneRacingButtonHold.PlayerOneIsHolding && _playerTwoRacingButtonHold.PlayerTwoIsHolding && !StartGame && !BothSoon)
         {
             StartGame = true;
             StartCoroutine(WaitToLight());
+        }
+        if (BothSoon)
+        {
+            StopAllCoroutines();
+            StartGame = false;
+            Light1.SetActive(false);
+            Light2.SetActive(false);
+            Light3.SetActive(false);
+            Light4.SetActive(false);            
+            Light5.SetActive(false);
+            BothSoon = false;
         }
     }
 
@@ -30,23 +43,23 @@ public class FireLightsScript : MonoBehaviour
         Counter++;
         if (Counter == 1)
         {
-            light1.SetActive(true);
+            Light1.SetActive(true);
         }
         if (Counter == 2)
         {
-            light2.SetActive(true);
+            Light2.SetActive(true);
         }
         if (Counter == 3)
         {
-            light3.SetActive(true);
+            Light3.SetActive(true);
         }
-        if(Counter == 4)
+        if (Counter == 4)
         {
-            light4.SetActive(true);
+            Light4.SetActive(true);
         }
         if (Counter == 5)
         {
-            light5.SetActive(true);
+            Light5.SetActive(true);
         }
         yield return new WaitForSecondsRealtime(1f);
         if (Counter <= 5)
@@ -68,11 +81,11 @@ public class FireLightsScript : MonoBehaviour
     public IEnumerator WaitToTimer()
     {
         yield return new WaitForSecondsRealtime(timerToClose);
-        light1.SetActive(false);
-        light2.SetActive(false);
-        light3.SetActive(false);
-        light4.SetActive(false);
-        light5.SetActive(false);
+        Light1.SetActive(false);
+        Light2.SetActive(false);
+        Light3.SetActive(false);
+        Light4.SetActive(false);
+        Light5.SetActive(false);
         CanHoldOff = true;
     }
 }

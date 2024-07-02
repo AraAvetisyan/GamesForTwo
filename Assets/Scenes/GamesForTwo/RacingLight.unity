@@ -742,10 +742,11 @@ MonoBehaviour:
   PlayerTwoOnTime: 0
   PlayerOneButton: {fileID: 362231976}
   PlayerTwoButton: {fileID: 610244259}
-  _racingButtonOneHold: {fileID: 0}
+  _racingButtonOneHold: {fileID: 362231979}
   _racingLightGameManager: {fileID: 523582533}
   isSingle: 0
   SingleCounter: 0
+  CantHold: 0
   buttonOneBg: {fileID: 608517673}
   buttonTwoBg: {fileID: 1774951788}
   buttonOne: {fileID: 362231977}
@@ -935,11 +936,11 @@ MonoBehaviour:
   StartGame: 0
   _playerOneRacingButtonHold: {fileID: 362231979}
   _playerTwoRacingButtonHold: {fileID: 610244262}
-  light1: {fileID: 1888309896}
-  light2: {fileID: 1778180406}
-  light3: {fileID: 922183970}
-  light4: {fileID: 629389857}
-  light5: {fileID: 1855909591}
+  Light1: {fileID: 1888309896}
+  Light2: {fileID: 1778180406}
+  Light3: {fileID: 922183970}
+  Light4: {fileID: 629389857}
+  Light5: {fileID: 1855909591}
   Counter: 0
   CanHoldOff: 0
 --- !u!4 &523582532
@@ -1203,6 +1204,7 @@ MonoBehaviour:
   _racingLightGameManager: {fileID: 523582533}
   isSingle: 0
   SingleCounter: 0
+  CantHold: 0
   buttonOneBg: {fileID: 608517673}
   buttonTwoBg: {fileID: 1774951788}
   buttonOne: {fileID: 362231977}

@@ -20,6 +20,14 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
 
         CanFireBlue = true;
         CanFireRed = true;
+        if (!_greenBallGameUIController.IsMobile || _greenBallGameUIController.IsSingle)
+        {
+            firstPlayersPointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
+        {
+            firstPlayersPointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

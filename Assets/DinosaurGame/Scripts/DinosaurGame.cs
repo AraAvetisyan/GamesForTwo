@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.AudioSettings;
 
 public class DinosaurGame : MonoBehaviour
 {
@@ -10,24 +12,35 @@ public class DinosaurGame : MonoBehaviour
     private int lose;
     [SerializeField] private GameObject dino;
     int player;
-    [SerializeField] GameObject playerOneWin, playerTwoWin;
+    [SerializeField] GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] GameObject playerOneWinPC, playerTwoWinPC;
     private int counter;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject plOne, plTwo;
     private bool change;
-
+    private bool gameIsOver;
     [SerializeField] private List<int> singleTeeth;
     private int teethIndex;
-    [SerializeField] bool isSingle;
+    [SerializeField] private bool isSingle;
+    [SerializeField] private bool isMobile;
 
     public int teethToPress;
-    void Start()
+    private void Awake()
     {
-        
-           
-        
-        lose = Random.Range(0, 9);
-        player = Random.Range(0, 2);
+       
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+        }
+    }
+    void Start()
+    {        
+        lose = UnityEngine.Random.Range(0, 9);
+        player = UnityEngine.Random.Range(0, 2);
         Debug.Log(lose);
         if(player == 0)
         {
@@ -64,52 +77,7 @@ public class DinosaurGame : MonoBehaviour
         change = true;
         teeth[index].interactable = false;
         counter++;
-        Debug.Log(player);
-
-        if (index == lose)
-        {
-            if(player == 0)
-            {
-                playerTwoWin.SetActive(true);
-                StartCoroutine(WaitToFinal());
-                for (int i = 0; i < teeth.Length; i++)
-                {
-                    teeth[i].interactable = false;
-                    
-                }
-            }
-            if(player == 1)
-            {
-                playerOneWin.SetActive(true);
-                StartCoroutine(WaitToFinal());
-                for (int i = 0; i < teeth.Length; i++)
-                {
-                    teeth[i].interactable = false;
-                }
-            }
-        }
-        if(counter == 9)
-        {
-            if(player == 0)
-            {
-                playerOneWin.SetActive(true);
-                StartCoroutine(WaitToFinal());
-                for (int i = 0; i < teeth.Length; i++)
-                {
-                    teeth[i].interactable = false;
-                }
-            }
-            if (player == 1)
-            {
-                playerTwoWin.SetActive(true);
-                StartCoroutine(WaitToFinal());
-                for (int i = 0; i < teeth.Length; i++)
-                {
-                    teeth[i].interactable = false;
-                }
-            }
-        }
-        if (player == 1 && change)
+        if (player == 1 && change && !gameIsOver)
         {
             change = false;
             player = 0;
@@ -122,7 +90,7 @@ public class DinosaurGame : MonoBehaviour
                 StartCoroutine(Single());
             }
         }
-        if (player == 0 && change)
+        if (player == 0 && change && !gameIsOver)
         {
             change = false;
             player = 1;
@@ -131,11 +99,109 @@ public class DinosaurGame : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        if (index == lose)
+        {
+            gameIsOver = true;
+            if (player == 0)
+            {
+                if (isMobile && !isSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                if(!isMobile || isSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                plTwo.SetActive(false);
+                plOne.SetActive(true);
+                StartCoroutine(WaitToFinal());
+                for (int i = 0; i < teeth.Length; i++)
+                {
+                    teeth[i].interactable = false;
+                    
+                }
+            }
+            if(player == 1)
+            {
+                if (isMobile && !isSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                if (!isMobile || isSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                plTwo.SetActive(true);
+                plOne.SetActive(false);
+                StartCoroutine(WaitToFinal());
+                for (int i = 0; i < teeth.Length; i++)
+                {
+                    teeth[i].interactable = false;
+                }
+            }
+        }
+        if(counter == 9)
+        {
+            gameIsOver = true;
+            if (player == 0)
+            {
+                if (isMobile && !isSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                if(!isMobile || isSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                plTwo.SetActive(false);
+                plOne.SetActive(true);
+                StartCoroutine(WaitToFinal());
+                for (int i = 0; i < teeth.Length; i++)
+                {
+                    teeth[i].interactable = false;
+                }
+            }
+            if (player == 1)
+            {
+                if (isMobile && !isSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                if (!isMobile || isSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                plTwo.SetActive(true);
+                plOne.SetActive(false);
+                StartCoroutine(WaitToFinal());
+                for (int i = 0; i < teeth.Length; i++)
+                {
+                    teeth[i].interactable = false;
+                }
+            }
+        }
+        
     }
     public IEnumerator Single()
     {
         yield return new WaitForSeconds(0.5f);
-        teethIndex = Random.Range(0, singleTeeth.Count);
+        teethIndex = UnityEngine.Random.Range(0, singleTeeth.Count);
         teethToPress = singleTeeth[teethIndex];
         PressedTeetth(teethToPress);
     }

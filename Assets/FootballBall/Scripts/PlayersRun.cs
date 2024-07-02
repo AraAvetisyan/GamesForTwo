@@ -19,23 +19,22 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private FootballTimer _footballTimer;
 
-    private bool isMobile;
+    public bool IsMobile;
 
 
     public bool IsSingle;
     [SerializeField] private Image buttonOne, buttonTwo;
     [SerializeField] private Image oneBg, twoBG;
     [SerializeField] private float first, second;
-
-    private void Start()
+    private void Awake()
     {
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
+            IsMobile = false;
             if (!IsSingle)
             {
                 Color color = oneBg.color;
@@ -48,23 +47,28 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
 
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds)
         {
             PlayerTwoIsHolding = true;
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds && !IsSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds && !IsSingle)
         {
             PlayerOneIsHolding = true;
         }
-        if (!isMobile && Input.GetKeyUp(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
         {
             PlayerTwoIsHolding = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
-        if (!isMobile && Input.GetKeyUp(KeyCode.M))
+        if (!IsMobile && Input.GetKeyUp(KeyCode.M))
         {
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;

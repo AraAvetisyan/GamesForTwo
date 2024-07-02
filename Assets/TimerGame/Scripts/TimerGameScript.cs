@@ -9,11 +9,16 @@ using UnityEngine.UI;
 public class TimerGameScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerOneTimer, playerTwoTimer;
+    [SerializeField] private TextMeshProUGUI targetPlOne, targetPlTwo;
+    [SerializeField] private TextMeshProUGUI diferencePlOne, diferencePlTwo;
+    
+    
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private bool playerOneStop, playerTwoStop;
     [SerializeField] private float playerOneTime, playerTwoTime;
     [SerializeField] private float timer;
-    [SerializeField] private GameObject PlayerOneWin, PlayerTwoWin;
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     private int Counter;
     private float timerForGame;
     private float compareForOne, compareForTwo;
@@ -30,6 +35,7 @@ public class TimerGameScript : MonoBehaviour
 
     [SerializeField] private bool isSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    private float diferenceOne, diferenceTwo;
     private void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -46,6 +52,30 @@ public class TimerGameScript : MonoBehaviour
             }
         }
 
+        //if (!isMobile)
+        //{
+        //    playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        //}
+
+        if (isMobile && !isSingle)
+        {
+            Debug.Log("Mobile u erkusov");
+            //                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 180);
+            targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
+            diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
+
+        }
+        if(isSingle || !isMobile)
+        {
+            playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
+            targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+            diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
 
@@ -55,6 +85,8 @@ public class TimerGameScript : MonoBehaviour
         {
             StartCoroutine(Single());
         }
+        targetPlOne.text = "TARGET TIME " + timerForGame.ToString();
+        targetPlTwo.text = "TARGET TIME " + timerForGame.ToString();
     }
 
     public void PressedPlOneButton()
@@ -64,6 +96,11 @@ public class TimerGameScript : MonoBehaviour
         Counter++;
         playerOneStop = true;
         playerOneTime = timer;
+        if(playerOneTime > timerForGame)
+        {
+            diferenceOne = playerOneTime - timerForGame;
+        }
+       
     }
     public void PressedPlTwoButton()
     {
@@ -151,19 +188,36 @@ public class TimerGameScript : MonoBehaviour
 
         if(compareForOne < compareForTwo) 
         {
-            PlayerOneWin.SetActive(true);
+            if (isMobile && !isSingle)
+            {
+                playerOneWinMobile.SetActive(true);
+            }
+            if(!isMobile || isSingle)
+            {
+                playerOneWinPC.SetActive(true);
+            }
             StartCoroutine(WaitEnd());
             
         }
         else if(compareForTwo < compareForOne)
         {
-           PlayerTwoWin.SetActive(true);
-           StartCoroutine (WaitEnd());
+            if (isMobile && !isSingle)
+            {
+                playerTwoWinMobile.SetActive(true);
+            }
+            if (!isMobile || isSingle)
+            {
+                playerTwoWinPC.SetActive(true);
+            }
+            StartCoroutine (WaitEnd());
         }
 
     }
     public IEnumerator WaitEnd()
     {
+        diferencePlOne.text = "DIFFERENCE " + compareForOne.ToString("F2");
+        diferencePlTwo.text = "DIFFERENCE " + compareForTwo.ToString("F2");
+
         yield return new WaitForSeconds(1.5f);
         endPanel.SetActive(true);
     }

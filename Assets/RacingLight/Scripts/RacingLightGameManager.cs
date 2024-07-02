@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,7 +19,7 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -37,6 +38,17 @@ public class RacingLightGameManager : MonoBehaviour
             {
                 playerTwoCounter++;
                 StartCoroutine(UpdatePlTwoTimer());
+            }
+        }
+        if(counter == 1)
+        {
+            if (_playerOneRacingButtonsHold.PlayerOneSoon)
+            {
+                _playerOneRacingButtonsHold.CantHold = true;
+            }
+            if (_playerTwoRacingButtonsHold.PlayerTwoSoon)
+            {
+                _playerTwoRacingButtonsHold.CantHold = true;
             }
         }
         if (counter == 2)
@@ -71,35 +83,43 @@ public class RacingLightGameManager : MonoBehaviour
                     playerTwoScore++;
                     playerTwoScoreText.text = playerTwoScore.ToString();
                 }
+                counter = 3;
             }
-            if(_playerOneRacingButtonsHold.PlayerOneOnTime && _playerTwoRacingButtonsHold.PlayerTwoSoon)
+            if (_playerOneRacingButtonsHold.PlayerOneOnTime && _playerTwoRacingButtonsHold.PlayerTwoSoon)
             {
                 playerOneScore++;
                 playerOneScoreText.text = playerOneScore.ToString();
+                counter = 3;
             }
-            if(_playerOneRacingButtonsHold.PlayerOneSoon && _playerTwoRacingButtonsHold.PlayerTwoOnTime)
+            if (_playerOneRacingButtonsHold.PlayerOneSoon && _playerTwoRacingButtonsHold.PlayerTwoOnTime)
             {
                 playerTwoScore++;
                 playerTwoScoreText.text = playerTwoScore.ToString();
+
+                counter = 3;
             }
-            
-            counter++;
+            if(_playerOneRacingButtonsHold.PlayerOneSoon && _playerTwoRacingButtonsHold.PlayerTwoSoon)
+            {
+                _fireLightsScript.BothSoon = true;
+                counter = 3;
+            }
+
+            //counter++;
         }
         if (counter == 3)
         {
-            if (playerOneScore != 3 || playerTwoScore != 3)
+            counter++;
+            if (playerOneScore != 3 && playerTwoScore != 3)
             {
                 StartCoroutine(WaitToUpdateGame());
             }
-            if(playerOneScore == 3)
+            if (playerOneScore == 3)
             {
-                counter++;
                 playerOneWin.SetActive(true);
                 StartCoroutine(WaitToFinish());
             }
             if (playerTwoScore == 3)
             {
-                counter++;
                 playerTwoWin.SetActive(true);
                 StartCoroutine(WaitToFinish());
             }
@@ -141,6 +161,8 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.SingleCounter = 0;
         _fireLightsScript.StartGame = false;
         _fireLightsScript.Counter = 0;
+        _playerOneRacingButtonsHold.CantHold = false;
+        _playerTwoRacingButtonsHold.CantHold = false;
         StopCoroutine(UpdatePlOneTimer());
         StopCoroutine(UpdatePlTwoTimer());
         playerOneTimerText.text = "";
@@ -148,6 +170,9 @@ public class RacingLightGameManager : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+
+        _playerOneRacingButtonsHold.CantHold = true;
+        _playerTwoRacingButtonsHold.CantHold = true;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
     }

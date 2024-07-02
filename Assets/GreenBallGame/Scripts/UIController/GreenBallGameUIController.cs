@@ -13,41 +13,47 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private GameObject activatorPlOneGreen, activatorPlOneRed, activatorPlTwoGreen, activatorPlTwoRed;
     [SerializeField] private RotatePlayers _rotatePlayers;
     [SerializeField] private float shootingForce;
-    private bool isMobile;
+    public bool IsMobile;
     [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
 
     [SerializeField] private GameObject buttonOne, buttonTwo;
-    [SerializeField] private bool isSingle;
+    public bool IsSingle;
 
     float randomTimer;
+    private void Awake()
+    {
+        if (Geekplay.Instance.mobile)
+        {
+            IsMobile = true;
+            if (!IsSingle)
+            {
+                buttonOne.SetActive(true);
+                buttonTwo.SetActive(true);
+            }
+        }
+        else
+        {
+            IsMobile = false; 
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+    }
     private void Start()
     {
         if (Single)
         {
             StartCoroutine(SinglePlayer());
         }
-        if (Geekplay.Instance.mobile)
-        {
-            isMobile = true;
-            if (!isSingle)
-            {
-                buttonOne.SetActive(false);
-                buttonTwo.SetActive(false);
-            }
-        }
-        else
-        {
-            isMobile = false;
-        }
+       
     }
     private void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedRedButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !Single)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !Single)
         {
             PressedBlueButton();
         }

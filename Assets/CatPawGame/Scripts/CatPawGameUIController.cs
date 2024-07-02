@@ -11,40 +11,44 @@ public class CatPawGameUIController : MonoBehaviour
     public bool ButtonOnePressed, ButtonTwoPressed;
     [SerializeField] private Transform playerOnePosition, playerTwoPosition;
     public float Timer;
-    private bool isMobile;
-    [SerializeField] private bool isSingle;
+    public bool IsMobile;
+    public bool IsSingle;
     float randomTimer;
     [SerializeField] private PlayerOneScript _playerOneScript;
     [SerializeField] private PlayerTwoScript _playerTwoScript;
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     [SerializeField] private GameObject playerOneButton, playerTwoButton;
-    private void Start()
+    private void Awake()
     {
-        if (isSingle)
-        {
-            StartCoroutine(SinglePlayer());
-        }
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
-            if (!isSingle)
+            IsMobile = false;
+            if (!IsSingle)
             {
                 playerOneButton.SetActive(false);
                 playerTwoButton.SetActive(false);
             }
         }
     }
+    private void Start()
+    {
+        if (IsSingle)
+        {
+            StartCoroutine(SinglePlayer());
+        }
+        
+    }
     private void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedPlayerTwoButton();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !isSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
         {
             PressedPlayerOneButton();
         }
@@ -111,12 +115,12 @@ public class CatPawGameUIController : MonoBehaviour
     }
     public void PressedRestButton()
     {
-        if (!isSingle)
+        if (!IsSingle)
         {
             SceneManager.LoadScene("CatPaw");
 
         }
-        if (isSingle)
+        if (IsSingle)
         {
             SceneManager.LoadScene("CatPawSingle");
         }

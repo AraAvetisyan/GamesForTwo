@@ -131,7 +131,7 @@ public class PlayerTwoChooser : MonoBehaviour
             plTwoHead[i].SetActive(false);
         }
         plTwoHead[HeadInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!headChosen)
         {
@@ -154,7 +154,7 @@ public class PlayerTwoChooser : MonoBehaviour
             plTwoHair[i].SetActive(false);
         }
         plTwoHair[HairInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!hairChosen)
         {
@@ -177,7 +177,7 @@ public class PlayerTwoChooser : MonoBehaviour
             plTwoCorn[i].SetActive(false);
         }
         plTwoCorn[CornInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!cornChosen)
         {
@@ -200,7 +200,7 @@ public class PlayerTwoChooser : MonoBehaviour
             plTwoFace[i].SetActive(false);
         }
         plTwoFace[FaceInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!faceChosen)
         {
@@ -223,7 +223,7 @@ public class PlayerTwoChooser : MonoBehaviour
             plTwoEyes[i].SetActive(false);
         }
         plTwoEyes[EyesInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!eyesChosen)
         {

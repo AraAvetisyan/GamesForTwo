@@ -16,7 +16,17 @@ public class FootballBallTriggers : MonoBehaviour
     [SerializeField] private float force;
     [SerializeField] private GameObject gollTimerGameobject;
     [SerializeField] private TextMeshProUGUI gollTimer;
-
+    private void Start()
+    {
+        if(_playerTwoRun.IsMobile && !_playerTwoRun.IsSingle)
+        {
+            playerOnePointsText.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        if(!_playerTwoRun.IsMobile || _playerTwoRun.IsSingle)
+        {
+            playerOnePointsText.transform.rotation = Quaternion.Euler(0f, 0f, 0);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "SecondPlayerWin")

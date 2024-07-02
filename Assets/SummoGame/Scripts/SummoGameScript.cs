@@ -17,13 +17,12 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public bool GameEnds;
 
     public bool IsMobile;
-
     public bool IsSingle;
+
     [SerializeField] private float first,second;
     [SerializeField] private Image buttonOneBg, buttonTwoBg;
     [SerializeField] private Image buttonOne, buttonTwo;
-
-    private void Start()
+    private void Awake()
     {
         if (Geekplay.Instance.mobile)
         {
@@ -44,11 +43,17 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
+    private void Start()
+    {
+       
+    }
+
     private void Update()
     {
         if (GameEnds)
         {
             speed = 0;
+            Debug.Log("GameEnds");
         }
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)

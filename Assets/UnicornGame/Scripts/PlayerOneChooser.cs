@@ -157,7 +157,7 @@ public class PlayerOneChooser : MonoBehaviour
             plOneHead[i].SetActive(false);
         }
         plOneHead[HeadInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!headChosen)
         {
@@ -180,7 +180,7 @@ public class PlayerOneChooser : MonoBehaviour
             plOneHair[i].SetActive(false);
         }
         plOneHair[HairInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!hairChosen)
         {
@@ -203,7 +203,7 @@ public class PlayerOneChooser : MonoBehaviour
             plOneCorn[i].SetActive(false);
         }
         plOneCorn[CornInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!cornChosen)
         {
@@ -226,7 +226,7 @@ public class PlayerOneChooser : MonoBehaviour
             plOneFace[i].SetActive(false);
         }
         plOneFace[FaceInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!faceChosen)
         {
@@ -249,7 +249,7 @@ public class PlayerOneChooser : MonoBehaviour
             plOneEyes[i].SetActive(false);
         }
         plOneEyes[EyesInt].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (!eyesChosen)
         {

@@ -14,6 +14,18 @@ public class RedCirclePlayerOneScript : MonoBehaviour
     private int pointsBuffer;
     [SerializeField] private TextMeshProUGUI pointsText;
     private bool inCircle;
+    [SerializeField] private RedCircleUIController _redCircleUIController;
+    private void Start()
+    {
+        if(_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
+        {
+            pointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        if(!_redCircleUIController.IsMobile || _redCircleUIController.IsSingle) 
+        {
+            pointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
     private void Update()
     {
         if (inWrongTrigger == 1)

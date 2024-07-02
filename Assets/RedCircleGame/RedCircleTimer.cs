@@ -13,8 +13,15 @@ public class RedCircleTimer : MonoBehaviour
     [SerializeField] private RedCirclePlayerTwoScript _redCirclePlayerTwoScript;
     [SerializeField] private CircularMotion playerOneMove;
     [SerializeField] private CircularMotion playerTwoMove;
-    [SerializeField] private GameObject playerOneWin, playerTwoWin;
-    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
+
+    [SerializeField] private RedCircleUIController _redCircleUIController;
+
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] private GameObject playerOneDrawMobile, playerTwoDrawMobile;
+
+    [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
+    [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
+
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
     private void Start()
@@ -57,16 +64,38 @@ public class RedCircleTimer : MonoBehaviour
             PlTwoCantPlay = true;
             if (_redCirclePlayerOneScript.Points > _redCirclePlayerTwoScript.Points)
             {
-                playerOneWin.SetActive(true);
+                if (_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                }
+                if (!_redCircleUIController.IsMobile || _redCircleUIController.IsSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                }
             }
             if(_redCirclePlayerTwoScript.Points > _redCirclePlayerOneScript.Points)
             {
-                playerTwoWin.SetActive(true);
+                if (_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                }
+                if (!_redCircleUIController.IsMobile || _redCircleUIController.IsSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
             }
             if(_redCirclePlayerTwoScript.Points == _redCirclePlayerOneScript.Points)
             {
-                playerOneDraw.SetActive(true);
-                playerTwoDraw.SetActive(true);
+                if (_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
+                {
+                    playerOneDrawMobile.SetActive(true);
+                    playerTwoDrawMobile.SetActive(true);
+                }
+                if (!_redCircleUIController.IsMobile || _redCircleUIController.IsSingle)
+                {
+                    playerOneDrawPC.SetActive(true);
+                    playerTwoDrawPC.SetActive(true);
+                }
             }
         }
     }

@@ -10,9 +10,16 @@ public class FootballTimer : MonoBehaviour
     private int minutes = 1;
     private int allTime = 90;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
+
+    [SerializeField] private GameObject playerOneDrawMobile, playerTwoDrawMobile;
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;  
+
+    [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
+    [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
+
+    [SerializeField] private PlayersRun _playersRun;
+
     [SerializeField] private GameObject finalPanel;
-    [SerializeField] private GameObject playerOneWin, playerTwoWin;
     [SerializeField] private FootballBallTriggers _footballBallTriggers;
     [SerializeField] private Rigidbody2D ballRb,plOneRb,plTwoRb;
     [SerializeField] private Button plOneButton, plTwoButton;
@@ -20,6 +27,7 @@ public class FootballTimer : MonoBehaviour
     [SerializeField] private BoxCollider2D enemyBox;
     private void Start()
     {
+
         StartCoroutine(Timer());
     }
     private IEnumerator Timer()
@@ -58,18 +66,41 @@ public class FootballTimer : MonoBehaviour
             enemyBox.enabled = false;
             if (_footballBallTriggers.PlayerOnePoints > _footballBallTriggers.PlayerTwoPoints)
             {
-                playerOneWin.SetActive(true);
+                if (_playersRun.IsMobile && !_playersRun.IsSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                }
+                if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
             if (_footballBallTriggers.PlayerOnePoints < _footballBallTriggers.PlayerTwoPoints)
             {
-                playerTwoWin.SetActive(true);
+                if (_playersRun.IsMobile && !_playersRun.IsSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                }
+                if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
+
                 StartCoroutine(WaitToFinish());
             }
             if (_footballBallTriggers.PlayerTwoPoints == _footballBallTriggers.PlayerOnePoints)
             {
-                playerOneDraw.SetActive(true);
-                playerTwoDraw.SetActive(true);
+                if (_playersRun.IsMobile && !_playersRun.IsSingle)
+                {
+                    playerOneDrawMobile.SetActive(true);
+                    playerTwoDrawMobile.SetActive(true);
+                }
+                if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                {
+                    playerOneDrawPC.SetActive(true);
+                    playerTwoDrawPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
 

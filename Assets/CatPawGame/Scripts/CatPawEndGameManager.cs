@@ -7,7 +7,9 @@ public class CatPawEndGameManager : MonoBehaviour
 {
     [SerializeField] private PlayerOneScript _playerOneScript;
     [SerializeField] private PlayerTwoScript _playerTwoScript;
-    [SerializeField] private GameObject playerOneWinner, playerTwoWinner;
+    [SerializeField] private GameObject playerOneWinnerMobile, playerTwoWinnerMobile;
+    [SerializeField] private GameObject playerOneWinnerPC, playerTwoWinnerPC;
+    [SerializeField] private CatPawGameUIController _catPawGameUIController;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
@@ -25,7 +27,14 @@ public class CatPawEndGameManager : MonoBehaviour
             playerTwoButton.interactable = false;
             PlOneCantPlay = true;
             PlTwoCantPlay = true;
-            playerOneWinner.SetActive(true);
+            if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
+            {
+                playerOneWinnerMobile.SetActive(true);
+            }
+            if(!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
+            {
+                playerOneWinnerPC.SetActive(true);
+            }
             StartCoroutine(WaitForEnd());
         }
         if(_playerTwoScript.Points == 3)
@@ -35,7 +44,14 @@ public class CatPawEndGameManager : MonoBehaviour
 
             PlOneCantPlay = true;
             PlTwoCantPlay = true;
-            playerTwoWinner.SetActive(true);
+            if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
+            {
+                playerTwoWinnerMobile.SetActive(true);
+            }
+            if (!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
+            {
+                playerTwoWinnerPC.SetActive(true);
+            }
             StartCoroutine(WaitForEnd());
         }
 

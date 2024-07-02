@@ -16,8 +16,19 @@ public class PlayerOneScript : MonoBehaviour
     [SerializeField] private GameObject stan;
     [SerializeField] private Transform playerOnePosition;
     private bool goBack;
-    [SerializeField] private float speed;
+   // [SerializeField] private float speed;
     public bool CantPlay;
+    private void Start()
+    {
+        if(_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
+        {
+            pointsText.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        if(!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
+        {
+            pointsText.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag== "EatableFish")
@@ -69,10 +80,10 @@ public class PlayerOneScript : MonoBehaviour
         {
             StartCoroutine(WaitForStan());            
         }
-        if (goBack)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+        //if (goBack)
+        //{
+        //    transform.Translate(Vector3.up * speed * Time.deltaTime);
+        //}
     }
     private IEnumerator WaitForStan()
     {
