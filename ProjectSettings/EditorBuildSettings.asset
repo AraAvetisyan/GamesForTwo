@@ -81,6 +81,9 @@ EditorBuildSettings:
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameThreeSingle.unity
     guid: 05263241dcb260541a6e5c6c86b6442d
   - enabled: 1
+    path: Assets/Checkers/Assets/Scenes/Main.unity
+    guid: 18bb39378e6c3e04b8d69a1b985bba26
+  - enabled: 1
     path: Assets/Scenes/GamesForTwo/FootballBall.unity
     guid: 9f5ed9c404a19dd4389aa936b4404671
   - enabled: 1
