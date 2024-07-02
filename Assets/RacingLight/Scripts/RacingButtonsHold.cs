@@ -11,28 +11,30 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     [SerializeField] private int playerIndex;
     public bool PlayerOneIsHolding;
     public bool PlayerTwoIsHolding;
-    private bool isMobile;
+    public bool IsMobile;
     [SerializeField] private FireLightsScript _fireLightsScript;
     public bool PlayerOneSoon, PlayerTwoSoon;
     public bool PlayerOneOnTime, PlayerTwoOnTime;
     public Button PlayerOneButton, PlayerTwoButton;
     [SerializeField] private RacingButtonsHold _racingButtonOneHold;
     [SerializeField] RacingLightGameManager _racingLightGameManager;
-    [SerializeField] private bool isSingle;
+    public bool IsSingle;
     public int SingleCounter;
     [SerializeField] private Image buttonOneBg, buttonTwoBg;
     [SerializeField] private Image buttonOne, buttonTwo;
     public bool CantHold;
-    private void Start()
+
+    public GameObject blockerOne, blockerTwo;
+    private void Awake()
     {
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
-            if (!isSingle)
+            IsMobile = false;
+            if (!IsSingle)
             {
                 Color color = buttonOneBg.color;
                 color.a = 0.0001f;
@@ -43,23 +45,27 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
             }
         }
     }
+    private void Start()
+    {
+       
+    }
     private void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !isSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle)
         {
             if (!CantHold)
             {
                 PlayerTwoIsHolding = true;
             }
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1  && !isSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1  && !IsSingle)
         {
             if (!CantHold)
             {
                 PlayerOneIsHolding = true;
             }
         }
-        if (!isMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
         {
             if (PlayerTwoIsHolding)
             {
@@ -78,7 +84,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 }
             }
         }
-        if (!isMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !isSingle)
+        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !IsSingle)
         {
             if (PlayerOneIsHolding)
             {
@@ -118,16 +124,17 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (playerIndex == 1 && !isSingle)
+        
+        if (playerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
 
         }
-        if (playerIndex == 2 && !isSingle)
+        if (playerIndex == 2 && !IsSingle)
         {
             PlayerTwoIsHolding = true;
         }
-        if (playerIndex == 2 && isSingle)
+        if (playerIndex == 2 && IsSingle)
         {
             _racingButtonOneHold.PlayerOneIsHolding = true;
             PlayerTwoIsHolding = true;
@@ -140,6 +147,14 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerUp(PointerEventData eventData)
     {
+        if(playerIndex == 1)
+        {
+            blockerOne.SetActive(true);
+        }
+        if (playerIndex == 2)
+        {
+            blockerTwo.SetActive(true);
+        }
         if (playerIndex == 1)
         {
             PlayerOneIsHolding = false;

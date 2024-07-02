@@ -8,7 +8,8 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private PlayerOneChooser _playerOneChooser;
     [SerializeField] private PlayerTwoChooser _playerTwoChooser;
     private int headInt, hairInt, cornInt, faceInt, eyesInt;
-    [SerializeField] private GameObject[] plOneHead, plOneHair, plOneCorn, plOneFace, plOneEyes;
+    [SerializeField] private GameObject[] plOneHeadMobile, plOneHairMobile, plOneCornMobile, plOneFaceMobile, plOneEyesMobile;
+    [SerializeField] private GameObject[] plOneHeadPC, plOneHairPC, plOneCornPC, plOneFacePC, plOneEyesPC;
     [SerializeField] private GameObject[] plTwoHead, plTwoHair, plTwoCorn, plTwoFace, plTwoEyes;
     [SerializeField] private TextMeshProUGUI timertext;
     private int timer;
@@ -18,8 +19,10 @@ public class UnicornChooser : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
     private int playerOnePoints, playerTwoPoints;
-    [SerializeField] private GameObject playerOneWin, playerTwoWin;
-    [SerializeField] private GameObject playerOneDraw, playerTwoDraw;
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
+    [SerializeField] private GameObject playerOneDrawMobile, playerTwoDrawMobile;
+    [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
     [SerializeField] private GameObject finalPanel;
     void Start()
     {
@@ -29,16 +32,30 @@ public class UnicornChooser : MonoBehaviour
         cornInt = Random.Range(0, 5);
         faceInt = Random.Range(0, 5);
         eyesInt = Random.Range(0, 5);
-        plOneHead[headInt].SetActive(true);
         plTwoHead[headInt].SetActive(true);
-        plOneHair[hairInt].SetActive(true);
         plTwoHair[hairInt].SetActive(true);
-        plOneCorn[cornInt].SetActive(true);
         plTwoCorn[cornInt].SetActive(true);
-        plOneFace[faceInt].SetActive(true);
         plTwoFace[faceInt].SetActive(true);
-        plOneEyes[eyesInt].SetActive(true);
         plTwoEyes[eyesInt].SetActive(true);
+        if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
+        {
+            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            plOneHeadMobile[headInt].SetActive(true);
+            plOneHairMobile[hairInt].SetActive(true);
+            plOneCornMobile[cornInt].SetActive(true);
+            plOneFaceMobile[faceInt].SetActive(true);
+            plOneEyesMobile[eyesInt].SetActive(true);
+        }
+        if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
+        {
+
+            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            plOneHeadPC[headInt].SetActive(true);
+            plOneHairPC[hairInt].SetActive(true);
+            plOneCornPC[cornInt].SetActive(true);
+            plOneFacePC[faceInt].SetActive(true);
+            plOneEyesPC[eyesInt].SetActive(true);
+        }
         StartCoroutine(WaitToClose());
     }
 
@@ -103,18 +120,42 @@ public class UnicornChooser : MonoBehaviour
             playerTwoPointsText.text = playerTwoPoints.ToString();
             if (playerOnePoints > playerTwoPoints)
             {
-                playerOneWin.SetActive(true);
+                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                }
+                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                }
+
                 StartCoroutine(WaitToFinish());
             }
             if (playerOnePoints < playerTwoPoints)
             {
-                playerTwoWin.SetActive(true);
+                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                }
+                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
+
                 StartCoroutine(WaitToFinish());
             }
             if (playerOnePoints == playerTwoPoints)
             {
-                playerOneDraw.SetActive(true);
-                playerTwoDraw.SetActive(true);
+                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
+                {
+                    playerOneDrawMobile.SetActive(true);
+                    playerTwoDrawMobile.SetActive(true);
+                }
+                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
+                {
+                    playerOneDrawPC.SetActive(true);
+                    playerTwoDrawPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
         }
@@ -161,16 +202,21 @@ public class UnicornChooser : MonoBehaviour
 
         StartCoroutine(Timer());
         timertext.text = "";
-        plOneHead[headInt].SetActive(false);
+        plOneHeadMobile[headInt].SetActive(false);
         plTwoHead[headInt].SetActive(false);
-        plOneHair[hairInt].SetActive(false);
+        plOneHairMobile[hairInt].SetActive(false);
         plTwoHair[hairInt].SetActive(false);
-        plOneCorn[cornInt].SetActive(false);
+        plOneCornMobile[cornInt].SetActive(false);
         plTwoCorn[cornInt].SetActive(false);
-        plOneFace[faceInt].SetActive(false);
+        plOneFaceMobile[faceInt].SetActive(false);
         plTwoFace[faceInt].SetActive(false);
-        plOneEyes[eyesInt].SetActive(false);
+        plOneEyesMobile[eyesInt].SetActive(false);
         plTwoEyes[eyesInt].SetActive(false);
+        plOneHeadPC[headInt].SetActive(false);
+        plOneHairPC[hairInt].SetActive(false);
+        plOneCornPC[cornInt].SetActive(false);
+        plOneFacePC[faceInt].SetActive(false);
+        plOneEyesPC[eyesInt].SetActive(false);
         Closed = true;
     }
     public IEnumerator WaitToFinish()

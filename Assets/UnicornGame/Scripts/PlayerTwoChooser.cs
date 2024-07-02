@@ -12,31 +12,30 @@ public class PlayerTwoChooser : MonoBehaviour
     public int HeadInt, HairInt, CornInt, FaceInt, EyesInt;
     private bool headChosen, hairChosen, cornChosen, faceChosen, eyesChosen;
     public bool PlayerTwoEnds;
-    private bool isMobile;
-    [SerializeField] bool isSingle;
+    public bool IsMobile;
+    public bool IsSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
-    void Start()
+    private void Awake()
     {
-
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false; 
-            if (!isSingle)
+            IsMobile = false;
+            if (!IsSingle)
             {
                 buttonOne.SetActive(false);
                 buttonTwo.SetActive(false);
             }
         }
-    }
+    }   
 
     // Update is called once per frame
     void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedButton();
         }

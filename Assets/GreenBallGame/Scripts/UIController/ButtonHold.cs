@@ -13,7 +13,6 @@ public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
-        Debug.Log("Начало удерживания кнопки");
         buttonGost.SetActive(true);
     }
 
@@ -22,7 +21,6 @@ public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         isHolding = false;
         buttonGost.SetActive(false);
         buttonGost.transform.position = gostStartTransform.position;
-        Debug.Log("Конец удерживания кнопки");
     }
 
 

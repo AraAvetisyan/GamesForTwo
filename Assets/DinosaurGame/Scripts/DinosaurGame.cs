@@ -23,7 +23,7 @@ public class DinosaurGame : MonoBehaviour
     private int teethIndex;
     [SerializeField] private bool isSingle;
     [SerializeField] private bool isMobile;
-
+    private bool pressed;
     public int teethToPress;
     private void Awake()
     {
@@ -67,7 +67,7 @@ public class DinosaurGame : MonoBehaviour
         {
             for(int i = 0; i < singleTeeth.Count; i++)
             {
-                if(i == index)
+                if(singleTeeth[i] == index)
                 {
                     singleTeeth.RemoveAt(i);
                 }
@@ -200,10 +200,21 @@ public class DinosaurGame : MonoBehaviour
     }
     public IEnumerator Single()
     {
+        pressed = false;
         yield return new WaitForSeconds(0.5f);
         teethIndex = UnityEngine.Random.Range(0, singleTeeth.Count);
+        
         teethToPress = singleTeeth[teethIndex];
+         
+        
+        Debug.Log("AI pressed - " + teethToPress);
+ 
+
+
+        
+        
         PressedTeetth(teethToPress);
+        
     }
     public IEnumerator WaitToFinal()
     {

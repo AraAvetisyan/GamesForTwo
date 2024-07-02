@@ -11,7 +11,7 @@ public class EndGameScript : MonoBehaviour
     [SerializeField] private GameObject firstPlayerWinMobile, secondPlayerWinMobile, drawMobile;
     [SerializeField] private GameObject firstPlayerWinPC, secondPlayerWinPC, drawPC;
     [SerializeField] private GameObject finalPanel;
-
+    public bool GameEnds;
 
     [SerializeField] private RotatePlayers _rotatePlayers;
     [SerializeField] private GameObject greenBall;
@@ -26,6 +26,7 @@ public class EndGameScript : MonoBehaviour
     }
     public void EndGame(bool bb)
     {
+        GameEnds = true;
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
             if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)

@@ -16390,6 +16390,8 @@ MonoBehaviour:
   _redCirclePlayerTwoScript: {fileID: 1551110775}
   IsMobile: 0
   _redCircleTimer: {fileID: 1957014566}
+  plOneButton: {fileID: 1814152418}
+  plTwoButton: {fileID: 1037468424}
   IsSingle: 0
 --- !u!1 &1491930683
 GameObject:

@@ -7,36 +7,37 @@ public class PlayerOneChooser : MonoBehaviour
     [SerializeField] private UnicornChooser _unicornChooser;
     public int counter;
     private int choos;
-    [SerializeField] private GameObject[] plOneHead, plOneHair, plOneCorn, plOneFace, plOneEyes;
+    [SerializeField] private GameObject[] plOneHeadMobile, plOneHairMobile, plOneCornMobile, plOneFaceMobile, plOneEyesMobile;
+    [SerializeField] private GameObject[] plOneHeadPC, plOneHairPC, plOneCornPC, plOneFacePC, plOneEyesPC;
     public int HeadInt, HairInt, CornInt, FaceInt, EyesInt;
     private bool headChosen, hairChosen, cornChosen, faceChosen, eyesChosen;
     public bool PlayerOneEnds;
-    private bool isMobile;
+    public bool IsMobile;
 
-    [SerializeField] bool isSingle;
+    public bool IsSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
-    void Start()
+    private void Awake()
     {
-
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
-            if (!isSingle)
+            IsMobile = false;
+            if (!IsSingle)
             {
                 buttonOne.SetActive(false);
                 buttonTwo.SetActive(false);
             }
         }
-    }
 
+    }
+   
     // Update is called once per frame
     void Update()
     {
-        if (!isMobile && Input.GetKeyDown(KeyCode.M) && !isSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
         {
             PressedButton();
         }
@@ -48,7 +49,7 @@ public class PlayerOneChooser : MonoBehaviour
         {
             counter = 2;
             StartCoroutine(HeadChooser());
-            if (isSingle)
+            if (IsSingle)
             {
                 StartCoroutine(Single());
             }
@@ -61,7 +62,7 @@ public class PlayerOneChooser : MonoBehaviour
         {
             counter = 4;
             StartCoroutine(HairChooser());
-            if (isSingle)
+            if (IsSingle)
             {
                 StartCoroutine(Single());
             }
@@ -74,7 +75,7 @@ public class PlayerOneChooser : MonoBehaviour
         {
             counter = 6;
             StartCoroutine(CornChooser());
-            if (isSingle)
+            if (IsSingle)
             {
                 StartCoroutine(Single());
             }
@@ -87,7 +88,7 @@ public class PlayerOneChooser : MonoBehaviour
         {
             counter = 8;
             StartCoroutine(FaceChooser());
-            if (isSingle)
+            if (IsSingle)
             {
                 StartCoroutine(Single());
             }
@@ -99,7 +100,7 @@ public class PlayerOneChooser : MonoBehaviour
         if(counter == 9)
         {
             StartCoroutine(EyesChooser());
-            if (isSingle)
+            if (IsSingle)
             {
                 StartCoroutine(Single());
             }
@@ -144,19 +145,40 @@ public class PlayerOneChooser : MonoBehaviour
     public IEnumerator HeadChooser()
     {
         choos = 1;
-        if (HeadInt < plOneHead.Length)
+        if (IsMobile && !IsSingle)
         {
-            HeadInt++;
+            Debug.Log("Mobile Head");
+            if (HeadInt < plOneHeadMobile.Length)
+            {
+                HeadInt++;
+            }
+            if (HeadInt >= plOneHeadMobile.Length)
+            {
+                HeadInt = 0;
+            }
+            for (int i = 0; i < plOneHeadMobile.Length; i++)
+            {
+                plOneHeadMobile[i].SetActive(false);
+            }
+            plOneHeadMobile[HeadInt].SetActive(true);
         }
-        if(HeadInt >= plOneHead.Length)
+        if(!IsMobile || IsSingle)
         {
-            HeadInt = 0;
+            Debug.Log("PC Head");
+            if (HeadInt < plOneHeadPC.Length)
+            {
+                HeadInt++;
+            }
+            if (HeadInt >= plOneHeadPC.Length)
+            {
+                HeadInt = 0;
+            }
+            for (int i = 0; i < plOneHeadPC.Length; i++)
+            {
+                plOneHeadPC[i].SetActive(false);
+            }
+            plOneHeadPC[HeadInt].SetActive(true);
         }
-        for(int i =0; i< plOneHead.Length; i++)
-        {
-            plOneHead[i].SetActive(false);
-        }
-        plOneHead[HeadInt].SetActive(true);
         yield return new WaitForSeconds(1f);
 
         if (!headChosen)
@@ -167,19 +189,39 @@ public class PlayerOneChooser : MonoBehaviour
     public IEnumerator HairChooser()
     {
         choos = 2;
-        if (HairInt < plOneHair.Length)
+        if (IsMobile && !IsSingle)
         {
-            HairInt++;
+            if (HairInt < plOneHairMobile.Length)
+            {
+                HairInt++;
+            }
+            if (HairInt >= plOneHairMobile.Length)
+            {
+                HairInt = 0;
+            }
+            for (int i = 0; i < plOneHairMobile.Length; i++)
+            {
+                plOneHairMobile[i].SetActive(false);
+            }
+            plOneHairMobile[HairInt].SetActive(true);
         }
-        if (HairInt >= plOneHair.Length)
+        if (!IsMobile || IsSingle)
         {
-            HairInt = 0;
+            if (HairInt < plOneHairPC.Length)
+            {
+                HairInt++;
+            }
+            if (HairInt >= plOneHairPC.Length)
+            {
+                HairInt = 0;
+            }
+            for (int i = 0; i < plOneHairPC.Length; i++)
+            {
+                plOneHairPC[i].SetActive(false);
+            }
+            plOneHairPC[HairInt].SetActive(true);
         }
-        for (int i = 0; i < plOneHair.Length; i++)
-        {
-            plOneHair[i].SetActive(false);
-        }
-        plOneHair[HairInt].SetActive(true);
+       
         yield return new WaitForSeconds(1f);
 
         if (!hairChosen)
@@ -190,19 +232,38 @@ public class PlayerOneChooser : MonoBehaviour
     public IEnumerator CornChooser()
     {
         choos = 3;
-        if (CornInt < plOneCorn.Length)
+        if (IsMobile && !IsSingle)
         {
-            CornInt++;
+            if (CornInt < plOneCornMobile.Length)
+            {
+                CornInt++;
+            }
+            if (CornInt >= plOneCornMobile.Length)
+            {
+                CornInt = 0;
+            }
+            for (int i = 0; i < plOneCornMobile.Length; i++)
+            {
+                plOneCornMobile[i].SetActive(false);
+            }
+            plOneCornMobile[CornInt].SetActive(true);
         }
-        if (CornInt >= plOneCorn.Length)
+        if (!IsMobile || IsSingle)
         {
-            CornInt = 0;
+            if (CornInt < plOneCornPC.Length)
+            {
+                CornInt++;
+            }
+            if (CornInt >= plOneCornPC.Length)
+            {
+                CornInt = 0;
+            }
+            for (int i = 0; i < plOneCornPC.Length; i++)
+            {
+                plOneCornPC[i].SetActive(false);
+            }
+            plOneCornPC[CornInt].SetActive(true);
         }
-        for (int i = 0; i < plOneCorn.Length; i++)
-        {
-            plOneCorn[i].SetActive(false);
-        }
-        plOneCorn[CornInt].SetActive(true);
         yield return new WaitForSeconds(1f);
 
         if (!cornChosen)
@@ -213,19 +274,38 @@ public class PlayerOneChooser : MonoBehaviour
     public IEnumerator FaceChooser()
     {
         choos = 4;
-        if (FaceInt < plOneFace.Length)
+        if (IsMobile && !IsSingle)
         {
-            FaceInt++;
+            if (FaceInt < plOneFaceMobile.Length)
+            {
+                FaceInt++;
+            }
+            if (FaceInt >= plOneFaceMobile.Length)
+            {
+                FaceInt = 0;
+            }
+            for (int i = 0; i < plOneFaceMobile.Length; i++)
+            {
+                plOneFaceMobile[i].SetActive(false);
+            }
+            plOneFaceMobile[FaceInt].SetActive(true);
         }
-        if (FaceInt >= plOneFace.Length)
+        if (!IsMobile || IsSingle)
         {
-            FaceInt = 0;
+            if (FaceInt < plOneFacePC.Length)
+            {
+                FaceInt++;
+            }
+            if (FaceInt >= plOneFacePC.Length)
+            {
+                FaceInt = 0;
+            }
+            for (int i = 0; i < plOneFacePC.Length; i++)
+            {
+                plOneFacePC[i].SetActive(false);
+            }
+            plOneFacePC[FaceInt].SetActive(true);
         }
-        for (int i = 0; i < plOneFace.Length; i++)
-        {
-            plOneFace[i].SetActive(false);
-        }
-        plOneFace[FaceInt].SetActive(true);
         yield return new WaitForSeconds(1f);
 
         if (!faceChosen)
@@ -236,19 +316,38 @@ public class PlayerOneChooser : MonoBehaviour
     public IEnumerator EyesChooser()
     {
         choos = 5;
-        if (EyesInt < plOneEyes.Length)
+        if (IsMobile && !IsSingle)
         {
-            EyesInt++;
+            if (EyesInt < plOneEyesMobile.Length)
+            {
+                EyesInt++;
+            }
+            if (EyesInt >= plOneEyesMobile.Length)
+            {
+                EyesInt = 0;
+            }
+            for (int i = 0; i < plOneEyesMobile.Length; i++)
+            {
+                plOneEyesMobile[i].SetActive(false);
+            }
+            plOneEyesMobile[EyesInt].SetActive(true);
         }
-        if (EyesInt >= plOneEyes.Length)
+        if (!IsMobile || IsSingle)
         {
-            EyesInt = 0;
+            if (EyesInt < plOneEyesPC.Length)
+            {
+                EyesInt++;
+            }
+            if (EyesInt >= plOneEyesPC.Length)
+            {
+                EyesInt = 0;
+            }
+            for (int i = 0; i < plOneEyesPC.Length; i++)
+            {
+                plOneEyesPC[i].SetActive(false);
+            }
+            plOneEyesPC[EyesInt].SetActive(true);
         }
-        for (int i = 0; i < plOneEyes.Length; i++)
-        {
-            plOneEyes[i].SetActive(false);
-        }
-        plOneEyes[EyesInt].SetActive(true);
         yield return new WaitForSeconds(1f);
 
         if (!eyesChosen)

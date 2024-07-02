@@ -9,7 +9,7 @@ public class RedCircleUIController : MonoBehaviour
     [SerializeField] RedCirclePlayerTwoScript _redCirclePlayerTwoScript;
     public bool IsMobile;
     [SerializeField] private RedCircleTimer _redCircleTimer;
-
+    [SerializeField] private GameObject plOneButton, plTwoButton;
     public bool IsSingle;
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class RedCircleUIController : MonoBehaviour
         else
         {
             IsMobile = false;
+            plOneButton.SetActive(false);
+            plTwoButton.SetActive(false);
         }
     }
     private void Start()

@@ -15,14 +15,24 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] RacingButtonsHold _playerOneRacingButtonsHold, _playerTwoRacingButtonsHold;
     [SerializeField] private FireLightsScript _fireLightsScript;
     private int playerOneCounter, playerTwoCounter;
-    [SerializeField] private GameObject playerOneWin, playerTwoWin;
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
     void Start()
     {
-
+        if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
+        {
+            playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        if(!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
+        {
+            playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (_fireLightsScript.CanHoldOff)
@@ -40,7 +50,7 @@ public class RacingLightGameManager : MonoBehaviour
                 StartCoroutine(UpdatePlTwoTimer());
             }
         }
-        if(counter == 1)
+        if (counter == 1)
         {
             if (_playerOneRacingButtonsHold.PlayerOneSoon)
             {
@@ -53,6 +63,10 @@ public class RacingLightGameManager : MonoBehaviour
         }
         if (counter == 2)
         {
+            _playerOneRacingButtonsHold.blockerOne.SetActive(false);
+            _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
+            _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
+            _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
             if (_playerOneRacingButtonsHold.PlayerOneOnTime)
             {
                 playerOneTimerText.text = playerOneTimer.ToString("F2");
@@ -98,7 +112,7 @@ public class RacingLightGameManager : MonoBehaviour
 
                 counter = 3;
             }
-            if(_playerOneRacingButtonsHold.PlayerOneSoon && _playerTwoRacingButtonsHold.PlayerTwoSoon)
+            if (_playerOneRacingButtonsHold.PlayerOneSoon && _playerTwoRacingButtonsHold.PlayerTwoSoon)
             {
                 _fireLightsScript.BothSoon = true;
                 counter = 3;
@@ -115,17 +129,31 @@ public class RacingLightGameManager : MonoBehaviour
             }
             if (playerOneScore == 3)
             {
-                playerOneWin.SetActive(true);
+                if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
+                {
+                    playerOneWinMobile.SetActive(true);
+                }
+                if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
             if (playerTwoScore == 3)
             {
-                playerTwoWin.SetActive(true);
+                if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
+                {
+                    playerTwoWinMobile.SetActive(true);
+                }
+                if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
         }
     }
-
+    
     private IEnumerator UpdatePlOneTimer()
     {
         while (!_playerOneRacingButtonsHold.PlayerOneOnTime)

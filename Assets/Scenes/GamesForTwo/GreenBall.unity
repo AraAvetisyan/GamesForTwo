@@ -6895,6 +6895,7 @@ MonoBehaviour:
   IsMobile: 0
   _firstPlayerZoneTrigger: {fileID: 1986415362}
   _secondPlayerZoneTrigger: {fileID: 1048018520}
+  _endGameScript: {fileID: 2027153851}
   buttonOne: {fileID: 1896253750}
   buttonTwo: {fileID: 141177778}
   IsSingle: 0
@@ -7719,6 +7720,7 @@ MonoBehaviour:
   secondPlayerWinPC: {fileID: 779648568}
   drawPC: {fileID: 1783113070}
   finalPanel: {fileID: 660316298}
+  GameEnds: 0
   _rotatePlayers: {fileID: 1380391125}
   greenBall: {fileID: 1561424062}
   blueButton: {fileID: 1528268295}

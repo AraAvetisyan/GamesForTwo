@@ -16,7 +16,7 @@ public class GreenBallGameUIController : MonoBehaviour
     public bool IsMobile;
     [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
-
+    [SerializeField] private EndGameScript _endGameScript;
     [SerializeField] private GameObject buttonOne, buttonTwo;
     public bool IsSingle;
 
@@ -49,6 +49,11 @@ public class GreenBallGameUIController : MonoBehaviour
     }
     private void Update()
     {
+        if (_endGameScript.GameEnds)
+        {
+            _rotatePlayers.PlayerOneRotationSpeed = 0;
+            _rotatePlayers.PlayerTwoRotationSpeed = 0;
+        }
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             PressedRedButton();
@@ -119,12 +124,16 @@ public class GreenBallGameUIController : MonoBehaviour
     public IEnumerator StopPlayerOne()
     {
         yield return new WaitForSeconds(1);
+      
         _rotatePlayers.PlayerOneRotationSpeed = 300;
+        
     }
     public IEnumerator StopPlayerTwo()
     {
         yield return new WaitForSeconds(1);
+       
         _rotatePlayers.PlayerTwoRotationSpeed = 300;
+        
     }
 
     public void PresedFinishHome()

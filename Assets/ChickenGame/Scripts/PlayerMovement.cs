@@ -15,19 +15,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Button plOneButton, plTwoButton;
     [SerializeField] private GameObject plButtonOne, plButtonTwo;
 
-    private bool isMobile;
+    public bool IsMobile;
     [SerializeField] private bool isSingle;
 
     [SerializeField] private PlayersTriggers _firstPlayersTriggers, _secondPlayersTriggers;
-    private void Start()
+
+    private void Awake()
     {
         if (Geekplay.Instance.mobile)
         {
-            isMobile = true;
+            IsMobile = true;
         }
         else
         {
-            isMobile = false;
+            IsMobile = false;
             if (!isSingle)
             {
                 plButtonOne.SetActive(false);
@@ -45,14 +46,14 @@ public class PlayerMovement : MonoBehaviour
         }
         playerOne.transform.Translate(Vector3.right * Speed * Time.deltaTime);
         playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
                 PressedPlayerTwoButton();
             }
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.M))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M))
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
