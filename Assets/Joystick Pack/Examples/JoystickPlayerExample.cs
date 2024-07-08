@@ -124,7 +124,7 @@ public class JoystickPlayerExample : MonoBehaviour
     public IEnumerator Single()
     {
         pointInd = Random.Range(0,singlePoints.Length);        
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(2f);
         StartCoroutine(Single());
     }
 }

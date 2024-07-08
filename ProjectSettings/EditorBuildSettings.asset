@@ -101,4 +101,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Checkers/Assets/Scenes/Main.unity
     guid: 18bb39378e6c3e04b8d69a1b985bba26
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/MathQuiz.unity
+    guid: c32048cf5a01de64f81706d83a3cade5
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/MathQuizSingle.unity
+    guid: a1ec449aceef0594b8aff40459235086
   m_configObjects: {}

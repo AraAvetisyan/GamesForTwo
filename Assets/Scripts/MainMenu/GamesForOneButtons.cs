@@ -72,4 +72,8 @@ public class GamesForOneButtons : MonoBehaviour
     {
         SceneManager.LoadScene("BowlingSingle");
     }
+    public void PressedMathQuiz()
+    {
+        SceneManager.LoadScene("MathQuizSingle");
+    }
 }
