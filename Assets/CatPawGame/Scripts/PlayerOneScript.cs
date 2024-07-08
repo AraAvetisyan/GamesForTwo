@@ -95,3 +95,6 @@ public class PlayerOneScript : MonoBehaviour
         CantPlay = false;
     }
 }
+
+//Vector2 direction = Vector2.up * FloatingJoystick.Vertical + Vector2.right * FloatingJoystick.Horizontal;
+//transform.Translate(direction * speed * Time.deltaTime);

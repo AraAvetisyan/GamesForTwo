@@ -21,6 +21,12 @@ public class SummoTriggers : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private BoxCollider2D enemyBox;
 
+
+    [SerializeField] private Rigidbody2D rbPlOne, rbPlTwo;
+    [SerializeField] private GameObject playerOne, playerTwo;
+    [SerializeField] private float force;
+
+
     private void Start()
     {
         if(_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
@@ -43,6 +49,8 @@ public class SummoTriggers : MonoBehaviour
                 _summoGameScriptPlTwo.PlayerTwoIsHolding = false;
                 playerOneObject.transform.position = playerOneStartPos.position;
                 playerTwoObject.transform.position = playerTwoStartPos.position;
+                rbPlOne.velocity = Vector2.zero;
+                rbPlTwo.velocity = Vector2.zero;
                 PlayerTwoPoints++;
                 _plTwoSummoTrigger.PlayerTwoPoints++;
                 playerTwoPointsText.text = PlayerTwoPoints.ToString();
@@ -70,6 +78,8 @@ public class SummoTriggers : MonoBehaviour
                 _summoGameScriptPlTwo.PlayerTwoIsHolding = false;
                 playerOneObject.transform.position = playerOneStartPos.position;
                 playerTwoObject.transform.position = playerTwoStartPos.position;
+                rbPlOne.velocity = Vector2.zero;
+                rbPlTwo.velocity = Vector2.zero;
                 PlayerOnePoints++;
                 _plOneSummoTrigger.PlayerOnePoints++;
                 playerOnePointsText.text = PlayerOnePoints.ToString();
@@ -93,6 +103,49 @@ public class SummoTriggers : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (playerIndex == 1)
+        {
+            if (collision.gameObject.tag == "PlayerTwo")
+            {
+                Transform playerTwoHitTransform = playerTwo.transform;
+                Vector2 direction = (playerTwoHitTransform.position - transform.position);
+                rbPlOne.AddForce(direction * force, ForceMode2D.Impulse);
+            }
+        }
+        if (playerIndex == 2)
+        {
+            if (collision.gameObject.tag == "PlayerOne")
+            {
+                Transform playerOneHitTransform = playerOne.transform;
+                Vector2 direction = (playerOneHitTransform.position - transform.position);
+                rbPlTwo.AddForce(direction * force, ForceMode2D.Impulse);
+            }
+
+        }
+    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (playerIndex == 1)
+    //    {
+    //        if (collision.gameObject.tag == "PlayerTwo")
+    //        {
+    //            rbPlOne.velocity = Vector2.zero;
+    //            rbPlTwo.velocity = Vector2.zero;
+    //        }
+    //    }
+    //    if (playerIndex == 2)
+    //    {
+    //        if (collision.gameObject.tag == "PlayerOne")
+    //        {
+    //            rbPlOne.velocity = Vector2.zero;
+    //            rbPlTwo.velocity = Vector2.zero;
+    //        }
+
+    //    }
+    //}
     public IEnumerator WaitToWin()
     {
         yield return new WaitForSeconds(1.5f);

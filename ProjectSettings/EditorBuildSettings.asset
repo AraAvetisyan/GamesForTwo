@@ -12,65 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/GamesForTwo/ChickenGame.unity
     guid: f3087efc0068a304e94681c2cf8a50c8
   - enabled: 1
-    path: Assets/Scenes/GamesForTwo/GreenBall.unity
-    guid: 5c930b23d72d403458a407f52aaabb5d
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/TimerGame.unity
-    guid: ace1c79227d94f044b98e48248ab00dc
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/RedCircle.unity
-    guid: 1c81dfc30eabc9b4abd14511723f8454
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/DinosaurGame.unity
-    guid: d73f8b3d2d999eb468ea26661ac9f1bc
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/CatPaw.unity
-    guid: 8df05b4d63af57d4280cf0d6c5273ca0
-  - enabled: 1
-    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameOne.unity
-    guid: ae6b83c896bb7f24fa641bb2b5d68aa1
-  - enabled: 1
-    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameThree.unity
-    guid: 715daf9b0cb11924caa27a0f25d306e1
-  - enabled: 1
-    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameTwo.unity
-    guid: 45d40c6eef786dd4fba550f6097d6ae3
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/RacingLight.unity
-    guid: 9ed6ed57208f9d8449b01b63f672d35c
-  - enabled: 1
     path: Assets/Scenes/SinglePlayer/ChickenGameSingle.unity
     guid: 516661b8b6d1b1645819cca1591f06ef
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/DinosaurGameSingle.unity
-    guid: 4b9377d3e65a9ae4eb8d873cce434936
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/FootballBallSingle.unity
-    guid: 2ae21ec7f5e7a4b4e9c4a92c6af15a3f
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/GreenBallSingle.unity
-    guid: bf236940bf5f70d45a2c11296df7f80f
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/RacingLightSingle.unity
-    guid: 7de9ab9cea9c03c40b55eacc0393efd5
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/RedCircleSingle.unity
-    guid: f1db2e38a41b7cb44b4faa22eb1c179e
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/SummoGameSingle.unity
-    guid: 546b136878930ca4f940300aacb44652
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/TimerGameSingle.unity
-    guid: 505e76aeb0731a642bc5f8e8b293947b
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/UnicornSingle.unity
-    guid: 183580bb1963d474594056d9fb1e455d
-  - enabled: 1
-    path: Assets/Scenes/SinglePlayer/CatPawSingle.unity
-    guid: 7e383025c81afc244bdacb340f151796
-  - enabled: 1
-    path: Assets/Scenes/GamesForTwo/Unicorn.unity
-    guid: c3d931ab8056c2e46a33957d36abb94a
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameOneSingle.unity
     guid: f6dfcef7e2da0d9409e5523336700978
@@ -81,12 +24,81 @@ EditorBuildSettings:
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameThreeSingle.unity
     guid: 05263241dcb260541a6e5c6c86b6442d
   - enabled: 1
-    path: Assets/Checkers/Assets/Scenes/Main.unity
-    guid: 18bb39378e6c3e04b8d69a1b985bba26
+    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameOne.unity
+    guid: ae6b83c896bb7f24fa641bb2b5d68aa1
+  - enabled: 1
+    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameTwo.unity
+    guid: 45d40c6eef786dd4fba550f6097d6ae3
+  - enabled: 1
+    path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameThree.unity
+    guid: 715daf9b0cb11924caa27a0f25d306e1
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/GreenBall.unity
+    guid: 5c930b23d72d403458a407f52aaabb5d
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/GreenBallSingle.unity
+    guid: bf236940bf5f70d45a2c11296df7f80f
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/CatPaw.unity
+    guid: 8df05b4d63af57d4280cf0d6c5273ca0
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/CatPawSingle.unity
+    guid: 7e383025c81afc244bdacb340f151796
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/TimerGame.unity
+    guid: ace1c79227d94f044b98e48248ab00dc
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/TimerGameSingle.unity
+    guid: 505e76aeb0731a642bc5f8e8b293947b
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/RedCircle.unity
+    guid: 1c81dfc30eabc9b4abd14511723f8454
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/RedCircleSingle.unity
+    guid: f1db2e38a41b7cb44b4faa22eb1c179e
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/DinosaurGame.unity
+    guid: d73f8b3d2d999eb468ea26661ac9f1bc
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/DinosaurGameSingle.unity
+    guid: 4b9377d3e65a9ae4eb8d873cce434936
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/GuardGame.unity
+    guid: 4c30a828da152c44babe7b638eae9ac2
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/GuardGameSingle.unity
+    guid: cf412c4f054903140ab65e279a7ffd94
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/RacingLight.unity
+    guid: 9ed6ed57208f9d8449b01b63f672d35c
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/RacingLightSingle.unity
+    guid: 7de9ab9cea9c03c40b55eacc0393efd5
   - enabled: 1
     path: Assets/Scenes/GamesForTwo/FootballBall.unity
     guid: 9f5ed9c404a19dd4389aa936b4404671
   - enabled: 1
+    path: Assets/Scenes/SinglePlayer/FootballBallSingle.unity
+    guid: 2ae21ec7f5e7a4b4e9c4a92c6af15a3f
+  - enabled: 1
     path: Assets/Scenes/GamesForTwo/SummoGame.unity
     guid: 7eb6f4bbf67a39c43a9379dd4ca58d81
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/SummoGameSingle.unity
+    guid: 546b136878930ca4f940300aacb44652
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/Unicorn.unity
+    guid: c3d931ab8056c2e46a33957d36abb94a
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/UnicornSingle.unity
+    guid: 183580bb1963d474594056d9fb1e455d
+  - enabled: 1
+    path: Assets/Scenes/GamesForTwo/Bowling.unity
+    guid: 613d8e710ce27de4298b722120ca86f5
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer/BowlingSingle.unity
+    guid: 498da6366cd05e741a982a452562c18b
+  - enabled: 1
+    path: Assets/Checkers/Assets/Scenes/Main.unity
+    guid: 18bb39378e6c3e04b8d69a1b985bba26
   m_configObjects: {}

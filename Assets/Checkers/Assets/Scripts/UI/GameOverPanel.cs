@@ -32,7 +32,7 @@ public class GameOverPanel : MonoBehaviour
 
     public void LoadMenuScene()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void FadeGameMusic()

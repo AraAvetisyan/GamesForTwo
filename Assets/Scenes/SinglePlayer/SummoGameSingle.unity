@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 207890189}
   m_Layer: 0
   m_Name: Player One
-  m_TagString: Untagged
+  m_TagString: PlayerOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -454,7 +454,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -606,6 +606,11 @@ MonoBehaviour:
   playerTwoWinPC: {fileID: 508617391}
   finalPanel: {fileID: 1903765093}
   enemyBox: {fileID: 1634995847}
+  rbPlOne: {fileID: 207890184}
+  rbPlTwo: {fileID: 1153663913}
+  playerOne: {fileID: 207890183}
+  playerTwo: {fileID: 1153663912}
+  force: 50
 --- !u!114 &207890189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,7 +1825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 2
-  speed: 3
+  speed: 150
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0
@@ -1834,6 +1839,10 @@ MonoBehaviour:
   buttonTwoBg: {fileID: 0}
   buttonOne: {fileID: 0}
   buttonTwo: {fileID: 0}
+  rbPlOne: {fileID: 207890184}
+  rbPlTwo: {fileID: 1153663913}
+  plOneTransform: {fileID: 207890187}
+  plTwoTransform: {fileID: 1153663916}
 --- !u!1 &726093625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,7 +2472,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -2614,6 +2623,11 @@ MonoBehaviour:
   playerTwoWinPC: {fileID: 508617391}
   finalPanel: {fileID: 1903765093}
   enemyBox: {fileID: 1634995847}
+  rbPlOne: {fileID: 207890184}
+  rbPlTwo: {fileID: 1153663913}
+  playerOne: {fileID: 207890183}
+  playerTwo: {fileID: 1153663912}
+  force: 50
 --- !u!1 &1161999829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3515,7 +3529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 1
-  speed: 6
+  speed: 150
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0
@@ -3525,10 +3539,14 @@ MonoBehaviour:
   IsSingle: 1
   first: 0
   second: 0.2
-  buttonOneBg: {fileID: 0}
-  buttonTwoBg: {fileID: 0}
-  buttonOne: {fileID: 0}
-  buttonTwo: {fileID: 0}
+  buttonOneBg: {fileID: 1812098959}
+  buttonTwoBg: {fileID: 1941549166}
+  buttonOne: {fileID: 1419588345}
+  buttonTwo: {fileID: 631484571}
+  rbPlOne: {fileID: 207890184}
+  rbPlTwo: {fileID: 1153663913}
+  plOneTransform: {fileID: 207890187}
+  plTwoTransform: {fileID: 1153663916}
 --- !u!1 &1432643963
 GameObject:
   m_ObjectHideFlags: 0

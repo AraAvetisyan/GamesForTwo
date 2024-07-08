@@ -38,7 +38,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (!IsSingle)
             {
                 Color color = oneBg.color;
-                color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+                color.a = 0.0001f;
                 oneBg.color = color;
                 twoBG.color = color;
                 buttonOne.color = color;

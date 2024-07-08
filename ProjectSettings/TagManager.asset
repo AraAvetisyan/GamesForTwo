@@ -19,6 +19,11 @@ TagManager:
   - DontDetect
   - Ball
   - ChickenGravity
+  - Light
+  - Coin
+  - Robber
+  - Guard
+  - StartLine
   layers:
   - Default
   - TransparentFX

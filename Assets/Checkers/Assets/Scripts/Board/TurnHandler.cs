@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnHandler : MonoBehaviour
 {
@@ -65,9 +66,10 @@ public class TurnHandler : MonoBehaviour
 
     public void Forfeit()
     {
-        if (turn == PawnColor.White)
-            EndGame(PawnColor.Black);
-        else if (turn == PawnColor.Black)
-            EndGame(PawnColor.White);
+        SceneManager.LoadScene("MainMenu");
+        //if (turn == PawnColor.White)
+        //    EndGame(PawnColor.Black);
+        //else if (turn == PawnColor.Black)
+        //    EndGame(PawnColor.White);
     }
 }

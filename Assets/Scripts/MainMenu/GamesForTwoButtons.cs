@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GamesForTwoButtons : MonoBehaviour
 {
-    
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private bool isSingle;
     public void PressedChickenGameButton()
     {
         SceneManager.LoadScene("ChickenGame");
@@ -54,5 +55,21 @@ public class GamesForTwoButtons : MonoBehaviour
     public void PressedFootballBall()
     {
         SceneManager.LoadScene("FootballBall");
+    }
+    public void PressedCheckers()
+    {
+
+        PlayerPrefs.SetInt("VsCPU", 0);
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        
+        canvas.SetActive(false);
+    }
+    public void PressedGuardGame()
+    {
+        SceneManager.LoadScene("GuardGame");
+    }
+    public void PressedBowling()
+    {
+        SceneManager.LoadScene("Bowling");
     }
 }

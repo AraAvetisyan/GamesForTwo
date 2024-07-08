@@ -22,6 +22,9 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField] private float first,second;
     [SerializeField] private Image buttonOneBg, buttonTwoBg;
     [SerializeField] private Image buttonOne, buttonTwo;
+
+    [SerializeField] private Rigidbody2D rbPlOne, rbPlTwo;
+    [SerializeField] private Transform plOneTransform, plTwoTransform;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -45,7 +48,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     private void Start()
     {
-       
+
     }
 
     private void Update()
@@ -78,12 +81,18 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         if (PlayerOneIsHolding)
         {
-            PlayerOne.transform.Translate(Vector3.left * speed * Time.deltaTime);
+            // PlayerOne.transform.Translate(Vector3.left * speed * Time.deltaTime);
+            rbPlOne.freezeRotation = true;
+            Vector2 dir = plOneTransform.right;
+            rbPlOne.velocity = -dir * speed * Time.deltaTime;
             _rotatePlayers.PlayerOneRotationSpeed = 0;
         }
         if (PlayerTwoIsHolding)
         {
-            PlayerTwo.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            // PlayerTwo.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            rbPlTwo.freezeRotation = true;
+            Vector2 dir = plTwoTransform.right;
+            rbPlTwo.velocity = dir * speed * Time.deltaTime;
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
         }
     }
@@ -93,6 +102,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
+
            
         }
         if (PlayerIndex == 2)
@@ -107,11 +117,13 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (PlayerIndex == 1)
         {
             PlayerOneIsHolding = false;
+            rbPlOne.freezeRotation = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;
+            rbPlTwo.freezeRotation = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
     }
@@ -119,8 +131,8 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public IEnumerator Single()
     {
         float timer = Random.Range(first, second);
-        yield return new WaitForSeconds(timer);
         PlayerOneIsHolding = true;
+        yield return new WaitForSeconds(timer);
         yield return new WaitForSeconds(.25f);
         PlayerOneIsHolding = false;
         _rotatePlayers.PlayerOneRotationSpeed = 300f;
