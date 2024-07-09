@@ -79,17 +79,17 @@ public class MathQuizGameManager : MonoBehaviour
                 }
                 if (!isSingle)
                 {
-                    if (Input.GetKeyDown(KeyCode.B))
+                    if (Input.GetKeyDown(KeyCode.LeftArrow))
                     {
                         PressedPlTwoButtonOne();
                     }
 
-                    if (Input.GetKeyDown(KeyCode.N))
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
                     {
                         PressedPlTwoButtonTwo();
                     }
 
-                    if (Input.GetKeyDown(KeyCode.M))
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
                     {
                         PressedPlTwoButtonThree();
                     }
@@ -138,7 +138,6 @@ public class MathQuizGameManager : MonoBehaviour
         int rand = Random.Range(0, 3);
         if (canPress)
         {
-            Debug.Log("Mtnuma el du sus");
             if (rand == 0)
             {
                 PressedPlTwoButtonOne();
@@ -155,6 +154,8 @@ public class MathQuizGameManager : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        canPress = false;
+        singleCanChoose = false;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
     }
@@ -165,6 +166,7 @@ public class MathQuizGameManager : MonoBehaviour
         if (partOne != partTwo)
         {
             signInt = Random.Range(0, 2);
+            Debug.Log(signInt);
         }
         if (partOne == partTwo)
         {
@@ -172,40 +174,60 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if (signInt == 0)
         {
+            Debug.Log("Gumarum");
             answer = partOne + partTwo;
         }
         if (signInt == 1)
         {
+            Debug.Log("Hanum");
             answer = partOne - partTwo;
         }
         if (signInt == 2)
         {
+            Debug.Log("bazmapatkum");
             answer = partTwo * partOne;
         }
         if (signInt == 3 && partOne % partTwo == 0)
         {
+            Debug.Log("bajanum");
             answer = partOne / partTwo;
         }
-        else
+        if (signInt == 3 && partOne % partTwo != 0)
         {
+           
             answer = partOne + partTwo;
             signInt = 0;
         }
-        taskOne.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString(); 
-        taskTwo.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString(); 
+       
 
         int plOneRight = Random.Range(0, 3);
         int plTwoRight = Random.Range(0, 3);
+        
 
         int plOneWrongeOne = Random.Range(answer / 2, answer * 2);
         int plOneWrongeTwo = Random.Range(answer / 2, answer * 2);
         if(plOneWrongeTwo == plOneWrongeOne)
         {
-            plOneWrongeTwo = Random.Range(plOneWrongeOne / 5, answer * 5);
+            plOneWrongeTwo = Random.Range(plOneWrongeOne * 5, answer * 15);
         }
         int plTwoWrongeOne = plOneWrongeOne;
         int plTwoWrongeTwo = plOneWrongeTwo;
 
+        if(answer == 0)
+        {
+            plOneWrongeOne = Random.Range(1 , 10);
+            plOneWrongeTwo = Random.Range(11 , 20);
+        }
+        if(answer == plOneWrongeOne)
+        {
+            plOneWrongeOne = Random.Range(1, 10);
+        }
+        if(answer == plOneWrongeTwo)
+        {
+            plOneWrongeTwo = Random.Range(11, 20);
+        }
+        taskOne.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString();
+        taskTwo.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString();
         if (plOneRight == 0)
         {
             plOneButtonOneAnswer = answer;

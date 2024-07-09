@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PriangaCameraMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float Speed;
     void Start()
     {
         
     }
     void Update()
     {
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        transform.Translate(Vector3.down * Speed * Time.deltaTime);
     }
 }

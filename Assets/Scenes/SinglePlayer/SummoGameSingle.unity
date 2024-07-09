@@ -1825,7 +1825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 2
-  speed: 150
+  speed: 750
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0
@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 1
-  speed: 150
+  speed: 750
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0

@@ -26,6 +26,7 @@ TagManager:
   - StartLine
   - Piranha
   - Obsticle
+  - Path
   layers:
   - Default
   - TransparentFX

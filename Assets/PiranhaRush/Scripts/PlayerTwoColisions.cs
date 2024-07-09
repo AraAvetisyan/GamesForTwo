@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerOneColisions : MonoBehaviour
+public class PlayerTwoColisions : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float force;
-    public int PlayerOnePonts;
-    [SerializeField] private TextMeshProUGUI playerOnePointsText;
+    public int PlayerTwoPonts;
+    [SerializeField] private TextMeshProUGUI playerTwoPointsText;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Piranha")
+        if (collision.gameObject.tag == "Piranha")
         {
             Transform playerLineHit = collision.gameObject.transform;
             Vector2 direction = (playerLineHit.position - transform.position);
             rb.AddForce(-direction * force, ForceMode2D.Impulse);
             StartCoroutine(StopeForce());
-            PlayerOnePonts--;
-            playerOnePointsText.text = PlayerOnePonts.ToString();
+            PlayerTwoPonts--;
+            playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
         if (collision.gameObject.tag == "Obsticle")
         {
-            PlayerOnePonts--;
-            playerOnePointsText.text = PlayerOnePonts.ToString();
+            PlayerTwoPonts--;
+            playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
     }
     public IEnumerator StopeForce()

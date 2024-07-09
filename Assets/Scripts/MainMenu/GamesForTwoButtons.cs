@@ -76,4 +76,8 @@ public class GamesForTwoButtons : MonoBehaviour
     {
         SceneManager.LoadScene("MathQuiz");
     }
+    public void PressedPiranhaRush()
+    {
+        SceneManager.LoadScene("PiranhaRush");
+    }
 }

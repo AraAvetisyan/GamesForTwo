@@ -42,6 +42,6 @@ public class GameOverPanel : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 }

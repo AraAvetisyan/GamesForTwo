@@ -870,6 +870,9 @@ MonoBehaviour:
   enemyBox: {fileID: 68649412}
   rbPlOne: {fileID: 207890184}
   rbPlTwo: {fileID: 1153663913}
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
+  force: 0
 --- !u!1 &249569982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,7 +1805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 2
-  speed: 100
+  speed: 750
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0
@@ -2602,6 +2605,9 @@ MonoBehaviour:
   enemyBox: {fileID: 68649412}
   rbPlOne: {fileID: 207890184}
   rbPlTwo: {fileID: 1153663913}
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
+  force: 0
 --- !u!1 &1161999829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,7 +3375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotatePlayers: {fileID: 1284057664}
   PlayerIndex: 1
-  speed: 100
+  speed: 750
   PlayerOne: {fileID: 207890183}
   PlayerTwo: {fileID: 1153663912}
   PlayerOneIsHolding: 0
