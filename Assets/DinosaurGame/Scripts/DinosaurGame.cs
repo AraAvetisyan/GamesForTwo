@@ -11,18 +11,21 @@ public class DinosaurGame : MonoBehaviour
     [SerializeField] private Button[] teeth;
     private int lose;
     [SerializeField] private GameObject dino;
+    [SerializeField] private GameObject dinoGameOver;
     int player;
-    [SerializeField] GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] GameObject playerOneWinMobile;
     [SerializeField] GameObject playerOneWinPC, playerTwoWinPC;
     private int counter;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject plOne, plTwo;
+    [SerializeField] private GameObject plOneTurn, plTwoTurn;
     private bool change;
     private bool gameIsOver;
     [SerializeField] private List<int> singleTeeth;
     private int teethIndex;
     [SerializeField] private bool isSingle;
     [SerializeField] private bool isMobile;
+    [SerializeField] private GameObject[] pressedTeeth;
     private bool pressed;
     public int teethToPress;
     private void Awake()
@@ -44,7 +47,9 @@ public class DinosaurGame : MonoBehaviour
         Debug.Log(lose);
         if(player == 0)
         {
+            Debug.Log("First");
             plOne.SetActive(true);
+            plOneTurn.SetActive(true);
             if (isSingle)
             {
                 Cursor.visible = false;
@@ -54,7 +59,9 @@ public class DinosaurGame : MonoBehaviour
         }
         if(player == 1)
         {
+            Debug.Log("Second");
             plTwo.SetActive(true);
+            plTwoTurn.SetActive(true);
         }
        
     }
@@ -76,6 +83,8 @@ public class DinosaurGame : MonoBehaviour
         }
         change = true;
         teeth[index].interactable = false;
+        teeth[index].gameObject.SetActive(false);
+        pressedTeeth[index].SetActive(true);
         counter++;
         if (player == 1 && change && !gameIsOver)
         {
@@ -83,6 +92,8 @@ public class DinosaurGame : MonoBehaviour
             player = 0;
             plTwo.SetActive(false);
             plOne.SetActive(true);
+            plOneTurn.SetActive(true);
+            plTwoTurn.SetActive(false);
             if (isSingle)
             {
                 Cursor.visible = false;
@@ -95,6 +106,8 @@ public class DinosaurGame : MonoBehaviour
             change = false;
             player = 1;
             plOne.SetActive(false);
+            plOneTurn.SetActive(false);
+            plTwoTurn.SetActive(true);
             plTwo.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -102,22 +115,31 @@ public class DinosaurGame : MonoBehaviour
         if (index == lose)
         {
             gameIsOver = true;
+            dino.SetActive(false);
+            dinoGameOver.SetActive(true);
             if (player == 0)
             {
                 if (isMobile && !isSingle)
                 {
                     playerOneWinMobile.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 if(!isMobile || isSingle)
                 {
                     playerOneWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
+
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 plTwo.SetActive(false);
-                plOne.SetActive(true);
+                plOne.SetActive(false);
+                plTwoTurn.SetActive(false);
+                plOneTurn.SetActive(true);
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {
@@ -129,18 +151,24 @@ public class DinosaurGame : MonoBehaviour
             {
                 if (isMobile && !isSingle)
                 {
-                    playerTwoWinMobile.SetActive(true);
+                    playerTwoWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 if (!isMobile || isSingle)
                 {
                     playerTwoWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
-                plTwo.SetActive(true);
+                plTwo.SetActive(false);
                 plOne.SetActive(false);
+                plTwoTurn.SetActive(true);
+                plOneTurn.SetActive(false);
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {
@@ -151,22 +179,30 @@ public class DinosaurGame : MonoBehaviour
         if(counter == 9)
         {
             gameIsOver = true;
+            dino.SetActive(false);
+            dinoGameOver.SetActive(true);
             if (player == 0)
             {
                 if (isMobile && !isSingle)
                 {
                     playerOneWinMobile.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 if(!isMobile || isSingle)
                 {
                     playerOneWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 plTwo.SetActive(false);
-                plOne.SetActive(true);
+                plOne.SetActive(false);
+                plTwoTurn.SetActive(false);
+                plOneTurn.SetActive(true);
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {
@@ -177,18 +213,24 @@ public class DinosaurGame : MonoBehaviour
             {
                 if (isMobile && !isSingle)
                 {
-                    playerTwoWinMobile.SetActive(true);
+                    playerTwoWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
                 if (!isMobile || isSingle)
                 {
                     playerTwoWinPC.SetActive(true);
+                    plOne.SetActive(false);
+                    plTwo.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
-                plTwo.SetActive(true);
+                plTwo.SetActive(false);
                 plOne.SetActive(false);
+                plTwoTurn.SetActive(true);
+                plOneTurn.SetActive(false);
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {

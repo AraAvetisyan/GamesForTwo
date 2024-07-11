@@ -111,7 +111,7 @@ public class JoystickPlayerExample : MonoBehaviour
             }
             if (playerIndex == 2 && _guardTimer.IsSingle)
             {
-                Vector2 moveDirection = singlePoints[pointInd].position;
+                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized; 
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
                 if (moveDirection != Vector2.zero)
                 {

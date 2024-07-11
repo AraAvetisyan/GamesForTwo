@@ -11,7 +11,11 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject[] plOneHeadMobile, plOneHairMobile, plOneCornMobile, plOneFaceMobile, plOneEyesMobile;
     [SerializeField] private GameObject[] plOneHeadPC, plOneHairPC, plOneCornPC, plOneFacePC, plOneEyesPC;
     [SerializeField] private GameObject[] plTwoHead, plTwoHair, plTwoCorn, plTwoFace, plTwoEyes;
+
     [SerializeField] private TextMeshProUGUI timertext;
+    [SerializeField] private TextMeshProUGUI secondsText;
+    [SerializeField] private GameObject secondsBG;
+    [SerializeField] private GameObject TimerToCloseBG;
     private int timer;
     public bool Closed;
     private int counter;
@@ -24,13 +28,14 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject playerOneDrawMobile, playerTwoDrawMobile;
     [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] private GameObject plOneScoreBG, plTwoScoreBG;
     void Start()
     {
         seconds = 30;
         headInt = Random.Range(0, 4);
         hairInt = Random.Range(0, 4);
         cornInt = Random.Range(0, 5);
-        faceInt = Random.Range(0, 5);
+        faceInt = Random.Range(0, 4);
         eyesInt = Random.Range(0, 5);
         plTwoHead[headInt].SetActive(true);
         plTwoHair[hairInt].SetActive(true);
@@ -40,6 +45,8 @@ public class UnicornChooser : MonoBehaviour
         if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
         {
             playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            plOneScoreBG.SetActive(false);
+            plTwoScoreBG.SetActive(false);
             plOneHeadMobile[headInt].SetActive(true);
             plOneHairMobile[hairInt].SetActive(true);
             plOneCornMobile[cornInt].SetActive(true);
@@ -50,6 +57,8 @@ public class UnicornChooser : MonoBehaviour
         {
 
             playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            plOneScoreBG.SetActive(false);
+            plTwoScoreBG.SetActive(false);
             plOneHeadPC[headInt].SetActive(true);
             plOneHairPC[hairInt].SetActive(true);
             plOneCornPC[cornInt].SetActive(true);
@@ -116,6 +125,9 @@ public class UnicornChooser : MonoBehaviour
                 }
             }
             counter = 3;
+
+            plOneScoreBG.SetActive(true);
+            plTwoScoreBG.SetActive(true);
             playerOnePointsText.text = playerOnePoints.ToString();
             playerTwoPointsText.text = playerTwoPoints.ToString();
             if (playerOnePoints > playerTwoPoints)
@@ -168,7 +180,7 @@ public class UnicornChooser : MonoBehaviour
         {
             seconds = 0;
         }
-        timertext.text = seconds.ToString();
+        secondsText.text = seconds.ToString();
         if (seconds >= 0)
         {
             StartCoroutine(Timer());
@@ -178,7 +190,7 @@ public class UnicornChooser : MonoBehaviour
             if (seconds == 0)
             {
                 counter = 1;
-                timertext.text = "";
+                secondsText.text = "0";
             }
         }
     }
@@ -200,8 +212,10 @@ public class UnicornChooser : MonoBehaviour
         timertext.text = timer.ToString();
         yield return new WaitForSecondsRealtime(1);
 
-        StartCoroutine(Timer());
         timertext.text = "";
+        TimerToCloseBG.SetActive(false);
+        secondsBG.SetActive(true);
+        StartCoroutine(Timer());
         plOneHeadMobile[headInt].SetActive(false);
         plTwoHead[headInt].SetActive(false);
         plOneHairMobile[hairInt].SetActive(false);

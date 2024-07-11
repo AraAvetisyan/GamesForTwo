@@ -307,11 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566029190881370687, guid: 519f560090561284eae2619ea5d8e689, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 48
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 566029190881370687, guid: 519f560090561284eae2619ea5d8e689, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 48
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 566029190881370687, guid: 519f560090561284eae2619ea5d8e689, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2104,6 +2104,7 @@ MonoBehaviour:
   playerIndex: 2
   joysticplOne: {fileID: 265507694}
   joysticplTwo: {fileID: 1058805703}
+  singlePoints: []
 --- !u!212 &936046129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3996,6 +3997,7 @@ MonoBehaviour:
   playerIndex: 1
   joysticplOne: {fileID: 265507694}
   joysticplTwo: {fileID: 1058805703}
+  singlePoints: []
 --- !u!58 &1551673419
 CircleCollider2D:
   m_ObjectHideFlags: 0
