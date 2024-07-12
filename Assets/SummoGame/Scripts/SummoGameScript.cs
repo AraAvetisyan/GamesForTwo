@@ -25,6 +25,11 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     [SerializeField] private Rigidbody2D rbPlOne, rbPlTwo;
     [SerializeField] private Transform plOneTransform, plTwoTransform;
+
+    public GameObject PlOneIdle, PlOneRunning;
+    public GameObject PlTwoIdle, PlTwoRunning;
+    //public bool Fall;
+    
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -81,6 +86,8 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         if (PlayerOneIsHolding)
         {
+            PlOneIdle.SetActive(false);
+            PlOneRunning.SetActive(true);
             // PlayerOne.transform.Translate(Vector3.left * speed * Time.deltaTime);
             rbPlOne.freezeRotation = true;
             Vector2 dir = plOneTransform.right;
@@ -89,12 +96,33 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
         if (PlayerTwoIsHolding)
         {
+            PlTwoIdle.SetActive(false);
+            PlTwoRunning.SetActive(true);
             // PlayerTwo.transform.Translate(Vector3.right * speed * Time.deltaTime);
             rbPlTwo.freezeRotation = true;
             Vector2 dir = plTwoTransform.right;
             rbPlTwo.velocity = dir * speed * Time.deltaTime;
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
         }
+        if (!PlayerOneIsHolding)
+        {
+            PlOneIdle.SetActive(true);
+            PlOneRunning.SetActive(false);
+            Debug.Log("!PlayerOneIsHolding");
+            rbPlOne.velocity = Vector2.zero;
+        }
+        if (!PlayerTwoIsHolding)
+        {
+            PlTwoIdle.SetActive(true);
+            PlTwoRunning.SetActive(false);
+
+            Debug.Log("!PlayerTwoIsHolding");
+            rbPlTwo.velocity = Vector2.zero;
+        }
+
+
+
+
     }
     public void OnPointerDown(PointerEventData eventData)
     {

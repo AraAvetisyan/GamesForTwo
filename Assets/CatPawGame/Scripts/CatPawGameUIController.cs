@@ -83,21 +83,16 @@ public class CatPawGameUIController : MonoBehaviour
         {
             StartCoroutine(WaitToGoBack());
             playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
+            playerOnePaw.transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
         if (ButtonTwoPressed)
         {
 
             StartCoroutine(WaitToGoBack());
             playerTwoPaw.transform.Translate(Vector3.up * speed * Time.deltaTime);
+            playerTwoPaw.transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        //if(!buttonOnePressed)
-        //{
-        //   
-        //}
-        //if (!buttonTwoPressed)
-        //{
-        //    
-        //}
+    
 
     }
     public IEnumerator WaitToGoBack()
