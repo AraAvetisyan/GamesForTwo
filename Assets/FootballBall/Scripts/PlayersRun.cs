@@ -26,6 +26,8 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private Image buttonOne, buttonTwo;
     [SerializeField] private Image oneBg, twoBG;
     [SerializeField] private float first, second;
+
+    [SerializeField] private GameObject blueIdle, blueRun, redIdle, redRun;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -46,11 +48,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
         }
     }
-
-    private void Start()
-    {
-        
-    }
+    
 
     private void Update()
     {
@@ -70,6 +68,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.M))
         {
+
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
@@ -77,25 +76,32 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (PlayerOneIsHolding)
         {
+            blueIdle.SetActive(false);
+            blueRun.SetActive(true);
+
             _rotatePlayers.PlayerOneRotationSpeed = 0;
-
-
-
             playerOne.transform.Translate(-Vector3.right * Speed * Time.deltaTime);
-            //Vector2 runDirection = -playerOne.transform.right;
-            //playerOneRB.AddForce(runDirection * speed, ForceMode2D.Force);
-
-
-
         }
+       
         if (PlayerTwoIsHolding)
         {
+            redIdle.SetActive(false);
+            redRun.SetActive(true);
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
             playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
-            //Vector2 runDirection = playerTwo.transform.right;
-            //playerTwoRB.AddForce(runDirection * speed, ForceMode2D.Force);
             
         }
+        if (!PlayerOneIsHolding)
+        {
+            blueRun.SetActive(false);
+            blueIdle.SetActive(true);
+        }
+        if (!PlayerTwoIsHolding)
+        {
+            redRun.SetActive(false);
+            redIdle.SetActive(true);
+        }
+      
     }
     public IEnumerator Single()
     {

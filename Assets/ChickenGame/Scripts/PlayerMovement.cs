@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Button plOneButton, plTwoButton;
     [SerializeField] private GameObject plButtonOne, plButtonTwo;
 
+    [SerializeField] private GameObject blueChickenSprite, redChickenSprite;
+
     public bool IsMobile;
     [SerializeField] private bool isSingle;
 
@@ -72,6 +74,8 @@ public class PlayerMovement : MonoBehaviour
             rigidbodyPlayerOne.gravityScale = 1;
             playerOneGravity = 1;
             changeOne = false;
+            blueChickenSprite.transform.rotation = Quaternion.Euler(0, 0, 180);
+            blueChickenSprite.GetComponent<SpriteRenderer>().flipX = true;
         }
         if (playerOneGravity == 1 && changeOne)
         {
@@ -79,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
             rigidbodyPlayerOne.gravityScale = -1;
             playerOneGravity = -1;
             changeOne = false;
+            blueChickenSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            blueChickenSprite.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
     public void PressedPlayerTwoButton()
@@ -90,12 +96,16 @@ public class PlayerMovement : MonoBehaviour
             changeTwo = false;
             rigidbodyPlayerTwo.gravityScale = 1;
             playerTwoGravity = 1;
+            redChickenSprite.transform.rotation = Quaternion.Euler(0, 0, 180);
+            redChickenSprite.GetComponent<SpriteRenderer>().flipX = true;
         }
         if (playerTwoGravity == 1 && changeTwo)
         {
             changeTwo = false;
             rigidbodyPlayerTwo.gravityScale = -1;
             playerTwoGravity = -1;
+            redChickenSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            redChickenSprite.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }

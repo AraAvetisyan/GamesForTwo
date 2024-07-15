@@ -16,13 +16,13 @@ EditorBuildSettings:
     guid: 516661b8b6d1b1645819cca1591f06ef
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameOneSingle.unity
-    guid: f6dfcef7e2da0d9409e5523336700978
+    guid: 63e3026149ba615428caf472276d570d
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameTwoSingle.unity
     guid: 78aa3cd7bd6330d44a24fda8cd9f96ad
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameThreeSingle.unity
-    guid: 05263241dcb260541a6e5c6c86b6442d
+    guid: 9797565557078324bb23dab52990c44d
   - enabled: 1
     path: Assets/ChickenGame/Scenes/Scenes For Two/ChickenGameOne.unity
     guid: ae6b83c896bb7f24fa641bb2b5d68aa1

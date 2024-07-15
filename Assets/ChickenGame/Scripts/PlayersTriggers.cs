@@ -106,6 +106,7 @@ public class PlayersTriggers : MonoBehaviour
             {
                 if (!finish)
                 {
+                    Debug.Log("AAAAA");
                     StartCoroutine(Single());
                 }
             }
