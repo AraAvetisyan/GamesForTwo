@@ -99,7 +99,8 @@ public class GreenBallGameUIController : MonoBehaviour
     {
         if (!BlueBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
-            GameObject ball = Instantiate(blueBallPrefab, blueBallSpawnPoint.position, Quaternion.identity);
+            float z = Random.Range(0, 360);
+            GameObject ball = Instantiate(blueBallPrefab, blueBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
             Vector2 shootingDirection = -blueBallSpawnPoint.right;
             ballRigidbody.AddForce(shootingDirection * shootingForce, ForceMode2D.Impulse);
@@ -112,7 +113,8 @@ public class GreenBallGameUIController : MonoBehaviour
     {
         if(!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
-            GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.identity);
+            float z = Random.Range(0, 360);
+            GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
             Vector2 shootingDirection = redBallSpawnPoint.right;
             ballRigidbody.AddForce(shootingDirection * shootingForce, ForceMode2D.Impulse);

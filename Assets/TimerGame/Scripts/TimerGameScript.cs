@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,14 +29,25 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private Button playerOneButton, playerTwoButton;
 
     private bool gameEnds;
-    [SerializeField] private GameObject timerClosePlOne1, timerClosePlOne2, timerClosePlOne3, timerClosePlOne4, timerClosePlOne5;
-    [SerializeField] private GameObject timerClosePlTwo1, timerClosePlTwo2, timerClosePlTwo3, timerClosePlTwo4, timerClosePlTwo5;
+    //[SerializeField] private GameObject timerClosePlOne1, timerClosePlOne2, timerClosePlOne3, timerClosePlOne4, timerClosePlOne5;
+    //[SerializeField] private GameObject timerClosePlTwo1, timerClosePlTwo2, timerClosePlTwo3, timerClosePlTwo4, timerClosePlTwo5;
+
+    [SerializeField] private GameObject playerTwoCloserOne, playerTwoCloserTwo;
+    [SerializeField] private Transform playerTwoCloserOneGoal, playerTwoCloserTwoGoal;
+    [SerializeField] private GameObject playerOneCloserOne, playerOneCloserTwo;
+    [SerializeField] private Transform playerOneCloserOneGoal, playerOneCloserTwoGoal;
+
+    [SerializeField] private GameObject playerOneNotPressedImage, playerOnePressedImage;
+    [SerializeField] private GameObject playerTwoNotPressedImage, playerTwoPressedImage;
+    private int testCounter;
 
     private bool isMobile;
 
     [SerializeField] private bool isSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
     private float diferenceOne, diferenceTwo;
+
+    
     private void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -91,6 +103,8 @@ public class TimerGameScript : MonoBehaviour
 
     public void PressedPlOneButton()
     {
+        playerOneNotPressedImage.SetActive(false);
+        playerOnePressedImage.SetActive(true);
         playerOneButton.interactable = false;
         playerOnePressed = true;
         Counter++;
@@ -104,6 +118,8 @@ public class TimerGameScript : MonoBehaviour
     }
     public void PressedPlTwoButton()
     {
+        playerTwoNotPressedImage.SetActive(false);
+        playerTwoPressedImage.SetActive(true);
         playerTwoButton.interactable = false;
         playerTwoPressed = true;
         Counter++;
@@ -112,29 +128,48 @@ public class TimerGameScript : MonoBehaviour
     }
     private void Update()
     {
-        if(timer >= 1 && !gameEnds)
+        if(timer >= 1 && !gameEnds && testCounter == 0)
         {
-            timerClosePlOne1.SetActive(true);
-            timerClosePlOne2.SetActive(true);
-            timerClosePlTwo1.SetActive(true);
-            timerClosePlTwo2.SetActive(true);
+            if (playerTwoCloserOne.transform.position.y >= playerTwoCloserOneGoal.position.y)
+            {
+                playerTwoCloserOne.transform.Translate(Vector3.down * 2.5f * Time.deltaTime);
+                playerOneCloserOne.transform.Translate(Vector3.down * 2.5f * Time.deltaTime);
+                if (playerTwoCloserOne.transform.position.y <= playerTwoCloserOneGoal.position.y)
+                {
+                    testCounter++;
+                }
+            }
+            if (playerTwoCloserTwo.transform.position.y <= playerTwoCloserTwoGoal.position.y)
+            {
+                playerTwoCloserTwo.transform.Translate(Vector3.down * 2.5f * Time.deltaTime);
+                playerOneCloserTwo.transform.Translate(Vector3.down * 2.5f * Time.deltaTime);
+                if (playerTwoCloserTwo.transform.position.y >= playerTwoCloserTwoGoal.position.y)
+                {
+                    testCounter++;
+                }
+            }
+
         }
         if(timer >= 2 && !gameEnds)
         {
-            timerClosePlOne3.SetActive(true);
-            timerClosePlOne4.SetActive(true);
-            timerClosePlTwo3.SetActive(true);
-            timerClosePlTwo4.SetActive(true);
+            //timerClosePlOne3.SetActive(true);
+            //timerClosePlOne4.SetActive(true);
+            //timerClosePlTwo3.SetActive(true);
+            //timerClosePlTwo4.SetActive(true);
         }
         if(timer >= 3 && !gameEnds)
         {
-            timerClosePlOne5.SetActive(true);
-            timerClosePlTwo5.SetActive(true);
+            //timerClosePlOne5.SetActive(true);
+            //timerClosePlTwo5.SetActive(true);
         }
 
         if (Counter == 2)
         {
             Counter++;
+            playerTwoCloserOne.SetActive(false);
+            playerTwoCloserTwo.SetActive(false);
+            playerOneCloserOne.SetActive(false);
+            playerOneCloserTwo.SetActive(false);
             EndGame();
         }
         if (!isMobile && Input.GetKeyDown(KeyCode.Z) && !playerTwoPressed)
@@ -146,6 +181,7 @@ public class TimerGameScript : MonoBehaviour
             PressedPlOneButton();
         }
     }
+  
     public IEnumerator Single()
     {
         float singleTimer = Random.Range(timerForGame - 2, timerForGame + 1);
@@ -156,16 +192,16 @@ public class TimerGameScript : MonoBehaviour
     public void EndGame()
     {
         gameEnds = true;
-        timerClosePlOne1.SetActive(false);
-        timerClosePlOne2.SetActive(false);
-        timerClosePlTwo1.SetActive(false);
-        timerClosePlTwo2.SetActive(false);
-        timerClosePlOne3.SetActive(false);
-        timerClosePlOne4.SetActive(false);
-        timerClosePlTwo3.SetActive(false);
-        timerClosePlTwo4.SetActive(false);
-        timerClosePlOne5.SetActive(false);
-        timerClosePlTwo5.SetActive(false);
+        //timerClosePlOne1.SetActive(false);
+        //timerClosePlOne2.SetActive(false);
+        //timerClosePlTwo1.SetActive(false);
+        //timerClosePlTwo2.SetActive(false);
+        //timerClosePlOne3.SetActive(false);
+        //timerClosePlOne4.SetActive(false);
+        //timerClosePlTwo3.SetActive(false);
+        //timerClosePlTwo4.SetActive(false);
+        //timerClosePlOne5.SetActive(false);
+        //timerClosePlTwo5.SetActive(false);
 
         if (playerOneTime < timerForGame)
         {

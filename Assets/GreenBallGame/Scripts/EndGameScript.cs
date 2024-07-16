@@ -8,8 +8,8 @@ public class EndGameScript : MonoBehaviour
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
     [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
-    [SerializeField] private GameObject firstPlayerWinMobile, secondPlayerWinMobile, drawMobile;
-    [SerializeField] private GameObject firstPlayerWinPC, secondPlayerWinPC, drawPC;
+    [SerializeField] private GameObject firstPlayerWinMobile, secondPlayerWinMobile, drawMobile, drawMobile2;
+    [SerializeField] private GameObject firstPlayerWinPC, secondPlayerWinPC, drawPC, drawPC2;
     [SerializeField] private GameObject finalPanel;
     public bool GameEnds;
 
@@ -56,10 +56,12 @@ public class EndGameScript : MonoBehaviour
             if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
             {
                 drawMobile.SetActive(true);
+                drawMobile2.SetActive(true);
             }
             if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
             {
                 drawPC.SetActive(true);
+                drawPC2.SetActive(true);
             }
             StartCoroutine(WaitEndGame());
         }

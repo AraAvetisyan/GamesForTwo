@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 63e3026149ba615428caf472276d570d
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameTwoSingle.unity
-    guid: 78aa3cd7bd6330d44a24fda8cd9f96ad
+    guid: 9b5be945c7e5f3b43978a918913d211a
   - enabled: 1
     path: Assets/ChickenGame/Scenes/ScenesForSingle/ChickenGameThreeSingle.unity
     guid: 9797565557078324bb23dab52990c44d
@@ -37,7 +37,7 @@ EditorBuildSettings:
     guid: 5c930b23d72d403458a407f52aaabb5d
   - enabled: 1
     path: Assets/Scenes/SinglePlayer/GreenBallSingle.unity
-    guid: bf236940bf5f70d45a2c11296df7f80f
+    guid: 032f554fa55d36c40b10f5bfacf144f5
   - enabled: 1
     path: Assets/Scenes/GamesForTwo/CatPaw.unity
     guid: 8df05b4d63af57d4280cf0d6c5273ca0
@@ -49,7 +49,7 @@ EditorBuildSettings:
     guid: ace1c79227d94f044b98e48248ab00dc
   - enabled: 1
     path: Assets/Scenes/SinglePlayer/TimerGameSingle.unity
-    guid: 505e76aeb0731a642bc5f8e8b293947b
+    guid: b14feebcce8260f42a878e3cd05f81a7
   - enabled: 1
     path: Assets/Scenes/GamesForTwo/RedCircle.unity
     guid: 1c81dfc30eabc9b4abd14511723f8454
