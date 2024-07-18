@@ -11,7 +11,8 @@ public class SummoTriggers : MonoBehaviour
     [SerializeField] private GameObject playerOneObject, playerTwoObject;
     public int PlayerOnePoints, PlayerTwoPoints;
     [SerializeField] private TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
-    [SerializeField] private SummoGameScript _summoGameScriptPlOne, _summoGameScriptPlTwo;
+    [SerializeField] private SummoGameScriptPlOne _summoGameScriptPlOne;
+    [SerializeField] private SummoGameScriptPlTwo  _summoGameScriptPlTwo;
     [SerializeField] private SummoTriggers _plOneSummoTrigger, _plTwoSummoTrigger;
 
     [SerializeField] private Button playerOneButton, playerTwoButton;
@@ -70,7 +71,6 @@ public class SummoTriggers : MonoBehaviour
                     _summoGameScriptPlTwo.GameEnds = true;
                     StartCoroutine(WaitToWin());
                 }
-                Debug.Log("Pl 2 Win");
             }
             if (playerIndex == 2)
             {

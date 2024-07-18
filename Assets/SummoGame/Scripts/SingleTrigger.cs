@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class SingleTrigger : MonoBehaviour
 {
-    [SerializeField] private SummoGameScript _summoGameScript;
+    [SerializeField] private SummoGameScriptPlOne _summoGameScriptPlOne;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_summoGameScript.PlayerIndex == 1 && _summoGameScript.IsSingle)
+        if (_summoGameScriptPlOne.PlayerIndex == 1 && _summoGameScriptPlOne.IsSingle)
         {
             if (collision.gameObject.tag == "PlayerTwo")
             {
-                StartCoroutine(_summoGameScript.Single());
+                StartCoroutine(_summoGameScriptPlOne.Single());
             }
         }
     }

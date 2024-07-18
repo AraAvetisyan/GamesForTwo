@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +9,7 @@ public class RacingLightGameManager : MonoBehaviour
     private float playerOneTimer, playerTwoTimer;
 
     public int counter;
-    [SerializeField] private TextMeshProUGUI playerOneTimerText, playerTwoTimerText;
+    [SerializeField] private TextMeshProUGUI playerOneTimerText, playerTwoTimerText, playerOneTimerTextTwo, playerTwoTimerTextTwo;
     private int playerOneScore, playerTwoScore;
     [SerializeField] private TextMeshProUGUI playerOneScoreText, playerTwoScoreText;
     [SerializeField] RacingButtonsHold _playerOneRacingButtonsHold, _playerTwoRacingButtonsHold;
@@ -18,17 +18,18 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
         {
             playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 180);
-            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
+           // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         if(!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
         {
             playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 0);
-            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
+           // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -63,6 +64,16 @@ public class RacingLightGameManager : MonoBehaviour
         }
         if (counter == 2)
         {
+            playerOneTimerBG.SetActive(true);
+            playerTwoTimerBG.SetActive(true);
+            if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
+            {
+                playerOneTimerBG.transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
+            {
+                playerOneTimerBG.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
             _playerOneRacingButtonsHold.blockerOne.SetActive(false);
             _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
             _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
@@ -70,18 +81,48 @@ public class RacingLightGameManager : MonoBehaviour
             if (_playerOneRacingButtonsHold.PlayerOneOnTime)
             {
                 playerOneTimerText.text = playerOneTimer.ToString("F2");
+                playerOneTimerTextTwo.text = playerOneTimer.ToString("F2");
             }
             if (_playerOneRacingButtonsHold.PlayerOneSoon)
             {
-                playerOneTimerText.text = "Failed";
+                if (Geekplay.Instance.language == "en")
+                {
+                    playerOneTimerText.text = "Failed";
+                    playerOneTimerTextTwo.text = "Failed";
+                }
+                else if(Geekplay.Instance.language == "ru")
+                {
+                    playerOneTimerText.text = "Неудача";
+                    playerOneTimerTextTwo.text = "Неудача";
+                }
+                else if (Geekplay.Instance.language == "tr")
+                {
+                    playerOneTimerText.text = "Başarısız";
+                    playerOneTimerTextTwo.text = "Başarısız";
+                }
             }
             if (_playerTwoRacingButtonsHold.PlayerTwoOnTime)
             {
                 playerTwoTimerText.text = playerTwoTimer.ToString("F2");
+                playerTwoTimerTextTwo.text = playerTwoTimer.ToString("F2");
             }
             if (_playerTwoRacingButtonsHold.PlayerTwoSoon)
             {
-                playerTwoTimerText.text = "Failed";
+                if (Geekplay.Instance.language == "en")
+                {
+                    playerTwoTimerText.text = "Failed";
+                    playerTwoTimerTextTwo.text = "Failed";
+                }
+                else if (Geekplay.Instance.language == "ru")
+                {
+                    playerTwoTimerText.text = "Неудача";
+                    playerTwoTimerTextTwo.text = "Неудача";
+                }
+                else if(Geekplay.Instance.language == "tr")
+                {
+                    playerTwoTimerText.text = "Başarısız";
+                    playerTwoTimerTextTwo.text = "Başarısız";
+                }
             }
 
             if (_playerOneRacingButtonsHold.PlayerOneOnTime && _playerTwoRacingButtonsHold.PlayerTwoOnTime)
@@ -194,7 +235,12 @@ public class RacingLightGameManager : MonoBehaviour
         StopCoroutine(UpdatePlOneTimer());
         StopCoroutine(UpdatePlTwoTimer());
         playerOneTimerText.text = "";
+        playerOneTimerTextTwo.text = "";
         playerTwoTimerText.text = "";
+        playerTwoTimerTextTwo.text = "";
+
+        playerOneTimerBG.SetActive(false);
+        playerTwoTimerBG.SetActive(false);
     }
     public IEnumerator WaitToFinish()
     {
