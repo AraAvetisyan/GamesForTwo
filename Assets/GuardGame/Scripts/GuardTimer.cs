@@ -14,6 +14,8 @@ public class GuardTimer : MonoBehaviour
     [SerializeField] private Transform playerOneStartPos, playerTwoStartPos;
     [SerializeField] private GameObject playerOne, playerTwo;
     [SerializeField] private GameObject lightOne, lightTwo;
+    [SerializeField] private GameObject blueRobber, blueGuard;
+    [SerializeField] private GameObject redRobber, redGuard;
     [SerializeField] private JoystickPlayerExample playerOneJoystic, playerTwoJoystic;
     [SerializeField] private CoinTrigger _coinTriggerPlOne, _coinTriggerPlTwo;
     [SerializeField] private GameObject plOneWinMobile, plTwoWinMobile, drawOneMobile, drawTwoMobile;
@@ -51,7 +53,11 @@ public class GuardTimer : MonoBehaviour
             playerOne.transform.position = playerOneStartPos.position;
             playerTwo.transform.position = playerTwoStartPos.position;
             lightOne.SetActive(true);
+            redGuard.SetActive(true);
+            redRobber.SetActive(false);
             lightTwo.SetActive(false);
+            blueRobber.SetActive(true);
+            blueGuard.SetActive(false);
             playerOne.tag = "Guard";
             playerTwo.tag = "Robber";
             newSeconds = 30;
