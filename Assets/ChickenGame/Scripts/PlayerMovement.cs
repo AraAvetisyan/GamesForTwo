@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool changeOne, changeTwo;
     [SerializeField] private Button plOneButton, plTwoButton;
     [SerializeField] private GameObject plButtonOne, plButtonTwo;
+    [SerializeField] private GameObject buttonBG;
 
     [SerializeField] private GameObject blueChickenSprite, redChickenSprite;
 
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 plButtonOne.SetActive(false);
                 plButtonTwo.SetActive(false);
+                buttonBG.SetActive(false);
             }
         }
     }

@@ -10,7 +10,6 @@ public class LightTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "Light" && this.gameObject.tag != "Guard")
         {
-            Debug.Log("Mtav");
             _joystickPlayerExample.speed = _joystickPlayerExample.speed / 2;
         }
     }

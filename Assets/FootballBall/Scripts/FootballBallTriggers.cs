@@ -16,6 +16,7 @@ public class FootballBallTriggers : MonoBehaviour
     [SerializeField] private float force;
     [SerializeField] private GameObject gollTimerGameobject;
     [SerializeField] private TextMeshProUGUI gollTimer;
+    [SerializeField] private CircleCollider2D circleCollider;
     private void Start()
     {
         if(_playerTwoRun.IsMobile && !_playerTwoRun.IsSingle)
@@ -80,16 +81,23 @@ public class FootballBallTriggers : MonoBehaviour
         {
             Transform playerOneHitTransform = playerOne.transform;
             Vector2 direction = (playerOneHitTransform.position - transform.position).normalized;
-            rb.AddForce(direction * force);
+            rb.AddForce(-direction * force);
+            StartCoroutine(OffCollider());
         }
         if (collision.gameObject.tag == "PlayerTwo")
         {
             Transform playerTwoHitTransform = playerTwo.transform;
             Vector2 direction = (playerTwoHitTransform.position - transform.position).normalized;
             rb.AddForce(-direction * force);
+            StartCoroutine(OffCollider());
         }
     }
-
+    public IEnumerator OffCollider()
+    {
+       // circleCollider.enabled = false;
+        yield return new WaitForSeconds(0.02f);
+      //  circleCollider.enabled = true;
+    }
     public IEnumerator WaitToFinish()
     {
         yield return new WaitForSeconds(1.5f);

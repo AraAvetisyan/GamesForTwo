@@ -137,8 +137,9 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
     public IEnumerator Hide()
     {
         HitCounter = 0;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.01f);
 
+        lastRectTransform.position = startTransform.position;
         GameCount++;
         for (int i = 0; i < Pins.Length; i++)
         {
@@ -166,7 +167,7 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
   
     public IEnumerator WaitToStop()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(4);
         rectTransform.position = startTransform.position;
         rb.velocity = Vector2.zero;
         AddPoints = true;

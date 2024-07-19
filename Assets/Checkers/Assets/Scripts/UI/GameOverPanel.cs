@@ -15,9 +15,39 @@ public class GameOverPanel : MonoBehaviour
         gameOverPanelAnimator = GetComponent<Animator>();
     }
 
-    public void SetWinnerText(PawnColor winnerPawnColor)
+    public void SetWinnerText(int winner)
     {
-        WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
+        //WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
+        if (winner == 0)
+        {
+            if (Geekplay.Instance.language == "ru")
+            {
+                WinnerText.text = "Черные Победили";
+            }
+            if (Geekplay.Instance.language == "en")
+            {
+                WinnerText.text = "Black Wins";
+            }
+            if (Geekplay.Instance.language == "tr")
+            {
+                WinnerText.text = "siyah kazanır";
+            }
+        }
+        if (winner == 1)
+        {
+            if(Geekplay.Instance.language == "ru")
+            {
+                WinnerText.text = "Белые Победили";
+            }
+            if (Geekplay.Instance.language == "en")
+            {
+                WinnerText.text = "White Wins";
+            }
+            if (Geekplay.Instance.language == "tr")
+            {
+                WinnerText.text = "beyaz kazanır";
+            }
+        }
     }
 
     public void DisableBoard()

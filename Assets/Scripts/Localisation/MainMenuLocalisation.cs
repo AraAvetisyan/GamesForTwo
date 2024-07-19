@@ -11,7 +11,7 @@ public class MainMenuLocalisation : MonoBehaviour
         if (Geekplay.Instance.language == "ru")
         {
             player.text = "Игрок";
-            players.text = "Игроки";           
+            players.text = "Игрока";           
         }
         else if (Geekplay.Instance.language == "en")
         {

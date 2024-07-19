@@ -19,6 +19,7 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
+
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
@@ -74,10 +75,8 @@ public class RacingLightGameManager : MonoBehaviour
             {
                 playerOneTimerBG.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            _playerOneRacingButtonsHold.blockerOne.SetActive(false);
-            _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
-            _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
-            _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
+         //   _playerOneRacingButtonsHold.blockerOne.SetActive(false);
+           // _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
             if (_playerOneRacingButtonsHold.PlayerOneOnTime)
             {
                 playerOneTimerText.text = playerOneTimer.ToString("F2");
@@ -214,7 +213,7 @@ public class RacingLightGameManager : MonoBehaviour
     }
     public IEnumerator WaitToUpdateGame()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1.5f);
         counter = 0;
         playerOneCounter = 0;
         playerTwoCounter = 0;
@@ -227,6 +226,9 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.PlayerTwoIsHolding = false;
         _playerOneRacingButtonsHold.PlayerOneButton.interactable = true;
         _playerTwoRacingButtonsHold.PlayerTwoButton.interactable = true;
+
+        _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
+        _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
         _playerTwoRacingButtonsHold.SingleCounter = 0;
         _fireLightsScript.StartGame = false;
         _fireLightsScript.Counter = 0;

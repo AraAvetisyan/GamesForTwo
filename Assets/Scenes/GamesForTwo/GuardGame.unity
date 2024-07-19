@@ -2598,6 +2598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuardWin: 0
+  _guardTimer: {fileID: 990625539}
 --- !u!114 &936046134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2744,6 +2745,8 @@ MonoBehaviour:
   IsSingle: 0
   IsSecondGame: 0
   SecondGameEnds: 0
+  _playersTrigger: {fileID: 1551673422}
+  Test: 0
   finalPanel: {fileID: 527115113}
 --- !u!58 &990625540
 CircleCollider2D:
@@ -4167,6 +4170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuardWin: 0
+  _guardTimer: {fileID: 990625539}
 --- !u!1 &1577590736
 GameObject:
   m_ObjectHideFlags: 0

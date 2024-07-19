@@ -45,6 +45,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
         if (collision.gameObject.tag == "Trigger")
         {
             inCircle = true;
+            StartCoroutine(ChangeInCircle());
             Points++;
            
             
@@ -52,7 +53,6 @@ public class RedCirclePlayerOneScript : MonoBehaviour
             _playerOneCircleChanger.ChangePlOneCircle();
             Pressed = false;
             PlayerCollider2D.enabled = false;
-            StartCoroutine(ChangeInCircle());
         }
         if (collision.gameObject.tag == "NotTrigger" && !inCircle)
         {
@@ -64,7 +64,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
     }
     public IEnumerator ChangeInCircle()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         inCircle = false;
         
     }

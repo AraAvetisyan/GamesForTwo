@@ -18,6 +18,8 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private PlayerTwoScript _playerTwoScript;
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     [SerializeField] private GameObject playerOneButton, playerTwoButton;
+    [SerializeField] private GameObject buttonBG;
+
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -31,6 +33,7 @@ public class CatPawGameUIController : MonoBehaviour
             {
                 playerOneButton.SetActive(false);
                 playerTwoButton.SetActive(false);
+                buttonBG.SetActive(false);
             }
         }
     }

@@ -58,23 +58,58 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
             joysticPlayerOne.SetActive(false);
             joysticPlayerTwo.SetActive(false);
         }
+        if(IsMobile && IsSingle)
+        {
+
+            joysticPlayerTwo.SetActive(false);
+        }
     }
     public void FixedUpdate()
     {
 
         if (IsMobile)
         {
-            
-            float jh = 0;
-            float jv = 0;
-            jh = FloatingJoystick.Horizontal;
-            jv = FloatingJoystick.Vertical;
-            Vector2 joysticMoveDirection = new Vector2(jh, jv);
-            float joysticInputMagnitude = Mathf.Clamp01(joysticMoveDirection.magnitude);
-            joysticMoveDirection.Normalize();
-            transform.Translate(joysticMoveDirection * speed * joysticInputMagnitude * Time.deltaTime, Space.World);
-            float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
-            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            if (playerIndex == 1)
+            {
+                float jh = 0;
+                float jv = 0;
+                jh = FloatingJoystick.Horizontal;
+                jv = FloatingJoystick.Vertical;
+                Vector2 joysticMoveDirection = new Vector2(jh, jv);
+                float joysticInputMagnitude = Mathf.Clamp01(joysticMoveDirection.magnitude);
+                joysticMoveDirection.Normalize();
+                transform.Translate(joysticMoveDirection * speed * joysticInputMagnitude * Time.deltaTime, Space.World);
+                float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            }
+            if (playerIndex == 2 && !IsSingle)
+            {
+                float jh = 0;
+                float jv = 0;
+                jh = FloatingJoystick.Horizontal;
+                jv = FloatingJoystick.Vertical;
+                Vector2 joysticMoveDirection = new Vector2(jh, jv);
+                float joysticInputMagnitude = Mathf.Clamp01(joysticMoveDirection.magnitude);
+                joysticMoveDirection.Normalize();
+                transform.Translate(joysticMoveDirection * speed * joysticInputMagnitude * Time.deltaTime, Space.World);
+                float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            }
+            if (playerIndex == 2 && IsSingle)
+            {
+                Debug.Log("GARUN");
+                Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
+
+                playerTwoObject.transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    playerTwoObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+
+            }
+
         }
         else
         {
@@ -143,9 +178,9 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
             }
             if (playerIndex == 2 && IsSingle)
             {
-
+                Debug.Log("GARUN");
                 Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
-        
+
                 playerTwoObject.transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
                 if (moveDirection != Vector2.zero)

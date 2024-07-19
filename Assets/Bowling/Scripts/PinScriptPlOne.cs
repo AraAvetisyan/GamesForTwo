@@ -36,7 +36,7 @@ public class PinScriptPlOne : MonoBehaviour
     {
         hide = true;
         isHiden = true;
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(4);
         if (transform.rotation.z != 0)
         {
             rb.velocity = Vector3.zero;

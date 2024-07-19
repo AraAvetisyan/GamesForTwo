@@ -18,6 +18,7 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
     [SerializeField] private EndGameScript _endGameScript;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private GameObject buttonBG;
     public bool IsSingle;
 
     float randomTimer;
@@ -30,6 +31,7 @@ public class GreenBallGameUIController : MonoBehaviour
             {
                 buttonOne.SetActive(true);
                 buttonTwo.SetActive(true);
+                
             }
         }
         else
@@ -37,6 +39,7 @@ public class GreenBallGameUIController : MonoBehaviour
             IsMobile = false; 
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
+            buttonBG.SetActive(false);
         }
     }
     private void Start()

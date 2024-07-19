@@ -7,7 +7,7 @@ public class TimerGameLocalisation : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winnerPlOnePC, winnerPlOneMobile, winnerPlTwo;
     [SerializeField] private TextMeshProUGUI diferencePlOne, diferencePlTwo;
-    [SerializeField] private TextMeshProUGUI targetTimePlOne, targetTimePlTwo;
+    
     [SerializeField] private TextMeshProUGUI stopTheTimerAt, seconds;
 
 
@@ -20,8 +20,8 @@ public class TimerGameLocalisation : MonoBehaviour
             winnerPlTwo.text = "ПОБЕДИТЕЛЬ";
             diferencePlOne.text = "Разница";
             diferencePlTwo.text = "Разница";
-            targetTimePlOne.text = "Целевое время";
-            targetTimePlTwo.text = "Целевое время";
+           
+            
             stopTheTimerAt.text = "Остановите таймер на";
             seconds.text = "секунде";
 
@@ -33,8 +33,6 @@ public class TimerGameLocalisation : MonoBehaviour
             winnerPlTwo.text = "WINNER";
             diferencePlOne.text = "DIFERENCE";
             diferencePlTwo.text = "DIFERENCE";
-            targetTimePlOne.text = "TARGET TIME";
-            targetTimePlTwo.text = "TARGET TIME";
             stopTheTimerAt.text = "STOP THE TIMER AT";
             seconds.text = "SECONDS";
 
@@ -46,8 +44,6 @@ public class TimerGameLocalisation : MonoBehaviour
             winnerPlTwo.text = "Kazanan";
             diferencePlOne.text = "Farklılık";
             diferencePlTwo.text = "Farklılık";
-            targetTimePlOne.text = "Hedef Zaman";
-            targetTimePlTwo.text = "Hedef Zaman";
             stopTheTimerAt.text = "zamanlayıcıyı durdur";
             seconds.text = "saniye";
         }

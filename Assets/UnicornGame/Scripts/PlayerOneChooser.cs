@@ -16,6 +16,7 @@ public class PlayerOneChooser : MonoBehaviour
 
     public bool IsSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private GameObject buttonBG;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -29,6 +30,7 @@ public class PlayerOneChooser : MonoBehaviour
             {
                 buttonOne.SetActive(false);
                 buttonTwo.SetActive(false);
+                buttonBG.SetActive(false);
             }
         }
 

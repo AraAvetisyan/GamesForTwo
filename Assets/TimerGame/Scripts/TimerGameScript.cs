@@ -45,6 +45,7 @@ public class TimerGameScript : MonoBehaviour
 
     [SerializeField] private bool isSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private GameObject buttonBG;
     private float diferenceOne, diferenceTwo;
 
     
@@ -61,6 +62,7 @@ public class TimerGameScript : MonoBehaviour
             {
                 buttonOne.SetActive(false);
                 buttonTwo.SetActive(false);
+                buttonBG.SetActive(false);
             }
         }
 
@@ -97,8 +99,21 @@ public class TimerGameScript : MonoBehaviour
         {
             StartCoroutine(Single());
         }
-        targetPlOne.text = "TARGET TIME " + timerForGame.ToString();
-        targetPlTwo.text = "TARGET TIME " + timerForGame.ToString();
+        if (Geekplay.Instance.language == "ru")
+        {
+            targetPlOne.text = "Целевое время " + timerForGame.ToString();
+            targetPlTwo.text = "Целевое время " + timerForGame.ToString();
+        }
+        if (Geekplay.Instance.language == "en")
+        {
+            targetPlOne.text = "TARGET TIME " + timerForGame.ToString();
+            targetPlTwo.text = "TARGET TIME " + timerForGame.ToString();
+        }
+        if (Geekplay.Instance.language == "tr")
+        {
+            targetPlOne.text = "Hedef Zaman " + timerForGame.ToString();
+            targetPlTwo.text = "Hedef Zaman " + timerForGame.ToString();
+        }
     }
 
     public void PressedPlOneButton()
@@ -150,18 +165,7 @@ public class TimerGameScript : MonoBehaviour
             }
 
         }
-        if(timer >= 2 && !gameEnds)
-        {
-            //timerClosePlOne3.SetActive(true);
-            //timerClosePlOne4.SetActive(true);
-            //timerClosePlTwo3.SetActive(true);
-            //timerClosePlTwo4.SetActive(true);
-        }
-        if(timer >= 3 && !gameEnds)
-        {
-            //timerClosePlOne5.SetActive(true);
-            //timerClosePlTwo5.SetActive(true);
-        }
+      
 
         if (Counter == 2)
         {

@@ -76,8 +76,8 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (PlayerOneIsHolding)
         {
-            blueIdle.SetActive(false);
             blueRun.SetActive(true);
+            blueIdle.SetActive(false);
 
             _rotatePlayers.PlayerOneRotationSpeed = 0;
             playerOne.transform.Translate(-Vector3.right * Speed * Time.deltaTime);
@@ -91,7 +91,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
             
         }
-        if (!PlayerOneIsHolding)
+        if (!PlayerOneIsHolding && !IsSingle)
         {
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
@@ -108,14 +108,17 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         float timer = Random.Range(first, second);
         yield return new WaitForSeconds(timer);
         PlayerOneIsHolding = true;
+       
         yield return new WaitForSeconds(1f);
         PlayerOneIsHolding = false;
+        blueRun.SetActive(false);
+        blueIdle.SetActive(true);
         _rotatePlayers.PlayerOneRotationSpeed = 300f;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        if (PlayerIndex == 1)
+        if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
 
@@ -129,7 +132,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (PlayerIndex == 1)
+        if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;

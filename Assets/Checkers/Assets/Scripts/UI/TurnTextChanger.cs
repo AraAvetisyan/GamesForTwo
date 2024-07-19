@@ -12,9 +12,40 @@ public class TurnTextChanger : MonoBehaviour
         textAnimator = GetComponent<Animator>();
     }
 
-    public void ChangeTurnText(PawnColor pawnColor)
+    public void ChangeTurnText(int turn)
     {
-        turnText.text = pawnColor.ToString().ToUpper() + "'S TURN";
+        if (turn == 0)
+        {
+            if (Geekplay.Instance.language == "ru")
+            {
+                turnText.text = "очередь черных";
+            }
+            else if (Geekplay.Instance.language == "en")
+            {
+                turnText.text = "Black`s turn";
+            }
+            else if (Geekplay.Instance.language == "tr")
+            {
+                turnText.text = "siyahın sırası";
+            }
+            
+        }
+        if (turn == 1)
+        {
+            if (Geekplay.Instance.language == "ru")
+            {
+                turnText.text = "очередь белых";
+            }
+            else if (Geekplay.Instance.language == "en")
+            {
+                turnText.text = "White`s turn";
+            }
+            else if (Geekplay.Instance.language == "tr")
+            {
+                turnText.text = "beyaz sirasi";
+            }
+        }
+        //turnText.text = pawnColor.ToString().ToUpper() + "'S TURN";
         textAnimator.SetTrigger("NextTurn");
     }
 }

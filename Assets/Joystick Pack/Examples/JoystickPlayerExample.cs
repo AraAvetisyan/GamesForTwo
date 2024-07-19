@@ -113,6 +113,10 @@ public class JoystickPlayerExample : MonoBehaviour
             {
                 Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized; 
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+                if(transform.position.x == moveDirection.x || transform.position.y == moveDirection.y)
+                {
+                    pointInd = Random.Range(0, singlePoints.Length);
+                }
                 if (moveDirection != Vector2.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);

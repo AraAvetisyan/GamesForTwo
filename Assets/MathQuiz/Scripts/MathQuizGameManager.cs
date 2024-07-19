@@ -51,6 +51,7 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
+        StartCoroutine(Single());
         canPress = true;
 
        
@@ -131,7 +132,13 @@ public class MathQuizGameManager : MonoBehaviour
             singleCanChoose = true;
             SingleChooser();
         }
-       
+
+        if (plOnePoints != 10 && plTwoPoints != 10)
+        {
+            StartCoroutine(Single());
+        }
+
+
     }
     public void SingleChooser()
     {
@@ -174,22 +181,22 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if (signInt == 0)
         {
-            Debug.Log("Gumarum");
+          //  Debug.Log("Gumarum");
             answer = partOne + partTwo;
         }
         if (signInt == 1)
         {
-            Debug.Log("Hanum");
+          //  Debug.Log("Hanum");
             answer = partOne - partTwo;
         }
         if (signInt == 2)
         {
-            Debug.Log("bazmapatkum");
+         //   Debug.Log("bazmapatkum");
             answer = partTwo * partOne;
         }
         if (signInt == 3 && partOne % partTwo == 0)
         {
-            Debug.Log("bajanum");
+         //   Debug.Log("bajanum");
             answer = partOne / partTwo;
         }
         if (signInt == 3 && partOne % partTwo != 0)
@@ -273,13 +280,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonOneAnswerText.text = plTwoWrongeOne.ToString();
             plTwoButtonTwoAnswerText.text = plTwoWrongeTwo.ToString();
         }
-        if (isSingle)
-        {
-            if (plOnePoints != 10 && plTwoPoints != 10)
-            {
-                StartCoroutine(Single());
-            }
-        }
+       
     }
 
 
