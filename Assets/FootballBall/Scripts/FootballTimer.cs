@@ -74,6 +74,10 @@ public class FootballTimer : MonoBehaviour
                 {
                     playerOneWinPC.SetActive(true);
                 }
+                if(_playersRun.IsMobile && _playersRun.IsSingle)
+                {
+                    playerOneWinPC.SetActive(true);
+                }
                 StartCoroutine(WaitToFinish());
             }
             if (_footballBallTriggers.PlayerOnePoints < _footballBallTriggers.PlayerTwoPoints)
@@ -83,6 +87,10 @@ public class FootballTimer : MonoBehaviour
                     playerTwoWinMobile.SetActive(true);
                 }
                 if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
+                if (_playersRun.IsMobile && _playersRun.IsSingle)
                 {
                     playerTwoWinPC.SetActive(true);
                 }
@@ -101,6 +109,12 @@ public class FootballTimer : MonoBehaviour
                     playerOneDrawPC.SetActive(true);
                     playerTwoDrawPC.SetActive(true);
                 }
+                if (_playersRun.IsMobile && _playersRun.IsSingle)
+                {
+                    playerOneDrawPC.SetActive(true);
+                    playerTwoDrawPC.SetActive(true);
+                }
+
                 StartCoroutine(WaitToFinish());
             }
 

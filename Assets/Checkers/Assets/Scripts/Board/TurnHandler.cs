@@ -68,16 +68,17 @@ public class TurnHandler : MonoBehaviour
 
     private void EndGame(int winner)
     {
+
         GameOverPanel.gameObject.SetActive(true);
         GameOverPanel.SetWinnerText(winner);
     }
 
     public void Forfeit()
     {
-        SceneManager.LoadScene("MainMenu");
-        //if (turn == PawnColor.White)
-        //    EndGame(PawnColor.Black);
-        //else if (turn == PawnColor.Black)
-        //    EndGame(PawnColor.White);
+       // SceneManager.LoadScene("MainMenu");
+        if (turn == PawnColor.White)
+            EndGame(0);
+        else if (turn == PawnColor.Black)
+            EndGame(1);
     }
 }

@@ -27,6 +27,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
     [SerializeField] private Transform plTwoTransform;
 
     public GameObject PlTwoIdle, PlTwoRunning;
+    [SerializeField] private GameObject buttonBackground;
     //public bool Fall;
 
     private void Awake()
@@ -38,14 +39,16 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
         else
         {
             IsMobile = false;
+            buttonBackground.SetActive(false);
+            Color color = buttonTwoBg.color;
+            color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+
+            buttonTwoBg.color = color;
+
+            buttonTwo.color = color;
             if (!IsSingle)
             {
-                Color color = buttonTwoBg.color;
-                color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
-             
-                buttonTwoBg.color = color;
-        
-                buttonTwo.color = color;
+                
             }
         }
     }

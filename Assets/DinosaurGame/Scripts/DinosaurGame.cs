@@ -268,6 +268,7 @@ public class DinosaurGame : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -279,6 +280,7 @@ public class DinosaurGame : MonoBehaviour
         {
             SceneManager.LoadScene("DinosaurGameSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     
 }

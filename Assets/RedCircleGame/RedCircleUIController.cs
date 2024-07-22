@@ -56,10 +56,12 @@ public class RedCircleUIController : MonoBehaviour
         {
             SceneManager.LoadScene("RedCircleSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedPlayerOneButton()
     {

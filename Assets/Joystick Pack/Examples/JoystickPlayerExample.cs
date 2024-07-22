@@ -33,7 +33,19 @@ public class JoystickPlayerExample : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (_guardTimer.IsMobile)
+        if(_guardTimer.IsMobile && _guardTimer.IsSingle)
+        {
+            if(playerIndex == 1)
+            {
+                rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
+                float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            }
+        }
+            
+
+        
+        if (_guardTimer.IsMobile && !_guardTimer.IsSingle)
         {
 
             rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
@@ -42,7 +54,7 @@ public class JoystickPlayerExample : MonoBehaviour
 
 
         }
-        else
+        if(!_guardTimer.IsSingle)
         {
             if (playerIndex == 1)
             {
@@ -108,20 +120,20 @@ public class JoystickPlayerExample : MonoBehaviour
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
                 }
-            }
-            if (playerIndex == 2 && _guardTimer.IsSingle)
+            }            
+        }
+        if (playerIndex == 2 && _guardTimer.IsSingle)
+        {
+            Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
+            transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+            if (transform.position.x == moveDirection.x || transform.position.y == moveDirection.y)
             {
-                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized; 
-                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-                if(transform.position.x == moveDirection.x || transform.position.y == moveDirection.y)
-                {
-                    pointInd = Random.Range(0, singlePoints.Length);
-                }
-                if (moveDirection != Vector2.zero)
-                {
-                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
-                }
+                pointInd = Random.Range(0, singlePoints.Length);
+            }
+            if (moveDirection != Vector2.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
             }
         }
     }

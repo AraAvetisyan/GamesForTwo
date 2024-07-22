@@ -47,7 +47,7 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private GameObject buttonOne, buttonTwo;
     [SerializeField] private GameObject buttonBG;
     private float diferenceOne, diferenceTwo;
-
+    [SerializeField] private GameObject timerObject;
     
     private void Start()
     {
@@ -57,13 +57,16 @@ public class TimerGameScript : MonoBehaviour
         }
         else
         {
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+            buttonBG.SetActive(false);
             isMobile = false;
-            if (!isSingle)
-            {
-                buttonOne.SetActive(false);
-                buttonTwo.SetActive(false);
-                buttonBG.SetActive(false);
-            }
+            //if (!isSingle)
+            //{
+            //    buttonOne.SetActive(false);
+            //    buttonTwo.SetActive(false);
+            //    buttonBG.SetActive(false);
+            //}
         }
 
         //if (!isMobile)
@@ -114,8 +117,14 @@ public class TimerGameScript : MonoBehaviour
             targetPlOne.text = "Hedef Zaman " + timerForGame.ToString();
             targetPlTwo.text = "Hedef Zaman " + timerForGame.ToString();
         }
-    }
 
+        StartCoroutine(CloseTimer());
+    }
+    public IEnumerator CloseTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        timerObject.SetActive(false);
+    }
     public void PressedPlOneButton()
     {
         playerOneNotPressedImage.SetActive(false);
@@ -255,8 +264,22 @@ public class TimerGameScript : MonoBehaviour
     }
     public IEnumerator WaitEnd()
     {
-        diferencePlOne.text = "DIFFERENCE " + compareForOne.ToString("F2");
-        diferencePlTwo.text = "DIFFERENCE " + compareForTwo.ToString("F2");
+        if (Geekplay.Instance.language == "en")
+        {
+            diferencePlOne.text = "DIFFERENCE " + compareForOne.ToString("F2");
+            diferencePlTwo.text = "DIFFERENCE " + compareForTwo.ToString("F2");
+        }
+        if (Geekplay.Instance.language == "ru")
+        {
+            diferencePlOne.text = "–¿«Õ»÷¿ " + compareForOne.ToString("F2");
+            diferencePlTwo.text = "–¿«Õ»÷¿ " + compareForTwo.ToString("F2");
+        }
+        if (Geekplay.Instance.language == "tr")
+        {
+            diferencePlOne.text = "FARKLILIK " + compareForOne.ToString("F2");
+            diferencePlTwo.text = "FARKLILIK " + compareForTwo.ToString("F2");
+        }
+
 
         yield return new WaitForSeconds(1.5f);
         endPanel.SetActive(true);
@@ -296,6 +319,7 @@ public class TimerGameScript : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
 
     }
     public void PressedRestart()
@@ -308,7 +332,8 @@ public class TimerGameScript : MonoBehaviour
         {
             SceneManager.LoadScene("TimerGameSingle");
 
-        } 
+        }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

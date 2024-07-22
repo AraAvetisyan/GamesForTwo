@@ -9,6 +9,7 @@ public class UnicornUI : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -20,5 +21,6 @@ public class UnicornUI : MonoBehaviour
         {
             SceneManager.LoadScene("UnicornSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

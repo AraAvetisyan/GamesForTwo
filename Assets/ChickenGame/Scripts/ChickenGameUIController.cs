@@ -10,6 +10,7 @@ public class ChickenGameUIController : MonoBehaviour
     public void PressedHomeButton()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameOneRestart()
     {
@@ -37,5 +38,6 @@ public class ChickenGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("ChickenGameThreeSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

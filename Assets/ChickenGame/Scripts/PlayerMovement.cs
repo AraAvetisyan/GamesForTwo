@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             IsMobile = false;
+            plButtonOne.SetActive(false);
+            plButtonTwo.SetActive(false);
+            buttonBG.SetActive(false);
             if (!isSingle)
             {
-                plButtonOne.SetActive(false);
-                plButtonTwo.SetActive(false);
-                buttonBG.SetActive(false);
             }
         }
     }

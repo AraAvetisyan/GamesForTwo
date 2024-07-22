@@ -178,7 +178,6 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
             }
             if (playerIndex == 2 && IsSingle)
             {
-                Debug.Log("GARUN");
                 Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
 
                 playerTwoObject.transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);

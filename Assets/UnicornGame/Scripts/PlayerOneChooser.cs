@@ -26,11 +26,14 @@ public class PlayerOneChooser : MonoBehaviour
         else
         {
             IsMobile = false;
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+            buttonBG.SetActive(false);
             if (!IsSingle)
             {
-                buttonOne.SetActive(false);
-                buttonTwo.SetActive(false);
-                buttonBG.SetActive(false);
+                //buttonOne.SetActive(false);
+                //buttonTwo.SetActive(false);
+                //buttonBG.SetActive(false);
             }
         }
 

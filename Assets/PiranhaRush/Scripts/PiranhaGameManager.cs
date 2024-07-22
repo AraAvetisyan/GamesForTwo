@@ -12,7 +12,6 @@ public class PiranhaGameManager : MonoBehaviour
     [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private bool endGame;
-    
     void Start()
     {
         
@@ -23,8 +22,11 @@ public class PiranhaGameManager : MonoBehaviour
     {
         if (!endGame)
         {
-            if(_playerOneColisions.PlayerOnePonts == 0)
+            if(_playerOneColisions.PlayerOnePonts <= 0)
             {
+                _playerOneColisions.PlayerOnePonts = 0;
+                _plOneMovement.enabled = false;
+                _playerTwoColisions.enabled = false;
                 endGame = true;
                 _plOneMovement.speed = 0;
                 _plTwoMovement.speed = 0;
@@ -34,8 +36,11 @@ public class PiranhaGameManager : MonoBehaviour
                 playerTwoWinPc.SetActive(true);
                 StartCoroutine(WaitToFinish());
             }
-            if(_playerTwoColisions.PlayerTwoPonts == 0)
+            if(_playerTwoColisions.PlayerTwoPonts <= 0)
             {
+                _playerTwoColisions.PlayerTwoPonts = 0;
+                _plOneMovement.enabled = false;
+                _playerTwoColisions.enabled = false;
                 endGame = true;
                 _plOneMovement.speed = 0;
                 _plTwoMovement.speed = 0;

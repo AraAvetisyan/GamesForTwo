@@ -10,6 +10,7 @@ public class BowlingUI : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -21,5 +22,6 @@ public class BowlingUI : MonoBehaviour
         {
             SceneManager.LoadScene("BowlingSnigle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

@@ -10,6 +10,7 @@ public class PiranhaGameUI : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -21,5 +22,6 @@ public class PiranhaGameUI : MonoBehaviour
         {
             SceneManager.LoadScene("PiranhaRush");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

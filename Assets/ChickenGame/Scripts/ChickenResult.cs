@@ -26,7 +26,6 @@ public class ChickenResult : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (countLose == 1 && plOneLose)
@@ -40,6 +39,14 @@ public class ChickenResult : MonoBehaviour
                 playerOneWinMobile.SetActive(true);
             }
             if (isMobile || isSingle)
+            {
+                playerOneWinPC.SetActive(true);
+            }
+            if(!isMobile && !isSingle)
+            {
+                playerOneWinPC.SetActive(true);
+            }
+            if(!isMobile && isSingle)
             {
                 playerOneWinPC.SetActive(true);
             }

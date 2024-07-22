@@ -28,6 +28,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private float first, second;
 
     [SerializeField] private GameObject blueIdle, blueRun, redIdle, redRun;
+    public bool MustWait = false;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -37,14 +38,20 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         else
         {
             IsMobile = false;
+            Color color = oneBg.color;
+            color.a = 0.0001f;
+            oneBg.color = color;
+            twoBG.color = color;
+            buttonOne.color = color;
+            buttonTwo.color = color;
             if (!IsSingle)
             {
-                Color color = oneBg.color;
-                color.a = 0.0001f;
-                oneBg.color = color;
-                twoBG.color = color;
-                buttonOne.color = color;
-                buttonTwo.color = color;
+                //Color color = oneBg.color;
+                //color.a = 0.0001f;
+                //oneBg.color = color;
+                //twoBG.color = color;
+                //buttonOne.color = color;
+                //buttonTwo.color = color;
             }
         }
     }
@@ -55,21 +62,33 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds)
         {
-            PlayerTwoIsHolding = true;
+          
+            if (!MustWait)
+            {
+                PlayerTwoIsHolding = true;
+                Speed = Speed * 0.5f;
+            }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds && !IsSingle)
         {
-            PlayerOneIsHolding = true;
+            if (!MustWait)
+            {
+
+                PlayerOneIsHolding = true;
+                Speed = Speed * 0.5f;
+            }
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
         {
             PlayerTwoIsHolding = false;
+            Speed = 5f;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.M))
         {
 
             PlayerOneIsHolding = false;
+            Speed = 5f;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
 

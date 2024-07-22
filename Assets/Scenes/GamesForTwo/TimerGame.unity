@@ -3888,6 +3888,7 @@ MonoBehaviour:
   buttonOne: {fileID: 1050152907}
   buttonTwo: {fileID: 1793428407}
   buttonBG: {fileID: 1028779253}
+  timerObject: {fileID: 1992727250}
 --- !u!1 &1222659123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,8 +4359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.08, y: -5.99}
-  m_SizeDelta: {x: 172.11, y: 169.51}
+  m_AnchoredPosition: {x: 34.46, y: -5.57}
+  m_SizeDelta: {x: 200.41, y: 196.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463911226
 MonoBehaviour:
@@ -4720,8 +4721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.48, y: 1.7}
-  m_SizeDelta: {x: 171.79, y: 168.4}
+  m_AnchoredPosition: {x: -36.81, y: -0.65}
+  m_SizeDelta: {x: 202.81, y: 195.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665228335
 MonoBehaviour:

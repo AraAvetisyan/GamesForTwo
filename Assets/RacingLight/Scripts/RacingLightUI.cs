@@ -9,6 +9,7 @@ public class RacingLightUI : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -20,5 +21,6 @@ public class RacingLightUI : MonoBehaviour
         {
             SceneManager.LoadScene("RacingLightSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

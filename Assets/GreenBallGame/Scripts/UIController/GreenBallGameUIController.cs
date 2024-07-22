@@ -144,6 +144,7 @@ public class GreenBallGameUIController : MonoBehaviour
     public void PresedFinishHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestart()
     {
@@ -155,6 +156,7 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("GreenBallSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 
 

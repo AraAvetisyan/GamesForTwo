@@ -63,6 +63,8 @@ public class FootballBallTriggers : MonoBehaviour
     }
     public IEnumerator Timer()
     {
+        _playerOneRun.MustWait = true;
+        _playerTwoRun.MustWait = true;
         gollTimerGameobject.SetActive(true);
         gollTimer.text = "3";
         yield return new WaitForSecondsRealtime(1);
@@ -72,6 +74,8 @@ public class FootballBallTriggers : MonoBehaviour
         yield return new WaitForSecondsRealtime(1);
         gollTimer.text = "0";
         gollTimerGameobject.SetActive(false);
+        _playerOneRun.MustWait = false;
+        _playerTwoRun.MustWait = false;
         _playerOneRun.Speed = 5;
         _playerTwoRun.Speed = 5;
     }

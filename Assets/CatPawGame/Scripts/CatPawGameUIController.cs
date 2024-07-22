@@ -28,13 +28,11 @@ public class CatPawGameUIController : MonoBehaviour
         }
         else
         {
-            IsMobile = false;
-            if (!IsSingle)
-            {
-                playerOneButton.SetActive(false);
-                playerTwoButton.SetActive(false);
-                buttonBG.SetActive(false);
-            }
+            IsMobile = false; 
+            playerOneButton.SetActive(false);
+            playerTwoButton.SetActive(false);
+            buttonBG.SetActive(false);
+           
         }
     }
     private void Start()
@@ -110,6 +108,7 @@ public class CatPawGameUIController : MonoBehaviour
     public void PressedHomeButton()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestButton()
     {
@@ -122,5 +121,6 @@ public class CatPawGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("CatPawSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

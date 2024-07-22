@@ -51,7 +51,13 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
-        StartCoroutine(Single());
+        if (isSingle)
+        {
+            StartCoroutine(Single());
+            plTwoButtonOne.interactable = false;
+            plTwoButtonTwo.interactable = false;
+            plTwoButtonThree.interactable = false;
+        }
         canPress = true;
 
        

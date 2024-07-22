@@ -1,60 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RedCirclePlayerTwoScript : MonoBehaviour
 {
 
     public bool Pressed;
     public CircleCollider2D PlayerCollider2D;
-    private int inWrongTrigger;
     [SerializeField] private CircularMotion _circularMotion;
     [SerializeField] private PlayerTwoCircleChanger _playerTwoCircleChanger;
     public int Points;
     //private int pointsBuffer;
     [SerializeField] private TextMeshProUGUI pointsText;
-    private bool inCircle;
-    private void Update()
-    {
-        if (inWrongTrigger == 1)
-        {
-            _circularMotion.Speed = 0;
-            inWrongTrigger = 0;
-            StartCoroutine(WaitToWrong());
-        }
-    }
-    public IEnumerator WaitToWrong()
-    {
-        yield return new WaitForSeconds(1.5f);
-        _circularMotion.Speed = 5;
-    }
+    public bool inCircle;
+    public bool inWrongCircle;
+    private int iswrong;
+    private bool addedPoints;
     private void OnTriggerEnter2D(Collider2D collision)
+
     {
-        if (collision.gameObject.tag == "Trigger")
+        if (collision.CompareTag("Trigger"))
         {
             inCircle = true;
-            Points++;
-           
-
-            pointsText.text = Points.ToString();
-            _playerTwoCircleChanger.ChangePlTwoCircle();
-            Pressed = false;
-            PlayerCollider2D.enabled = false;
             StartCoroutine(ChangeInCircle());
         }
-        if (collision.gameObject.tag == "NotTrigger" && !inCircle)
+        else if (collision.CompareTag("NotTrigger"))
         {
-            //pointsBuffer = 0;
-            Pressed = false;
-            PlayerCollider2D.enabled = false;
-            inWrongTrigger = 1;
+            if (!inCircle)
+            {
+                inWrongCircle = true;
+                StartCoroutine(WaitToWrong());
+            }
         }
     }
     public IEnumerator ChangeInCircle()
     {
-        yield return new WaitForSeconds(1f);
+        Points++;
+        pointsText.text = Points.ToString();
+        _playerTwoCircleChanger.ChangePlTwoCircle();
+        Pressed = false;
+        PlayerCollider2D.enabled = false;
+        yield return new WaitForSeconds(0.05f);
         inCircle = false;
 
     }
+    public IEnumerator WaitToWrong()
+    {
+
+        if (!inCircle)
+        {
+            _circularMotion.Speed = 0;
+            Pressed = false;
+            PlayerCollider2D.enabled = false;
+            yield return new WaitForSeconds(1f);
+            _circularMotion.Speed = 5;
+            inWrongCircle = false;
+        }
+    }
 }
+
+
+
+
+//private void OnTriggerEnter2D(Collider2D collision)
+//{
+//    if (collision.CompareTag("Trigger"))
+//    {
+//        inCircle = true;
+//        StartCoroutine(ChangeInCircle());
+//        if (!inWrongCircle)
+//        {
+//            _playerTwoCircleChanger.ChangePlTwoCircle();
+//            Points++;
+//        }
+//        else
+//        {
+//            _playerTwoCircleChanger.ChangeToLastCircle();
+//        }
+//    }
+//    else if (collision.CompareTag("NotTrigger"))
+//    {
+//        if (!inCircle)
+//        {
+//            inWrongCircle = true;
+//            StartCoroutine(WaitToWrong());
+//        }
+
+//    }
+//}
+//public IEnumerator ChangeInCircle()
+//{
+//    pointsText.text = Points.ToString();
+//    Pressed = false;
+//    PlayerCollider2D.enabled = false;
+//    yield return new WaitForSeconds(0.01f);
+//    inCircle = false;
+//}
+
+//public IEnumerator WaitToWrong()
+//{
+
+//    if (!inCircle)
+//    {
+//        _circularMotion.Speed = 0;
+//        Pressed = false;
+//        PlayerCollider2D.enabled = false;
+//        yield return new WaitForSeconds(1f);
+//        _circularMotion.Speed = 5;
+//        inWrongCircle = false;
+//        iswrong = 0;
+//    }
+//}
+//}

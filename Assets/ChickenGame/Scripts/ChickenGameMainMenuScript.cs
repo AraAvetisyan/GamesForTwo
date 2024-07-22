@@ -17,6 +17,7 @@ public class ChickenGameMainMenuScript : MonoBehaviour
 
             SceneManager.LoadScene("ChickenGameOneSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameTwo()
     {
@@ -29,6 +30,7 @@ public class ChickenGameMainMenuScript : MonoBehaviour
 
             SceneManager.LoadScene("ChickenGameTwoSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameThree()
     {
@@ -41,9 +43,11 @@ public class ChickenGameMainMenuScript : MonoBehaviour
 
             SceneManager.LoadScene("ChickenGameThreeSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }
