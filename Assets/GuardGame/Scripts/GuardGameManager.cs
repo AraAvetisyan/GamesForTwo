@@ -6,6 +6,7 @@ public class GuardGameManager : MonoBehaviour
 {
     [SerializeField] GuardTimer _guardTimer;
     [SerializeField] PlayersTrigger _playersTriggerOne, _playersTriggerTwo;
+    
     void Start()
     {
         

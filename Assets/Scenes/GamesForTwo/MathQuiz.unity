@@ -2881,6 +2881,8 @@ MonoBehaviour:
   plOneWinMobile: {fileID: 1293496695}
   plTwoWinMobile: {fileID: 975480922}
   finalPanel: {fileID: 963430592}
+  colorRed: {r: 0.98823535, g: 0.3647059, b: 0.3529412, a: 1}
+  colorBlue: {r: 0, g: 0.75294125, b: 0.9490197, a: 1}
 --- !u!4 &1566348274
 Transform:
   m_ObjectHideFlags: 0

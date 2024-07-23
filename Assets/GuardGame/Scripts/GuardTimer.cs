@@ -30,6 +30,7 @@ public class GuardTimer : MonoBehaviour
     public int Test;
 
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] Rigidbody2D rbPlOne, rbPlTwo;
     void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -126,6 +127,10 @@ public class GuardTimer : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        rbPlOne.isKinematic = true;
+        rbPlTwo.isKinematic = true;
+        rbPlOne.velocity= Vector2.zero;
+        rbPlTwo.velocity= Vector2.zero;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
     }
@@ -149,14 +154,8 @@ public class GuardTimer : MonoBehaviour
 
         if (seconds > 0 && !IsSecondGame)
         {
-           // Debug.Log(("Seconds Debug: ") + seconds);
             StartCoroutine(Timer());
         }
-        //else
-        //{
-
-        //    GameEnds = true;
-        //}
     }
     public IEnumerator SecondTimer()
     {
@@ -169,7 +168,6 @@ public class GuardTimer : MonoBehaviour
             {
                 newSeconds = 0;
                 _playersTrigger.GuardWin = true;
-                // SecondGameEnds = true;
             }
             if (newSeconds >= 10)
             {
@@ -187,7 +185,6 @@ public class GuardTimer : MonoBehaviour
             }
             if (newSeconds > 0 && Test == 1)
             {
-                // Debug.Log(("New Seconds Debug: ") + newSeconds);
                 StartCoroutine(SecondTimer());
             }
            
@@ -196,53 +193,3 @@ public class GuardTimer : MonoBehaviour
 
 }
 
-//if (IsSecondGame && SecondGameEnds)
-////{
-//StopCoroutine(SecondTimer());
-//newSeconds = 0;
-//GameEnds = false;
-//IsSecondGame = false;
-//playerOne.transform.position = playerOneStartPos.position;
-//playerTwo.transform.position = playerTwoStartPos.position;
-////playerOneJoystic.speed = 0;
-////playerTwoJoystic.speed = 0;
-//playerOneJoystic.enabled = false;
-//playerTwoJoystic.enabled = false;
-//if (_coinTriggerPlOne.CoinCount > _coinTriggerPlTwo.CoinCount)
-//{
-//    if (IsMobile && !IsSingle)
-//    {
-//        plOneWinMobile.SetActive(true);
-//    }
-//    if (!IsMobile || IsSingle)
-//    {
-//        plOneWinPC.SetActive(true);
-//    }
-//}
-//if (_coinTriggerPlTwo.CoinCount > _coinTriggerPlOne.CoinCount)
-//{
-//    if (IsMobile && !IsSingle)
-//    {
-//        plTwoWinMobile.SetActive(true);
-//    }
-//    if (!IsMobile || IsSingle)
-//    {
-//        plTwoWinPC.SetActive(true);
-//    }
-//}
-//if (_coinTriggerPlOne.CoinCount == _coinTriggerPlTwo.CoinCount)
-//{
-//    if (IsMobile && !IsSingle)
-//    {
-//        drawOneMobile.SetActive(true);
-//        drawTwoMobile.SetActive(true);
-//    }
-//    if (!IsMobile || IsSingle)
-//    {
-//        drawOnePC.SetActive(true);
-//        drawTwoPC.SetActive(true);
-//    }
-//}
-
-//StartCoroutine(WaitToFinish());
-//    }

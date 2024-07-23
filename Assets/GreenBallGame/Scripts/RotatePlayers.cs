@@ -12,7 +12,7 @@ public class RotatePlayers : MonoBehaviour
     {
         
         playerOne.transform.Rotate(0, 0, PlayerOneRotationSpeed * Time.deltaTime);
-        
+
         playerTwo.transform.Rotate(0, 0, -PlayerTwoRotationSpeed * Time.deltaTime);
         
     }

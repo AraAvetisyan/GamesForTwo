@@ -66,52 +66,38 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
     }
     public void FixedUpdate()
     {
-
-        if (IsMobile)
+        if (IsMobile && IsSingle)       //mobile single game
         {
             if (playerIndex == 1)
             {
-                float jh = 0;
-                float jv = 0;
-                jh = FloatingJoystick.Horizontal;
-                jv = FloatingJoystick.Vertical;
-                Vector2 joysticMoveDirection = new Vector2(jh, jv);
-                float joysticInputMagnitude = Mathf.Clamp01(joysticMoveDirection.magnitude);
-                joysticMoveDirection.Normalize();
-                transform.Translate(joysticMoveDirection * speed * joysticInputMagnitude * Time.deltaTime, Space.World);
+                rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
                 float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+
+                Debug.Log("Mobile && single");
             }
-            if (playerIndex == 2 && !IsSingle)
+            if (playerIndex == 2)
             {
-                float jh = 0;
-                float jv = 0;
-                jh = FloatingJoystick.Horizontal;
-                jv = FloatingJoystick.Vertical;
-                Vector2 joysticMoveDirection = new Vector2(jh, jv);
-                float joysticInputMagnitude = Mathf.Clamp01(joysticMoveDirection.magnitude);
-                joysticMoveDirection.Normalize();
-                transform.Translate(joysticMoveDirection * speed * joysticInputMagnitude * Time.deltaTime, Space.World);
-                float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
-                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
-            }
-            if (playerIndex == 2 && IsSingle)
-            {
-                Debug.Log("GARUN");
                 Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
-
-                playerTwoObject.transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);                
                 if (moveDirection != Vector2.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                    playerTwoObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
                 }
-
             }
+        } // end
 
-        }
-        else
+        if (IsMobile && !IsSingle)  //mobile multyplay game
+        {
+
+            rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
+            float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
+            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+        }// end
+
+
+        if (!IsMobile && !IsSingle) //pc multyplay game
         {
             if (playerIndex == 1)
             {
@@ -145,7 +131,7 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
                 }
 
             }
-            if (playerIndex == 2 && !IsSingle)
+            if (playerIndex == 2)
             {
                 float h2 = 0;
                 float v2 = 0;
@@ -176,20 +162,54 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
                 }
             }
-            if (playerIndex == 2 && IsSingle)
+        } // end
+
+        if (!IsMobile && IsSingle) // pc single game
+        {
+            if (playerIndex == 1)
             {
-                Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
+                float h = 0;
+                float v = 0;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    v = (Vector2.up * speed).y;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    v = -(Vector2.up * speed).y;
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    h = -(Vector2.right * speed).x;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    h = (Vector2.right * speed).x;
+                }
+                Vector2 moveDirection = new Vector2(h, v);
+                float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+                moveDirection.Normalize();
 
-                playerTwoObject.transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-
+                transform.Translate(moveDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
                 if (moveDirection != Vector2.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                    playerTwoObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
                 }
 
             }
-        }
+            if (playerIndex == 2)
+            {
+                Vector2 moveDirection = (targetTransform.position - transform.position).normalized;
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);               
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+            }
+        }//end
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

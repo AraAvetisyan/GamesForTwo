@@ -7,12 +7,12 @@ public class FootballBallTriggers : MonoBehaviour
 {
     public int PlayerOnePoints, PlayerTwoPoints;
     [SerializeField] private TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
-   // [SerializeField] private GameObject finalPanel;
     [SerializeField] private Transform playerOneStartTransform, playerTwoStartTransform, ballStartTransform;
     [SerializeField] private GameObject playerOne, playerTwo;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Rigidbody2D playerOneRigidbody, playerTwoRigidbody;
-    [SerializeField] private PlayersRun _playerOneRun, _playerTwoRun;
+    [SerializeField] private FootballPlayerOneRun _playerOneRun;
+    [SerializeField] private FootballPlayerTwoRun _playerTwoRun;
     [SerializeField] private float force;
     [SerializeField] private GameObject gollTimerGameobject;
     [SerializeField] private TextMeshProUGUI gollTimer;
@@ -43,7 +43,6 @@ public class FootballBallTriggers : MonoBehaviour
             _playerOneRun.Speed = 0;
             _playerTwoRun.Speed = 0;
             StartCoroutine(Timer());
-            //StartCoroutine(WaitToFinish());
         }
         if (collision.gameObject.tag == "FirstPlayerWin")
         {
@@ -58,7 +57,6 @@ public class FootballBallTriggers : MonoBehaviour
             _playerOneRun.Speed = 0;
             _playerTwoRun.Speed = 0;
             StartCoroutine(Timer());
-            //StartCoroutine(WaitToFinish());
         }
     }
     public IEnumerator Timer()
@@ -98,13 +96,10 @@ public class FootballBallTriggers : MonoBehaviour
     }
     public IEnumerator OffCollider()
     {
-       // circleCollider.enabled = false;
         yield return new WaitForSeconds(0.02f);
-      //  circleCollider.enabled = true;
     }
     public IEnumerator WaitToFinish()
     {
         yield return new WaitForSeconds(1.5f);
-       // finalPanel.SetActive(true);
     }
 }

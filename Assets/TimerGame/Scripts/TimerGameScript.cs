@@ -68,7 +68,10 @@ public class TimerGameScript : MonoBehaviour
             //    buttonBG.SetActive(false);
             //}
         }
-
+        if (isSingle)
+        {
+            playerOneButton.interactable = false;
+        }
         //if (!isMobile)
         //{
         //    playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);

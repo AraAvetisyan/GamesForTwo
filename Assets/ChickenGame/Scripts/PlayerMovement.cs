@@ -35,9 +35,14 @@ public class PlayerMovement : MonoBehaviour
             plButtonOne.SetActive(false);
             plButtonTwo.SetActive(false);
             buttonBG.SetActive(false);
-            if (!isSingle)
-            {
-            }
+           
+        }
+    }
+    private void Start()
+    {
+        if (isSingle)
+        {
+            plOneButton.interactable = false;
         }
     }
     private void Update()
@@ -54,14 +59,20 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
-                PressedPlayerTwoButton();
+               
+                
+                    PressedPlayerTwoButton();
+                
             }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M))
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
-                PressedPlayerOneButton();
+                if (!isSingle)
+                {
+                    PressedPlayerOneButton();
+                }
             }
         }
     }

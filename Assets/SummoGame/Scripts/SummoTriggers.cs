@@ -57,11 +57,19 @@ public class SummoTriggers : MonoBehaviour
                 playerTwoPointsText.text = PlayerTwoPoints.ToString();
                 if(PlayerTwoPoints == 3)
                 {
-                    if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
+                    if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // mobile multyplay
                     {
                         playerTwoWinMobile.SetActive(true);
                     }
-                    if (!_summoGameScriptPlTwo.IsMobile || _summoGameScriptPlTwo.IsSingle)
+                    if (!_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle)// pc Singleplay
+                    {
+                        playerTwoWinPC.SetActive(true);
+                    }
+                    if (!_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // pc multyplay
+                    {
+                        playerTwoWinPC.SetActive(true);
+                    }
+                    if (_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // mobile single
                     {
                         playerTwoWinPC.SetActive(true);
                     }
@@ -85,11 +93,19 @@ public class SummoTriggers : MonoBehaviour
                 playerOnePointsText.text = PlayerOnePoints.ToString();
                 if(PlayerOnePoints == 3)
                 {
-                    if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
+                    if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // mobile multyplay
                     {
                         playerOneWinMobile.SetActive(true);
                     }
-                    if (!_summoGameScriptPlTwo.IsMobile || _summoGameScriptPlTwo.IsSingle)
+                    if (!_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // pc Singleplay
+                    {
+                        playerOneWinPC.SetActive(true);
+                    }
+                    if(!_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // pc multyplay
+                    {
+                        playerOneWinPC.SetActive(true);
+                    }
+                    if(_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // mobile single
                     {
                         playerOneWinPC.SetActive(true);
                     }

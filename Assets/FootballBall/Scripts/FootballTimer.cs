@@ -17,7 +17,7 @@ public class FootballTimer : MonoBehaviour
     [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
 
-    [SerializeField] private PlayersRun _playersRun;
+    [SerializeField] private FootballPlayerTwoRun _playersRun;
 
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private FootballBallTriggers _footballBallTriggers;
@@ -25,77 +25,56 @@ public class FootballTimer : MonoBehaviour
     [SerializeField] private Button plOneButton, plTwoButton;
     public bool GameEnds;
     [SerializeField] private BoxCollider2D enemyBox;
-    private void Start()
+  
+    private void Update()
     {
-
-        StartCoroutine(Timer());
-    }
-    private IEnumerator Timer()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        if (seconds < 0)
-        {
-            seconds = 0;
-        }
-        if (seconds >= 10)
-        {
-            timerText.text = minutes.ToString() + ":" + seconds.ToString();
-        }
-        else
-        {
-            timerText.text = minutes.ToString() + ":0" + seconds.ToString();
-        }
-
-        allTime--;
-        seconds--;
-        if (allTime > 0)
-        {
-            StartCoroutine(Timer());
-        }
-        if (seconds == 0 && minutes == 1)
-        {
-            minutes--;
-            seconds = 59;
-        }
-        if (allTime == 0)
+        if(_footballBallTriggers.PlayerOnePoints >= 5 || _footballBallTriggers.PlayerTwoPoints >= 5)
         {
             GameEnds = true;
             plOneRb.velocity = Vector2.zero;
             plTwoRb.velocity = Vector2.zero;
             ballRb.velocity = Vector2.zero;
             enemyBox.enabled = false;
-            if (_footballBallTriggers.PlayerOnePoints > _footballBallTriggers.PlayerTwoPoints)
+            if (_footballBallTriggers.PlayerOnePoints > _footballBallTriggers.PlayerTwoPoints) // blue player Win
             {
-                if (_playersRun.IsMobile && !_playersRun.IsSingle)
+                if (_playersRun.IsMobile && !_playersRun.IsSingle) // mobile multyplay
                 {
                     playerOneWinMobile.SetActive(true);
                 }
-                if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                if (!_playersRun.IsMobile && _playersRun.IsSingle) // pc singleplay
                 {
                     playerOneWinPC.SetActive(true);
                 }
-                if(_playersRun.IsMobile && _playersRun.IsSingle)
+                if (_playersRun.IsMobile && _playersRun.IsSingle) // mobile singleplay
+                {
+                    playerOneWinPC.SetActive(true);
+                }
+                if(!_playersRun.IsMobile && !_playersRun.IsSingle) // pc multyplay
                 {
                     playerOneWinPC.SetActive(true);
                 }
                 StartCoroutine(WaitToFinish());
             }
-            if (_footballBallTriggers.PlayerOnePoints < _footballBallTriggers.PlayerTwoPoints)
+            if (_footballBallTriggers.PlayerOnePoints < _footballBallTriggers.PlayerTwoPoints) //red player win
             {
-                if (_playersRun.IsMobile && !_playersRun.IsSingle)
+                if (_playersRun.IsMobile && !_playersRun.IsSingle)// mobile multyplay
                 {
                     playerTwoWinMobile.SetActive(true);
                 }
-                if (!_playersRun.IsMobile || _playersRun.IsSingle)
+                if (!_playersRun.IsMobile && _playersRun.IsSingle)// pc singleplay
                 {
                     playerTwoWinPC.SetActive(true);
                 }
-                if (_playersRun.IsMobile && _playersRun.IsSingle)
+                if (_playersRun.IsMobile && _playersRun.IsSingle)// mobile singleplay
+                {
+                    playerTwoWinPC.SetActive(true);
+                }
+                if(!_playersRun.IsMobile && !_playersRun.IsSingle)// pc multyplay
                 {
                     playerTwoWinPC.SetActive(true);
                 }
 
-                StartCoroutine(WaitToFinish());
+                    StartCoroutine(WaitToFinish());
             }
             if (_footballBallTriggers.PlayerTwoPoints == _footballBallTriggers.PlayerOnePoints)
             {
@@ -117,10 +96,9 @@ public class FootballTimer : MonoBehaviour
 
                 StartCoroutine(WaitToFinish());
             }
-
         }
-
     }
+   
     public IEnumerator WaitToFinish()
     {
         plOneButton.interactable = false;

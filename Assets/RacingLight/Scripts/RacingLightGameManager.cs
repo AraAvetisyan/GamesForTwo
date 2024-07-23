@@ -240,7 +240,11 @@ public class RacingLightGameManager : MonoBehaviour
         playerOneTimerTextTwo.text = "";
         playerTwoTimerText.text = "";
         playerTwoTimerTextTwo.text = "";
-
+        _fireLightsScript.GreenLight1.SetActive(false);
+        _fireLightsScript.GreenLight2.SetActive(false);
+        _fireLightsScript.GreenLight3.SetActive(false);
+        _fireLightsScript.GreenLight4.SetActive(false);
+        _fireLightsScript.GreenLight5.SetActive(false);
         playerOneTimerBG.SetActive(false);
         playerTwoTimerBG.SetActive(false);
     }

@@ -64,7 +64,7 @@ public class PlayerOneScript : MonoBehaviour
             _catPawGameUIController.ButtonOnePressed = false;
             // transform.position = new Vector2(6f, 6f);
             goBack = true;
-            stanCounter++;
+           // stanCounter++;
         }
         if (goBack)
         {
@@ -72,6 +72,11 @@ public class PlayerOneScript : MonoBehaviour
             {
                 goBack = false;
             }
+        }
+        if (collision.gameObject.CompareTag("Path"))
+        {
+            _catPawGameUIController.ButtonOnePressed = false;
+            Debug.Log("Harchiny zanec ");
         }
     }
     private void Update()

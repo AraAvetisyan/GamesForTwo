@@ -30,6 +30,8 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private GameObject plOneWinPC, plTwoWinPC, plOneWinMobile, plTwoWinMobile;
     [SerializeField] private GameObject finalPanel;
     private bool singleCanChoose;
+   
+    [SerializeField] private Color colorRed, colorBlue;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -299,13 +301,14 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text= plOnePoints.ToString();
             plOneButtonOneImage.color = Color.green;
-
+            plOneButtonOneAnswerText.color = Color.white;
         }
         else
         {
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonOneImage.color = Color.red;
+            plOneButtonOneAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -325,6 +328,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonTwoImage.color = Color.green;
+            plOneButtonTwoAnswerText.color = Color.white;
 
         }
         else
@@ -332,6 +336,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonTwoImage.color = Color.red;
+            plOneButtonTwoAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -350,6 +355,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonThreeImage.color = Color.green;
+            plOneButtonThreeAnswerText.color = Color.white;
 
         }
         else
@@ -357,6 +363,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonThreeImage.color = Color.red;
+            plOneButtonThreeAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -375,6 +382,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonOneImage.color = Color.green;
+            plTwoButtonOneAnswerText.color = Color.white;
 
         }
         else
@@ -382,6 +390,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonOneImage.color = Color.red;
+            plTwoButtonOneAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -400,13 +409,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonTwoImage.color = Color.green;
-
+            plTwoButtonTwoAnswerText.color = Color.white;
         }
         else
         {
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonTwoImage.color = Color.red;
+            plTwoButtonTwoAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -425,13 +435,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonThreeImage.color = Color.green;
-
+            plTwoButtonThreeAnswerText.color = Color.white;
         }
         else
         {
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonThreeImage.color = Color.red;
+            plTwoButtonThreeAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -447,15 +458,28 @@ public class MathQuizGameManager : MonoBehaviour
         plOneButtonOne.interactable = true;
         plOneButtonTwo.interactable = true;
         plOneButtonThree.interactable = true;
-        plTwoButtonOne.interactable = true;
-        plTwoButtonTwo.interactable = true;
-        plTwoButtonThree.interactable = true;
+        if (!isSingle)
+        {
+            plTwoButtonOne.interactable = true;
+            plTwoButtonTwo.interactable = true;
+            plTwoButtonThree.interactable = true;
+        }
         plOneButtonOneImage.color = Color.white;
         plOneButtonTwoImage.color = Color.white;
         plOneButtonThreeImage.color = Color.white;
         plTwoButtonOneImage.color = Color.white;
         plTwoButtonTwoImage.color = Color.white;
         plTwoButtonThreeImage.color = Color.white;
+
+
+        plOneButtonOneAnswerText.color = colorRed;
+        plOneButtonTwoAnswerText.color = colorRed;
+        plOneButtonThreeAnswerText.color = colorRed;
+
+        plTwoButtonOneAnswerText.color = colorBlue;
+        plTwoButtonTwoAnswerText.color = colorBlue;
+        plTwoButtonThreeAnswerText.color = colorBlue;
+
         canPress = true;
         if (plOnePoints != 10 && plTwoPoints != 10)
         {

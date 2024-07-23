@@ -149,7 +149,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.55, y: 1.65, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 588073856}
@@ -264,7 +264,7 @@ Transform:
   m_GameObject: {fileID: 65437284}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.28, y: -0.0619, z: 0}
+  m_LocalPosition: {x: 6.891, y: -0.0619, z: 0}
   m_LocalScale: {x: 1.5, y: 4.3382974, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -709,7 +709,7 @@ Transform:
   m_GameObject: {fileID: 183740277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 5.76, y: -4.22, z: 0}
+  m_LocalPosition: {x: 6, y: -4.5, z: 0}
   m_LocalScale: {x: 1.3712857, y: 0.67321634, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -969,7 +969,7 @@ Transform:
   m_GameObject: {fileID: 240082726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -5.88, y: -3.98, z: 0}
+  m_LocalPosition: {x: -6.35, y: -3.98, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1233,7 +1233,7 @@ Transform:
   m_GameObject: {fileID: 293771876}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: -5.73, y: -4.23, z: 0}
+  m_LocalPosition: {x: -6, y: -4.5, z: 0}
   m_LocalScale: {x: 1.3712857, y: 0.67321634, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1799,7 +1799,7 @@ Transform:
   m_GameObject: {fileID: 446540736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000014603138}
-  m_LocalPosition: {x: 7.33, y: -2.5, z: 0}
+  m_LocalPosition: {x: 7.8, y: -2.5, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1929,7 +1929,7 @@ Transform:
   m_GameObject: {fileID: 521151978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000014603138}
-  m_LocalPosition: {x: -7.41, y: 2.37, z: 0}
+  m_LocalPosition: {x: -7.8, y: 2.37, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2301,7 +2301,7 @@ Transform:
   m_GameObject: {fileID: 622370430}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -7.39, y: 0.0229, z: 0}
+  m_LocalPosition: {x: -8, y: 0, z: 0}
   m_LocalScale: {x: 4.8090377, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2727,8 +2727,8 @@ MonoBehaviour:
   rb: {fileID: 644232243}
   playerOneRigidbody: {fileID: 1809279046}
   playerTwoRigidbody: {fileID: 640626507}
-  _playerOneRun: {fileID: 717065797}
-  _playerTwoRun: {fileID: 1877804178}
+  _playerOneRun: {fileID: 717065798}
+  _playerTwoRun: {fileID: 1877804179}
   force: 150
   gollTimerGameobject: {fileID: 398310191}
   gollTimer: {fileID: 398310193}
@@ -2878,6 +2878,7 @@ GameObject:
   - component: {fileID: 717065795}
   - component: {fileID: 717065794}
   - component: {fileID: 717065797}
+  - component: {fileID: 717065798}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -2993,7 +2994,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717065792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dfb74e8946271846bf60d531d22ca41, type: 3}
   m_Name: 
@@ -3005,8 +3006,6 @@ MonoBehaviour:
   playerTwo: {fileID: 640626502}
   playerOneRB: {fileID: 1809279046}
   playerTwoRB: {fileID: 640626507}
-  PlayerOneIsHolding: 0
-  PlayerTwoIsHolding: 0
   _footballTimer: {fileID: 1267280942}
   IsMobile: 0
   IsSingle: 0
@@ -3020,6 +3019,34 @@ MonoBehaviour:
   blueRun: {fileID: 341401045}
   redIdle: {fileID: 798750895}
   redRun: {fileID: 340640574}
+  MustWait: 0
+--- !u!114 &717065798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717065792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073b833ccfa825143ad2a417f8516397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotatePlayers: {fileID: 1625595265}
+  PlayerIndex: 1
+  Speed: 5
+  playerOne: {fileID: 1809279041}
+  playerOneRB: {fileID: 1809279046}
+  PlayerOneIsHolding: 0
+  _footballTimer: {fileID: 1267280942}
+  IsMobile: 0
+  IsSingle: 0
+  buttonOne: {fileID: 717065795}
+  oneBg: {fileID: 537765683}
+  first: 0
+  second: 0
+  blueIdle: {fileID: 2089230006}
+  blueRun: {fileID: 341401045}
   MustWait: 0
 --- !u!1 &747139296
 GameObject:
@@ -3610,7 +3637,7 @@ Transform:
   m_GameObject: {fileID: 864932443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 5.85, y: 3.85, z: 0}
+  m_LocalPosition: {x: 6.35, y: 3.85, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4398,7 +4425,7 @@ Transform:
   m_GameObject: {fileID: 1101692359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 5.84, y: -3.93, z: 0}
+  m_LocalPosition: {x: 6.35, y: -3.93, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4528,7 +4555,7 @@ Transform:
   m_GameObject: {fileID: 1143231839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -5.78, y: 4.23, z: 0}
+  m_LocalPosition: {x: -6, y: 4.5, z: 0}
   m_LocalScale: {x: 1.3712857, y: 0.67321634, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4691,7 +4718,7 @@ Transform:
   m_GameObject: {fileID: 1204751715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: -4.44, z: 0}
+  m_LocalPosition: {x: -0.49, y: -4.5, z: 0}
   m_LocalScale: {x: 13.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4984,7 +5011,7 @@ MonoBehaviour:
   playerTwoDrawPC: {fileID: 1037254214}
   playerOneWinPC: {fileID: 1238255355}
   playerTwoWinPC: {fileID: 1218387778}
-  _playersRun: {fileID: 1877804178}
+  _playersRun: {fileID: 1877804179}
   finalPanel: {fileID: 867380801}
   _footballBallTriggers: {fileID: 644232246}
   ballRb: {fileID: 644232243}
@@ -5026,7 +5053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1361966012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5112,7 +5139,7 @@ Transform:
   m_GameObject: {fileID: 1387068480}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 7.2, y: 0.0183, z: 0}
+  m_LocalPosition: {x: 8, y: 0, z: 0}
   m_LocalScale: {x: 4.95855, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5425,7 +5452,7 @@ Transform:
   m_GameObject: {fileID: 1403228465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4, y: -0.0691, z: 0}
+  m_LocalPosition: {x: -6.862, y: -0.0691, z: 0}
   m_LocalScale: {x: 1.5, y: 4.1726418, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5555,7 +5582,7 @@ Transform:
   m_GameObject: {fileID: 1426016725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: 5.78, y: 4.14, z: 0}
+  m_LocalPosition: {x: 6, y: 4.5, z: 0}
   m_LocalScale: {x: 1.3712857, y: 0.67321634, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5685,7 +5712,7 @@ Transform:
   m_GameObject: {fileID: 1436095512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.49, z: 0}
+  m_LocalPosition: {x: 0, y: 4.5, z: 0}
   m_LocalScale: {x: 13.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5815,7 +5842,7 @@ Transform:
   m_GameObject: {fileID: 1436114863}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000014603138}
-  m_LocalPosition: {x: 7.29, y: 2.43, z: 0}
+  m_LocalPosition: {x: 7.8, y: 2.43, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6402,7 +6429,7 @@ Transform:
   m_GameObject: {fileID: 1647092679}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000014603138}
-  m_LocalPosition: {x: -7.35, y: -2.5, z: 0}
+  m_LocalPosition: {x: -7.8, y: -2.5, z: 0}
   m_LocalScale: {x: 3.375, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6912,6 +6939,7 @@ GameObject:
   - component: {fileID: 1877804176}
   - component: {fileID: 1877804175}
   - component: {fileID: 1877804178}
+  - component: {fileID: 1877804179}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -7027,7 +7055,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877804173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dfb74e8946271846bf60d531d22ca41, type: 3}
   m_Name: 
@@ -7039,8 +7067,6 @@ MonoBehaviour:
   playerTwo: {fileID: 640626502}
   playerOneRB: {fileID: 1809279046}
   playerTwoRB: {fileID: 640626507}
-  PlayerOneIsHolding: 0
-  PlayerTwoIsHolding: 0
   _footballTimer: {fileID: 1267280942}
   IsMobile: 0
   IsSingle: 0
@@ -7052,6 +7078,31 @@ MonoBehaviour:
   second: 0
   blueIdle: {fileID: 2089230006}
   blueRun: {fileID: 341401045}
+  redIdle: {fileID: 798750895}
+  redRun: {fileID: 340640574}
+  MustWait: 0
+--- !u!114 &1877804179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877804173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddceca85faa3a7f46906d0a5b419e19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotatePlayers: {fileID: 1625595265}
+  PlayerIndex: 2
+  Speed: 5
+  playerTwo: {fileID: 640626502}
+  playerTwoRB: {fileID: 640626507}
+  _footballTimer: {fileID: 1267280942}
+  IsMobile: 0
+  IsSingle: 0
+  buttonTwo: {fileID: 1877804176}
+  twoBG: {fileID: 537765683}
   redIdle: {fileID: 798750895}
   redRun: {fileID: 340640574}
   MustWait: 0
@@ -7082,7 +7133,7 @@ Transform:
   m_GameObject: {fileID: 1905213128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -5.92, y: 3.5527, z: 0}
+  m_LocalPosition: {x: -6.35, y: 3.85, z: 0}
   m_LocalScale: {x: 2.8994625, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

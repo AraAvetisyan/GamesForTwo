@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class JoystickPlayerExample : MonoBehaviour
 
     [SerializeField] private Transform[] singlePoints;
     private int pointInd;
+    private Transform targetTransform;
     private void Start()
     {
         if (!_guardTimer.IsMobile)
@@ -27,39 +29,56 @@ public class JoystickPlayerExample : MonoBehaviour
             joysticplTwo.SetActive(false);
             if(playerIndex == 2)
             {
-                StartCoroutine(Single());
+                for (int i = 0; i < singlePoints.Length; i++)
+                {
+                    singlePoints[i].GetComponent<BoxCollider2D>().enabled = false;
+                    if (i == singlePoints.Length - 1)
+                    {
+                        StartCoroutine(Single());
+                    }
+                }
             }
         }
+       
     }
     public void FixedUpdate()
     {
-        if(_guardTimer.IsMobile && _guardTimer.IsSingle)
+        if (_guardTimer.IsMobile && _guardTimer.IsSingle)       //mobile single game
         {
-            if(playerIndex == 1)
+            if (playerIndex == 1)
             {
                 rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
                 float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
-            }
-        }
-            
 
-        
-        if (_guardTimer.IsMobile && !_guardTimer.IsSingle)
+                Debug.Log("Mobile && single");
+            }
+            if(playerIndex == 2)
+            {
+                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+               
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+            }
+        } // end
+
+        if (_guardTimer.IsMobile && !_guardTimer.IsSingle)  //mobile multyplay game
         {
 
             rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
             float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
             this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+        }// end
 
 
-        }
-        if(!_guardTimer.IsSingle)
+        if (!_guardTimer.IsMobile && !_guardTimer.IsSingle) //pc multyplay game
         {
             if (playerIndex == 1)
             {
-                //float h = Input.GetAxis("Horizontal");
-                //float v = Input.GetAxis("Vertical");
                 float h = 0;
                 float v = 0;
                 if (Input.GetKey(KeyCode.W))
@@ -90,7 +109,7 @@ public class JoystickPlayerExample : MonoBehaviour
                 }
 
             }
-            if (playerIndex == 2 && !_guardTimer.IsSingle)
+            if (playerIndex == 2)
             {
                 float h2 = 0;
                 float v2 = 0;
@@ -120,27 +139,86 @@ public class JoystickPlayerExample : MonoBehaviour
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
                 }
-            }            
-        }
-        if (playerIndex == 2 && _guardTimer.IsSingle)
+            }
+        } // end
+
+        if(!_guardTimer.IsMobile && _guardTimer.IsSingle) // pc single game
         {
-            Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
-            transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-            if (transform.position.x == moveDirection.x || transform.position.y == moveDirection.y)
+            if (playerIndex == 1)
             {
-                pointInd = Random.Range(0, singlePoints.Length);
+                float h = 0;
+                float v = 0;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    v = (Vector2.up * speed).y;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    v = -(Vector2.up * speed).y;
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    h = -(Vector2.right * speed).x;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    h = (Vector2.right * speed).x;
+                }
+                Vector2 moveDirection = new Vector2(h, v);
+                float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+                moveDirection.Normalize();
+
+                transform.Translate(moveDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+
             }
-            if (moveDirection != Vector2.zero)
+            if (playerIndex == 2)
             {
-                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+                
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
             }
-        }
+        }//end
+
+
+          
     }
     public IEnumerator Single()
     {
-        pointInd = Random.Range(0,singlePoints.Length);        
-        yield return new WaitForSecondsRealtime(2f);
-        StartCoroutine(Single());
+        pointInd = UnityEngine.Random.Range(0,singlePoints.Length);
+        singlePoints[pointInd].GetComponent<BoxCollider2D>().enabled = true;
+        Debug.Log(singlePoints[pointInd].gameObject.name);
+        yield return new WaitForSecondsRealtime(0.0001f);
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (playerIndex == 2 && _guardTimer.IsSingle)
+        {
+            if (collision.CompareTag("Path"))
+            {
+               
+                pointInd = UnityEngine.Random.Range(0, singlePoints.Length);
+                for (int i = 0; i < singlePoints.Length; i++)
+                {
+                    singlePoints[i].GetComponent<BoxCollider2D>().enabled = false;
+                    if (i == singlePoints.Length - 1)
+                    {
+                        singlePoints[pointInd].GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                }
+                
+                Debug.Log("in path");
+            }
+        }
     }
 }
