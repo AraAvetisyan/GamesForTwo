@@ -103,7 +103,6 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (PlayerOneIsHolding)
         {
-            Debug.Log("PlayerOneIsHolding darela true petqa poxi run");
             blueRun.SetActive(true);
             blueIdle.SetActive(false);
 
@@ -123,7 +122,6 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (!PlayerOneIsHolding)
         {
 
-            Debug.Log("PlayerOneIsHolding darela fales petqa poxi idle");
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
 

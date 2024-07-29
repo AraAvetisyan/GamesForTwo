@@ -72,7 +72,7 @@ public class GamesForOneButtons : MonoBehaviour
     }
     public void PressedCheckers()
     {
-        Debug.Log("Menak");
+       // Debug.Log("Menak");
         PlayerPrefs.SetInt("VsCPU", 1);
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
         Geekplay.Instance.ShowInterstitialAd();

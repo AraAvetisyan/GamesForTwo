@@ -18,8 +18,9 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private bool playerOneStop, playerTwoStop;
     [SerializeField] private float playerOneTime, playerTwoTime;
     [SerializeField] private float timer;
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+   // [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
+    private bool plOneWin, plTwoWin;
     private int Counter;
     private float timerForGame;
     private float compareForOne, compareForTwo;
@@ -82,7 +83,7 @@ public class TimerGameScript : MonoBehaviour
 
         if (isMobile && !isSingle)
         {
-            Debug.Log("Mobile u erkusov");
+         //   Debug.Log("Mobile u erkusov");
             //                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
             playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 180);
             targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -242,12 +243,13 @@ public class TimerGameScript : MonoBehaviour
         {
             if (isMobile && !isSingle)
             {
-                playerOneWinMobile.SetActive(true);
+                //playerOneWinMobile.SetActive(true);
             }
             if(!isMobile || isSingle)
             {
-                playerOneWinPC.SetActive(true);
+                //playerOneWinPC.SetActive(true);
             }
+            plOneWin = true;
             StartCoroutine(WaitEnd());
             
         }
@@ -255,12 +257,13 @@ public class TimerGameScript : MonoBehaviour
         {
             if (isMobile && !isSingle)
             {
-                playerTwoWinMobile.SetActive(true);
+               // playerTwoWinMobile.SetActive(true);
             }
             if (!isMobile || isSingle)
             {
-                playerTwoWinPC.SetActive(true);
+               // playerTwoWinPC.SetActive(true);
             }
+            plTwoWin = true;
             StartCoroutine (WaitEnd());
         }
 
@@ -286,6 +289,14 @@ public class TimerGameScript : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         endPanel.SetActive(true);
+        if (plOneWin)
+        {
+            playerOneWinPC.SetActive(true);
+        }
+        if(plTwoWin)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
     }
     private IEnumerator UpdatePlOneTimer()
     {

@@ -116,7 +116,6 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
 
         if (collision.gameObject.tag == "StartLine")
         {
-            Debug.Log("Mtnuma");
             HitLine = true;
             cantDrag = true;
             if (!IsSingle)

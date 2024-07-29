@@ -15,10 +15,11 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] RacingButtonsHold _playerOneRacingButtonsHold, _playerTwoRacingButtonsHold;
     [SerializeField] private FireLightsScript _fireLightsScript;
     private int playerOneCounter, playerTwoCounter;
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+  //  [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
+    private bool plOneWin, plTwoWin;
 
     void Start()
     {
@@ -171,24 +172,26 @@ public class RacingLightGameManager : MonoBehaviour
             {
                 if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerOneWinMobile.SetActive(true);
+                    //playerOneWinMobile.SetActive(true);
                 }
                 if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerOneWinPC.SetActive(true);
+                 //   playerOneWinPC.SetActive(true);
                 }
+                plOneWin = true;
                 StartCoroutine(WaitToFinish());
             }
             if (playerTwoScore == 3)
             {
                 if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerTwoWinMobile.SetActive(true);
+                 //   playerTwoWinMobile.SetActive(true);
                 }
                 if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerTwoWinPC.SetActive(true);
+                  //  playerTwoWinPC.SetActive(true);
                 }
+                plTwoWin = true;
                 StartCoroutine(WaitToFinish());
             }
         }
@@ -255,5 +258,13 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.CantHold = true;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
+        if (plOneWin)
+        {
+            playerOneWinPC.SetActive(true);
+        }
+        if(plTwoWin)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
     }
 }

@@ -18,8 +18,8 @@ public class GuardTimer : MonoBehaviour
     [SerializeField] private GameObject redRobber, redGuard;
     [SerializeField] private JoystickPlayerExample playerOneJoystic, playerTwoJoystic;
     [SerializeField] private CoinTrigger _coinTriggerPlOne, _coinTriggerPlTwo;
-    [SerializeField] private GameObject plOneWinMobile, plTwoWinMobile, drawOneMobile, drawTwoMobile;
-    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, drawOnePC, drawTwoPC;
+    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, drawOnePC;
+    bool playerOneWin, playerTwoWin;
     public bool IsMobile;
     public bool IsSingle; 
 
@@ -55,7 +55,6 @@ public class GuardTimer : MonoBehaviour
 
         if (!IsSecondGame && GameEnds)
         {
-            Debug.Log("blueRobber && redCop");
             StopCoroutine(Timer());
             seconds = 0;
             newSeconds = 0;
@@ -75,7 +74,6 @@ public class GuardTimer : MonoBehaviour
         }
         if (IsSecondGame && GameEnds)
         {
-            Debug.Log("redRobber && blueCop");
             StopCoroutine(Timer());
             seconds = 0;
             newSeconds = 0;
@@ -98,14 +96,8 @@ public class GuardTimer : MonoBehaviour
         {
             playerOneJoystic.enabled = false;
             playerTwoJoystic.enabled = false;
-            if (IsMobile && !IsSingle)
-            {
-                plOneWinMobile.SetActive(true);
-            }
-            if (!IsMobile || IsSingle)
-            {
-                plOneWinPC.SetActive(true);
-            }
+
+            playerOneWin = true;
 
             StartCoroutine(WaitToFinish());
         }
@@ -113,14 +105,8 @@ public class GuardTimer : MonoBehaviour
         {
             playerOneJoystic.speed = 0;
             playerTwoJoystic.speed = 0;
-            if (IsMobile && !IsSingle)
-            {
-                plTwoWinMobile.SetActive(true);
-            }
-            if (!IsMobile || IsSingle)
-            {
-                plTwoWinPC.SetActive(true);
-            }
+          
+            playerTwoWin = true;
 
             StartCoroutine(WaitToFinish());
         }
@@ -133,6 +119,14 @@ public class GuardTimer : MonoBehaviour
         rbPlTwo.velocity= Vector2.zero;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
+        if (playerOneWin)
+        {
+            plOneWinPC.SetActive(true);
+        }
+        if (playerTwoWin)
+        {
+            plTwoWinPC.SetActive(true);
+        }
     }
     public IEnumerator Timer()
     {

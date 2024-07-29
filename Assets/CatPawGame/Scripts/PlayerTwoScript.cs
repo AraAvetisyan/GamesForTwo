@@ -29,7 +29,7 @@ public class PlayerTwoScript : MonoBehaviour
             Points += 1;
             pointsText.text = Points.ToString();
             stanCounter = 0;
-            if (Points != 3)
+            if (Points != 5)
             {
                 StartCoroutine(_fishSpawner.WaitForSpawn());
             }

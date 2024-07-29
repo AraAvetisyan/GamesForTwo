@@ -16,14 +16,20 @@ public class ChickenCameraTrigger : MonoBehaviour
         {
             if (!triggerOne.EndGame && !triggerTwo.EndGame)
             {
-                camerCameraScripts.Speed = 6;
+                if (!camerCameraScripts.IsEnd)
+                {
+                    camerCameraScripts.Speed = 6;
+                }
             }
         }
         if(!insidePlOne && !insidePlTwo)
         {
             if (!triggerOne.EndGame && !triggerTwo.EndGame)
             {
-                camerCameraScripts.Speed = 4;
+                if (!camerCameraScripts.IsEnd)
+                {
+                    camerCameraScripts.Speed = 4;
+                }
             }
         }
     }

@@ -27,8 +27,9 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private bool isSingle;
     [SerializeField] private bool isMobile;
 
-    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, plOneWinMobile, plTwoWinMobile;
+    [SerializeField] private GameObject plOneWinPC, plTwoWinPC;
     [SerializeField] private GameObject finalPanel;
+    private bool plOneWin, plTwoWin;
     private bool singleCanChoose;
    
     [SerializeField] private Color colorRed, colorBlue;
@@ -105,31 +106,25 @@ public class MathQuizGameManager : MonoBehaviour
                 }
             }
         }
-        if(plOnePoints == 10)
+        if(plOnePoints == 5)
         {
-            if(isMobile && !isSingle)
-            {
-                plOneWinMobile.SetActive(true);
+            
+                //plOneWinMobile.SetActive(true);
+
+                // plOneWinPC.SetActive(true);
+                plOneWin = true;
                 StartCoroutine(WaitToFinish());
-            }
-            else
-            {
-                plOneWinPC.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
+            
         }
-        if(plTwoPoints == 10)
+        if(plTwoPoints == 5)
         {
-            if (isMobile && !isSingle)
-            {
-                plTwoWinMobile.SetActive(true);
+            
+                //plTwoWinMobile.SetActive(true);
+
+                //  plTwoWinPC.SetActive(true);
+                plTwoWin = true;
                 StartCoroutine(WaitToFinish());
-            }
-            else
-            {
-                plTwoWinPC.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
+            
         }
     }
     public IEnumerator Single()
@@ -141,7 +136,7 @@ public class MathQuizGameManager : MonoBehaviour
             SingleChooser();
         }
 
-        if (plOnePoints != 10 && plTwoPoints != 10)
+        if (plOnePoints != 5 && plTwoPoints != 5)
         {
             StartCoroutine(Single());
         }
@@ -173,6 +168,14 @@ public class MathQuizGameManager : MonoBehaviour
         singleCanChoose = false;
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
+        if (plOneWin)
+        {
+            plOneWinPC.SetActive(true);
+        }
+        if (plTwoWin)
+        {
+            plTwoWinPC.SetActive(true);
+        }
     }
     public void TaskCreator()
     {
@@ -181,7 +184,7 @@ public class MathQuizGameManager : MonoBehaviour
         if (partOne != partTwo)
         {
             signInt = Random.Range(0, 2);
-            Debug.Log(signInt);
+           // Debug.Log(signInt);
         }
         if (partOne == partTwo)
         {
@@ -481,7 +484,7 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonThreeAnswerText.color = colorBlue;
 
         canPress = true;
-        if (plOnePoints != 10 && plTwoPoints != 10)
+        if (plOnePoints != 5 && plTwoPoints != 5)
         {
             TaskCreator();           
         }

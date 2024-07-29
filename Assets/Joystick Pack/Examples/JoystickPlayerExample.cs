@@ -51,7 +51,6 @@ public class JoystickPlayerExample : MonoBehaviour
                 float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 
-                Debug.Log("Mobile && single");
             }
             if(playerIndex == 2)
             {
@@ -196,7 +195,6 @@ public class JoystickPlayerExample : MonoBehaviour
     {
         pointInd = UnityEngine.Random.Range(0,singlePoints.Length);
         singlePoints[pointInd].GetComponent<BoxCollider2D>().enabled = true;
-        Debug.Log(singlePoints[pointInd].gameObject.name);
         yield return new WaitForSecondsRealtime(0.0001f);
         
     }
@@ -217,7 +215,7 @@ public class JoystickPlayerExample : MonoBehaviour
                     }
                 }
                 
-                Debug.Log("in path");
+               // Debug.Log("in path");
             }
         }
     }

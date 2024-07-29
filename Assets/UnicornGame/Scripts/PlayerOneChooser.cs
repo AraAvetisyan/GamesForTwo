@@ -152,7 +152,7 @@ public class PlayerOneChooser : MonoBehaviour
         choos = 1;
         if (IsMobile && !IsSingle)
         {
-            Debug.Log("Mobile Head");
+          //  Debug.Log("Mobile Head");
             if (HeadInt < plOneHeadMobile.Length)
             {
                 HeadInt++;
@@ -169,7 +169,7 @@ public class PlayerOneChooser : MonoBehaviour
         }
         if(!IsMobile || IsSingle)
         {
-            Debug.Log("PC Head");
+         //   Debug.Log("PC Head");
             if (HeadInt < plOneHeadPC.Length)
             {
                 HeadInt++;

@@ -61,7 +61,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (GameEnds)
         {
             speed = 0;
-            Debug.Log("GameEnds");
+          //  Debug.Log("GameEnds");
         }
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
@@ -102,7 +102,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             rbPlTwo.freezeRotation = true;
             Vector2 dir = plTwoTransform.right;
             rbPlTwo.velocity = dir * speed * Time.deltaTime;
-            Debug.Log(rbPlTwo.velocity);
+           // Debug.Log(rbPlTwo.velocity);
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
         }
         if (!PlayerOneIsHolding)

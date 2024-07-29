@@ -74,7 +74,7 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
                 float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 
-                Debug.Log("Mobile && single");
+                //Debug.Log("Mobile && single");
             }
             if (playerIndex == 2)
             {

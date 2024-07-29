@@ -17,9 +17,10 @@ public class SummoTriggers : MonoBehaviour
 
     [SerializeField] private Button playerOneButton, playerTwoButton;
 
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+//    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
+    private bool plOneWin, plTwoWin;
     [SerializeField] private BoxCollider2D enemyBox;
 
 
@@ -59,20 +60,21 @@ public class SummoTriggers : MonoBehaviour
                 {
                     if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // mobile multyplay
                     {
-                        playerTwoWinMobile.SetActive(true);
+                    //    playerTwoWinMobile.SetActive(true);
                     }
                     if (!_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle)// pc Singleplay
                     {
-                        playerTwoWinPC.SetActive(true);
+                   //     playerTwoWinPC.SetActive(true);
                     }
                     if (!_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // pc multyplay
                     {
-                        playerTwoWinPC.SetActive(true);
+                   //     playerTwoWinPC.SetActive(true);
                     }
                     if (_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // mobile single
                     {
-                        playerTwoWinPC.SetActive(true);
+                    //    playerTwoWinPC.SetActive(true);
                     }
+                    plTwoWin = true;
                     playerOneButton.interactable = false;
                     playerTwoButton.interactable = false;
                     _summoGameScriptPlOne.GameEnds = true;
@@ -95,20 +97,21 @@ public class SummoTriggers : MonoBehaviour
                 {
                     if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // mobile multyplay
                     {
-                        playerOneWinMobile.SetActive(true);
+                      //  playerOneWinMobile.SetActive(true);
                     }
                     if (!_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // pc Singleplay
                     {
-                        playerOneWinPC.SetActive(true);
+                      //  playerOneWinPC.SetActive(true);
                     }
                     if(!_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle) // pc multyplay
                     {
-                        playerOneWinPC.SetActive(true);
+                      //  playerOneWinPC.SetActive(true);
                     }
                     if(_summoGameScriptPlTwo.IsMobile && _summoGameScriptPlTwo.IsSingle) // mobile single
                     {
-                        playerOneWinPC.SetActive(true);
+                      //  playerOneWinPC.SetActive(true);
                     }
+                    plOneWin = true;
                     playerOneButton.interactable = false;
                     playerTwoButton.interactable = false;
                     _summoGameScriptPlOne.GameEnds = true;
@@ -166,5 +169,13 @@ public class SummoTriggers : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
+        if (plOneWin)
+        {
+            playerOneWinPC.SetActive(true);
+        }
+        if (plTwoWin)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
     }
 }

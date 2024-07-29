@@ -63,7 +63,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
         if (GameEnds)
         {
             speed = 0;
-            Debug.Log("GameEnds");
+        //    Debug.Log("GameEnds");
         }
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
