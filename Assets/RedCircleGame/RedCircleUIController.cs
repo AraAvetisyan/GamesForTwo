@@ -12,6 +12,7 @@ public class RedCircleUIController : MonoBehaviour
     [SerializeField] private GameObject plOneButton, plTwoButton;
     [SerializeField] private GameObject buttonBG;
     public bool IsSingle;
+    private bool canPlay;
     private void Awake()
     {
        
@@ -27,23 +28,37 @@ public class RedCircleUIController : MonoBehaviour
             buttonBG.SetActive(false);
         }
     }
-    private void Start()
+   
+    private void OnEnable()
+    {
+        RedCircleStartScript.RedCircleGameStarts += GameStarts;
+    }
+    private void OnDisable()
+    {
+        RedCircleStartScript.RedCircleGameStarts -= GameStarts;
+    }
+    public void GameStarts(int i)
     {
         if (IsSingle)
         {
             StartCoroutine(Single());
         }
+        canPlay = true;
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
-        {
-            PressedPlayerTwoButton();
-        }
-        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
+        if (canPlay)
         {
 
-            PressedPlayerOneButton();
+            if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+            {
+                PressedPlayerTwoButton();
+            }
+            if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
+            {
+
+                PressedPlayerOneButton();
+            }
         }
     }
     public void PressedRest()

@@ -24,7 +24,16 @@ public class RedCircleTimer : MonoBehaviour
 
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
-    private void Start()
+    
+    private void OnEnable()
+    {
+        RedCircleStartScript.RedCircleGameStarts += GameStarts;
+    }
+    private void OnDisable()
+    {
+        RedCircleStartScript.RedCircleGameStarts -= GameStarts;
+    }
+    public void GameStarts(int i)
     {
         StartCoroutine(Timer());
     }

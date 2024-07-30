@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,25 +6,26 @@ using UnityEngine;
 public class BowlingLocalisation : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winnerPlOne, winnerPlTwo;
+    [SerializeField] private TextMeshProUGUI instruction;
     private void Start()
     {
         if (Geekplay.Instance.language == "ru")
         {
-            winnerPlOne.text = "œŒ¡≈ƒ»“≈À‹";
-            winnerPlTwo.text = "œŒ¡≈ƒ»“≈À‹";
-           
+            winnerPlOne.text = "–ü–û–ë–ï–î–ò–¢–ï–õ–¨";
+            winnerPlTwo.text = "–ü–û–ë–ï–î–ò–¢–ï–õ–¨";
+            instruction.text = "–°–≤–∞–π–ø";
         }
         else if (Geekplay.Instance.language == "en")
         {
             winnerPlOne.text = "WINNER";
             winnerPlTwo.text = "WINNER";
-           
+            instruction.text = "Swipe";
         }
         else if (Geekplay.Instance.language == "tr")
         {
             winnerPlOne.text = "Kazanan";
             winnerPlTwo.text = "Kazanan";
-          
+            instruction.text = "Kaydƒ±r.";
         }
     }
 }

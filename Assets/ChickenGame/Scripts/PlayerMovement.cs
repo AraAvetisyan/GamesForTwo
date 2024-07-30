@@ -44,6 +44,19 @@ public class PlayerMovement : MonoBehaviour
         {
             plOneButton.interactable = false;
         }
+        Speed = 0;
+    }
+    private void OnEnable()
+    {
+        ChickenGameStartScript.ChickenGameStart += GameStart;
+    }
+    private void OnDisable()
+    {
+        ChickenGameStartScript.ChickenGameStart -= GameStart;
+    }
+    public void GameStart(int i)
+    {
+        Speed = 5;
     }
     private void Update()
     {

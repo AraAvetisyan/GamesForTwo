@@ -16,6 +16,7 @@ public class JoystickPlayerExample : MonoBehaviour
     [SerializeField] private Transform[] singlePoints;
     private int pointInd;
     private Transform targetTransform;
+    private bool canSinglStart;
     private void Start()
     {
         if (!_guardTimer.IsMobile)
@@ -27,7 +28,23 @@ public class JoystickPlayerExample : MonoBehaviour
         if (_guardTimer.IsSingle)
         {
             joysticplTwo.SetActive(false);
-            if(playerIndex == 2)
+           
+        }       
+    }
+    private void OnEnable()
+    {
+        GuardGameStartScript.StartGuardGame += StartGame;
+    }
+    private void OnDisable()
+    {
+        GuardGameStartScript.StartGuardGame -= StartGame;
+    }
+    public void StartGame(int j)
+    {
+        if (_guardTimer.IsSingle)
+        {
+            joysticplTwo.SetActive(false);
+            if (playerIndex == 2)
             {
                 for (int i = 0; i < singlePoints.Length; i++)
                 {
@@ -39,7 +56,7 @@ public class JoystickPlayerExample : MonoBehaviour
                 }
             }
         }
-       
+        canSinglStart = true;
     }
     public void FixedUpdate()
     {
@@ -52,15 +69,18 @@ public class JoystickPlayerExample : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 
             }
-            if(playerIndex == 2)
+            if (playerIndex == 2)
             {
-                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
-                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-               
-                if (moveDirection != Vector2.zero)
+                if (canSinglStart)
                 {
-                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
+                    transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+                    if (moveDirection != Vector2.zero)
+                    {
+                        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    }
                 }
             }
         } // end
@@ -177,13 +197,16 @@ public class JoystickPlayerExample : MonoBehaviour
             }
             if (playerIndex == 2)
             {
-                Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
-                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-                
-                if (moveDirection != Vector2.zero)
+                if (canSinglStart)
                 {
-                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
+                    transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+                    if (moveDirection != Vector2.zero)
+                    {
+                        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                    }
                 }
             }
         }//end

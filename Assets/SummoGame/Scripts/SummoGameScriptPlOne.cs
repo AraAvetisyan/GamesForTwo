@@ -27,6 +27,7 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
     public GameObject PlOneIdle, PlOneRunning;
     [SerializeField] private GameObject buttonBackground;
+    private bool canPlay;
     //public bool Fall;
 
     private void Awake()
@@ -44,63 +45,71 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
             buttonOneBg.color = color;
 
             buttonOne.color = color;
-            if (!IsSingle)
-            {
-                
-               
-            }
+          
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-
+        SummoGameStartScript.SummoGameStarts += GameStart;
+    }
+    private void OnDisable()
+    {
+        SummoGameStartScript.SummoGameStarts -= GameStart;
+    }
+    public void GameStart(int i)
+    {
+        canPlay = true;
     }
 
     private void Update()
     {
-        if (GameEnds)
+        if (canPlay)
         {
-            speed = 0;
-          //  Debug.Log("GameEnds");
+
+
+            if (GameEnds)
+            {
+                speed = 0;
+                //  Debug.Log("GameEnds");
+            }
+
+
+            if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle && !GameEnds)
+            {
+                PlayerOneIsHolding = true;
+            }
+
+            if (!IsMobile && Input.GetKeyUp(KeyCode.M) && !IsSingle)
+            {
+                PlayerOneIsHolding = false;
+                _rotatePlayers.PlayerOneRotationSpeed = 300f;
+            }
+
+
+            if (PlayerOneIsHolding)
+            {
+                PlOneIdle.SetActive(false);
+                PlOneRunning.SetActive(true);
+
+                rbPlOne.freezeRotation = true;
+                Vector2 dir = plOneTransform.right;
+                rbPlOne.velocity = -dir * speed * Time.deltaTime;
+                _rotatePlayers.PlayerOneRotationSpeed = 0;
+            }
+
+            if (!PlayerOneIsHolding)
+            {
+                PlOneIdle.SetActive(true);
+                PlOneRunning.SetActive(false);
+                // Debug.Log("!PlayerOneIsHolding");
+                rbPlOne.velocity = Vector2.zero;
+            }
+
+
+
+
         }
-
-      
-        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle && !GameEnds)
-        {
-            PlayerOneIsHolding = true;
-        }
-       
-        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && !IsSingle)
-        {
-            PlayerOneIsHolding = false;
-            _rotatePlayers.PlayerOneRotationSpeed = 300f;
-        }
-
-
-        if (PlayerOneIsHolding)
-        {
-            PlOneIdle.SetActive(false);
-            PlOneRunning.SetActive(true);
-
-            rbPlOne.freezeRotation = true;
-            Vector2 dir = plOneTransform.right;
-            rbPlOne.velocity = -dir * speed * Time.deltaTime;
-            _rotatePlayers.PlayerOneRotationSpeed = 0;
-        }
-        
-        if (!PlayerOneIsHolding)
-        {
-            PlOneIdle.SetActive(true);
-            PlOneRunning.SetActive(false);
-            // Debug.Log("!PlayerOneIsHolding");
-            rbPlOne.velocity = Vector2.zero;
-        }
-       
-
-
-
-
     }
     public void OnPointerDown(PointerEventData eventData)
     {

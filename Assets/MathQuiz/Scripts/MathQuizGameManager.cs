@@ -54,6 +54,21 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
+       
+        canPress = true;
+
+       
+    }
+    private void OnEnable()
+    {
+        MathQuizStartScript.StartMathQuizGame += StartMathQuiz;
+    }
+    private void OnDisable()
+    {
+        MathQuizStartScript.StartMathQuizGame -= StartMathQuiz;
+    }
+    public void StartMathQuiz(int i)
+    {
         if (isSingle)
         {
             StartCoroutine(Single());
@@ -61,9 +76,6 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonTwo.interactable = false;
             plTwoButtonThree.interactable = false;
         }
-        canPress = true;
-
-       
     }
 
     void Update()

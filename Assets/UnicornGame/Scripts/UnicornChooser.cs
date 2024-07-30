@@ -32,6 +32,18 @@ public class UnicornChooser : MonoBehaviour
     private bool plOneWin, plTwoWin, draw;
     void Start()
     {
+       
+    }
+    private void OnEnable()
+    {
+        UnicornStartScript.UnicornGameStart += UnicornGameStart;
+    }
+    private void OnDisable()
+    {
+        UnicornStartScript.UnicornGameStart -= UnicornGameStart;
+    }
+    public void UnicornGameStart(int i)
+    {
         seconds = 30;
         headInt = Random.Range(0, 4);
         hairInt = Random.Range(0, 4);
@@ -68,7 +80,6 @@ public class UnicornChooser : MonoBehaviour
         }
         StartCoroutine(WaitToClose());
     }
-
     private void Update()
     {
         if(_playerOneChooser.PlayerOneEnds && _playerTwoChooser.PlayerTwoEnds && counter == 0)

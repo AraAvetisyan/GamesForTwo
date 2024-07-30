@@ -19,7 +19,6 @@ public class PinScriptPlOne : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(_dragItemsOne.HidePin && !gameEnds)

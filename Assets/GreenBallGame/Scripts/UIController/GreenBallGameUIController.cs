@@ -42,13 +42,23 @@ public class GreenBallGameUIController : MonoBehaviour
             buttonBG.SetActive(false);
         }
     }
-    private void Start()
+   
+    private void OnEnable()
+    {
+
+        GreenBallStartScript.StartGreenBallGame += StartGame;
+    }
+    private void OnDisable()
+    {
+
+        GreenBallStartScript.StartGreenBallGame -= StartGame;
+    }
+    public void StartGame(int i)
     {
         if (Single)
         {
             StartCoroutine(SinglePlayer());
         }
-       
     }
     private void Update()
     {

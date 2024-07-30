@@ -22,9 +22,10 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public int SingleCounter;
     [SerializeField] private Image buttonOneBg, buttonTwoBg;
     [SerializeField] private Image buttonOne, buttonTwo;
-    public bool CantHold;
+    public bool CantHold = true;
 
     public GameObject blockerOne, blockerTwo;
+    private bool canPlay;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -47,59 +48,76 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     private void Start()
     {
-       
+        RacingLightStartScript.RacingLightStarts += RacingLightGameStart;
+    }
+    private void OnEnable()
+    {
+        RacingLightStartScript.RacingLightStarts -= RacingLightGameStart;
+    }
+    private void OnDisable()
+    {
+        
+    }
+    public void RacingLightGameStart(int i)
+    {
+        canPlay = true;
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle)
+        if (canPlay)
         {
-            if (!CantHold)
+
+
+            if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle)
             {
-                PlayerTwoIsHolding = true;
-            }
-        }
-        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1  && !IsSingle)
-        {
-            if (!CantHold)
-            {
-                PlayerOneIsHolding = true;
-            }
-        }
-        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
-        {
-            if (PlayerTwoIsHolding)
-            {
-                PlayerTwoIsHolding = false;
-                if (_fireLightsScript.CanHoldOff)
+                if (!CantHold)
                 {
-                    _racingLightGameManager.counter++;
-                    PlayerTwoButton.interactable = false;
-                    PlayerTwoOnTime = true;
-                }
-                else
-                {
-                    _racingLightGameManager.counter++;
-                    PlayerTwoSoon = true;
-                    PlayerTwoButton.interactable = false;
+                    PlayerTwoIsHolding = true;
                 }
             }
-        }
-        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !IsSingle)
-        {
-            if (PlayerOneIsHolding)
+            if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1 && !IsSingle)
             {
-                PlayerOneIsHolding = false;
-                if (_fireLightsScript.CanHoldOff)
+                if (!CantHold)
                 {
-                    _racingLightGameManager.counter++;
-                    PlayerOneButton.interactable = false;
-                    PlayerOneOnTime = true;
+                    PlayerOneIsHolding = true;
                 }
-                else
+            }
+            if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
+            {
+                if (PlayerTwoIsHolding)
                 {
-                    _racingLightGameManager.counter++;
-                    PlayerOneSoon = true;
-                    PlayerOneButton.interactable = false;
+                    PlayerTwoIsHolding = false;
+                    if (_fireLightsScript.CanHoldOff)
+                    {
+                        _racingLightGameManager.counter++;
+                        PlayerTwoButton.interactable = false;
+                        PlayerTwoOnTime = true;
+                    }
+                    else
+                    {
+                        _racingLightGameManager.counter++;
+                        PlayerTwoSoon = true;
+                        PlayerTwoButton.interactable = false;
+                    }
+                }
+            }
+            if (!IsMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !IsSingle)
+            {
+                if (PlayerOneIsHolding)
+                {
+                    PlayerOneIsHolding = false;
+                    if (_fireLightsScript.CanHoldOff)
+                    {
+                        _racingLightGameManager.counter++;
+                        PlayerOneButton.interactable = false;
+                        PlayerOneOnTime = true;
+                    }
+                    else
+                    {
+                        _racingLightGameManager.counter++;
+                        PlayerOneSoon = true;
+                        PlayerOneButton.interactable = false;
+                    }
                 }
             }
         }

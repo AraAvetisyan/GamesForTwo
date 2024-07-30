@@ -16,7 +16,6 @@ public class TimerScript : MonoBehaviour
     [SerializeField] private int index; 
     private void Start()
     {
-        StartCoroutine(Timer());
         if (index == 1)
         {
             if (!_greenBallGameUIController.IsMobile || _greenBallGameUIController.IsSingle)
@@ -30,7 +29,19 @@ public class TimerScript : MonoBehaviour
         }
         
     }
-    private IEnumerator Timer()
+    private void OnEnable()
+    {
+        GreenBallStartScript.StartGreenBallGame += StartGame;
+    }
+    private void OnDisable()
+    {
+        GreenBallStartScript.StartGreenBallGame -= StartGame;
+    }
+    public void StartGame(int i)
+    {
+        StartCoroutine(Timer());
+    }
+    public IEnumerator Timer()
     {
         yield return new WaitForSecondsRealtime(1);
         if (seconds < 0)

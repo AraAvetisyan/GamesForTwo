@@ -5,9 +5,18 @@ using UnityEngine;
 public class PriangaCameraMovement : MonoBehaviour
 {
     public float Speed;
-    void Start()
+
+    private void OnEnable()
     {
-        
+        PiranhaGameStartScript.StartPiranhaGame += PiranhaGameStarts;   
+    }
+    private void OnDisable()
+    {
+        PiranhaGameStartScript.StartPiranhaGame -= PiranhaGameStarts;
+    }
+    public void PiranhaGameStarts(int i)
+    {
+        Speed = 1.25f;
     }
     void Update()
     {

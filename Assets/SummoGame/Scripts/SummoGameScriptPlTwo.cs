@@ -29,7 +29,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
     public GameObject PlTwoIdle, PlTwoRunning;
     [SerializeField] private GameObject buttonBackground;
     //public bool Fall;
-
+    private bool canPlay;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -53,56 +53,66 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-
+        SummoGameStartScript.SummoGameStarts += GameStart;
+    }
+    private void OnDisable()
+    {
+        SummoGameStartScript.SummoGameStarts -= GameStart;
+    }
+    public void GameStart(int i)
+    {
+        canPlay = true;
     }
 
     private void Update()
     {
-        if (GameEnds)
+        if (canPlay)
         {
-            speed = 0;
-        //    Debug.Log("GameEnds");
+            if (GameEnds)
+            {
+                speed = 0;
+                //    Debug.Log("GameEnds");
+            }
+
+            if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
+            {
+                PlayerTwoIsHolding = true;
+            }
+
+            if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
+            {
+                PlayerTwoIsHolding = false;
+                _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+            }
+
+
+
+
+            if (PlayerTwoIsHolding)
+            {
+                PlTwoIdle.SetActive(false);
+                PlTwoRunning.SetActive(true);
+
+                rbPlTwo.freezeRotation = true;
+                Vector2 dir = plTwoTransform.right;
+                rbPlTwo.velocity = dir * speed * Time.deltaTime;
+                _rotatePlayers.PlayerTwoRotationSpeed = 0;
+            }
+
+            if (!PlayerTwoIsHolding)
+            {
+                PlTwoIdle.SetActive(true);
+                PlTwoRunning.SetActive(false);
+
+                //   Debug.Log("!PlayerTwoIsHolding");
+                rbPlTwo.velocity = Vector2.zero;
+            }
+
+
+
         }
-
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
-        {
-            PlayerTwoIsHolding = true;
-        }
-       
-        if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
-        {
-            PlayerTwoIsHolding = false;
-            _rotatePlayers.PlayerTwoRotationSpeed = 300f;
-        }
-       
-
-
-       
-        if (PlayerTwoIsHolding)
-        {
-            PlTwoIdle.SetActive(false);
-            PlTwoRunning.SetActive(true);
-
-            rbPlTwo.freezeRotation = true;
-            Vector2 dir = plTwoTransform.right;
-            rbPlTwo.velocity = dir * speed * Time.deltaTime;
-            _rotatePlayers.PlayerTwoRotationSpeed = 0;
-        }
-      
-        if (!PlayerTwoIsHolding)
-        {
-            PlTwoIdle.SetActive(true);
-            PlTwoRunning.SetActive(false);
-
-            //   Debug.Log("!PlayerTwoIsHolding");
-            rbPlTwo.velocity = Vector2.zero;
-        }
-
-
-
-
     }
     public void OnPointerDown(PointerEventData eventData)
     {

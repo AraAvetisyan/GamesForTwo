@@ -12,13 +12,13 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerOneTimer, playerTwoTimer;
     [SerializeField] private TextMeshProUGUI targetPlOne, targetPlTwo;
     [SerializeField] private TextMeshProUGUI diferencePlOne, diferencePlTwo;
-    
-    
+
+
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private bool playerOneStop, playerTwoStop;
     [SerializeField] private float playerOneTime, playerTwoTime;
     [SerializeField] private float timer;
-   // [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    // [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     private bool plOneWin, plTwoWin;
     private int Counter;
@@ -49,7 +49,7 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private GameObject buttonBG;
     private float diferenceOne, diferenceTwo;
     [SerializeField] private GameObject timerObject;
-    
+
     private void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -62,40 +62,38 @@ public class TimerGameScript : MonoBehaviour
             buttonTwo.SetActive(false);
             buttonBG.SetActive(false);
             isMobile = false;
-            //if (!isSingle)
-            //{
-            //    buttonOne.SetActive(false);
-            //    buttonTwo.SetActive(false);
-            //    buttonBG.SetActive(false);
-            //}
+
         }
         if (isSingle)
         {
             playerOneButton.interactable = false;
         }
-        //if (!isMobile)
-        //{
-        //    playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //    targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //    diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
-
-        //}
 
         if (isMobile && !isSingle)
         {
-         //   Debug.Log("Mobile u erkusov");
-            //                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
             playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 180);
             targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
             diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
 
         }
-        if(isSingle || !isMobile)
+        if (isSingle || !isMobile)
         {
             playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
             targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
             diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+
+    }
+    private void OnEnable()
+    {
+        TimerGameStartScript.TimerGameStart += GameStarts;
+    }
+    private void OnDisable()
+    {
+        TimerGameStartScript.TimerGameStart -= GameStarts;
+    }
+    public void GameStarts(int i)
+    {
 
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
