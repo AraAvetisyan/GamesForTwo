@@ -23,7 +23,7 @@ public class RacingLightDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular kırmızı ışık yanarken düğmelerini tutmalıdır. Işık yeşile döndüğünde düğmeyi bırakmaları gerekir. Düğmeyi ilk bırakan oyuncu bir puan alır. 3 puan alan oyuncu kazanır.";
+            discription.text = "Oyuncular kırmızı ışık yanarken dügmelerini tutmalıdır. Işık yeşile döndügünde dügmeyi bırakmaları gerekir. Dügmeyi ilk bırakan oyuncu bir puan alır. 3 puan alan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

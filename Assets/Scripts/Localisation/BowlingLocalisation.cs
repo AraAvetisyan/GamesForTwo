@@ -25,7 +25,7 @@ public class BowlingLocalisation : MonoBehaviour
         {
             winnerPlOne.text = "Kazanan";
             winnerPlTwo.text = "Kazanan";
-            instruction.text = "Kaydır.";
+            instruction.text = "Kaydır";
         }
     }
 }

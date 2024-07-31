@@ -24,7 +24,7 @@ public class UnicornDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular ilk tek boynuzlu atı ezberlemeli ve zamanlayıcı sona ermeden önce toplamalıdır. Her doğru cevap için beş puan verilir. En çok puana sahip olan oyuncu kazanır.";
+            discription.text = "Oyuncular ilk tek boynuzlu atı ezberlemeli ve zamanlayıcı sona ermeden önce toplamalıdır. Her dogru cevap için beş puan verilir. En çok puana sahip olan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

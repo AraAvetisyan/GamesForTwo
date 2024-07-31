@@ -117,7 +117,7 @@ public class GuardTimer : MonoBehaviour
         rbPlTwo.isKinematic = true;
         rbPlOne.velocity= Vector2.zero;
         rbPlTwo.velocity= Vector2.zero;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (playerOneWin)
         {

@@ -19,7 +19,6 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private bool playerOneStop, playerTwoStop;
     [SerializeField] private float playerOneTime, playerTwoTime;
     [SerializeField] private float timer;
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     private int Counter;
     private float timerForGame;
@@ -30,8 +29,6 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private Button playerOneButton, playerTwoButton;
 
     private bool gameEnds;
-    //[SerializeField] private GameObject timerClosePlOne1, timerClosePlOne2, timerClosePlOne3, timerClosePlOne4, timerClosePlOne5;
-    //[SerializeField] private GameObject timerClosePlTwo1, timerClosePlTwo2, timerClosePlTwo3, timerClosePlTwo4, timerClosePlTwo5;
 
     [SerializeField] private GameObject playerTwoCloserOne, playerTwoCloserTwo;
     [SerializeField] private Transform playerTwoCloserOneGoal, playerTwoCloserTwoGoal;
@@ -62,29 +59,14 @@ public class TimerGameScript : MonoBehaviour
             buttonTwo.SetActive(false);
             buttonBG.SetActive(false);
             isMobile = false;
-            //if (!isSingle)
-            //{
-            //    buttonOne.SetActive(false);
-            //    buttonTwo.SetActive(false);
-            //    buttonBG.SetActive(false);
-            //}
         }
         if (isSingle)
         {
             playerOneButton.interactable = false;
         }
-        //if (!isMobile)
-        //{
-        //    playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //    targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //    diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
-
-        //}
 
         if (isMobile && !isSingle)
         {
-            Debug.Log("Mobile u erkusov");
-            //                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
             playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 180);
             targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
             diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -108,8 +90,8 @@ public class TimerGameScript : MonoBehaviour
         }
         if (Geekplay.Instance.language == "ru")
         {
-            targetPlOne.text = "Öåëåâîå âðåìÿ " + timerForGame.ToString();
-            targetPlTwo.text = "Öåëåâîå âðåìÿ " + timerForGame.ToString();
+            targetPlOne.text = "ЦЕЛЕВОЕ ВРЕМЯ " + timerForGame.ToString();
+            targetPlTwo.text = "ЦЕЛЕВОЕ ВРЕМЯ " + timerForGame.ToString();
         }
         if (Geekplay.Instance.language == "en")
         {
@@ -209,16 +191,6 @@ public class TimerGameScript : MonoBehaviour
     public void EndGame()
     {
         gameEnds = true;
-        //timerClosePlOne1.SetActive(false);
-        //timerClosePlOne2.SetActive(false);
-        //timerClosePlTwo1.SetActive(false);
-        //timerClosePlTwo2.SetActive(false);
-        //timerClosePlOne3.SetActive(false);
-        //timerClosePlOne4.SetActive(false);
-        //timerClosePlTwo3.SetActive(false);
-        //timerClosePlTwo4.SetActive(false);
-        //timerClosePlOne5.SetActive(false);
-        //timerClosePlTwo5.SetActive(false);
 
         if (playerOneTime < timerForGame)
         {
@@ -239,31 +211,8 @@ public class TimerGameScript : MonoBehaviour
         }
 
 
-        if (compareForOne < compareForTwo)
-        {
-            if (isMobile && !isSingle)
-            {
-                playerOneWinMobile.SetActive(true);
-            }
-            if (!isMobile || isSingle)
-            {
-                playerOneWinPC.SetActive(true);
-            }
-            StartCoroutine(WaitEnd());
 
-        }
-        else if (compareForTwo < compareForOne)
-        {
-            if (isMobile && !isSingle)
-            {
-                playerTwoWinMobile.SetActive(true);
-            }
-            if (!isMobile || isSingle)
-            {
-                playerTwoWinPC.SetActive(true);
-            }
-            StartCoroutine(WaitEnd());
-        }
+        StartCoroutine(WaitEnd());
 
     }
     public IEnumerator WaitEnd()
@@ -275,8 +224,8 @@ public class TimerGameScript : MonoBehaviour
         }
         if (Geekplay.Instance.language == "ru")
         {
-            diferencePlOne.text = "ÐÀÇÍÈÖÀ " + compareForOne.ToString("F2");
-            diferencePlTwo.text = "ÐÀÇÍÈÖÀ " + compareForTwo.ToString("F2");
+            diferencePlOne.text = "РАЗНИЦА " + compareForOne.ToString("F2");
+            diferencePlTwo.text = "РАЗНИЦА " + compareForTwo.ToString("F2");
         }
         if (Geekplay.Instance.language == "tr")
         {
@@ -285,8 +234,16 @@ public class TimerGameScript : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         endPanel.SetActive(true);
+        if (compareForOne < compareForTwo)
+        {
+            playerOneWinPC.SetActive(true);
+        }
+        else if (compareForTwo < compareForOne)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
     }
     private IEnumerator UpdatePlOneTimer()
     {

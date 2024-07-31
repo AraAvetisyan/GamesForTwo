@@ -256,7 +256,7 @@ public class RacingLightGameManager : MonoBehaviour
 
         _playerOneRacingButtonsHold.CantHold = true;
         _playerTwoRacingButtonsHold.CantHold = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)
         {

@@ -17,6 +17,7 @@ public class FootballBallTriggers : MonoBehaviour
     [SerializeField] private GameObject gollTimerGameobject;
     [SerializeField] private TextMeshProUGUI gollTimer;
     [SerializeField] private CircleCollider2D circleCollider;
+    [SerializeField] private BoxCollider2D plOneCollider;
     private void Start()
     {
         if(_playerTwoRun.IsMobile && !_playerTwoRun.IsSingle)
@@ -61,6 +62,7 @@ public class FootballBallTriggers : MonoBehaviour
     }
     public IEnumerator Timer()
     {
+        plOneCollider.enabled = false;
         _playerOneRun.MustWait = true;
         _playerTwoRun.MustWait = true;
         gollTimerGameobject.SetActive(true);
@@ -76,6 +78,7 @@ public class FootballBallTriggers : MonoBehaviour
         _playerTwoRun.MustWait = false;
         _playerOneRun.Speed = 5;
         _playerTwoRun.Speed = 5;
+        plOneCollider.enabled = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

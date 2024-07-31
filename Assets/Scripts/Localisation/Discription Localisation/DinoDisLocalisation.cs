@@ -23,7 +23,7 @@ public class DinoDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular sırayla dişlerin üzerine tıklar. Dişlerden biri şanslı diş değildir. O dişe basan oyuncu kaybeder.";
+            discription.text = "Oyuncular sırayla dişlerin üzerine tıklar. Dişlerden biri şanslı diş degildir. O dişe basan oyuncu kaybeder.";
             play.text = "Oyun";
 
         }

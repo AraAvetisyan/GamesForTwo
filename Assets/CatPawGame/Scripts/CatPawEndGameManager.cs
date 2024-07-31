@@ -44,7 +44,7 @@ public class CatPawEndGameManager : MonoBehaviour
     }
     public IEnumerator WaitForEnd()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
         {

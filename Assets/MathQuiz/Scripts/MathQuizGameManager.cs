@@ -167,7 +167,7 @@ public class MathQuizGameManager : MonoBehaviour
     {
         canPress = false;
         singleCanChoose = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)
         {
