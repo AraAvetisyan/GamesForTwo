@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,20 +17,14 @@ public class ChickenCameraTrigger : MonoBehaviour
         {
             if (!triggerOne.EndGame && !triggerTwo.EndGame)
             {
-                if (!camerCameraScripts.IsEnd)
-                {
-                    camerCameraScripts.Speed = 6;
-                }
+                camerCameraScripts.Speed = 6;
             }
         }
-        if(!insidePlOne && !insidePlTwo)
+        if (!insidePlOne && !insidePlTwo)
         {
             if (!triggerOne.EndGame && !triggerTwo.EndGame)
             {
-                if (!camerCameraScripts.IsEnd)
-                {
-                    camerCameraScripts.Speed = 4;
-                }
+                camerCameraScripts.Speed = 4;
             }
         }
     }
@@ -46,7 +41,7 @@ public class ChickenCameraTrigger : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "PlayerOne")
+        if (collision.gameObject.tag == "PlayerOne")
         {
             insidePlOne = false;
         }

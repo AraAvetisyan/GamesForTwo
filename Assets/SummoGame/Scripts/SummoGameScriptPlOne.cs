@@ -1,3 +1,4 @@
+п»ї
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,6 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
     public GameObject PlOneIdle, PlOneRunning;
     [SerializeField] private GameObject buttonBackground;
-    private bool canPlay;
     //public bool Fall;
 
     private void Awake()
@@ -41,75 +41,67 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
             IsMobile = false;
             buttonBackground.SetActive(false);
             Color color = buttonOneBg.color;
-            color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+            color.a = 0.0001f; // Г“Г±ГІГ Г­Г®ГўГЁГІГҐ Г¦ГҐГ«Г ГҐГ¬Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ Г Г«ГјГґГ -ГЄГ Г­Г Г«Г  (Г®ГІ 0.0 Г¤Г® 1.0)
             buttonOneBg.color = color;
 
             buttonOne.color = color;
-          
+            if (!IsSingle)
+            {
+
+
+            }
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        SummoGameStartScript.SummoGameStarts += GameStart;
-    }
-    private void OnDisable()
-    {
-        SummoGameStartScript.SummoGameStarts -= GameStart;
-    }
-    public void GameStart(int i)
-    {
-        canPlay = true;
+
     }
 
     private void Update()
     {
-        if (canPlay)
+        if (GameEnds)
         {
-
-
-            if (GameEnds)
-            {
-                speed = 0;
-                //  Debug.Log("GameEnds");
-            }
-
-
-            if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle && !GameEnds)
-            {
-                PlayerOneIsHolding = true;
-            }
-
-            if (!IsMobile && Input.GetKeyUp(KeyCode.M) && !IsSingle)
-            {
-                PlayerOneIsHolding = false;
-                _rotatePlayers.PlayerOneRotationSpeed = 300f;
-            }
-
-
-            if (PlayerOneIsHolding)
-            {
-                PlOneIdle.SetActive(false);
-                PlOneRunning.SetActive(true);
-
-                rbPlOne.freezeRotation = true;
-                Vector2 dir = plOneTransform.right;
-                rbPlOne.velocity = -dir * speed * Time.deltaTime;
-                _rotatePlayers.PlayerOneRotationSpeed = 0;
-            }
-
-            if (!PlayerOneIsHolding)
-            {
-                PlOneIdle.SetActive(true);
-                PlOneRunning.SetActive(false);
-                // Debug.Log("!PlayerOneIsHolding");
-                rbPlOne.velocity = Vector2.zero;
-            }
-
-
-
-
+            speed = 0;
+            Debug.Log("GameEnds");
         }
+
+
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle && !GameEnds)
+        {
+            PlayerOneIsHolding = true;
+        }
+
+        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && !IsSingle)
+        {
+            PlayerOneIsHolding = false;
+            _rotatePlayers.PlayerOneRotationSpeed = 300f;
+        }
+
+
+        if (PlayerOneIsHolding)
+        {
+            PlOneIdle.SetActive(false);
+            PlOneRunning.SetActive(true);
+
+            rbPlOne.freezeRotation = true;
+            Vector2 dir = plOneTransform.right;
+            rbPlOne.velocity = -dir * speed * Time.deltaTime;
+            _rotatePlayers.PlayerOneRotationSpeed = 0;
+        }
+
+        if (!PlayerOneIsHolding)
+        {
+            PlOneIdle.SetActive(true);
+            PlOneRunning.SetActive(false);
+            // Debug.Log("!PlayerOneIsHolding");
+            rbPlOne.velocity = Vector2.zero;
+        }
+
+
+
+
+
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -120,7 +112,7 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
 
         }
-        
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -131,7 +123,7 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
             rbPlOne.freezeRotation = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
-       
+
     }
 
     public IEnumerator Single()

@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             plButtonOne.SetActive(false);
             plButtonTwo.SetActive(false);
             buttonBG.SetActive(false);
-           
+
         }
     }
     private void Start()
@@ -44,19 +45,6 @@ public class PlayerMovement : MonoBehaviour
         {
             plOneButton.interactable = false;
         }
-        Speed = 0;
-    }
-    private void OnEnable()
-    {
-        ChickenGameStartScript.ChickenGameStart += GameStart;
-    }
-    private void OnDisable()
-    {
-        ChickenGameStartScript.ChickenGameStart -= GameStart;
-    }
-    public void GameStart(int i)
-    {
-        Speed = 5;
     }
     private void Update()
     {
@@ -72,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
-               
-                
-                    PressedPlayerTwoButton();
-                
+
+
+                PressedPlayerTwoButton();
+
             }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M))
@@ -94,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerOneButton()
     {
         changeOne = true;
-        if (playerOneGravity == -1 && changeOne) 
+        if (playerOneGravity == -1 && changeOne)
         {
 
             rigidbodyPlayerOne.gravityScale = 1;
@@ -116,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerTwoButton()
     {
         changeTwo = true;
+        Debug.Log(playerTwoGravity);
         if (playerTwoGravity == -1 && changeTwo)
         {
             changeTwo = false;

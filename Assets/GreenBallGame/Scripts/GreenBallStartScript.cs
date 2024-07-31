@@ -2,14 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GreenBallStartScript : MonoBehaviour
 {
-    public static Action<int> StartGreenBallGame;
-    [SerializeField] private GameObject startPanel; 
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        StartGreenBallGame?.Invoke(1);
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("GreenBallSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("GreenBall");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }

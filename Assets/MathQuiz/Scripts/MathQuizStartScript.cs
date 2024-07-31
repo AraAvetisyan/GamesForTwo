@@ -2,34 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.AudioSettings;
 
 public class MathQuizStartScript : MonoBehaviour
 {
-    public static Action<int> StartMathQuizGame;
-    [SerializeField] private Button plOneButtonOne, plOneBuutonTwo, plOneBuutonThree;
-    [SerializeField] private Button plTwoButtonOne, plTwoBuutonTwo, plTwoBuutonThree;
-    [SerializeField] private GameObject startPanel;
     [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        StartMathQuizGame?.Invoke(1);
-        if (!isSingle)
-        {
-            plOneButtonOne.interactable = true;
-            plOneBuutonTwo.interactable = true;
-            plOneBuutonThree.interactable = true;
-            plTwoButtonOne.interactable = true;
-            plTwoBuutonTwo.interactable = true;
-            plTwoBuutonThree.interactable = true;
-        }
         if (isSingle)
         {
-            plOneButtonOne.interactable = true;
-            plOneBuutonTwo.interactable = true;
-            plOneBuutonThree.interactable = true;
+            SceneManager.LoadScene("MathQuizSingle");
+            Geekplay.Instance.ShowInterstitialAd();
         }
-        startPanel.SetActive(false);
+        else
+        {
+            SceneManager.LoadScene("MathQuiz");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }

@@ -1,3 +1,4 @@
+ï»¿
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,9 +19,8 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private bool playerOneStop, playerTwoStop;
     [SerializeField] private float playerOneTime, playerTwoTime;
     [SerializeField] private float timer;
-    // [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
-    private bool plOneWin, plTwoWin;
     private int Counter;
     private float timerForGame;
     private float compareForOne, compareForTwo;
@@ -62,15 +62,29 @@ public class TimerGameScript : MonoBehaviour
             buttonTwo.SetActive(false);
             buttonBG.SetActive(false);
             isMobile = false;
-
+            //if (!isSingle)
+            //{
+            //    buttonOne.SetActive(false);
+            //    buttonTwo.SetActive(false);
+            //    buttonBG.SetActive(false);
+            //}
         }
         if (isSingle)
         {
             playerOneButton.interactable = false;
         }
+        //if (!isMobile)
+        //{
+        //    playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        //}
 
         if (isMobile && !isSingle)
         {
+            Debug.Log("Mobile u erkusov");
+            //                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
             playerOneTimer.transform.rotation = Quaternion.Euler(0, 0, 180);
             targetPlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
             diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -83,18 +97,6 @@ public class TimerGameScript : MonoBehaviour
             diferencePlOne.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-    }
-    private void OnEnable()
-    {
-        TimerGameStartScript.TimerGameStart += GameStarts;
-    }
-    private void OnDisable()
-    {
-        TimerGameStartScript.TimerGameStart -= GameStarts;
-    }
-    public void GameStarts(int i)
-    {
-
         StartCoroutine(UpdatePlOneTimer());
         StartCoroutine(UpdatePlTwoTimer());
 
@@ -106,8 +108,8 @@ public class TimerGameScript : MonoBehaviour
         }
         if (Geekplay.Instance.language == "ru")
         {
-            targetPlOne.text = "Öåëåâîå âðåìÿ " + timerForGame.ToString();
-            targetPlTwo.text = "Öåëåâîå âðåìÿ " + timerForGame.ToString();
+            targetPlOne.text = "Ã–Ã¥Ã«Ã¥Ã¢Ã®Ã¥ Ã¢Ã°Ã¥Ã¬Ã¿ " + timerForGame.ToString();
+            targetPlTwo.text = "Ã–Ã¥Ã«Ã¥Ã¢Ã®Ã¥ Ã¢Ã°Ã¥Ã¬Ã¿ " + timerForGame.ToString();
         }
         if (Geekplay.Instance.language == "en")
         {
@@ -136,11 +138,11 @@ public class TimerGameScript : MonoBehaviour
         Counter++;
         playerOneStop = true;
         playerOneTime = timer;
-        if(playerOneTime > timerForGame)
+        if (playerOneTime > timerForGame)
         {
             diferenceOne = playerOneTime - timerForGame;
         }
-       
+
     }
     public void PressedPlTwoButton()
     {
@@ -154,7 +156,7 @@ public class TimerGameScript : MonoBehaviour
     }
     private void Update()
     {
-        if(timer >= 1 && !gameEnds && testCounter == 0)
+        if (timer >= 1 && !gameEnds && testCounter == 0)
         {
             if (playerTwoCloserOne.transform.position.y >= playerTwoCloserOneGoal.position.y)
             {
@@ -176,7 +178,7 @@ public class TimerGameScript : MonoBehaviour
             }
 
         }
-      
+
 
         if (Counter == 2)
         {
@@ -196,7 +198,7 @@ public class TimerGameScript : MonoBehaviour
             PressedPlOneButton();
         }
     }
-  
+
     public IEnumerator Single()
     {
         float singleTimer = Random.Range(timerForGame - 2, timerForGame + 1);
@@ -227,42 +229,40 @@ public class TimerGameScript : MonoBehaviour
             compareForOne = playerOneTime - timerForGame;
         }
 
-        if(playerTwoTime < timerForGame)
+        if (playerTwoTime < timerForGame)
         {
             compareForTwo = timerForGame - playerTwoTime;
         }
-        else if(playerTwoTime > timerForGame)
+        else if (playerTwoTime > timerForGame)
         {
-            compareForTwo= playerTwoTime - timerForGame;
+            compareForTwo = playerTwoTime - timerForGame;
         }
 
 
-        if(compareForOne < compareForTwo) 
+        if (compareForOne < compareForTwo)
         {
             if (isMobile && !isSingle)
             {
-                //playerOneWinMobile.SetActive(true);
-            }
-            if(!isMobile || isSingle)
-            {
-                //playerOneWinPC.SetActive(true);
-            }
-            plOneWin = true;
-            StartCoroutine(WaitEnd());
-            
-        }
-        else if(compareForTwo < compareForOne)
-        {
-            if (isMobile && !isSingle)
-            {
-               // playerTwoWinMobile.SetActive(true);
+                playerOneWinMobile.SetActive(true);
             }
             if (!isMobile || isSingle)
             {
-               // playerTwoWinPC.SetActive(true);
+                playerOneWinPC.SetActive(true);
             }
-            plTwoWin = true;
-            StartCoroutine (WaitEnd());
+            StartCoroutine(WaitEnd());
+
+        }
+        else if (compareForTwo < compareForOne)
+        {
+            if (isMobile && !isSingle)
+            {
+                playerTwoWinMobile.SetActive(true);
+            }
+            if (!isMobile || isSingle)
+            {
+                playerTwoWinPC.SetActive(true);
+            }
+            StartCoroutine(WaitEnd());
         }
 
     }
@@ -275,8 +275,8 @@ public class TimerGameScript : MonoBehaviour
         }
         if (Geekplay.Instance.language == "ru")
         {
-            diferencePlOne.text = "ÐÀÇÍÈÖÀ " + compareForOne.ToString("F2");
-            diferencePlTwo.text = "ÐÀÇÍÈÖÀ " + compareForTwo.ToString("F2");
+            diferencePlOne.text = "ÃÃ€Ã‡ÃÃˆÃ–Ã€ " + compareForOne.ToString("F2");
+            diferencePlTwo.text = "ÃÃ€Ã‡ÃÃˆÃ–Ã€ " + compareForTwo.ToString("F2");
         }
         if (Geekplay.Instance.language == "tr")
         {
@@ -287,28 +287,20 @@ public class TimerGameScript : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         endPanel.SetActive(true);
-        if (plOneWin)
-        {
-            playerOneWinPC.SetActive(true);
-        }
-        if(plTwoWin)
-        {
-            playerTwoWinPC.SetActive(true);
-        }
     }
     private IEnumerator UpdatePlOneTimer()
     {
-        while (!playerOneStop) 
+        while (!playerOneStop)
         {
-            timer += 0.01f; 
-            UpdatePlOneTimerText(); 
-            yield return new WaitForSeconds(0.01f); 
+            timer += 0.01f;
+            UpdatePlOneTimerText();
+            yield return new WaitForSeconds(0.01f);
         }
 
     }
     private void UpdatePlOneTimerText()
     {
-        
+
         playerOneTimer.text = timer.ToString("F2");
     }
 
@@ -324,7 +316,7 @@ public class TimerGameScript : MonoBehaviour
     }
     private void UpdatePlTwoTimerText()
     {
-       
+
         playerTwoTimer.text = timer.ToString("F2");
     }
 

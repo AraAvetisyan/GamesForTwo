@@ -1,4 +1,5 @@
 
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,10 +23,9 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public int SingleCounter;
     [SerializeField] private Image buttonOneBg, buttonTwoBg;
     [SerializeField] private Image buttonOne, buttonTwo;
-    public bool CantHold = true;
+    public bool CantHold;
 
     public GameObject blockerOne, blockerTwo;
-    private bool canPlay;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -35,89 +35,82 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
         else
         {
             IsMobile = false;
-            if (!IsSingle)
-            {
-                Color color = buttonOneBg.color;
-                color.a = 0.0001f;
-                buttonOneBg.color = color;
-                buttonTwoBg.color = color;
-                buttonOne.color = color;
-                buttonTwo.color = color;
-            }
+
+            Color color = buttonOneBg.color;
+            color.a = 0.0001f;
+            buttonOneBg.color = color;
+            buttonTwoBg.color = color;
+            buttonOne.color = color;
+            buttonTwo.color = color;
+
         }
     }
     private void Start()
     {
-        RacingLightStartScript.RacingLightStarts += RacingLightGameStart;
-    }
-    private void OnEnable()
-    {
-        RacingLightStartScript.RacingLightStarts -= RacingLightGameStart;
-    }
-    private void OnDisable()
-    {
-        
-    }
-    public void RacingLightGameStart(int i)
-    {
-        canPlay = true;
+
     }
     private void Update()
     {
-        if (canPlay)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2) // karmir pl pc 77
         {
+            if (!CantHold)
+            {
+                PlayerTwoIsHolding = true;
+                if (IsSingle) // karmir pl pc ete menak a 88
+                {
+                    if (SingleCounter == 0)
+                    {
+                        Debug.Log("Mtav"); 
+                        _racingButtonOneHold.PlayerOneIsHolding = true;
+                        SingleCounter++;
 
-
-            if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle)
+                        StartCoroutine(Single());
+                    }
+                } // 88
+            }
+        }// 77
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1 )
+        {
+            if (!CantHold)
             {
-                if (!CantHold)
+                PlayerOneIsHolding = true;
+            }
+        }
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
+        {
+            if (PlayerTwoIsHolding)
+            {
+                PlayerTwoIsHolding = false;
+                if (_fireLightsScript.CanHoldOff)
                 {
-                    PlayerTwoIsHolding = true;
+                    _racingLightGameManager.counter++;
+                    PlayerTwoButton.interactable = false;
+                    PlayerTwoOnTime = true;
+                }
+                else
+                {
+                    _racingLightGameManager.counter++;
+                    PlayerTwoSoon = true;
+                    PlayerTwoButton.interactable = false;
                 }
             }
-            if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1 && !IsSingle)
+        }
+        if (!IsMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !IsSingle)
+        {
+            if (PlayerOneIsHolding)
             {
-                if (!CantHold)
+                PlayerOneIsHolding = false;
+                if (_fireLightsScript.CanHoldOff)
                 {
-                    PlayerOneIsHolding = true;
+                    _racingLightGameManager.counter++;
+                    PlayerOneButton.interactable = false;
+                    PlayerOneOnTime = true;
                 }
-            }
-            if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
-            {
-                if (PlayerTwoIsHolding)
+                else
                 {
-                    PlayerTwoIsHolding = false;
-                    if (_fireLightsScript.CanHoldOff)
-                    {
-                        _racingLightGameManager.counter++;
-                        PlayerTwoButton.interactable = false;
-                        PlayerTwoOnTime = true;
-                    }
-                    else
-                    {
-                        _racingLightGameManager.counter++;
-                        PlayerTwoSoon = true;
-                        PlayerTwoButton.interactable = false;
-                    }
-                }
-            }
-            if (!IsMobile && Input.GetKeyUp(KeyCode.M) && playerIndex == 1 && !IsSingle)
-            {
-                if (PlayerOneIsHolding)
-                {
-                    PlayerOneIsHolding = false;
-                    if (_fireLightsScript.CanHoldOff)
-                    {
-                        _racingLightGameManager.counter++;
-                        PlayerOneButton.interactable = false;
-                        PlayerOneOnTime = true;
-                    }
-                    else
-                    {
-                        _racingLightGameManager.counter++;
-                        PlayerOneSoon = true;
-                        PlayerOneButton.interactable = false;
-                    }
+                    _racingLightGameManager.counter++;
+                    PlayerOneSoon = true;
+                    PlayerOneButton.interactable = false;
                 }
             }
         }
@@ -142,7 +135,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+
         if (playerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
@@ -165,7 +158,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(playerIndex == 1)
+        if (playerIndex == 1)
         {
             blockerOne.SetActive(true);
         }

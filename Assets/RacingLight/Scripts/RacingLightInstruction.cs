@@ -62,15 +62,15 @@ public class RacingLightInstruction : MonoBehaviour
             bluePlayerInstructionObject.SetActive(false);
             if (Geekplay.Instance.language == "ru")
             {
-                redPlayerInstruction.text = "Красная кнопка";
+                redPlayerInstruction.text = "Z";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                redPlayerInstruction.text = "Red button";
+                redPlayerInstruction.text = "Z";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Kırmızı düğmeye";
+                redPlayerInstruction.text = "Z";
             }
         }
         if (!isMobile && !isSingle)

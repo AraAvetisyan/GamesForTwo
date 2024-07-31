@@ -2,16 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SummoGameStartScript : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D bc2D;
-    [SerializeField] private GameObject startPanel;
-    public static Action<int> SummoGameStarts;
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        SummoGameStarts?.Invoke(1);
-        bc2D.enabled = true;
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("SummoGameSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("SummoGame");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }
