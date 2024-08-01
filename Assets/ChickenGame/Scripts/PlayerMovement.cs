@@ -105,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerTwoButton()
     {
         changeTwo = true;
+        Debug.Log(playerTwoGravity);
         if (playerTwoGravity == -1 && changeTwo)
         {
             changeTwo = false;

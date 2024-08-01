@@ -767,7 +767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTransform: {fileID: 1272002675}
   Speed: 4
-  IsEnd: 0
 --- !u!1 &103964609
 GameObject:
   m_ObjectHideFlags: 0

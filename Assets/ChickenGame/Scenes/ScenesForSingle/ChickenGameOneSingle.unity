@@ -916,7 +916,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTransform: {fileID: 1350892153}
   Speed: 4
+<<<<<<< HEAD
   IsEnd: 0
+=======
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
 --- !u!1001 &93032001
 PrefabInstance:
   m_ObjectHideFlags: 0

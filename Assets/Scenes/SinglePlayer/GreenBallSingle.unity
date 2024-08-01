@@ -5873,6 +5873,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -526.4999
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 730421960134129021, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5881,6 +5882,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PresedFinishHome
       objectReference: {fileID: 0}
+=======
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     - target: {fileID: 967854756443074334, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -5889,6 +5892,7 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2116299797284149284, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5913,6 +5917,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GreenBallGameUIController, Assembly-CSharp
       objectReference: {fileID: 0}
+=======
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     - target: {fileID: 2463507480228538336, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -5928,6 +5934,7 @@ PrefabInstance:
     - target: {fileID: 2606978653011044984, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
+<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 3691215531431766052, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5948,6 +5955,8 @@ PrefabInstance:
     - target: {fileID: 4163999439327167340, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PressedRestart
+=======
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
       objectReference: {fileID: 0}
     - target: {fileID: 4302472499280378456, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_Pivot.x

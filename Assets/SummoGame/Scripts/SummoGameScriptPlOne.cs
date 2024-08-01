@@ -41,16 +41,25 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
             IsMobile = false;
             buttonBackground.SetActive(false);
             Color color = buttonOneBg.color;
+<<<<<<< HEAD
             color.a = 0.0001f; 
+=======
+            color.a = 0.0001f; // Óñòàíîâèòå æåëàåìîå çíà÷åíèå àëüôà-êàíàëà (îò 0.0 äî 1.0)
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
             buttonOneBg.color = color;
 
             buttonOne.color = color;
-          
+            if (!IsSingle)
+            {
+
+
+            }
         }
     }
 
     private void Start()
     {
+<<<<<<< HEAD
         if (IsSingle)
         {
             Color color = buttonOneBg.color;
@@ -59,6 +68,9 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
             buttonOne.color = color;
         }
+=======
+
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     }
 
     private void Update()

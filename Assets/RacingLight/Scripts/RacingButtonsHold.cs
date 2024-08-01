@@ -47,6 +47,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     private void Start()
     {
+<<<<<<< HEAD
         if (IsSingle)
         {
             Color color = buttonOneBg.color;
@@ -54,6 +55,9 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
             buttonOneBg.color = color;
             buttonOne.color = color;
         }
+=======
+
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     }
     private void Update()
     {

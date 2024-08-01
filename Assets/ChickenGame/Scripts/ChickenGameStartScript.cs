@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class ChickenGameStartScript : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
+<<<<<<< HEAD
     [SerializeField] private ChickenGameMainMenuScript _chickenGameMainMenuScript;
+=======
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     public void PressedPlay()
     {
         if (isSingle)
         {
+<<<<<<< HEAD
             if (_chickenGameMainMenuScript.Index == 1)
             {
                 SceneManager.LoadScene("ChickenGameOneSingle");
@@ -42,5 +46,13 @@ public class ChickenGameStartScript : MonoBehaviour
         }
 
         Geekplay.Instance.ShowInterstitialAd();
+=======
+            SceneManager.LoadScene("ChickenGameSingle");
+        }
+        else
+        {
+            SceneManager.LoadScene("ChickenGame");
+        }
+>>>>>>> 7a7a933a908c99bb3e8b7bb4f29ca83d2e33b166
     }
 }
