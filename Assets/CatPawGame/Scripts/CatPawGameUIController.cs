@@ -34,12 +34,18 @@ public class CatPawGameUIController : MonoBehaviour
             buttonBG.SetActive(false);
            
         }
+
     }
     private void Start()
     {
         if (IsSingle)
         {
             StartCoroutine(SinglePlayer());
+        }
+        if (IsSingle)
+        {
+
+            playerOneButton.SetActive(false);
         }
         
     }

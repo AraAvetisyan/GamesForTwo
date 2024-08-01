@@ -33,6 +33,7 @@ public class RedCircleUIController : MonoBehaviour
         if (IsSingle)
         {
             StartCoroutine(Single());
+            plOneButton.SetActive(false);
         }
     }
     private void Update()

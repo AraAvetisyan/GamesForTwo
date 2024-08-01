@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class GamesForTwoButtons : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
-    [SerializeField] private GameObject bowlingDis, catPawDis, checkersDis, chickenDis, dinoDis, footballDis, greenBallDis, guardGameDis, mathQuizDis, piranhaDis, racingLightDis, redCircleDis, summoDis, timerDis, unicornDis;
+    [SerializeField] private GameObject bowlingDis, catPawDis, checkersDis, dinoDis, footballDis, greenBallDis, guardGameDis, mathQuizDis, piranhaDis, racingLightDis, redCircleDis, summoDis, timerDis, unicornDis;
 
     public void PressedChickenGameButton()
     {
-        chickenDis.SetActive(true);
+        SceneManager.LoadScene("ChickenGame");
     }
 
     public void PressedGreenBallButton()

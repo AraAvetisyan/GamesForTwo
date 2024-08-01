@@ -103,7 +103,11 @@ public class TimerGameScript : MonoBehaviour
             targetPlOne.text = "Hedef Zaman " + timerForGame.ToString();
             targetPlTwo.text = "Hedef Zaman " + timerForGame.ToString();
         }
+        if (isSingle)
+        {
+            buttonOne.SetActive(false);
 
+        }
         StartCoroutine(CloseTimer());
     }
     public IEnumerator CloseTimer()

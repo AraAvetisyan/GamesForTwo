@@ -2,48 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class ChickenGameMainMenuScript : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
+    [SerializeField] private GameObject disPanel1, disPanel2, disPanel3;
+    public int Index;
     public void PressedChickenGameOne()
     {
-        if (!isSingle)
-        {
-            SceneManager.LoadScene("ChickenGameOne");
-        }
-        else
-        {
-
-            SceneManager.LoadScene("ChickenGameOneSingle");
-        }
-        Geekplay.Instance.ShowInterstitialAd();
+        disPanel1.SetActive(true);
+        Index = 1;
+        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameTwo()
     {
-        if (!isSingle)
-        {
-            SceneManager.LoadScene("ChickenGameTwo");
-        }
-        else
-        {
 
-            SceneManager.LoadScene("ChickenGameTwoSingle");
-        }
-        Geekplay.Instance.ShowInterstitialAd();
+        disPanel2.SetActive(true);
+        Index = 2;
+        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameThree()
     {
-        if (!isSingle)
-        {
-            SceneManager.LoadScene("ChickenGameThree");
-        }
-        else
-        {
-
-            SceneManager.LoadScene("ChickenGameThreeSingle");
-        }
-        Geekplay.Instance.ShowInterstitialAd();
+        disPanel3.SetActive(true);
+        Index = 3;
+        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {

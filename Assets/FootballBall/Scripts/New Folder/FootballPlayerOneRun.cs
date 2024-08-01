@@ -41,7 +41,16 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
            
         }
     }
-
+    private void Start()
+    {
+        if (IsSingle)
+        {
+            Color color = oneBg.color;
+            color.a = 0.0001f;
+            oneBg.color = color;
+            buttonOne.color = color;
+        }
+    }
 
     private void Update()
     {

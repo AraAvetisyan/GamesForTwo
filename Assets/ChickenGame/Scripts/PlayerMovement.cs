@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (isSingle)
         {
             plOneButton.interactable = false;
+            plButtonOne.SetActive(false);
         }
     }
     private void Update()

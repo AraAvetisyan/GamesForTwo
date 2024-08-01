@@ -48,6 +48,7 @@ public class GreenBallGameUIController : MonoBehaviour
         if (Single)
         {
             StartCoroutine(SinglePlayer());
+            buttonOne.SetActive(false);
         }
 
     }
