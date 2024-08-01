@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,7 +32,7 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     private bool plOneWin, plTwoWin;
     private bool singleCanChoose;
-   
+
     [SerializeField] private Color colorRed, colorBlue;
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class MathQuizGameManager : MonoBehaviour
     }
     void Start()
     {
-        if(isMobile && !isSingle)
+        if (isMobile && !isSingle)
         {
             plTwoButtonOne.transform.rotation = Quaternion.Euler(0, 0, 180);
             plTwoButtonTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -54,21 +55,6 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
-       
-        canPress = true;
-
-       
-    }
-    private void OnEnable()
-    {
-        MathQuizStartScript.StartMathQuizGame += StartMathQuiz;
-    }
-    private void OnDisable()
-    {
-        MathQuizStartScript.StartMathQuizGame -= StartMathQuiz;
-    }
-    public void StartMathQuiz(int i)
-    {
         if (isSingle)
         {
             StartCoroutine(Single());
@@ -76,11 +62,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonTwo.interactable = false;
             plTwoButtonThree.interactable = false;
         }
+        canPress = true;
+
+
     }
 
     void Update()
     {
-        if(!isMobile)
+        if (!isMobile)
         {
             if (canPress)
             {
@@ -118,25 +107,25 @@ public class MathQuizGameManager : MonoBehaviour
                 }
             }
         }
-        if(plOnePoints == 5)
+        if (plOnePoints == 5)
         {
-            
-                //plOneWinMobile.SetActive(true);
 
-                // plOneWinPC.SetActive(true);
-                plOneWin = true;
-                StartCoroutine(WaitToFinish());
-            
+            //plOneWinMobile.SetActive(true);
+
+            // plOneWinPC.SetActive(true);
+            plOneWin = true;
+            StartCoroutine(WaitToFinish());
+
         }
-        if(plTwoPoints == 5)
+        if (plTwoPoints == 5)
         {
-            
-                //plTwoWinMobile.SetActive(true);
 
-                //  plTwoWinPC.SetActive(true);
-                plTwoWin = true;
-                StartCoroutine(WaitToFinish());
-            
+            //plTwoWinMobile.SetActive(true);
+
+            //  plTwoWinPC.SetActive(true);
+            plTwoWin = true;
+            StartCoroutine(WaitToFinish());
+
         }
     }
     public IEnumerator Single()
@@ -178,7 +167,7 @@ public class MathQuizGameManager : MonoBehaviour
     {
         canPress = false;
         singleCanChoose = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)
         {
@@ -196,7 +185,7 @@ public class MathQuizGameManager : MonoBehaviour
         if (partOne != partTwo)
         {
             signInt = Random.Range(0, 2);
-           // Debug.Log(signInt);
+            // Debug.Log(signInt);
         }
         if (partOne == partTwo)
         {
@@ -204,55 +193,55 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if (signInt == 0)
         {
-          //  Debug.Log("Gumarum");
+            //  Debug.Log("Gumarum");
             answer = partOne + partTwo;
         }
         if (signInt == 1)
         {
-          //  Debug.Log("Hanum");
+            //  Debug.Log("Hanum");
             answer = partOne - partTwo;
         }
         if (signInt == 2)
         {
-         //   Debug.Log("bazmapatkum");
+            //   Debug.Log("bazmapatkum");
             answer = partTwo * partOne;
         }
         if (signInt == 3 && partOne % partTwo == 0)
         {
-         //   Debug.Log("bajanum");
+            //   Debug.Log("bajanum");
             answer = partOne / partTwo;
         }
         if (signInt == 3 && partOne % partTwo != 0)
         {
-           
+
             answer = partOne + partTwo;
             signInt = 0;
         }
-       
+
 
         int plOneRight = Random.Range(0, 3);
         int plTwoRight = Random.Range(0, 3);
-        
+
 
         int plOneWrongeOne = Random.Range(answer / 2, answer * 2);
         int plOneWrongeTwo = Random.Range(answer / 2, answer * 2);
-        if(plOneWrongeTwo == plOneWrongeOne)
+        if (plOneWrongeTwo == plOneWrongeOne)
         {
             plOneWrongeTwo = Random.Range(plOneWrongeOne * 5, answer * 15);
         }
         int plTwoWrongeOne = plOneWrongeOne;
         int plTwoWrongeTwo = plOneWrongeTwo;
 
-        if(answer == 0)
+        if (answer == 0)
         {
-            plOneWrongeOne = Random.Range(1 , 10);
-            plOneWrongeTwo = Random.Range(11 , 20);
+            plOneWrongeOne = Random.Range(1, 10);
+            plOneWrongeTwo = Random.Range(11, 20);
         }
-        if(answer == plOneWrongeOne)
+        if (answer == plOneWrongeOne)
         {
             plOneWrongeOne = Random.Range(1, 10);
         }
-        if(answer == plOneWrongeTwo)
+        if (answer == plOneWrongeTwo)
         {
             plOneWrongeTwo = Random.Range(11, 20);
         }
@@ -303,7 +292,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonOneAnswerText.text = plTwoWrongeOne.ToString();
             plTwoButtonTwoAnswerText.text = plTwoWrongeTwo.ToString();
         }
-       
+
     }
 
 
@@ -314,7 +303,7 @@ public class MathQuizGameManager : MonoBehaviour
         if (plOneButtonOneAnswer == answer)
         {
             plOnePoints += 1;
-            plOnePointsText.text= plOnePoints.ToString();
+            plOnePointsText.text = plOnePoints.ToString();
             plOneButtonOneImage.color = Color.green;
             plOneButtonOneAnswerText.color = Color.white;
         }
@@ -498,7 +487,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = true;
         if (plOnePoints != 5 && plTwoPoints != 5)
         {
-            TaskCreator();           
+            TaskCreator();
         }
     }
 }

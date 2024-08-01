@@ -5,93 +5,76 @@ using UnityEngine.SceneManagement;
 
 public class GamesForOneButtons : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
     [SerializeField] private bool isSingle;
+    [SerializeField] private GameObject bowlingDis, catPawDis, checkersDis, chickenDis, dinoDis, footballDis, greenBallDis, guardGameDis, mathQuizDis, piranhaDis, racingLightDis, redCircleDis, summoDis, timerDis, unicornDis;
     public void PressedChickenGameButton()
     {
-        SceneManager.LoadScene("ChickenGameSingle");
+        chickenDis.SetActive(true);
     }
 
     public void PressedGreenBallButton()
     {
-        SceneManager.LoadScene("GreenBallSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        greenBallDis.SetActive(true);
     }
 
     public void PressedTimerGameButton()
     {
-        SceneManager.LoadScene("TimerGameSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        timerDis.SetActive(true);
     }
 
     public void PressedRedCircleButton()
     {
-        SceneManager.LoadScene("RedCircleSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        redCircleDis.SetActive(true);
     }
 
     public void PressedDinosaurGameButton()
     {
-        SceneManager.LoadScene("DinosaurGameSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        dinoDis.SetActive(true);
     }
 
     public void PressedCatPawButton()
-    {
-        SceneManager.LoadScene("CatPawSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+    {       
+        catPawDis.SetActive(true);
     }
 
     public void PressedSummoGame()
     {
-        SceneManager.LoadScene("SummoGameSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        summoDis.SetActive(true);
     }
 
     public void PressedRacingLight()
     {
-        SceneManager.LoadScene("RacingLightSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        racingLightDis.SetActive(true);
     }
 
     public void PressedUnicorn()
     {
-        SceneManager.LoadScene("UnicornSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        unicornDis.SetActive(true);
     }
 
     public void PressedFootballBall()
     {
-        SceneManager.LoadScene("FootballBallSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        footballDis.SetActive(true);
     }
     public void PressedGuardGame()
     {
-        SceneManager.LoadScene("GuardGameSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        guardGameDis.SetActive(true);
     }
     public void PressedCheckers()
-    {
-       // Debug.Log("Menak");
+    {        
         PlayerPrefs.SetInt("VsCPU", 1);
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
-        Geekplay.Instance.ShowInterstitialAd();
-
-        canvas.SetActive(false);
+        checkersDis.SetActive(true);
     }
     public void PressedBowling()
-    {
-        SceneManager.LoadScene("BowlingSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+    {      
+        bowlingDis.SetActive(true);
     }
     public void PressedMathQuiz()
     {
-        SceneManager.LoadScene("MathQuizSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        mathQuizDis.SetActive(true);
     }
     public void PressedPiranhaRush()
     {
-        SceneManager.LoadScene("PiranhaRushSingle");
-        Geekplay.Instance.ShowInterstitialAd();
+        piranhaDis.SetActive(true);
     }
 }

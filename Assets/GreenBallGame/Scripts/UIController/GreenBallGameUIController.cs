@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,34 +32,24 @@ public class GreenBallGameUIController : MonoBehaviour
             {
                 buttonOne.SetActive(true);
                 buttonTwo.SetActive(true);
-                
+
             }
         }
         else
         {
-            IsMobile = false; 
+            IsMobile = false;
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
             buttonBG.SetActive(false);
         }
     }
-   
-    private void OnEnable()
-    {
-
-        GreenBallStartScript.StartGreenBallGame += StartGame;
-    }
-    private void OnDisable()
-    {
-
-        GreenBallStartScript.StartGreenBallGame -= StartGame;
-    }
-    public void StartGame(int i)
+    private void Start()
     {
         if (Single)
         {
             StartCoroutine(SinglePlayer());
         }
+
     }
     private void Update()
     {
@@ -122,9 +113,9 @@ public class GreenBallGameUIController : MonoBehaviour
             BlueBallActive = true;
         }
     }
-    public void PressedRedButton() 
+    public void PressedRedButton()
     {
-        if(!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
+        if (!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             float z = Random.Range(0, 360);
             GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
@@ -139,16 +130,16 @@ public class GreenBallGameUIController : MonoBehaviour
     public IEnumerator StopPlayerOne()
     {
         yield return new WaitForSeconds(1);
-      
+
         _rotatePlayers.PlayerOneRotationSpeed = 300;
-        
+
     }
     public IEnumerator StopPlayerTwo()
     {
         yield return new WaitForSeconds(1);
-       
+
         _rotatePlayers.PlayerTwoRotationSpeed = 300;
-        
+
     }
 
     public void PresedFinishHome()

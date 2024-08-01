@@ -124,13 +124,13 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
-
+            playerOneRB.velocity = Vector2.zero;
         }
         if (!PlayerTwoIsHolding)
         {
             redRun.SetActive(false);
             redIdle.SetActive(true);
-
+            playerTwoRB.velocity = Vector2.zero;
         }
       
     }

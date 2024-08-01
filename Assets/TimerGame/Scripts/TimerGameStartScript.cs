@@ -2,15 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerGameStartScript : MonoBehaviour
 {
-    public static Action<int> TimerGameStart;
-    [SerializeField] private GameObject startPanel;
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        TimerGameStart?.Invoke(1);
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("TimerGameSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("TimerGame");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
-
 }

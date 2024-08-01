@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BowlingStartScript : MonoBehaviour
 {
-    [SerializeField] private GameObject startPanel;
+    [SerializeField] private bool isSingle;
     
     public void PressedPlay()
     {
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("BowlingSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("Bowling");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }

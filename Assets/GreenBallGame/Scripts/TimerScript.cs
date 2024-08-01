@@ -1,3 +1,4 @@
+
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -13,9 +14,10 @@ public class TimerScript : MonoBehaviour
     private int allTime = 90;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
-    [SerializeField] private int index; 
+    [SerializeField] private int index;
     private void Start()
     {
+        StartCoroutine(Timer());
         if (index == 1)
         {
             if (!_greenBallGameUIController.IsMobile || _greenBallGameUIController.IsSingle)
@@ -27,21 +29,9 @@ public class TimerScript : MonoBehaviour
                 timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
-        
+
     }
-    private void OnEnable()
-    {
-        GreenBallStartScript.StartGreenBallGame += StartGame;
-    }
-    private void OnDisable()
-    {
-        GreenBallStartScript.StartGreenBallGame -= StartGame;
-    }
-    public void StartGame(int i)
-    {
-        StartCoroutine(Timer());
-    }
-    public IEnumerator Timer()
+    private IEnumerator Timer()
     {
         yield return new WaitForSecondsRealtime(1);
         if (seconds < 0)
@@ -63,12 +53,12 @@ public class TimerScript : MonoBehaviour
         {
             StartCoroutine(Timer());
         }
-        if(seconds == 0 && minutes == 1)
+        if (seconds == 0 && minutes == 1)
         {
             minutes--;
             seconds = 59;
         }
-        if(allTime == 0)
+        if (allTime == 0)
         {
             GameEnds?.Invoke(true);
         }

@@ -167,7 +167,7 @@ public class SummoTriggers : MonoBehaviour
     //}
     public IEnumerator WaitToWin()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)
         {

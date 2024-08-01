@@ -23,7 +23,7 @@ public class GuardGameDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Bekçiden kaçmanız ve paraları toplamanız gerekir. eğer bekçi hırsızı yakalarsa, oyuncular rolleri değiştirir. 5 parayı ilk toplayan kazanır.";
+            discription.text = "Bekçiden kaçmanız ve paraları toplamanız gerekir. eger bekçi hırsızı yakalarsa, oyuncular rolleri degiştirir. 5 parayı ilk toplayan kazanır.";
             play.text = "Oyun";
 
         }

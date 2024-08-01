@@ -74,7 +74,7 @@ public class EndGameScript : MonoBehaviour
         greenBall.GetComponent<Rigidbody2D>().simulated = false;
         blueButton.interactable = false;
         redButton.interactable = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {

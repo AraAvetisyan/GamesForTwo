@@ -56,7 +56,7 @@ public class PiranhaGameManager : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)
         {

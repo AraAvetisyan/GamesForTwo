@@ -23,7 +23,7 @@ public class TimerDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular zamanlayıcıyı başlangıçta belirtilen saniyeye mümkün olduğunca yakın durdurmalıdır. Hedefe en yakın olan oyuncu kazanır.";
+            discription.text = "Oyuncular zamanlayıcıyı başlangıçta belirtilen saniyeye mümkün oldugunca yakın durdurmalıdır. Hedefe en yakın olan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

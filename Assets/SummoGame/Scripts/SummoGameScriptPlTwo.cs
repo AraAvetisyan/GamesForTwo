@@ -1,3 +1,4 @@
+п»ї
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
     [SerializeField] private RotatePlayers _rotatePlayers;
     public int PlayerIndex;
     [SerializeField] private float speed;
-    [SerializeField] private GameObject  PlayerTwo;
+    [SerializeField] private GameObject PlayerTwo;
 
     public bool PlayerTwoIsHolding;
 
@@ -29,7 +30,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
     public GameObject PlTwoIdle, PlTwoRunning;
     [SerializeField] private GameObject buttonBackground;
     //public bool Fall;
-    private bool canPlay;
+
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -41,83 +42,73 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
             IsMobile = false;
             buttonBackground.SetActive(false);
             Color color = buttonTwoBg.color;
-            color.a = 0.0001f; // Установите желаемое значение альфа-канала (от 0.0 до 1.0)
+            color.a = 0.0001f; // Г“Г±ГІГ Г­Г®ГўГЁГІГҐ Г¦ГҐГ«Г ГҐГ¬Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ Г Г«ГјГґГ -ГЄГ Г­Г Г«Г  (Г®ГІ 0.0 Г¤Г® 1.0)
 
             buttonTwoBg.color = color;
 
             buttonTwo.color = color;
             if (!IsSingle)
             {
-                
+
             }
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        SummoGameStartScript.SummoGameStarts += GameStart;
-    }
-    private void OnDisable()
-    {
-        SummoGameStartScript.SummoGameStarts -= GameStart;
-    }
-    public void GameStart(int i)
-    {
-        canPlay = true;
+
     }
 
     private void Update()
     {
-        if (canPlay)
+        if (GameEnds)
         {
-            if (GameEnds)
-            {
-                speed = 0;
-                //    Debug.Log("GameEnds");
-            }
-
-            if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
-            {
-                PlayerTwoIsHolding = true;
-            }
-
-            if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
-            {
-                PlayerTwoIsHolding = false;
-                _rotatePlayers.PlayerTwoRotationSpeed = 300f;
-            }
-
-
-
-
-            if (PlayerTwoIsHolding)
-            {
-                PlTwoIdle.SetActive(false);
-                PlTwoRunning.SetActive(true);
-
-                rbPlTwo.freezeRotation = true;
-                Vector2 dir = plTwoTransform.right;
-                rbPlTwo.velocity = dir * speed * Time.deltaTime;
-                _rotatePlayers.PlayerTwoRotationSpeed = 0;
-            }
-
-            if (!PlayerTwoIsHolding)
-            {
-                PlTwoIdle.SetActive(true);
-                PlTwoRunning.SetActive(false);
-
-                //   Debug.Log("!PlayerTwoIsHolding");
-                rbPlTwo.velocity = Vector2.zero;
-            }
-
-
-
+            speed = 0;
+            Debug.Log("GameEnds");
         }
+
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
+        {
+            PlayerTwoIsHolding = true;
+        }
+
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
+        {
+            PlayerTwoIsHolding = false;
+            _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+        }
+
+
+
+
+        if (PlayerTwoIsHolding)
+        {
+            PlTwoIdle.SetActive(false);
+            PlTwoRunning.SetActive(true);
+
+            rbPlTwo.freezeRotation = true;
+            Vector2 dir = plTwoTransform.right;
+            rbPlTwo.velocity = dir * speed * Time.deltaTime;
+            _rotatePlayers.PlayerTwoRotationSpeed = 0;
+        }
+
+        if (!PlayerTwoIsHolding)
+        {
+            PlTwoIdle.SetActive(true);
+            PlTwoRunning.SetActive(false);
+
+            //   Debug.Log("!PlayerTwoIsHolding");
+            rbPlTwo.velocity = Vector2.zero;
+        }
+
+
+
+
     }
     public void OnPointerDown(PointerEventData eventData)
     {
 
-       
+
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = true;
@@ -127,7 +118,7 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerUp(PointerEventData eventData)
     {
-      
+
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;
@@ -136,6 +127,5 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
         }
     }
 
-   
-}
 
+}

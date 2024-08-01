@@ -2,39 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GuardGameStartScript : MonoBehaviour
 {
-    [SerializeField] private bool isSingle;
 
-    private bool isMobile;
-    [SerializeField] private GameObject startPanel;
-    public static Action<int> StartGuardGame;
-    [SerializeField] private GameObject joysticPlOne, joysticPlTwo;
-    private void Start()
+    [SerializeField] private bool isSingle;
+  
+    public void PressedPlay()
     {
-        if (Geekplay.Instance.mobile)
+        if (isSingle)
         {
-            isMobile = true;
+            SceneManager.LoadScene("GuardGameSingle");
+            Geekplay.Instance.ShowInterstitialAd();
         }
         else
         {
-            isMobile = false;
-
-        }
-    }
-    public void PressedPlay()
-    {
-        StartGuardGame?.Invoke(1);
-        startPanel.SetActive(false);
-        if (!isSingle && isMobile)
-        {
-            joysticPlOne.SetActive(true);
-            joysticPlTwo.SetActive(true);
-        }
-        if (isSingle && isMobile)
-        {
-            joysticPlOne.SetActive(true);
+            SceneManager.LoadScene("GuardGame");
+            Geekplay.Instance.ShowInterstitialAd();
         }
     }
 }

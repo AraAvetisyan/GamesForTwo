@@ -23,7 +23,7 @@ public class ChickenGameDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Yerçekimini değiştirerek bitiş çizgisine ulaşın. Bitiş çizgisine ilk ulaşan oyuncu kazanır.";
+            discription.text = "Yerçekimini degiştirerek bitiş çizgisine ulaşın. Bitiş çizgisine ilk ulaşan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

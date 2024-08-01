@@ -23,7 +23,7 @@ public class MathQuizDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Rakibinizden daha hızlı doğru cevap vermelisiniz. 5 puan daha hızlı alan oyuncu kazanır.";
+            discription.text = "Rakibinizden daha hızlı dogru cevap vermelisiniz. 5 puan daha hızlı alan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

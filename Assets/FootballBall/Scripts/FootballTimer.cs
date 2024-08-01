@@ -84,7 +84,7 @@ public class FootballTimer : MonoBehaviour
         plOneButton.interactable = false;
         plTwoButton.interactable = false;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         finalPanel.SetActive(true);
         if (playerOneWinBool)

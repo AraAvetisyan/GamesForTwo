@@ -2,14 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChickenGameStartScript : MonoBehaviour
 {
-    public static Action<int> ChickenGameStart;
-    [SerializeField] private GameObject startPanel;
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        ChickenGameStart?.Invoke(1);
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("ChickenGameSingle");
+        }
+        else
+        {
+            SceneManager.LoadScene("ChickenGame");
+        }
     }
 }

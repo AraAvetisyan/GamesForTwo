@@ -2,14 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnicornStartScript : MonoBehaviour
 {
-    public static Action<int> UnicornGameStart;
-    [SerializeField] private GameObject startPanel;
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        UnicornGameStart?.Invoke(1);
-        startPanel.SetActive(false);
+        if (isSingle)
+        {
+            SceneManager.LoadScene("UnicornSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("Unicorn");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }

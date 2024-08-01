@@ -2,18 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RacingLightStartScript : MonoBehaviour
 {
-    public static Action<int> RacingLightStarts;
-    [SerializeField] private GameObject startPanel;
-    [SerializeField] private Button plTwoButton;
-   
+    [SerializeField] private bool isSingle;
     public void PressedPlay()
     {
-        RacingLightStarts?.Invoke(1);
-        startPanel.SetActive(false);
-        plTwoButton.interactable = true;
+        if (isSingle)
+        {
+            SceneManager.LoadScene("RacingLightSingle");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
+        else
+        {
+            SceneManager.LoadScene("RacingLight");
+            Geekplay.Instance.ShowInterstitialAd();
+        }
     }
 }

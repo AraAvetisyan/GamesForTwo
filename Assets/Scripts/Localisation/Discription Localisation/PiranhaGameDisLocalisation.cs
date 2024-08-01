@@ -23,7 +23,7 @@ public class PiranhaGameDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Her oyuncunun 20 puanı vardır. bir oyuncu bir pirana veya mercana her dokunduğunda, 1 puan alınır. 0 puanı olan bir oyuncu kaybeder.";
+            discription.text = "Her oyuncunun 20 puanı vardır. bir oyuncu bir pirana veya mercana her dokundugunda, 1 puan alınır. 0 puanı olan bir oyuncu kaybeder.";
             play.text = "Oyun";
 
         }

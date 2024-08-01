@@ -23,7 +23,7 @@ public class RedCircleDisLocalisation : MonoBehaviour
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncu, top vurgulanan alana geldiğinde düğmeye basmalıdır. Zamanlayıcı sona erdikten sonra en çok puana sahip olan oyuncu kazanır.";
+            discription.text = "Oyuncu, top vurgulanan alana geldiginde dügmeye basmalıdır. Zamanlayıcı sona erdikten sonra en çok puana sahip olan oyuncu kazanır.";
             play.text = "Oyun";
 
         }

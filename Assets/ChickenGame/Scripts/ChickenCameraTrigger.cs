@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class ChickenCameraTrigger : MonoBehaviour
     [SerializeField] private PlayersTriggers triggerOne, triggerTwo;
     private bool insidePlOne;
     private bool insidePlTwo;
+
 
     private void Update()
     {
@@ -22,7 +24,7 @@ public class ChickenCameraTrigger : MonoBehaviour
                 }
             }
         }
-        if(!insidePlOne && !insidePlTwo)
+        if (!insidePlOne && !insidePlTwo)
         {
             if (!triggerOne.EndGame && !triggerTwo.EndGame)
             {
@@ -46,7 +48,7 @@ public class ChickenCameraTrigger : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "PlayerOne")
+        if (collision.gameObject.tag == "PlayerOne")
         {
             insidePlOne = false;
         }

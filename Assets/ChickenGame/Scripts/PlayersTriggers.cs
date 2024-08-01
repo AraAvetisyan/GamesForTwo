@@ -11,7 +11,7 @@ public class PlayersTriggers : MonoBehaviour
     public bool EndGame;
     [SerializeField] private bool isSingle;
     private bool finish;
-    
+    private int winCounter;
     private void Update()
     {
        
@@ -45,33 +45,25 @@ public class PlayersTriggers : MonoBehaviour
         {
             if(playerIndex == 1)
             {
-               // if (_playersMovement.IsMobile && !isSingle)
-               // {
-               //  //   _chickenResult.playerOneWinMobile.SetActive(true);
-               // }
-               // if (!_playersMovement.IsMobile || isSingle)
-               // {
-               ////     _chickenResult.playerOneWinPC.SetActive(true);
-               // }
+                if (winCounter == 0)
+                {
+                    _chickenResult.PlOneWin = true;
+                    winCounter = 1;
+                }
                 _playersMovement.Speed = 0;
                 _cameraScript.Speed = 0;
-               // _notTriggerScript.Speed = 0;
                 finish = true;
                 EndGame = true;
             }
             if (playerIndex == 2)
             {
-                //if (_playersMovement.IsMobile && !isSingle)
-                //{
-                // //   _chickenResult.playerTwoWinMobile.SetActive(true);
-                //}
-                //if (!_playersMovement.IsMobile || isSingle)
-                //{
-                // //   _chickenResult.playerTwoWinPC.SetActive(true);
-                //}
+                if (winCounter == 0)
+                {
+                    _chickenResult.PlTwoWin = true;
+                    winCounter = 1;
+                }
                 _playersMovement.Speed = 0;
                 _cameraScript.Speed = 0;
-              //  _notTriggerScript.Speed = 0;
                 finish = true;
                 EndGame = true;
             }
