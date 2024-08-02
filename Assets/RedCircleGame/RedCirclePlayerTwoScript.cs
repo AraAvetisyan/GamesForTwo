@@ -19,6 +19,7 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
     public bool inWrongCircle;
     private int iswrong;
     private bool addedPoints;
+    [SerializeField] private AudioSource rightTrigger, wrongTrigger;
     private void OnTriggerEnter2D(Collider2D collision)
 
     {
@@ -38,6 +39,7 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
     }
     public IEnumerator ChangeInCircle()
     {
+        rightTrigger.Play();
         Points++;
         pointsText.text = Points.ToString();
         _playerTwoCircleChanger.ChangePlTwoCircle();
@@ -52,6 +54,7 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
 
         if (!inCircle)
         {
+            wrongTrigger.Play();
             _circularMotion.Speed = 0;
             Pressed = false;
             PlayerCollider2D.enabled = false;

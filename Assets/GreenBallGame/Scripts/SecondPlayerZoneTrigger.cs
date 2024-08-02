@@ -16,6 +16,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     public bool CanFireBlue, CanFireRed;
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     [SerializeField] private Rigidbody2D ballRigidbody;
+    [SerializeField] private AudioSource goalAudio;
     private void Start()
     {
 
@@ -34,6 +35,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "FirstPlayerWin")
         {
+            goalAudio.Play();
             FirstPlayersPoints++;
             firstPlayersPointsText.text = FirstPlayersPoints.ToString();
             firstPlayerGoll.SetActive(true);

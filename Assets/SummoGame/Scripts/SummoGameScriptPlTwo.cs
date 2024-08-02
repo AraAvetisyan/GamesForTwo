@@ -30,6 +30,8 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
     public GameObject PlTwoIdle, PlTwoRunning;
     [SerializeField] private GameObject buttonBackground;
     //public bool Fall;
+    [SerializeField] private AudioSource runSound;
+    private int soundCounter;
 
     private void Awake()
     {
@@ -83,6 +85,11 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (PlayerTwoIsHolding)
         {
+            if (soundCounter == 0)
+            {
+                soundCounter = 1;
+                runSound.Play();
+            }
             PlTwoIdle.SetActive(false);
             PlTwoRunning.SetActive(true);
 
@@ -94,6 +101,8 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (!PlayerTwoIsHolding)
         {
+            runSound.Stop();
+            soundCounter = 0;
             PlTwoIdle.SetActive(true);
             PlTwoRunning.SetActive(false);
 

@@ -16,6 +16,7 @@ public class PlayerOneScript : MonoBehaviour
     [SerializeField] private GameObject stan;
     [SerializeField] private Transform playerOnePosition;
     private bool goBack;
+    [SerializeField] AudioSource eatableSound, notEatableSound;
    // [SerializeField] private float speed;
     public bool CantPlay;
     private void Start()
@@ -33,6 +34,7 @@ public class PlayerOneScript : MonoBehaviour
     {
         if(collision.gameObject.tag== "EatableFish")
         {
+            eatableSound.Play();
             _catPawGameUIController.ButtonOnePressed = false;
          //   transform.position = new Vector2(6f, 6f);
             goBack = true;
@@ -48,6 +50,7 @@ public class PlayerOneScript : MonoBehaviour
         }
         if(collision.gameObject.tag == "NoteatableFish")
         {
+            notEatableSound.Play();
             _catPawGameUIController.ButtonOnePressed = false;
           //  transform.position = new Vector2(6f, 6f);
             goBack=true;

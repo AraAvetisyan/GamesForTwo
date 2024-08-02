@@ -19,7 +19,8 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     [SerializeField] private GameObject playerOneButton, playerTwoButton;
     [SerializeField] private GameObject buttonBG;
-
+    [SerializeField]
+    private AudioSource buttonSound;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -119,11 +120,15 @@ public class CatPawGameUIController : MonoBehaviour
 
     public void PressedHomeButton()
     {
+
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestButton()
     {
+
+        buttonSound.Play();
         if (!IsSingle)
         {
             SceneManager.LoadScene("CatPaw");

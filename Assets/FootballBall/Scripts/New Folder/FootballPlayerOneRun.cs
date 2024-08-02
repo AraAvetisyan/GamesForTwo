@@ -25,6 +25,8 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
 
     [SerializeField] private GameObject blueIdle, blueRun;
     public bool MustWait = false;
+    [SerializeField] private AudioSource runSound;
+    private int runCounter;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -83,6 +85,11 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (PlayerOneIsHolding)
         {
+            if (runCounter == 0)
+            {
+                runSound.Play();
+                runCounter = 1;
+            }
             blueRun.SetActive(true);
             blueIdle.SetActive(false);
 
@@ -94,6 +101,8 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
         if (!PlayerOneIsHolding)
         {
 
+            runSound.Stop();
+            runCounter = 0;
             //  Debug.Log("PlayerOneIsHolding darela fales petqa poxi idle");
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
@@ -116,7 +125,6 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-
         if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;

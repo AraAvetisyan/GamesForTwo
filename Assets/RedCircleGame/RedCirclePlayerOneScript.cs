@@ -16,7 +16,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
     private bool inCircle;
     private bool inWrongCircle;
     [SerializeField] private RedCircleUIController _redCircleUIController;
-
+    [SerializeField] private AudioSource rightTrigger, wrongTrigger;
     private void Start()
     {
         if(_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
@@ -47,6 +47,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
     public IEnumerator ChangeInCircle()
     {
         Points++;
+        rightTrigger.Play();
         pointsText.text = Points.ToString();
         _playerOneCircleChanger.ChangePlOneCircle();
         Pressed = false;
@@ -61,6 +62,7 @@ public class RedCirclePlayerOneScript : MonoBehaviour
         if (!inCircle)
         {
             _circularMotion.Speed = 0;
+            wrongTrigger.Play();
             Pressed = false;
             PlayerCollider2D.enabled = false;
             yield return new WaitForSeconds(1f);

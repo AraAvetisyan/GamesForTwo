@@ -7,10 +7,12 @@ public class PlayersTrigger : MonoBehaviour
     public bool GuardWin;
     private bool hits;
     [SerializeField] GuardTimer _guardTimer;
+    [SerializeField] private AudioSource catchAudio;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Robber")
         {
+            catchAudio.Play();
             GuardWin = true;
             if(_guardTimer.Test == 1 && !hits)
             {

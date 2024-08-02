@@ -8,6 +8,7 @@ public class CoinTrigger : MonoBehaviour
     public int CoinCount;
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private SpawnCoins _spawnCoins;
+    [SerializeReference] private AudioSource coinSound;
     void Start() 
     {
         
@@ -17,6 +18,7 @@ public class CoinTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Coin" && this.gameObject.tag != "Guard")
         {
+            coinSound.Play();
             CoinCount++;
             coinsText.text = CoinCount.ToString();
             Destroy(collision.gameObject);

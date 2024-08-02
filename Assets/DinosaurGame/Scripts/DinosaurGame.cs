@@ -28,6 +28,8 @@ public class DinosaurGame : MonoBehaviour
     private bool pressed;
     public int teethToPress;
     public bool playerOneWinnerBool, playerTwoWinnerBool;
+
+    [SerializeField] private AudioSource presedAudio, wrongAudio, buttonSound;
     private void Awake()
     {
 
@@ -81,7 +83,7 @@ public class DinosaurGame : MonoBehaviour
 
     public void PressedTeetth(int index)
     {
-
+        presedAudio.Play();
         if (isSingle)
         {
             for (int i = 0; i < singleTeeth.Count; i++)
@@ -142,6 +144,7 @@ public class DinosaurGame : MonoBehaviour
         }
         if (index == lose)
         {
+            wrongAudio.Play();
             gameIsOver = true;
             dino.SetActive(false);
             dinoGameOver.SetActive(true);
@@ -302,11 +305,13 @@ public class DinosaurGame : MonoBehaviour
 
     public void PressedHome()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
+        buttonSound.Play();
         if (!isSingle)
         {
             SceneManager.LoadScene("DinosaurGame");

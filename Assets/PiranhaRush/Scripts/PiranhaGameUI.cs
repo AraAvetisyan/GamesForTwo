@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 public class PiranhaGameUI : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
+    [SerializeField] private AudioSource buttonSound;
 
     public void PressedHome()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
+        buttonSound.Play();
         if (isSingle)
         {
             SceneManager.LoadScene("PiranhaRushSingle");

@@ -29,6 +29,8 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
     public GameObject PlOneIdle, PlOneRunning;
     [SerializeField] private GameObject buttonBackground;
     //public bool Fall;
+    [SerializeField] private AudioSource runSound;
+    private int soundCounter;
 
     private void Awake()
     {
@@ -84,6 +86,11 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (PlayerOneIsHolding)
         {
+            if(soundCounter == 0)
+            {
+                soundCounter = 1;
+                runSound.Play();                
+            }
             PlOneIdle.SetActive(false);
             PlOneRunning.SetActive(true);
 
@@ -95,6 +102,8 @@ public class SummoGameScriptPlOne : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (!PlayerOneIsHolding)
         {
+            runSound.Stop();
+            soundCounter = 0;
             PlOneIdle.SetActive(true);
             PlOneRunning.SetActive(false);
             // Debug.Log("!PlayerOneIsHolding");

@@ -24,6 +24,8 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
 
     [SerializeField] private GameObject redIdle, redRun;
     public bool MustWait = false;
+    [SerializeField] private AudioSource runSound;
+    private int runCounter;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -72,7 +74,11 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (PlayerTwoIsHolding)
         {
-
+            if (runCounter == 0)
+            {
+                runCounter = 1;
+                runSound.Play();
+            }
             redIdle.SetActive(false);
             redRun.SetActive(true);
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
@@ -82,6 +88,8 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
        
         if (!PlayerTwoIsHolding)
         {
+            runCounter = 0;
+            runSound.Stop();
             redRun.SetActive(false);
             redIdle.SetActive(true);
 
@@ -99,7 +107,7 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
     }
 
     public void OnPointerUp(PointerEventData eventData)
-    {       
+    {
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;

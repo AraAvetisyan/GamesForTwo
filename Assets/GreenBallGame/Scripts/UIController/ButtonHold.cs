@@ -10,8 +10,10 @@ public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private GameObject buttonGost;
     [SerializeField] private Transform gostStartTransform;
     [SerializeField] private float speed;
+    [SerializeField] private AudioSource buttonSound;
     public void OnPointerDown(PointerEventData eventData)
     {
+        buttonSound.Play();
         isHolding = true;
         buttonGost.SetActive(true);
     }

@@ -25,6 +25,8 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     [SerializeField] private Image buttonOne, buttonTwo;
     public bool CantHold;
 
+    [SerializeField] private AudioSource buttonRedSound, buttonBlueSound;
+    private int redAudioCounter, blueAudioCounter;
     public GameObject blockerOne, blockerTwo;
     private void Awake()
     {
@@ -62,6 +64,9 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
             if (!CantHold)
             {
                 PlayerTwoIsHolding = true;
+                
+                buttonRedSound.Play();
+                
                 if (IsSingle) // karmir pl pc ete menak a 88
                 {
                     if (SingleCounter == 0)
@@ -69,7 +74,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
                         Debug.Log("Mtav"); 
                         _racingButtonOneHold.PlayerOneIsHolding = true;
                         SingleCounter++;
-
+                        buttonBlueSound.Play();
                         StartCoroutine(Single());
                     }
                 } // 88
@@ -80,6 +85,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
             if (!CantHold)
             {
                 PlayerOneIsHolding = true;
+                buttonBlueSound.Play();
             }
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
@@ -145,14 +151,28 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
         if (playerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
-
+            if (blueAudioCounter == 0)
+            {
+                blueAudioCounter = 1;
+                buttonBlueSound.Play();
+            }
         }
         if (playerIndex == 2 && !IsSingle)
         {
             PlayerTwoIsHolding = true;
+            if (redAudioCounter == 0)
+            {
+                redAudioCounter = 1;
+                buttonRedSound.Play();
+            }
         }
         if (playerIndex == 2 && IsSingle)
         {
+            if (redAudioCounter == 0)
+            {
+                redAudioCounter = 1;
+                buttonRedSound.Play();
+            }
             _racingButtonOneHold.PlayerOneIsHolding = true;
             PlayerTwoIsHolding = true;
             if (SingleCounter == 0)
@@ -167,10 +187,14 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
         if (playerIndex == 1)
         {
             blockerOne.SetActive(true);
+            blueAudioCounter = 0;
+            
         }
         if (playerIndex == 2)
         {
+           
             blockerTwo.SetActive(true);
+            redAudioCounter = 0;
         }
         if (playerIndex == 1)
         {

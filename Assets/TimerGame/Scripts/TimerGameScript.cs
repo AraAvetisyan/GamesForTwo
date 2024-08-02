@@ -46,6 +46,7 @@ public class TimerGameScript : MonoBehaviour
     [SerializeField] private GameObject buttonBG;
     private float diferenceOne, diferenceTwo;
     [SerializeField] private GameObject timerObject;
+    [SerializeField] private AudioSource music, buttonSound;
 
     private void Start()
     {
@@ -221,6 +222,7 @@ public class TimerGameScript : MonoBehaviour
     }
     public IEnumerator WaitEnd()
     {
+        music.Stop();
         if (Geekplay.Instance.language == "en")
         {
             diferencePlOne.text = "DIFFERENCE " + compareForOne.ToString("F2");
@@ -283,12 +285,14 @@ public class TimerGameScript : MonoBehaviour
 
     public void PressedHome()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
 
     }
     public void PressedRestart()
     {
+        buttonSound.Play();
         if (!isSingle)
         {
             SceneManager.LoadScene("TimerGame");

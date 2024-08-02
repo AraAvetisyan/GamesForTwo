@@ -30,6 +30,9 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
     public bool IsSingle;
     [SerializeField] private Transform[] singleTransforms;
     public bool FirstHit;
+
+    [SerializeField] private AudioSource ballAudio, pinAudio;
+    private int pinAudioCounter;
     private void Awake()
     {
 
@@ -116,6 +119,7 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
 
         if (collision.gameObject.tag == "StartLine")
         {
+            ballAudio.Play();
             HitLine = true;
             cantDrag = true;
             if (!IsSingle)
@@ -132,7 +136,17 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
 
         }
     }
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Pins")
+        {
+            if (pinAudioCounter == 0)
+            {
+                pinAudioCounter = 1;
+                pinAudio.Play();
+            }
+        }
+    }
     public IEnumerator Hide()
     {
         HitCounter = 0;
@@ -173,6 +187,7 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
         cantDrag = false;
         HitLine = false;
         StartCoroutine(Position());
+        pinAudioCounter = 0;
         if (IsSingle && HitCounter < 2)
         {
             StartCoroutine(Single());
