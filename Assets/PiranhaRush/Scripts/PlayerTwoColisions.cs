@@ -9,6 +9,7 @@ public class PlayerTwoColisions : MonoBehaviour
     [SerializeField] private float force;
     public int PlayerTwoPonts;
     [SerializeField] private TextMeshProUGUI playerTwoPointsText;
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Piranha")
@@ -18,11 +19,19 @@ public class PlayerTwoColisions : MonoBehaviour
             rb.AddForce(-direction * force, ForceMode2D.Impulse);
             StartCoroutine(StopeForce());
             PlayerTwoPonts--;
+            if (PlayerTwoPonts <= 0)
+            {
+                PlayerTwoPonts = 0;
+            }
             playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
         if (collision.gameObject.tag == "Obsticle")
         {
             PlayerTwoPonts--;
+            if (PlayerTwoPonts <= 0)
+            {
+                PlayerTwoPonts = 0;
+            }
             playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
     }

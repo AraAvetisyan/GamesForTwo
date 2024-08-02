@@ -90,7 +90,7 @@ public class PlayersPoints : MonoBehaviour
                 {
                     GameEnds = true;
 
-                    playerTwoWinPC.SetActive(true);
+                   
                     StartCoroutine(WaitToFinish());
 
                 }
@@ -100,7 +100,7 @@ public class PlayersPoints : MonoBehaviour
                     {
                         GameEnds = true;
 
-                        playerOneWinPC.SetActive(true);
+                       
                         StartCoroutine(WaitToFinish());
 
                     }
@@ -108,7 +108,6 @@ public class PlayersPoints : MonoBehaviour
                     {
                         GameEnds = true;
 
-                        playerTwoWinPC.SetActive(true);
                         StartCoroutine(WaitToFinish());
 
                     }
@@ -119,7 +118,15 @@ public class PlayersPoints : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (PlTwoPoints >= 60 && PlOnePoints < 60)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
+        if (PlOnePoints > PlTwoPoints)
+        {
+            playerOneWinPC.SetActive(true);
+        }
     }
 }

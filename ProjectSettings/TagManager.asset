@@ -27,6 +27,7 @@ TagManager:
   - Piranha
   - Obsticle
   - Path
+  - ChiskenCameraTrigger
   layers:
   - Default
   - TransparentFX
@@ -36,9 +37,9 @@ TagManager:
   - UI
   - NotTrigger
   - DontDetect
-  - 
-  - 
-  - 
+  - Light
+  - Point
+  - Gate
   - 
   - 
   - 

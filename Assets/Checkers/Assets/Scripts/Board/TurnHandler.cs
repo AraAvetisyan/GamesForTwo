@@ -8,6 +8,7 @@ public class TurnHandler : MonoBehaviour
     public GameOverPanel GameOverPanel;
 
     private PawnColor turn;
+    private int turnInt;
     private int whitePawnCount;
     private int blackPawnCount;
     private bool isGameVsCPU;
@@ -30,7 +31,14 @@ public class TurnHandler : MonoBehaviour
     public void NextTurn()
     {
         turn = turn == PawnColor.White ? PawnColor.Black : PawnColor.White;
-        TurnTextChanger.ChangeTurnText(turn);
+        if( turn == PawnColor.Black )
+        {
+            turnInt = 0;
+        }else if( turn == PawnColor.White )
+        {
+            turnInt = 1;
+        }
+        TurnTextChanger.ChangeTurnText(turnInt);
         if (isGameVsCPU && turn == PawnColor.Black)
             cpuPlayer.DoCPUMove();
     }
@@ -53,23 +61,24 @@ public class TurnHandler : MonoBehaviour
     private void CheckVictory()
     {
         if (whitePawnCount == 0)
-            EndGame(PawnColor.Black);
+            EndGame(0); // black
         else if (blackPawnCount == 0)
-            EndGame(PawnColor.White);
+            EndGame(1); // white
     }
 
-    private void EndGame(PawnColor winnerPawnColor)
+    private void EndGame(int winner)
     {
+
         GameOverPanel.gameObject.SetActive(true);
-        GameOverPanel.SetWinnerText(winnerPawnColor);
+        GameOverPanel.SetWinnerText(winner);
     }
 
     public void Forfeit()
     {
-        SceneManager.LoadScene("MainMenu");
-        //if (turn == PawnColor.White)
-        //    EndGame(PawnColor.Black);
-        //else if (turn == PawnColor.Black)
-        //    EndGame(PawnColor.White);
+       // SceneManager.LoadScene("MainMenu");
+        if (turn == PawnColor.White)
+            EndGame(0);
+        else if (turn == PawnColor.Black)
+            EndGame(1);
     }
 }

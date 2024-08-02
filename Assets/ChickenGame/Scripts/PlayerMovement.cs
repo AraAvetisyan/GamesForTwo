@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool changeOne, changeTwo;
     [SerializeField] private Button plOneButton, plTwoButton;
     [SerializeField] private GameObject plButtonOne, plButtonTwo;
+    [SerializeField] private GameObject buttonBG;
 
     [SerializeField] private GameObject blueChickenSprite, redChickenSprite;
 
@@ -31,11 +33,18 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             IsMobile = false;
-            if (!isSingle)
-            {
-                plButtonOne.SetActive(false);
-                plButtonTwo.SetActive(false);
-            }
+            plButtonOne.SetActive(false);
+            plButtonTwo.SetActive(false);
+            buttonBG.SetActive(false);
+
+        }
+    }
+    private void Start()
+    {
+        if (isSingle)
+        {
+            plOneButton.interactable = false;
+            plButtonOne.SetActive(false);
         }
     }
     private void Update()
@@ -52,14 +61,20 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
+
+
                 PressedPlayerTwoButton();
+
             }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M))
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {
-                PressedPlayerOneButton();
+                if (!isSingle)
+                {
+                    PressedPlayerOneButton();
+                }
             }
         }
     }
@@ -68,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerOneButton()
     {
         changeOne = true;
-        if (playerOneGravity == -1 && changeOne) 
+        if (playerOneGravity == -1 && changeOne)
         {
 
             rigidbodyPlayerOne.gravityScale = 1;
@@ -90,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerTwoButton()
     {
         changeTwo = true;
-        Debug.Log(playerTwoGravity);
         if (playerTwoGravity == -1 && changeTwo)
         {
             changeTwo = false;

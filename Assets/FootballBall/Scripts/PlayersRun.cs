@@ -14,8 +14,8 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private Rigidbody2D playerOneRB, playerTwoRB;
 
-    public bool PlayerOneIsHolding;
-    public bool PlayerTwoIsHolding;
+    private bool PlayerOneIsHolding;
+    private bool PlayerTwoIsHolding;
 
     [SerializeField] private FootballTimer _footballTimer;
 
@@ -28,6 +28,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private float first, second;
 
     [SerializeField] private GameObject blueIdle, blueRun, redIdle, redRun;
+    public bool MustWait = false;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -37,16 +38,15 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         else
         {
             IsMobile = false;
-            if (!IsSingle)
-            {
-                Color color = oneBg.color;
-                color.a = 0.0001f;
-                oneBg.color = color;
-                twoBG.color = color;
-                buttonOne.color = color;
-                buttonTwo.color = color;
-            }
+            Color color = oneBg.color;
+            color.a = 0.0001f;
+            oneBg.color = color;
+            twoBG.color = color;
+            buttonOne.color = color;
+            buttonTwo.color = color;
+            
         }
+       
     }
     
 
@@ -55,29 +55,57 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds)
         {
-            PlayerTwoIsHolding = true;
+          
+            if (!MustWait)
+            {
+                if (PlayerIndex == 2)
+                {
+                    PlayerTwoIsHolding = true;
+                    redIdle.SetActive(false);
+                    redRun.SetActive(true);
+                    Speed = Speed * 0.8f;
+                }
+            }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !_footballTimer.GameEnds && !IsSingle)
         {
-            PlayerOneIsHolding = true;
+            if (!MustWait)
+            {
+                if (PlayerIndex == 1)
+                {
+                 //   Debug.Log("M a sexme piti poxi run");
+                    PlayerOneIsHolding = true;
+                    blueRun.SetActive(true);
+                    blueIdle.SetActive(false);
+                    Speed = Speed * 0.8f;
+                }
+            }
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
         {
-            PlayerTwoIsHolding = false;
-            _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+            if (PlayerIndex == 2)
+            {
+                PlayerTwoIsHolding = false;
+                Speed = 5f;
+                _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+            }
         }
         if (!IsMobile && Input.GetKeyUp(KeyCode.M))
-        {
-
-            PlayerOneIsHolding = false;
-            _rotatePlayers.PlayerOneRotationSpeed = 300f;
+        { 
+            if (PlayerIndex == 1 && !IsSingle)
+            {
+             //   Debug.Log("M y toxela piti poxi idle");
+                PlayerOneIsHolding = false;
+                Speed = 5f;
+                _rotatePlayers.PlayerOneRotationSpeed = 300f;
+            }
         }
 
 
         if (PlayerOneIsHolding)
         {
-            blueIdle.SetActive(false);
             blueRun.SetActive(true);
+            blueIdle.SetActive(false);
 
             _rotatePlayers.PlayerOneRotationSpeed = 0;
             playerOne.transform.Translate(-Vector3.right * Speed * Time.deltaTime);
@@ -85,6 +113,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
        
         if (PlayerTwoIsHolding)
         {
+
             redIdle.SetActive(false);
             redRun.SetActive(true);
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
@@ -93,13 +122,16 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         if (!PlayerOneIsHolding)
         {
+
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
+            playerOneRB.velocity = Vector2.zero;
         }
         if (!PlayerTwoIsHolding)
         {
             redRun.SetActive(false);
             redIdle.SetActive(true);
+            playerTwoRB.velocity = Vector2.zero;
         }
       
     }
@@ -108,35 +140,40 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         float timer = Random.Range(first, second);
         yield return new WaitForSeconds(timer);
         PlayerOneIsHolding = true;
+       
         yield return new WaitForSeconds(1f);
         PlayerOneIsHolding = false;
+        blueRun.SetActive(false);
+        blueIdle.SetActive(true);
         _rotatePlayers.PlayerOneRotationSpeed = 300f;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        if (PlayerIndex == 1)
+        if (PlayerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
-
+       
         }
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = true;
-
+        
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (PlayerIndex == 1)
+        if (PlayerIndex == 1 && !IsSingle)
         {
+
             PlayerOneIsHolding = false;
             _rotatePlayers.PlayerOneRotationSpeed = 300f;
         }
         if (PlayerIndex == 2)
         {
             PlayerTwoIsHolding = false;
+         
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
     }

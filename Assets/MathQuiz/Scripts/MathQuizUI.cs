@@ -11,6 +11,7 @@ public class MathQuizUI : MonoBehaviour
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRest()
     {
@@ -22,6 +23,7 @@ public class MathQuizUI : MonoBehaviour
         {
             SceneManager.LoadScene("MathQuiz");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

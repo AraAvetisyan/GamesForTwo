@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,9 +28,12 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private bool isSingle;
     [SerializeField] private bool isMobile;
 
-    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, plOneWinMobile, plTwoWinMobile;
+    [SerializeField] private GameObject plOneWinPC, plTwoWinPC;
     [SerializeField] private GameObject finalPanel;
+    private bool plOneWin, plTwoWin;
     private bool singleCanChoose;
+
+    [SerializeField] private Color colorRed, colorBlue;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -43,7 +47,7 @@ public class MathQuizGameManager : MonoBehaviour
     }
     void Start()
     {
-        if(isMobile && !isSingle)
+        if (isMobile && !isSingle)
         {
             plTwoButtonOne.transform.rotation = Quaternion.Euler(0, 0, 180);
             plTwoButtonTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -51,14 +55,21 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
+        if (isSingle)
+        {
+            StartCoroutine(Single());
+            plTwoButtonOne.interactable = false;
+            plTwoButtonTwo.interactable = false;
+            plTwoButtonThree.interactable = false;
+        }
         canPress = true;
 
-       
+
     }
 
     void Update()
     {
-        if(!isMobile)
+        if (!isMobile)
         {
             if (canPress)
             {
@@ -96,31 +107,25 @@ public class MathQuizGameManager : MonoBehaviour
                 }
             }
         }
-        if(plOnePoints == 10)
+        if (plOnePoints == 5)
         {
-            if(isMobile && !isSingle)
-            {
-                plOneWinMobile.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
-            else
-            {
-                plOneWinPC.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
+
+            //plOneWinMobile.SetActive(true);
+
+            // plOneWinPC.SetActive(true);
+            plOneWin = true;
+            StartCoroutine(WaitToFinish());
+
         }
-        if(plTwoPoints == 10)
+        if (plTwoPoints == 5)
         {
-            if (isMobile && !isSingle)
-            {
-                plTwoWinMobile.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
-            else
-            {
-                plTwoWinPC.SetActive(true);
-                StartCoroutine(WaitToFinish());
-            }
+
+            //plTwoWinMobile.SetActive(true);
+
+            //  plTwoWinPC.SetActive(true);
+            plTwoWin = true;
+            StartCoroutine(WaitToFinish());
+
         }
     }
     public IEnumerator Single()
@@ -131,7 +136,13 @@ public class MathQuizGameManager : MonoBehaviour
             singleCanChoose = true;
             SingleChooser();
         }
-       
+
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            StartCoroutine(Single());
+        }
+
+
     }
     public void SingleChooser()
     {
@@ -156,8 +167,16 @@ public class MathQuizGameManager : MonoBehaviour
     {
         canPress = false;
         singleCanChoose = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (plOneWin)
+        {
+            plOneWinPC.SetActive(true);
+        }
+        if (plTwoWin)
+        {
+            plTwoWinPC.SetActive(true);
+        }
     }
     public void TaskCreator()
     {
@@ -166,7 +185,7 @@ public class MathQuizGameManager : MonoBehaviour
         if (partOne != partTwo)
         {
             signInt = Random.Range(0, 2);
-            Debug.Log(signInt);
+            // Debug.Log(signInt);
         }
         if (partOne == partTwo)
         {
@@ -174,55 +193,55 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if (signInt == 0)
         {
-            Debug.Log("Gumarum");
+            //  Debug.Log("Gumarum");
             answer = partOne + partTwo;
         }
         if (signInt == 1)
         {
-            Debug.Log("Hanum");
+            //  Debug.Log("Hanum");
             answer = partOne - partTwo;
         }
         if (signInt == 2)
         {
-            Debug.Log("bazmapatkum");
+            //   Debug.Log("bazmapatkum");
             answer = partTwo * partOne;
         }
         if (signInt == 3 && partOne % partTwo == 0)
         {
-            Debug.Log("bajanum");
+            //   Debug.Log("bajanum");
             answer = partOne / partTwo;
         }
         if (signInt == 3 && partOne % partTwo != 0)
         {
-           
+
             answer = partOne + partTwo;
             signInt = 0;
         }
-       
+
 
         int plOneRight = Random.Range(0, 3);
         int plTwoRight = Random.Range(0, 3);
-        
+
 
         int plOneWrongeOne = Random.Range(answer / 2, answer * 2);
         int plOneWrongeTwo = Random.Range(answer / 2, answer * 2);
-        if(plOneWrongeTwo == plOneWrongeOne)
+        if (plOneWrongeTwo == plOneWrongeOne)
         {
             plOneWrongeTwo = Random.Range(plOneWrongeOne * 5, answer * 15);
         }
         int plTwoWrongeOne = plOneWrongeOne;
         int plTwoWrongeTwo = plOneWrongeTwo;
 
-        if(answer == 0)
+        if (answer == 0)
         {
-            plOneWrongeOne = Random.Range(1 , 10);
-            plOneWrongeTwo = Random.Range(11 , 20);
+            plOneWrongeOne = Random.Range(1, 10);
+            plOneWrongeTwo = Random.Range(11, 20);
         }
-        if(answer == plOneWrongeOne)
+        if (answer == plOneWrongeOne)
         {
             plOneWrongeOne = Random.Range(1, 10);
         }
-        if(answer == plOneWrongeTwo)
+        if (answer == plOneWrongeTwo)
         {
             plOneWrongeTwo = Random.Range(11, 20);
         }
@@ -273,13 +292,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonOneAnswerText.text = plTwoWrongeOne.ToString();
             plTwoButtonTwoAnswerText.text = plTwoWrongeTwo.ToString();
         }
-        if (isSingle)
-        {
-            if (plOnePoints != 10 && plTwoPoints != 10)
-            {
-                StartCoroutine(Single());
-            }
-        }
+
     }
 
 
@@ -290,15 +303,16 @@ public class MathQuizGameManager : MonoBehaviour
         if (plOneButtonOneAnswer == answer)
         {
             plOnePoints += 1;
-            plOnePointsText.text= plOnePoints.ToString();
+            plOnePointsText.text = plOnePoints.ToString();
             plOneButtonOneImage.color = Color.green;
-
+            plOneButtonOneAnswerText.color = Color.white;
         }
         else
         {
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonOneImage.color = Color.red;
+            plOneButtonOneAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -318,6 +332,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonTwoImage.color = Color.green;
+            plOneButtonTwoAnswerText.color = Color.white;
 
         }
         else
@@ -325,6 +340,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonTwoImage.color = Color.red;
+            plOneButtonTwoAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -343,6 +359,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonThreeImage.color = Color.green;
+            plOneButtonThreeAnswerText.color = Color.white;
 
         }
         else
@@ -350,6 +367,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonThreeImage.color = Color.red;
+            plOneButtonThreeAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -368,6 +386,7 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonOneImage.color = Color.green;
+            plTwoButtonOneAnswerText.color = Color.white;
 
         }
         else
@@ -375,6 +394,7 @@ public class MathQuizGameManager : MonoBehaviour
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonOneImage.color = Color.red;
+            plTwoButtonOneAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -393,13 +413,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonTwoImage.color = Color.green;
-
+            plTwoButtonTwoAnswerText.color = Color.white;
         }
         else
         {
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonTwoImage.color = Color.red;
+            plTwoButtonTwoAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -418,13 +439,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonThreeImage.color = Color.green;
-
+            plTwoButtonThreeAnswerText.color = Color.white;
         }
         else
         {
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonThreeImage.color = Color.red;
+            plTwoButtonThreeAnswerText.color = Color.white;
         }
         plOneButtonOne.interactable = false;
         plOneButtonTwo.interactable = false;
@@ -440,19 +462,32 @@ public class MathQuizGameManager : MonoBehaviour
         plOneButtonOne.interactable = true;
         plOneButtonTwo.interactable = true;
         plOneButtonThree.interactable = true;
-        plTwoButtonOne.interactable = true;
-        plTwoButtonTwo.interactable = true;
-        plTwoButtonThree.interactable = true;
+        if (!isSingle)
+        {
+            plTwoButtonOne.interactable = true;
+            plTwoButtonTwo.interactable = true;
+            plTwoButtonThree.interactable = true;
+        }
         plOneButtonOneImage.color = Color.white;
         plOneButtonTwoImage.color = Color.white;
         plOneButtonThreeImage.color = Color.white;
         plTwoButtonOneImage.color = Color.white;
         plTwoButtonTwoImage.color = Color.white;
         plTwoButtonThreeImage.color = Color.white;
+
+
+        plOneButtonOneAnswerText.color = colorRed;
+        plOneButtonTwoAnswerText.color = colorRed;
+        plOneButtonThreeAnswerText.color = colorRed;
+
+        plTwoButtonOneAnswerText.color = colorBlue;
+        plTwoButtonTwoAnswerText.color = colorBlue;
+        plTwoButtonThreeAnswerText.color = colorBlue;
+
         canPress = true;
-        if (plOnePoints != 10 && plTwoPoints != 10)
+        if (plOnePoints != 5 && plTwoPoints != 5)
         {
-            TaskCreator();           
+            TaskCreator();
         }
     }
 }

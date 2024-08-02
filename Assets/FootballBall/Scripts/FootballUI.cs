@@ -9,6 +9,7 @@ public class FootballUI : MonoBehaviour
     public void PresedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestart()
     {
@@ -20,5 +21,6 @@ public class FootballUI : MonoBehaviour
         {
             SceneManager.LoadScene("FootballBallSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

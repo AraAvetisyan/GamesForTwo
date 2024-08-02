@@ -5,11 +5,6 @@ using UnityEngine;
 public class MovingTriggerScript : MonoBehaviour
 {
     [SerializeField] private CameraScript _cameraScript;
-    void Start()
-    {
-        
-    }
-
     
     void Update()
     {

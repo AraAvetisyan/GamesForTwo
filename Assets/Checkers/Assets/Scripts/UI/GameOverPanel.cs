@@ -9,15 +9,47 @@ public class GameOverPanel : MonoBehaviour
     public GameAudio GameAudio;
 
     private Animator gameOverPanelAnimator;
-
+    [SerializeField] private GameObject blueWinner, redWinner;
     private void Awake()
     {
         gameOverPanelAnimator = GetComponent<Animator>();
     }
 
-    public void SetWinnerText(PawnColor winnerPawnColor)
+    public void SetWinnerText(int winner)
     {
-        WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
+        //WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
+        if (winner == 0)
+        {
+            redWinner.SetActive(true);
+            if (Geekplay.Instance.language == "ru")
+            {
+                WinnerText.text = "Красные Победили";
+            }
+            if (Geekplay.Instance.language == "en")
+            {
+                WinnerText.text = "Reds Won";
+            }
+            if (Geekplay.Instance.language == "tr")
+            {
+                WinnerText.text = "Kırmızılar Kazandı";
+            }
+        }
+        if (winner == 1)
+        {
+            blueWinner.SetActive(true);
+            if(Geekplay.Instance.language == "ru")
+            {
+                WinnerText.text = "Синие Победили";
+            }
+            if (Geekplay.Instance.language == "en")
+            {
+                WinnerText.text = "Blues Won";
+            }
+            if (Geekplay.Instance.language == "tr")
+            {
+                WinnerText.text = "Maviler kazandı";
+            }
+        }
     }
 
     public void DisableBoard()

@@ -1,4 +1,5 @@
 
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,31 +35,47 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
         else
         {
             IsMobile = false;
-            if (!IsSingle)
-            {
-                Color color = buttonOneBg.color;
-                color.a = 0.0001f;
-                buttonOneBg.color = color;
-                buttonTwoBg.color = color;
-                buttonOne.color = color;
-                buttonTwo.color = color;
-            }
+
+            Color color = buttonOneBg.color;
+            color.a = 0.0001f;
+            buttonOneBg.color = color;
+            buttonTwoBg.color = color;
+            buttonOne.color = color;
+            buttonTwo.color = color;
+
         }
     }
     private void Start()
     {
-       
+        if (IsSingle)
+        {
+            Color color = buttonOneBg.color;
+            color.a = 0.0001f;
+            buttonOneBg.color = color;
+            buttonOne.color = color;
+        }
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2) // karmir pl pc 77
         {
             if (!CantHold)
             {
                 PlayerTwoIsHolding = true;
+                if (IsSingle) // karmir pl pc ete menak a 88
+                {
+                    if (SingleCounter == 0)
+                    {
+                        Debug.Log("Mtav"); 
+                        _racingButtonOneHold.PlayerOneIsHolding = true;
+                        SingleCounter++;
+
+                        StartCoroutine(Single());
+                    }
+                } // 88
             }
-        }
-        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1  && !IsSingle)
+        }// 77
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1 )
         {
             if (!CantHold)
             {
@@ -124,7 +141,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+
         if (playerIndex == 1 && !IsSingle)
         {
             PlayerOneIsHolding = true;
@@ -147,7 +164,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(playerIndex == 1)
+        if (playerIndex == 1)
         {
             blockerOne.SetActive(true);
         }

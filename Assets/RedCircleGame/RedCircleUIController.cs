@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,11 @@ public class RedCircleUIController : MonoBehaviour
     public bool IsMobile;
     [SerializeField] private RedCircleTimer _redCircleTimer;
     [SerializeField] private GameObject plOneButton, plTwoButton;
+    [SerializeField] private GameObject buttonBG;
     public bool IsSingle;
     private void Awake()
     {
-       
+
         if (Geekplay.Instance.mobile)
         {
             IsMobile = true;
@@ -23,6 +25,7 @@ public class RedCircleUIController : MonoBehaviour
             IsMobile = false;
             plOneButton.SetActive(false);
             plTwoButton.SetActive(false);
+            buttonBG.SetActive(false);
         }
     }
     private void Start()
@@ -30,6 +33,7 @@ public class RedCircleUIController : MonoBehaviour
         if (IsSingle)
         {
             StartCoroutine(Single());
+            plOneButton.SetActive(false);
         }
     }
     private void Update()
@@ -54,10 +58,12 @@ public class RedCircleUIController : MonoBehaviour
         {
             SceneManager.LoadScene("RedCircleSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedPlayerOneButton()
     {

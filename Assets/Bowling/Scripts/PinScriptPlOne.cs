@@ -19,7 +19,6 @@ public class PinScriptPlOne : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(_dragItemsOne.HidePin && !gameEnds)
@@ -36,7 +35,7 @@ public class PinScriptPlOne : MonoBehaviour
     {
         hide = true;
         isHiden = true;
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(4);
         if (transform.rotation.z != 0)
         {
             rb.velocity = Vector3.zero;

@@ -61,7 +61,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (GameEnds)
         {
             speed = 0;
-            Debug.Log("GameEnds");
+          //  Debug.Log("GameEnds");
         }
 
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
@@ -88,7 +88,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             PlOneIdle.SetActive(false);
             PlOneRunning.SetActive(true);
-            // PlayerOne.transform.Translate(Vector3.left * speed * Time.deltaTime);
+
             rbPlOne.freezeRotation = true;
             Vector2 dir = plOneTransform.right;
             rbPlOne.velocity = -dir * speed * Time.deltaTime;
@@ -97,18 +97,19 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (PlayerTwoIsHolding)
         {
             PlTwoIdle.SetActive(false);
-            PlTwoRunning.SetActive(true);
-            // PlayerTwo.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            PlTwoRunning.SetActive(true);          
+          
             rbPlTwo.freezeRotation = true;
             Vector2 dir = plTwoTransform.right;
             rbPlTwo.velocity = dir * speed * Time.deltaTime;
+           // Debug.Log(rbPlTwo.velocity);
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
         }
         if (!PlayerOneIsHolding)
         {
             PlOneIdle.SetActive(true);
             PlOneRunning.SetActive(false);
-            Debug.Log("!PlayerOneIsHolding");
+           // Debug.Log("!PlayerOneIsHolding");
             rbPlOne.velocity = Vector2.zero;
         }
         if (!PlayerTwoIsHolding)
@@ -116,7 +117,7 @@ public class SummoGameScript : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             PlTwoIdle.SetActive(true);
             PlTwoRunning.SetActive(false);
 
-            Debug.Log("!PlayerTwoIsHolding");
+         //   Debug.Log("!PlayerTwoIsHolding");
             rbPlTwo.velocity = Vector2.zero;
         }
 

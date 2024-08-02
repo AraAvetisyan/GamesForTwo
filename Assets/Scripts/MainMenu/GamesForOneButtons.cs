@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GamesForOneButtons : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
     [SerializeField] private bool isSingle;
+    [SerializeField] private GameObject bowlingDis, catPawDis, checkersDis, dinoDis, footballDis, greenBallDis, guardGameDis, mathQuizDis, piranhaDis, racingLightDis, redCircleDis, summoDis, timerDis, unicornDis;
     public void PressedChickenGameButton()
     {
         SceneManager.LoadScene("ChickenGameSingle");
@@ -14,70 +14,67 @@ public class GamesForOneButtons : MonoBehaviour
 
     public void PressedGreenBallButton()
     {
-        SceneManager.LoadScene("GreenBallSingle");
+        greenBallDis.SetActive(true);
     }
 
     public void PressedTimerGameButton()
     {
-        SceneManager.LoadScene("TimerGameSingle");
+        timerDis.SetActive(true);
     }
 
     public void PressedRedCircleButton()
     {
-        SceneManager.LoadScene("RedCircleSingle");
+        redCircleDis.SetActive(true);
     }
 
     public void PressedDinosaurGameButton()
     {
-        SceneManager.LoadScene("DinosaurGameSingle");
+        dinoDis.SetActive(true);
     }
 
     public void PressedCatPawButton()
-    {
-        SceneManager.LoadScene("CatPawSingle");
+    {       
+        catPawDis.SetActive(true);
     }
 
     public void PressedSummoGame()
     {
-        SceneManager.LoadScene("SummoGameSingle");
+        summoDis.SetActive(true);
     }
 
     public void PressedRacingLight()
     {
-        SceneManager.LoadScene("RacingLightSingle");
+        racingLightDis.SetActive(true);
     }
 
     public void PressedUnicorn()
     {
-        SceneManager.LoadScene("UnicornSingle");
+        unicornDis.SetActive(true);
     }
 
     public void PressedFootballBall()
     {
-        SceneManager.LoadScene("FootballBallSingle");
+        footballDis.SetActive(true);
     }
     public void PressedGuardGame()
     {
-        SceneManager.LoadScene("GuardGameSingle");
+        guardGameDis.SetActive(true);
     }
     public void PressedCheckers()
-    {
-        Debug.Log("Menak");
+    {        
         PlayerPrefs.SetInt("VsCPU", 1);
-            SceneManager.LoadScene("Main", LoadSceneMode.Single);
-       
-        canvas.SetActive(false);
+        checkersDis.SetActive(true);
     }
     public void PressedBowling()
-    {
-        SceneManager.LoadScene("BowlingSingle");
+    {      
+        bowlingDis.SetActive(true);
     }
     public void PressedMathQuiz()
     {
-        SceneManager.LoadScene("MathQuizSingle");
+        mathQuizDis.SetActive(true);
     }
     public void PressedPiranhaRush()
     {
-        SceneManager.LoadScene("PiranhaRushSingle");
+        piranhaDis.SetActive(true);
     }
 }

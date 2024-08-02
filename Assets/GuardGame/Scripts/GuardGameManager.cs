@@ -6,6 +6,7 @@ public class GuardGameManager : MonoBehaviour
 {
     [SerializeField] GuardTimer _guardTimer;
     [SerializeField] PlayersTrigger _playersTriggerOne, _playersTriggerTwo;
+    
     void Start()
     {
         
@@ -17,15 +18,20 @@ public class GuardGameManager : MonoBehaviour
         if (_playersTriggerOne.GuardWin || _playersTriggerTwo.GuardWin)
         {
             _playersTriggerOne.GuardWin = false;
-            _playersTriggerTwo.GuardWin = false;            
+            _playersTriggerTwo.GuardWin = false;
             
-            if(!_guardTimer.IsSecondGame)
+            if (_guardTimer.Test == 1)
             {
                 _guardTimer.GameEnds = true;
+                _guardTimer.IsSecondGame = true;
+                //_guardTimer.SecondGameEnds = true;
             }
-            else
+            if (_guardTimer.Test == 2)
             {
-                _guardTimer.SecondGameEnds = true;
+                // _guardTimer.GameEnds = true;
+
+                _guardTimer.IsSecondGame = false;
+                _guardTimer.GameEnds = true;
             }
         }
     }

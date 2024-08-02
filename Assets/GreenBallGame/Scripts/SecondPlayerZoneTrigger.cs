@@ -15,6 +15,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     [SerializeField] private Button blueButton, redButton;
     public bool CanFireBlue, CanFireRed;
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
+    [SerializeField] private Rigidbody2D ballRigidbody;
     private void Start()
     {
 
@@ -38,11 +39,13 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
             firstPlayerGoll.SetActive(true);
             _rotatePlayers.PlayerOneRotationSpeed = 0;
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
-            greenBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+           // greenBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             blueButton.interactable = false;
             redButton.interactable = false;
             CanFireBlue = false;
             CanFireRed = false;
+            ballRigidbody.mass = 100000;
+            ballRigidbody.velocity = Vector3.zero;
             StartCoroutine(WaitForWin());
 
         }
@@ -51,6 +54,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         greenBall.transform.position = greenBallStartTransform.position;
+        ballRigidbody.mass = 30;
         _rotatePlayers.PlayerOneRotationSpeed = 300;
         _rotatePlayers.PlayerTwoRotationSpeed = 300;
         firstPlayerGoll.SetActive(false);

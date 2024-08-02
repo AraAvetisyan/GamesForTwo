@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,10 +24,8 @@ public class UnicornChooser : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
     private int playerOnePoints, playerTwoPoints;
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
-    [SerializeField] private GameObject playerOneDrawMobile, playerTwoDrawMobile;
-    [SerializeField] private GameObject playerOneDrawPC, playerTwoDrawPC;
+    [SerializeField] private GameObject playerOneDrawPC;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject plOneScoreBG, plTwoScoreBG;
     void Start()
@@ -70,21 +69,21 @@ public class UnicornChooser : MonoBehaviour
 
     private void Update()
     {
-        if(_playerOneChooser.PlayerOneEnds && _playerTwoChooser.PlayerTwoEnds && counter == 0)
+        if (_playerOneChooser.PlayerOneEnds && _playerTwoChooser.PlayerTwoEnds && counter == 0)
         {
             counter = 1;
             seconds = 0;
         }
-        if(counter == 1) 
+        if (counter == 1)
         {
             counter = 2;
             if (_playerOneChooser.PlayerOneEnds && counter == 2)
             {
-                if(_playerOneChooser.HeadInt == headInt)
+                if (_playerOneChooser.HeadInt == headInt)
                 {
                     playerOnePoints += 5;
                 }
-                if(_playerOneChooser.HairInt == hairInt)
+                if (_playerOneChooser.HairInt == hairInt)
                 {
                     playerOnePoints += 5;
                 }
@@ -92,18 +91,18 @@ public class UnicornChooser : MonoBehaviour
                 {
                     playerOnePoints += 5;
                 }
-                if(_playerOneChooser.FaceInt == faceInt)
+                if (_playerOneChooser.FaceInt == faceInt)
                 {
                     playerOnePoints += 5;
                 }
-                if(_playerOneChooser.EyesInt == eyesInt)
+                if (_playerOneChooser.EyesInt == eyesInt)
                 {
                     playerOnePoints += 5;
                 }
             }
             if (_playerTwoChooser.PlayerTwoEnds && counter == 2)
             {
-                if(_playerTwoChooser.HeadInt == headInt)
+                if (_playerTwoChooser.HeadInt == headInt)
                 {
                     playerTwoPoints += 5;
                 }
@@ -111,11 +110,11 @@ public class UnicornChooser : MonoBehaviour
                 {
                     playerTwoPoints += 5;
                 }
-                if(_playerTwoChooser.CornInt == cornInt)
+                if (_playerTwoChooser.CornInt == cornInt)
                 {
                     playerTwoPoints += 5;
                 }
-                if(_playerTwoChooser.FaceInt == faceInt)
+                if (_playerTwoChooser.FaceInt == faceInt)
                 {
                     playerTwoPoints += 5;
                 }
@@ -130,46 +129,9 @@ public class UnicornChooser : MonoBehaviour
             plTwoScoreBG.SetActive(true);
             playerOnePointsText.text = playerOnePoints.ToString();
             playerTwoPointsText.text = playerTwoPoints.ToString();
-            if (playerOnePoints > playerTwoPoints)
-            {
-                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
-                {
-                    playerOneWinMobile.SetActive(true);
-                }
-                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
-                {
-                    playerOneWinPC.SetActive(true);
-                }
 
-                StartCoroutine(WaitToFinish());
-            }
-            if (playerOnePoints < playerTwoPoints)
-            {
-                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
-                {
-                    playerTwoWinMobile.SetActive(true);
-                }
-                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
-                {
-                    playerTwoWinPC.SetActive(true);
-                }
+            StartCoroutine(WaitToFinish());
 
-                StartCoroutine(WaitToFinish());
-            }
-            if (playerOnePoints == playerTwoPoints)
-            {
-                if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
-                {
-                    playerOneDrawMobile.SetActive(true);
-                    playerTwoDrawMobile.SetActive(true);
-                }
-                if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
-                {
-                    playerOneDrawPC.SetActive(true);
-                    playerTwoDrawPC.SetActive(true);
-                }
-                StartCoroutine(WaitToFinish());
-            }
         }
     }
     public IEnumerator Timer()
@@ -235,7 +197,26 @@ public class UnicornChooser : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (playerOnePoints > playerTwoPoints)
+        {
+
+            playerOneWinPC.SetActive(true);
+
+
+        }
+        if (playerOnePoints < playerTwoPoints)
+        {
+            playerTwoWinPC.SetActive(true);
+
+
+        }
+        if (playerOnePoints == playerTwoPoints)
+        {
+
+            playerOneDrawPC.SetActive(true);
+
+        }
     }
 }

@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,26 +9,29 @@ public class RacingLightGameManager : MonoBehaviour
     private float playerOneTimer, playerTwoTimer;
 
     public int counter;
-    [SerializeField] private TextMeshProUGUI playerOneTimerText, playerTwoTimerText;
+    [SerializeField] private TextMeshProUGUI playerOneTimerText, playerTwoTimerText, playerOneTimerTextTwo, playerTwoTimerTextTwo;
     private int playerOneScore, playerTwoScore;
     [SerializeField] private TextMeshProUGUI playerOneScoreText, playerTwoScoreText;
     [SerializeField] RacingButtonsHold _playerOneRacingButtonsHold, _playerTwoRacingButtonsHold;
     [SerializeField] private FireLightsScript _fireLightsScript;
     private int playerOneCounter, playerTwoCounter;
-    [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
+  //  [SerializeField] private GameObject playerOneWinMobile, playerTwoWinMobile;
     [SerializeField] private GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
+    private bool plOneWin, plTwoWin;
+
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
         {
             playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 180);
-            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
+           // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         if(!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
         {
             playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 0);
-            playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
+           // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -63,25 +66,63 @@ public class RacingLightGameManager : MonoBehaviour
         }
         if (counter == 2)
         {
-            _playerOneRacingButtonsHold.blockerOne.SetActive(false);
-            _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
-            _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
-            _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
+            playerOneTimerBG.SetActive(true);
+            playerTwoTimerBG.SetActive(true);
+            if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
+            {
+                playerOneTimerBG.transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
+            {
+                playerOneTimerBG.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+         //   _playerOneRacingButtonsHold.blockerOne.SetActive(false);
+           // _playerOneRacingButtonsHold.blockerTwo.SetActive(false);
             if (_playerOneRacingButtonsHold.PlayerOneOnTime)
             {
                 playerOneTimerText.text = playerOneTimer.ToString("F2");
+                playerOneTimerTextTwo.text = playerOneTimer.ToString("F2");
             }
             if (_playerOneRacingButtonsHold.PlayerOneSoon)
             {
-                playerOneTimerText.text = "Failed";
+                if (Geekplay.Instance.language == "en")
+                {
+                    playerOneTimerText.text = "Failed";
+                    playerOneTimerTextTwo.text = "Failed";
+                }
+                else if(Geekplay.Instance.language == "ru")
+                {
+                    playerOneTimerText.text = "Неудача";
+                    playerOneTimerTextTwo.text = "Неудача";
+                }
+                else if (Geekplay.Instance.language == "tr")
+                {
+                    playerOneTimerText.text = "Başarısız";
+                    playerOneTimerTextTwo.text = "Başarısız";
+                }
             }
             if (_playerTwoRacingButtonsHold.PlayerTwoOnTime)
             {
                 playerTwoTimerText.text = playerTwoTimer.ToString("F2");
+                playerTwoTimerTextTwo.text = playerTwoTimer.ToString("F2");
             }
             if (_playerTwoRacingButtonsHold.PlayerTwoSoon)
             {
-                playerTwoTimerText.text = "Failed";
+                if (Geekplay.Instance.language == "en")
+                {
+                    playerTwoTimerText.text = "Failed";
+                    playerTwoTimerTextTwo.text = "Failed";
+                }
+                else if (Geekplay.Instance.language == "ru")
+                {
+                    playerTwoTimerText.text = "Неудача";
+                    playerTwoTimerTextTwo.text = "Неудача";
+                }
+                else if(Geekplay.Instance.language == "tr")
+                {
+                    playerTwoTimerText.text = "Başarısız";
+                    playerTwoTimerTextTwo.text = "Başarısız";
+                }
             }
 
             if (_playerOneRacingButtonsHold.PlayerOneOnTime && _playerTwoRacingButtonsHold.PlayerTwoOnTime)
@@ -131,24 +172,26 @@ public class RacingLightGameManager : MonoBehaviour
             {
                 if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerOneWinMobile.SetActive(true);
+                    //playerOneWinMobile.SetActive(true);
                 }
                 if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerOneWinPC.SetActive(true);
+                 //   playerOneWinPC.SetActive(true);
                 }
+                plOneWin = true;
                 StartCoroutine(WaitToFinish());
             }
             if (playerTwoScore == 3)
             {
                 if (_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerTwoWinMobile.SetActive(true);
+                 //   playerTwoWinMobile.SetActive(true);
                 }
                 if (!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
                 {
-                    playerTwoWinPC.SetActive(true);
+                  //  playerTwoWinPC.SetActive(true);
                 }
+                plTwoWin = true;
                 StartCoroutine(WaitToFinish());
             }
         }
@@ -173,7 +216,7 @@ public class RacingLightGameManager : MonoBehaviour
     }
     public IEnumerator WaitToUpdateGame()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1.5f);
         counter = 0;
         playerOneCounter = 0;
         playerTwoCounter = 0;
@@ -186,6 +229,9 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.PlayerTwoIsHolding = false;
         _playerOneRacingButtonsHold.PlayerOneButton.interactable = true;
         _playerTwoRacingButtonsHold.PlayerTwoButton.interactable = true;
+
+        _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
+        _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
         _playerTwoRacingButtonsHold.SingleCounter = 0;
         _fireLightsScript.StartGame = false;
         _fireLightsScript.Counter = 0;
@@ -194,14 +240,31 @@ public class RacingLightGameManager : MonoBehaviour
         StopCoroutine(UpdatePlOneTimer());
         StopCoroutine(UpdatePlTwoTimer());
         playerOneTimerText.text = "";
+        playerOneTimerTextTwo.text = "";
         playerTwoTimerText.text = "";
+        playerTwoTimerTextTwo.text = "";
+        _fireLightsScript.GreenLight1.SetActive(false);
+        _fireLightsScript.GreenLight2.SetActive(false);
+        _fireLightsScript.GreenLight3.SetActive(false);
+        _fireLightsScript.GreenLight4.SetActive(false);
+        _fireLightsScript.GreenLight5.SetActive(false);
+        playerOneTimerBG.SetActive(false);
+        playerTwoTimerBG.SetActive(false);
     }
     public IEnumerator WaitToFinish()
     {
 
         _playerOneRacingButtonsHold.CantHold = true;
         _playerTwoRacingButtonsHold.CantHold = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (plOneWin)
+        {
+            playerOneWinPC.SetActive(true);
+        }
+        if(plTwoWin)
+        {
+            playerTwoWinPC.SetActive(true);
+        }
     }
 }

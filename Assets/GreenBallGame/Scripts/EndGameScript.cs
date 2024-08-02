@@ -8,8 +8,7 @@ public class EndGameScript : MonoBehaviour
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
     [SerializeField] private FirstPlayerZoneTrigger _firstPlayerZoneTrigger;
-    [SerializeField] private GameObject firstPlayerWinMobile, secondPlayerWinMobile, drawMobile, drawMobile2;
-    [SerializeField] private GameObject firstPlayerWinPC, secondPlayerWinPC, drawPC, drawPC2;
+    [SerializeField] private GameObject firstPlayerWinPC, secondPlayerWinPC, drawPC;
     [SerializeField] private GameObject finalPanel;
     public bool GameEnds;
 
@@ -29,40 +28,40 @@ public class EndGameScript : MonoBehaviour
         GameEnds = true;
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            {
-                firstPlayerWinMobile.SetActive(true);
-            }
-            if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            {
-                firstPlayerWinPC.SetActive(true);
-            }
+            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
+            //{
+            //    firstPlayerWinMobile.SetActive(true);
+            //}
+            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
+            //{
+            //    firstPlayerWinPC.SetActive(true);
+            //}
             StartCoroutine(WaitEndGame());
         }
         if (_secondPlayerZoneTrigger.FirstPlayersPoints < _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            {
-                secondPlayerWinMobile.SetActive(true);
-            }
-            if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            {
-                secondPlayerWinPC.SetActive(true);
-            }
+            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
+            //{
+            //    secondPlayerWinMobile.SetActive(true);
+            //}
+            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
+            //{
+            //    secondPlayerWinPC.SetActive(true);
+            //}
             StartCoroutine(WaitEndGame());
         }
         if(_secondPlayerZoneTrigger.FirstPlayersPoints == _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            {
-                drawMobile.SetActive(true);
-                drawMobile2.SetActive(true);
-            }
-            if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            {
-                drawPC.SetActive(true);
-                drawPC2.SetActive(true);
-            }
+            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
+            //{
+            //    drawMobile.SetActive(true);
+            //    drawMobile2.SetActive(true);
+            //}
+            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
+            //{
+            //    drawPC.SetActive(true);
+            //    drawPC2.SetActive(true);
+            //}
             StartCoroutine(WaitEndGame());
         }
 
@@ -75,7 +74,19 @@ public class EndGameScript : MonoBehaviour
         greenBall.GetComponent<Rigidbody2D>().simulated = false;
         blueButton.interactable = false;
         redButton.interactable = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
+        {
+            firstPlayerWinPC.SetActive(true);
+        }
+        if (_secondPlayerZoneTrigger.FirstPlayersPoints < _firstPlayerZoneTrigger.SecondPlayersPoints)
+        {
+            secondPlayerWinPC.SetActive(true);
+        }
+        if (_secondPlayerZoneTrigger.FirstPlayersPoints == _firstPlayerZoneTrigger.SecondPlayersPoints)
+        {
+            drawPC.SetActive(true);
+        }
     }
 }

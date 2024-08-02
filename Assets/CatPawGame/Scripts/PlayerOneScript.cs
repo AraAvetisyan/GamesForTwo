@@ -40,7 +40,7 @@ public class PlayerOneScript : MonoBehaviour
             Points += 1;
             pointsText.text = Points.ToString();
             stanCounter = 0;
-            if (Points != 3)
+            if (Points != 5)
             {
                 StartCoroutine(_fishSpawner.WaitForSpawn());
             }
@@ -64,7 +64,7 @@ public class PlayerOneScript : MonoBehaviour
             _catPawGameUIController.ButtonOnePressed = false;
             // transform.position = new Vector2(6f, 6f);
             goBack = true;
-            stanCounter++;
+           // stanCounter++;
         }
         if (goBack)
         {
@@ -72,6 +72,10 @@ public class PlayerOneScript : MonoBehaviour
             {
                 goBack = false;
             }
+        }
+        if (collision.gameObject.CompareTag("Path"))
+        {
+            _catPawGameUIController.ButtonOnePressed = false;
         }
     }
     private void Update()

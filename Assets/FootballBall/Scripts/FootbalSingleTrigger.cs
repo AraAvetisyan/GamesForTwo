@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FootbalSingleTrigger : MonoBehaviour
 {
-    [SerializeField] private PlayersRun playersRun;
+    [SerializeField] private FootballPlayerOneRun playersRun;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (playersRun.PlayerIndex == 1 && playersRun.IsSingle)

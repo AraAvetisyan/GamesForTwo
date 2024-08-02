@@ -8,6 +8,7 @@ public class FireLightsScript : MonoBehaviour
     public bool StartGame;
     [SerializeField] private RacingButtonsHold _playerOneRacingButtonHold, _playerTwoRacingButtonHold;
     public GameObject Light1, Light2, Light3, Light4, Light5;
+    public GameObject GreenLight1, GreenLight2, GreenLight3, GreenLight4, GreenLight5;
     public int Counter;
     private float timerToClose;
     public bool CanHoldOff;
@@ -86,6 +87,14 @@ public class FireLightsScript : MonoBehaviour
         Light3.SetActive(false);
         Light4.SetActive(false);
         Light5.SetActive(false);
+        GreenLight1.SetActive(true);
+        GreenLight2.SetActive(true);
+        GreenLight3.SetActive(true);
+        GreenLight4.SetActive(true);
+        GreenLight5.SetActive(true);
         CanHoldOff = true;
     }
+   
+       
+   
 }

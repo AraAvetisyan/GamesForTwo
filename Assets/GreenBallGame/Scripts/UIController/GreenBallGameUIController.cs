@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class GreenBallGameUIController : MonoBehaviour
     [SerializeField] private SecondPlayerZoneTrigger _secondPlayerZoneTrigger;
     [SerializeField] private EndGameScript _endGameScript;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private GameObject buttonBG;
     public bool IsSingle;
 
     float randomTimer;
@@ -30,13 +32,15 @@ public class GreenBallGameUIController : MonoBehaviour
             {
                 buttonOne.SetActive(true);
                 buttonTwo.SetActive(true);
+
             }
         }
         else
         {
-            IsMobile = false; 
+            IsMobile = false;
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
+            buttonBG.SetActive(false);
         }
     }
     private void Start()
@@ -44,8 +48,9 @@ public class GreenBallGameUIController : MonoBehaviour
         if (Single)
         {
             StartCoroutine(SinglePlayer());
+            buttonOne.SetActive(false);
         }
-       
+
     }
     private void Update()
     {
@@ -109,9 +114,9 @@ public class GreenBallGameUIController : MonoBehaviour
             BlueBallActive = true;
         }
     }
-    public void PressedRedButton() 
+    public void PressedRedButton()
     {
-        if(!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
+        if (!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             float z = Random.Range(0, 360);
             GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
@@ -126,21 +131,22 @@ public class GreenBallGameUIController : MonoBehaviour
     public IEnumerator StopPlayerOne()
     {
         yield return new WaitForSeconds(1);
-      
+
         _rotatePlayers.PlayerOneRotationSpeed = 300;
-        
+
     }
     public IEnumerator StopPlayerTwo()
     {
         yield return new WaitForSeconds(1);
-       
+
         _rotatePlayers.PlayerTwoRotationSpeed = 300;
-        
+
     }
 
     public void PresedFinishHome()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestart()
     {
@@ -152,6 +158,7 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("GreenBallSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 
 

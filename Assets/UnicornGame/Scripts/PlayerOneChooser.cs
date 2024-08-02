@@ -16,6 +16,7 @@ public class PlayerOneChooser : MonoBehaviour
 
     public bool IsSingle;
     [SerializeField] private GameObject buttonOne, buttonTwo;
+    [SerializeField] private GameObject buttonBG;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -25,11 +26,21 @@ public class PlayerOneChooser : MonoBehaviour
         else
         {
             IsMobile = false;
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+            buttonBG.SetActive(false);
             if (!IsSingle)
             {
-                buttonOne.SetActive(false);
-                buttonTwo.SetActive(false);
+                //buttonOne.SetActive(false);
+                //buttonTwo.SetActive(false);
+                //buttonBG.SetActive(false);
             }
+        }
+
+        if (IsSingle)
+        {
+
+            buttonOne.SetActive(false);
         }
 
     }
@@ -147,7 +158,7 @@ public class PlayerOneChooser : MonoBehaviour
         choos = 1;
         if (IsMobile && !IsSingle)
         {
-            Debug.Log("Mobile Head");
+          //  Debug.Log("Mobile Head");
             if (HeadInt < plOneHeadMobile.Length)
             {
                 HeadInt++;
@@ -164,7 +175,7 @@ public class PlayerOneChooser : MonoBehaviour
         }
         if(!IsMobile || IsSingle)
         {
-            Debug.Log("PC Head");
+         //   Debug.Log("PC Head");
             if (HeadInt < plOneHeadPC.Length)
             {
                 HeadInt++;

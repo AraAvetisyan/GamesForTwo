@@ -18,6 +18,8 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private PlayerTwoScript _playerTwoScript;
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     [SerializeField] private GameObject playerOneButton, playerTwoButton;
+    [SerializeField] private GameObject buttonBG;
+
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -26,19 +28,24 @@ public class CatPawGameUIController : MonoBehaviour
         }
         else
         {
-            IsMobile = false;
-            if (!IsSingle)
-            {
-                playerOneButton.SetActive(false);
-                playerTwoButton.SetActive(false);
-            }
+            IsMobile = false; 
+            playerOneButton.SetActive(false);
+            playerTwoButton.SetActive(false);
+            buttonBG.SetActive(false);
+           
         }
+
     }
     private void Start()
     {
         if (IsSingle)
         {
             StartCoroutine(SinglePlayer());
+        }
+        if (IsSingle)
+        {
+
+            playerOneButton.SetActive(false);
         }
         
     }
@@ -81,19 +88,25 @@ public class CatPawGameUIController : MonoBehaviour
     {
         if (ButtonOnePressed)
         {
-            StartCoroutine(WaitToGoBack());
+            //StartCoroutine(WaitToGoBack());
             playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
             playerOnePaw.transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
         if (ButtonTwoPressed)
         {
 
-            StartCoroutine(WaitToGoBack());
+          //  StartCoroutine(WaitToGoBack());
             playerTwoPaw.transform.Translate(Vector3.up * speed * Time.deltaTime);
             playerTwoPaw.transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-    
-
+        if (!ButtonOnePressed)
+        {
+            playerOnePaw.transform.position = playerOnePosition.position;
+        }
+        if(!ButtonTwoPressed)
+        {
+            playerTwoPaw.transform.position = playerTwoPosition.position;
+        }
     }
     public IEnumerator WaitToGoBack()
     {
@@ -107,6 +120,7 @@ public class CatPawGameUIController : MonoBehaviour
     public void PressedHomeButton()
     {
         SceneManager.LoadScene("MainMenu");
+        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestButton()
     {
@@ -119,5 +133,6 @@ public class CatPawGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("CatPawSingle");
         }
+        Geekplay.Instance.ShowInterstitialAd();
     }
 }

@@ -14,17 +14,23 @@ public class GuardTimer : MonoBehaviour
     [SerializeField] private Transform playerOneStartPos, playerTwoStartPos;
     [SerializeField] private GameObject playerOne, playerTwo;
     [SerializeField] private GameObject lightOne, lightTwo;
+    [SerializeField] private GameObject blueRobber, blueGuard;
+    [SerializeField] private GameObject redRobber, redGuard;
     [SerializeField] private JoystickPlayerExample playerOneJoystic, playerTwoJoystic;
     [SerializeField] private CoinTrigger _coinTriggerPlOne, _coinTriggerPlTwo;
-    [SerializeField] private GameObject plOneWinMobile, plTwoWinMobile, drawOneMobile, drawTwoMobile;
-    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, drawOnePC, drawTwoPC;
+    [SerializeField] private GameObject plOneWinPC, plTwoWinPC, drawOnePC;
+    bool playerOneWin, playerTwoWin;
     public bool IsMobile;
     public bool IsSingle; 
 
     public bool IsSecondGame;
     public bool SecondGameEnds;
 
+    [SerializeField] private PlayersTrigger _playersTrigger;
+    public int Test;
+
     [SerializeField] private GameObject finalPanel;
+    [SerializeField] Rigidbody2D rbPlOne, rbPlTwo;
     void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -37,7 +43,12 @@ public class GuardTimer : MonoBehaviour
             IsMobile = false;
            
         }
-        StartCoroutine(Timer());
+        timerText.text = "";
+       // StartCoroutine(Timer());
+    }
+    private void Start()
+    {
+        Test = 1;
     }
     private void Update()
     {
@@ -46,72 +57,76 @@ public class GuardTimer : MonoBehaviour
         {
             StopCoroutine(Timer());
             seconds = 0;
+            newSeconds = 0;
             GameEnds = false;
-            IsSecondGame = true;
             playerOne.transform.position = playerOneStartPos.position;
             playerTwo.transform.position = playerTwoStartPos.position;
             lightOne.SetActive(true);
+            redGuard.SetActive(true);
+            redRobber.SetActive(false);
             lightTwo.SetActive(false);
+            blueRobber.SetActive(true);
+            blueGuard.SetActive(false);
             playerOne.tag = "Guard";
             playerTwo.tag = "Robber";
             newSeconds = 30;
-            StartCoroutine(SecondTimer());
+            //StartCoroutine(SecondTimer());
         }
-        if (IsSecondGame && SecondGameEnds)
+        if (IsSecondGame && GameEnds)
         {
-            StopCoroutine(SecondTimer());
+            StopCoroutine(Timer());
+            seconds = 0;
             newSeconds = 0;
             GameEnds = false;
-            IsSecondGame = false;
             playerOne.transform.position = playerOneStartPos.position;
             playerTwo.transform.position = playerTwoStartPos.position;
-            //playerOneJoystic.speed = 0;
-            //playerTwoJoystic.speed = 0;
+            lightOne.SetActive(false);
+            redGuard.SetActive(false);
+            redRobber.SetActive(true);
+            lightTwo.SetActive(true);
+            blueRobber.SetActive(false);
+            blueGuard.SetActive(true);
+            playerOne.tag = "Robber";
+            playerTwo.tag = "Guard";
+            newSeconds = 30;
+
+          //  StartCoroutine(SecondTimer());
+        }
+        if(_coinTriggerPlOne.CoinCount >= 5)
+        {
             playerOneJoystic.enabled = false;
             playerTwoJoystic.enabled = false;
-            if (_coinTriggerPlOne.CoinCount > _coinTriggerPlTwo.CoinCount)
-            {
-                if (IsMobile && !IsSingle)
-                {
-                    plOneWinMobile.SetActive(true);
-                }
-                if (!IsMobile || IsSingle)
-                {
-                    plOneWinPC.SetActive(true);
-                }
-            }
-            if (_coinTriggerPlTwo.CoinCount > _coinTriggerPlOne.CoinCount)
-            {
-                if (IsMobile && !IsSingle)
-                {
-                    plTwoWinMobile.SetActive(true);
-                }
-                if (!IsMobile || IsSingle)
-                {
-                    plTwoWinPC.SetActive(true);
-                }
-            }
-            if (_coinTriggerPlOne.CoinCount == _coinTriggerPlTwo.CoinCount)
-            {
-                if (IsMobile && !IsSingle)
-                {
-                    drawOneMobile.SetActive(true);
-                    drawTwoMobile.SetActive(true);
-                }
-                if (!IsMobile || IsSingle)
-                {
-                    drawOnePC.SetActive(true);
-                    drawTwoPC.SetActive(true);
-                }
-            }
+
+            playerOneWin = true;
+
+            StartCoroutine(WaitToFinish());
+        }
+        if(_coinTriggerPlTwo.CoinCount >= 5)
+        {
+            playerOneJoystic.speed = 0;
+            playerTwoJoystic.speed = 0;
+          
+            playerTwoWin = true;
 
             StartCoroutine(WaitToFinish());
         }
     }
     public IEnumerator WaitToFinish()
     {
-        yield return new WaitForSeconds(1.5f);
+        rbPlOne.isKinematic = true;
+        rbPlTwo.isKinematic = true;
+        rbPlOne.velocity= Vector2.zero;
+        rbPlTwo.velocity= Vector2.zero;
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
+        if (playerOneWin)
+        {
+            plOneWinPC.SetActive(true);
+        }
+        if (playerTwoWin)
+        {
+            plTwoWinPC.SetActive(true);
+        }
     }
     public IEnumerator Timer()
     {
@@ -131,46 +146,44 @@ public class GuardTimer : MonoBehaviour
             timerText.text = "0" + seconds.ToString();
         }
 
-        if (seconds > 0 )
+        if (seconds > 0 && !IsSecondGame)
         {
-            Debug.Log(("Seconds Debug: ") + seconds);
             StartCoroutine(Timer());
-        }
-        else
-        {
-
-            GameEnds = true;
         }
     }
     public IEnumerator SecondTimer()
     {
         yield return new WaitForSecondsRealtime(1);
-        newSeconds--;
+        if (Test == 1)
+        {
+            newSeconds--;
 
-        if (newSeconds <= 0)
-        {
-            newSeconds = 0;
-            SecondGameEnds = true;
-        }
-        if (newSeconds >= 10)
-        {
-            timerText.text = newSeconds.ToString();
-        }
-        else
-        {
-            timerText.text = "0" + newSeconds.ToString();
-        }
+            if (newSeconds <= 0)
+            {
+                newSeconds = 0;
+                _playersTrigger.GuardWin = true;
+            }
+            if (newSeconds >= 10)
+            {
+                timerText.text = newSeconds.ToString();
+            }
+            else
+            {
+                timerText.text = "0" + newSeconds.ToString();
+            }
 
-        if (SecondGameEnds)
-        {
-            newSeconds = 0;
+            if (SecondGameEnds)
+            {
+                newSeconds = 0;
 
-        }
-        if (newSeconds > 0)
-        {
-            Debug.Log(("New Seconds Debug: ") + newSeconds);
-            StartCoroutine(SecondTimer());
-        }
+            }
+            if (newSeconds > 0 && Test == 1)
+            {
+                StartCoroutine(SecondTimer());
+            }
+           
+        }      
     }
 
 }
+
