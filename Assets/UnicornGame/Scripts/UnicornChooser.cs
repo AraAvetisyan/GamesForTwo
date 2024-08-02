@@ -28,6 +28,7 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject playerOneDrawPC;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject plOneScoreBG, plTwoScoreBG;
+    [SerializeField] private AudioSource music;
     void Start()
     {
         seconds = 30;
@@ -197,6 +198,7 @@ public class UnicornChooser : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (playerOnePoints > playerTwoPoints)

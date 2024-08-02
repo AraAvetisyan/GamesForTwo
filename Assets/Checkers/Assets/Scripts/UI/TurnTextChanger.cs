@@ -18,15 +18,15 @@ public class TurnTextChanger : MonoBehaviour
         {
             if (Geekplay.Instance.language == "ru")
             {
-                turnText.text = "очередь черных";
+                turnText.text = "Очередь Красных";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                turnText.text = "Black`s turn";
+                turnText.text = "Red`s Turn";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                turnText.text = "siyahın sırası";
+                turnText.text = "Kırmızılar Dönüyor";
             }
             
         }
@@ -34,15 +34,15 @@ public class TurnTextChanger : MonoBehaviour
         {
             if (Geekplay.Instance.language == "ru")
             {
-                turnText.text = "очередь белых";
+                turnText.text = "Очередь Синих";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                turnText.text = "White`s turn";
+                turnText.text = "Blue`s Turn";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                turnText.text = "beyaz sirasi";
+                turnText.text = "Mavi dönüş";
             }
         }
         //turnText.text = pawnColor.ToString().ToUpper() + "'S TURN";

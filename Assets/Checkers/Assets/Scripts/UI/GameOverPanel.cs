@@ -9,7 +9,7 @@ public class GameOverPanel : MonoBehaviour
     public GameAudio GameAudio;
 
     private Animator gameOverPanelAnimator;
-
+    [SerializeField] private GameObject blueWinner, redWinner;
     private void Awake()
     {
         gameOverPanelAnimator = GetComponent<Animator>();
@@ -20,32 +20,34 @@ public class GameOverPanel : MonoBehaviour
         //WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
         if (winner == 0)
         {
+            redWinner.SetActive(true);
             if (Geekplay.Instance.language == "ru")
             {
-                WinnerText.text = "Черные Победили";
+                WinnerText.text = "Красные Победили";
             }
             if (Geekplay.Instance.language == "en")
             {
-                WinnerText.text = "Black Wins";
+                WinnerText.text = "Reds Won";
             }
             if (Geekplay.Instance.language == "tr")
             {
-                WinnerText.text = "siyah kazanır";
+                WinnerText.text = "Kırmızılar Kazandı";
             }
         }
         if (winner == 1)
         {
+            blueWinner.SetActive(true);
             if(Geekplay.Instance.language == "ru")
             {
-                WinnerText.text = "Белые Победили";
+                WinnerText.text = "Синие Победили";
             }
             if (Geekplay.Instance.language == "en")
             {
-                WinnerText.text = "White Wins";
+                WinnerText.text = "Blues Won";
             }
             if (Geekplay.Instance.language == "tr")
             {
-                WinnerText.text = "beyaz kazanır";
+                WinnerText.text = "Maviler kazandı";
             }
         }
     }

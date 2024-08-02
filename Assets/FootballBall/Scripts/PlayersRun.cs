@@ -46,6 +46,7 @@ public class PlayersRun : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             buttonTwo.color = color;
             
         }
+       
     }
     
 

@@ -9,11 +9,12 @@ public class PlayerTwoColisions : MonoBehaviour
     [SerializeField] private float force;
     public int PlayerTwoPonts;
     [SerializeField] private TextMeshProUGUI playerTwoPointsText;
-   
+    [SerializeField] private AudioSource hitCorral, hitPiranha;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Piranha")
         {
+            hitPiranha.Play();
             Transform playerLineHit = collision.gameObject.transform;
             Vector2 direction = (playerLineHit.position - transform.position);
             rb.AddForce(-direction * force, ForceMode2D.Impulse);
@@ -27,6 +28,7 @@ public class PlayerTwoColisions : MonoBehaviour
         }
         if (collision.gameObject.tag == "Obsticle")
         {
+            hitCorral.Play();
             PlayerTwoPonts--;
             if (PlayerTwoPonts <= 0)
             {

@@ -7,6 +7,7 @@ using static UnityEngine.AudioSettings;
 
 public class GreenBallGameUIController : MonoBehaviour
 {
+    public static GreenBallGameUIController Instance;
     public bool Single;
     [SerializeField] private GameObject redBallPrefab, blueBallPrefab;
     [SerializeField] private Transform redBallSpawnPoint, blueBallSpawnPoint;
@@ -23,8 +24,12 @@ public class GreenBallGameUIController : MonoBehaviour
     public bool IsSingle;
 
     float randomTimer;
+
+    [SerializeField] private AudioSource spawnBlueSound, spawnRedSound;
+    public AudioSource CollisionAudio, buttonSound;
     private void Awake()
     {
+        Instance = this;
         if (Geekplay.Instance.mobile)
         {
             IsMobile = true;
@@ -48,6 +53,7 @@ public class GreenBallGameUIController : MonoBehaviour
         if (Single)
         {
             StartCoroutine(SinglePlayer());
+            buttonOne.SetActive(false);
         }
 
     }
@@ -104,6 +110,7 @@ public class GreenBallGameUIController : MonoBehaviour
         if (!BlueBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             float z = Random.Range(0, 360);
+            spawnBlueSound.Play();
             GameObject ball = Instantiate(blueBallPrefab, blueBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
             Vector2 shootingDirection = -blueBallSpawnPoint.right;
@@ -118,6 +125,7 @@ public class GreenBallGameUIController : MonoBehaviour
         if (!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
             float z = Random.Range(0, 360);
+            spawnRedSound.Play();
             GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
             Vector2 shootingDirection = redBallSpawnPoint.right;
@@ -144,11 +152,13 @@ public class GreenBallGameUIController : MonoBehaviour
 
     public void PresedFinishHome()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedRestart()
     {
+        buttonSound.Play();
         if (!Single)
         {
             SceneManager.LoadScene("GreenBall");

@@ -9,12 +9,14 @@ public class ChickenResult : MonoBehaviour
     public GameObject playerOneWinPC, playerTwoWinPC;
     [SerializeField] private GameObject drawPlOnePC;
     [SerializeField] private GameObject finalPanel;
-    [SerializeField] private Rigidbody2D plOneRb, plTwoRb; 
+    [SerializeField] private Rigidbody2D plOneRb, plTwoRb;
+    public bool PlOneWin, PlTwoWin;
     public int countLose;
     public bool plOneLose, plTwoLose;
     private bool draw;
     private bool isMobile;
     [SerializeField] private bool isSingle;
+    [SerializeField] private AudioSource music;
     void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -38,52 +40,37 @@ public class ChickenResult : MonoBehaviour
         }
         if (countLose == 1 && plTwoLose)
         {
-            //if (isMobile && !isSingle)
-            //{
-            //    playerOneWinMobile.SetActive(true);
-            //}
-            //if (isMobile || isSingle)
-            //{
-            //    playerOneWinPC.SetActive(true);
-            //}
-            //if(!isMobile && !isSingle)
-            //{
-            //    playerOneWinPC.SetActive(true);
-            //}
-            //if(!isMobile && isSingle)
-            //{
-            //    playerOneWinPC.SetActive(true);
-            //}
+           
 
             StartCoroutine(WaitToFinal());
         }
         if (countLose == 2 && plOneLose && plTwoLose)
         {
-            //playerOneWinMobile.SetActive(false);
-            //playerOneWinPC.SetActive(false);
-            //playerTwoWinPC.SetActive(false);
-            //drawPlTwoPC.SetActive(true);
-            //if (isMobile && !isSingle)
-            //{
-            //    drawPlOneMobile.SetActive(true);
-            //}
-            //if (!isMobile || isSingle)
-            //{
-            //    drawPlOnePC.SetActive(true);
-            //}
             draw = true;
+            StartCoroutine(WaitToFinal());
+        }
+        if (PlOneWin)
+        {
+            PlOneWin = false;
+            plTwoLose = true;
+            StartCoroutine(WaitToFinal());
+        }
+        if (PlTwoWin)
+        {
+            PlTwoWin = false;
+            plOneLose = true;
             StartCoroutine(WaitToFinal());
         }
 
     }
     public IEnumerator WaitToFinal()
     {
+        music.Stop();
         plOneRb.gravityScale = 0;
         plTwoRb.gravityScale = 0;
         plOneRb.bodyType = RigidbodyType2D.Static;
         plTwoRb.bodyType = RigidbodyType2D.Static;
-
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneLose)
         {

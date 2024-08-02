@@ -28,6 +28,7 @@ TagManager:
   - Obsticle
   - Path
   - ChiskenCameraTrigger
+  - Pins
   layers:
   - Default
   - TransparentFX

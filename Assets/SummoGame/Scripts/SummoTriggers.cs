@@ -27,7 +27,7 @@ public class SummoTriggers : MonoBehaviour
     [SerializeField] private Rigidbody2D rbPlOne, rbPlTwo;
     [SerializeField] private GameObject playerOne, playerTwo;
     [SerializeField] private float force;
-
+    [SerializeField] private AudioSource collisionSound, triggerSound;
 
     private void Start()
     {
@@ -45,8 +45,10 @@ public class SummoTriggers : MonoBehaviour
     {
         if (collision.gameObject.tag == "NotTrigger")
         {
+            triggerSound.Play();
             if (playerIndex == 1)
             {
+                
                 _summoGameScriptPlOne.PlayerOneIsHolding = false;
                 _summoGameScriptPlTwo.PlayerTwoIsHolding = false;
                 playerOneObject.transform.position = playerOneStartPos.position;
@@ -129,6 +131,7 @@ public class SummoTriggers : MonoBehaviour
         {
             if (collision.gameObject.tag == "PlayerTwo")
             {
+                collisionSound.Play();
                 Transform playerTwoHitTransform = playerTwo.transform;
                 Vector2 direction = (playerTwoHitTransform.position - transform.position);
                 rbPlOne.AddForce(direction * force, ForceMode2D.Impulse);
@@ -138,6 +141,7 @@ public class SummoTriggers : MonoBehaviour
         {
             if (collision.gameObject.tag == "PlayerOne")
             {
+                collisionSound.Play();
                 Transform playerOneHitTransform = playerOne.transform;
                 Vector2 direction = (playerOneHitTransform.position - transform.position);
                 rbPlTwo.AddForce(direction * force, ForceMode2D.Impulse);

@@ -34,6 +34,7 @@ public class MathQuizGameManager : MonoBehaviour
     private bool singleCanChoose;
 
     [SerializeField] private Color colorRed, colorBlue;
+    [SerializeField] private AudioSource rightSound, wrongSound;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -302,6 +303,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plOneButtonOneAnswer == answer)
         {
+            rightSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonOneImage.color = Color.green;
@@ -309,6 +311,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonOneImage.color = Color.red;
@@ -329,6 +332,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plOneButtonTwoAnswer == answer)
         {
+            rightSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonTwoImage.color = Color.green;
@@ -337,6 +341,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonTwoImage.color = Color.red;
@@ -356,6 +361,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plOneButtonThreeAnswer == answer)
         {
+            rightSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plOneButtonThreeImage.color = Color.green;
@@ -364,6 +370,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plOneButtonThreeImage.color = Color.red;
@@ -383,6 +390,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plTwoButtonOneAnswer == answer)
         {
+            rightSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonOneImage.color = Color.green;
@@ -391,6 +399,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonOneImage.color = Color.red;
@@ -410,6 +419,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plTwoButtonTwoAnswer == answer)
         {
+            rightSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonTwoImage.color = Color.green;
@@ -417,6 +427,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonTwoImage.color = Color.red;
@@ -436,6 +447,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         if (plTwoButtonThreeAnswer == answer)
         {
+            rightSound.Play();
             plTwoPoints += 1;
             plTwoPointsText.text = plTwoPoints.ToString();
             plTwoButtonThreeImage.color = Color.green;
@@ -443,6 +455,7 @@ public class MathQuizGameManager : MonoBehaviour
         }
         else
         {
+            wrongSound.Play();
             plOnePoints += 1;
             plOnePointsText.text = plOnePoints.ToString();
             plTwoButtonThreeImage.color = Color.red;

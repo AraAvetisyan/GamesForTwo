@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 public class ChickenGameUIController : MonoBehaviour
 {
     [SerializeField] private int sceneIndex;
-    
+    [SerializeField] private AudioSource buttonSound;
+
     public void PressedHomeButton()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameOneRestart()
     {
+        buttonSound.Play();
         if (sceneIndex == 1)
         {
             SceneManager.LoadScene("ChickenGameOne");

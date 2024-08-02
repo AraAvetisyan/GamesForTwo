@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayersTriggers _firstPlayersTriggers, _secondPlayersTriggers;
 
+    [SerializeField] private AudioSource buttonPressed;
+
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (isSingle)
         {
             plOneButton.interactable = false;
+            plButtonOne.SetActive(false);
         }
     }
     private void Update()
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PressedPlayerOneButton()
     {
+        buttonPressed.Play();
         changeOne = true;
         if (playerOneGravity == -1 && changeOne)
         {
@@ -103,8 +107,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PressedPlayerTwoButton()
     {
+
+        buttonPressed.Play();
         changeTwo = true;
-        Debug.Log(playerTwoGravity);
         if (playerTwoGravity == -1 && changeTwo)
         {
             changeTwo = false;

@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class TimerGameStartScript : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
+    [SerializeField] private AudioSource buttonSound;
     public void PressedPlay()
     {
+        buttonSound.Play();
         if (isSingle)
         {
             SceneManager.LoadScene("TimerGameSingle");

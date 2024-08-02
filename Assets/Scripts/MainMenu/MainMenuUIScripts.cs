@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainMenuUIScripts : MonoBehaviour
 {
     [SerializeField] private GameObject gamesForOnePanel, gamesForTwoPanel, homeMenuPanel, headerPanel;
+    [SerializeField] private AudioSource buttonSound;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class MainMenuUIScripts : MonoBehaviour
     }
     public void PressedGamesForOneButton()
     {
+        buttonSound.Play();
         gamesForOnePanel.SetActive(true);
         headerPanel.SetActive(true);
         gamesForTwoPanel.SetActive(false);
@@ -20,6 +22,7 @@ public class MainMenuUIScripts : MonoBehaviour
     }
     public void PressedGamesForTwoButton()
     {
+        buttonSound.Play(); 
         gamesForTwoPanel.SetActive(true);
         gamesForOnePanel.SetActive(false);
         homeMenuPanel.SetActive(false);
@@ -27,6 +30,7 @@ public class MainMenuUIScripts : MonoBehaviour
     }
     public void PressedHomeMenuButton()
     {
+        buttonSound.Play();
         homeMenuPanel.SetActive(true);
         headerPanel.SetActive(true);
         gamesForOnePanel.SetActive(false);

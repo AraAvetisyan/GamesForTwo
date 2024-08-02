@@ -9,15 +9,15 @@ public class CheckersLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            whitesTurn.text = "очередь белых";
+            whitesTurn.text = "Очередь Синих";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            whitesTurn.text = "White`s turn";
+            whitesTurn.text = "Blue`s Turn";
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            whitesTurn.text = "beyaz sirasi";
+            whitesTurn.text = "Mavi dönüş";
         }
     }
 

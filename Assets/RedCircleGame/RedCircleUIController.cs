@@ -13,6 +13,7 @@ public class RedCircleUIController : MonoBehaviour
     [SerializeField] private GameObject plOneButton, plTwoButton;
     [SerializeField] private GameObject buttonBG;
     public bool IsSingle;
+    [SerializeField] private AudioSource buttonSound;
     private void Awake()
     {
 
@@ -33,6 +34,7 @@ public class RedCircleUIController : MonoBehaviour
         if (IsSingle)
         {
             StartCoroutine(Single());
+            plOneButton.SetActive(false);
         }
     }
     private void Update()
@@ -49,6 +51,7 @@ public class RedCircleUIController : MonoBehaviour
     }
     public void PressedRest()
     {
+        buttonSound.Play();
         if (!IsSingle)
         {
             SceneManager.LoadScene("RedCircle");
@@ -61,6 +64,7 @@ public class RedCircleUIController : MonoBehaviour
     }
     public void PressedHome()
     {
+        buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
     }

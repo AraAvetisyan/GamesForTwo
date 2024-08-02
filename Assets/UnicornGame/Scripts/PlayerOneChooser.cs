@@ -37,6 +37,12 @@ public class PlayerOneChooser : MonoBehaviour
             }
         }
 
+        if (IsSingle)
+        {
+
+            buttonOne.SetActive(false);
+        }
+
     }
    
     // Update is called once per frame

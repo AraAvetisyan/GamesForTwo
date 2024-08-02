@@ -8,8 +8,10 @@ using UnityEngine.UI;
 public class RedCircleStartScript : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
+    [SerializeField] private AudioSource buttonSound;
     public void PressedPlay()
     {
+        buttonSound.Play();
         if (isSingle)
         {
             SceneManager.LoadScene("RedCircleSingle");

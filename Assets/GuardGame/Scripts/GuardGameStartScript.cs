@@ -8,9 +8,11 @@ public class GuardGameStartScript : MonoBehaviour
 {
 
     [SerializeField] private bool isSingle;
-  
+    [SerializeField] private AudioSource buttonSound;
+
     public void PressedPlay()
     {
+        buttonSound.Play();
         if (isSingle)
         {
             SceneManager.LoadScene("GuardGameSingle");
