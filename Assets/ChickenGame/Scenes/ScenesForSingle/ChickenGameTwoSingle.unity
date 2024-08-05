@@ -30427,7 +30427,7 @@ MonoBehaviour:
   isSingle: 1
   _firstPlayersTriggers: {fileID: 488190480}
   _secondPlayersTriggers: {fileID: 41201702}
-  buttonPressed: {fileID: 1630237062}
+  buttonSound: {fileID: 624662983497480204, guid: 91d8ec222590f4146aa970cd21997efb, type: 3}
 --- !u!4 &1693331116
 Transform:
   m_ObjectHideFlags: 0

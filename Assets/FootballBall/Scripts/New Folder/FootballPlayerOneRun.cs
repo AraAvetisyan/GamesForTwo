@@ -25,7 +25,7 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
 
     [SerializeField] private GameObject blueIdle, blueRun;
     public bool MustWait = false;
-    [SerializeField] private AudioSource runSound;
+//    [SerializeField] private AudioSource runSound;
     private int runCounter;
     private void Awake()
     {
@@ -87,7 +87,7 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
         {
             if (runCounter == 0)
             {
-                runSound.Play();
+                //runSound.Play();
                 runCounter = 1;
             }
             blueRun.SetActive(true);
@@ -101,7 +101,7 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
         if (!PlayerOneIsHolding)
         {
 
-            runSound.Stop();
+          //  runSound.Stop();
             runCounter = 0;
             //  Debug.Log("PlayerOneIsHolding darela fales petqa poxi idle");
             blueRun.SetActive(false);

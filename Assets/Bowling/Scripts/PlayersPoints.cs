@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayersPoints : MonoBehaviour
@@ -15,6 +16,9 @@ public class PlayersPoints : MonoBehaviour
     
     public bool GameEnds;
 
+    private bool playerOneWin, playerTwoWin;
+    [SerializeField] private AudioSource music;
+    [SerializeField] private GameObject playerOneObject, playerTwoObject;
     private void Start()
     {
        
@@ -78,36 +82,45 @@ public class PlayersPoints : MonoBehaviour
             if(_playerOneDrag.GameCount == _playerTwoDrag.GameCount)
             {
 
-                if (PlOnePoints >= 60 && PlTwoPoints < 60)
+                if (PlOnePoints >= 60 && PlTwoPoints < 60) // playerOneWin
                 {
                     GameEnds = true;
+                    playerOneWin = true;
+                    playerOneObject.SetActive(false);
+                    playerTwoObject.SetActive(false);
 
-                    playerOneWinPC.SetActive(true);
                     StartCoroutine(WaitToFinish());
-
                 }
-                if (PlTwoPoints >= 60 && PlOnePoints < 60)
+                if (PlTwoPoints >= 60 && PlOnePoints < 60) // playerTwoWin
                 {
                     GameEnds = true;
+                    playerTwoWin = true;
+                    playerOneObject.SetActive(false);
+                    playerTwoObject.SetActive(false);
 
-                   
+
                     StartCoroutine(WaitToFinish());
 
                 }
                 if(PlTwoPoints > 60 && PlOnePoints > 60)
                 {
-                    if (PlOnePoints > PlTwoPoints)
+                    if (PlOnePoints > PlTwoPoints) // playerOne Win
                     {
                         GameEnds = true;
+                        playerOneWin = true;
+                        playerOneObject.SetActive(false);
+                        playerTwoObject.SetActive(false);
 
-                       
+
                         StartCoroutine(WaitToFinish());
 
                     }
-                    if (PlOnePoints < PlTwoPoints)
+                    if (PlOnePoints < PlTwoPoints) // PlayerTwoWin
                     {
                         GameEnds = true;
-
+                        playerTwoWin = true;
+                        playerOneObject.SetActive(false);
+                        playerTwoObject.SetActive(false);
                         StartCoroutine(WaitToFinish());
 
                     }
@@ -118,13 +131,14 @@ public class PlayersPoints : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
-        if (PlTwoPoints >= 60 && PlOnePoints < 60)
+        if (playerTwoWin)
         {
             playerTwoWinPC.SetActive(true);
         }
-        if (PlOnePoints > PlTwoPoints)
+        if (playerOneWin)
         {
             playerOneWinPC.SetActive(true);
         }

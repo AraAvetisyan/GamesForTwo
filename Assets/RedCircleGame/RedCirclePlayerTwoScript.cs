@@ -19,7 +19,7 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
     public bool inWrongCircle;
     private int iswrong;
     private bool addedPoints;
-    [SerializeField] private AudioSource rightTrigger, wrongTrigger;
+    [SerializeField] private GameObject rightTrigger, wrongTrigger;
     private void OnTriggerEnter2D(Collider2D collision)
 
     {
@@ -39,7 +39,8 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
     }
     public IEnumerator ChangeInCircle()
     {
-        rightTrigger.Play();
+        GameObject sound = Instantiate(rightTrigger);
+        Destroy(sound, 1f);
         Points++;
         pointsText.text = Points.ToString();
         _playerTwoCircleChanger.ChangePlTwoCircle();
@@ -54,7 +55,8 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
 
         if (!inCircle)
         {
-            wrongTrigger.Play();
+            GameObject wrongSound = Instantiate(wrongTrigger);
+            Destroy(wrongSound, 1f);
             _circularMotion.Speed = 0;
             Pressed = false;
             PlayerCollider2D.enabled = false;
@@ -67,54 +69,3 @@ public class RedCirclePlayerTwoScript : MonoBehaviour
 
 
 
-
-//private void OnTriggerEnter2D(Collider2D collision)
-//{
-//    if (collision.CompareTag("Trigger"))
-//    {
-//        inCircle = true;
-//        StartCoroutine(ChangeInCircle());
-//        if (!inWrongCircle)
-//        {
-//            _playerTwoCircleChanger.ChangePlTwoCircle();
-//            Points++;
-//        }
-//        else
-//        {
-//            _playerTwoCircleChanger.ChangeToLastCircle();
-//        }
-//    }
-//    else if (collision.CompareTag("NotTrigger"))
-//    {
-//        if (!inCircle)
-//        {
-//            inWrongCircle = true;
-//            StartCoroutine(WaitToWrong());
-//        }
-
-//    }
-//}
-//public IEnumerator ChangeInCircle()
-//{
-//    pointsText.text = Points.ToString();
-//    Pressed = false;
-//    PlayerCollider2D.enabled = false;
-//    yield return new WaitForSeconds(0.01f);
-//    inCircle = false;
-//}
-
-//public IEnumerator WaitToWrong()
-//{
-
-//    if (!inCircle)
-//    {
-//        _circularMotion.Speed = 0;
-//        Pressed = false;
-//        PlayerCollider2D.enabled = false;
-//        yield return new WaitForSeconds(1f);
-//        _circularMotion.Speed = 5;
-//        inWrongCircle = false;
-//        iswrong = 0;
-//    }
-//}
-//}

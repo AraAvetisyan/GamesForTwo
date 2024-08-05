@@ -13,6 +13,7 @@ public class FireLightsScript : MonoBehaviour
     private float timerToClose;
     public bool CanHoldOff;
     public bool BothSoon;
+    [SerializeField] private AudioSource redSound, greenSound;
     void Start()
     {
 
@@ -45,22 +46,27 @@ public class FireLightsScript : MonoBehaviour
         if (Counter == 1)
         {
             Light1.SetActive(true);
+            redSound.Play();
         }
         if (Counter == 2)
         {
             Light2.SetActive(true);
+            redSound.Play();
         }
         if (Counter == 3)
         {
             Light3.SetActive(true);
+            redSound.Play();
         }
         if (Counter == 4)
         {
             Light4.SetActive(true);
+            redSound.Play();
         }
         if (Counter == 5)
         {
             Light5.SetActive(true);
+            redSound.Play();
         }
         yield return new WaitForSecondsRealtime(1f);
         if (Counter <= 5)
@@ -82,6 +88,7 @@ public class FireLightsScript : MonoBehaviour
     public IEnumerator WaitToTimer()
     {
         yield return new WaitForSecondsRealtime(timerToClose);
+        greenSound.Play();
         Light1.SetActive(false);
         Light2.SetActive(false);
         Light3.SetActive(false);

@@ -891,6 +891,7 @@ MonoBehaviour:
   presedAudio: {fileID: 1031240642}
   wrongAudio: {fileID: 726636792}
   buttonSound: {fileID: 1897839894}
+  music: {fileID: 1182306914}
 --- !u!4 &620684058
 Transform:
   m_ObjectHideFlags: 0
@@ -3366,7 +3367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629931110182715617, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -526.49994
+      value: -526.4999
       objectReference: {fileID: 0}
     - target: {fileID: 967854756443074334, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_fontAsset

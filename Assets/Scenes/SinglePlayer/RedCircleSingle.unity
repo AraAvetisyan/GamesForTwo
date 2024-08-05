@@ -33168,8 +33168,8 @@ MonoBehaviour:
   pointsText: {fileID: 1566350176}
   inCircle: 0
   inWrongCircle: 0
-  rightTrigger: {fileID: 1129682383}
-  wrongTrigger: {fileID: 75256951}
+  rightTrigger: {fileID: 1657568342995059087, guid: 5f86797e9857392479ec7255ec446c01, type: 3}
+  wrongTrigger: {fileID: 3901618637384471692, guid: 6650b1c23050f3b4cbef1230d3263f79, type: 3}
 --- !u!1 &1556662213
 GameObject:
   m_ObjectHideFlags: 0
@@ -34444,8 +34444,8 @@ MonoBehaviour:
   Points: 0
   pointsText: {fileID: 380554477}
   _redCircleUIController: {fileID: 1483555023}
-  rightTrigger: {fileID: 1129682383}
-  wrongTrigger: {fileID: 75256951}
+  rightTrigger: {fileID: 1657568342995059087, guid: 5f86797e9857392479ec7255ec446c01, type: 3}
+  wrongTrigger: {fileID: 3901618637384471692, guid: 6650b1c23050f3b4cbef1230d3263f79, type: 3}
 --- !u!50 &1606727035
 Rigidbody2D:
   serializedVersion: 4
@@ -39296,6 +39296,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849456312}
   m_CullTransparentMesh: 1
+--- !u!1 &1853079424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853079426}
+  - component: {fileID: 1853079425}
+  m_Layer: 0
+  m_Name: AudioListener Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1853079425
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853079424}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 713c3cf16ae62cc48a63c1be9bb7f878, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1853079426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853079424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858596040
 GameObject:
   m_ObjectHideFlags: 0
@@ -41126,6 +41254,7 @@ MonoBehaviour:
   playerTwoButton: {fileID: 68692154}
   PlOneCantPlay: 0
   PlTwoCantPlay: 0
+  music: {fileID: 1853079425}
 --- !u!114 &1957014567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45021,3 +45150,4 @@ SceneRoots:
   - {fileID: 1184805834}
   - {fileID: 1129682384}
   - {fileID: 75256952}
+  - {fileID: 1853079426}

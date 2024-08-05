@@ -1260,6 +1260,7 @@ MonoBehaviour:
   force: 50
   collisionSound: {fileID: 135806153}
   triggerSound: {fileID: 1337828753}
+  music: {fileID: 825583830}
 --- !u!114 &207890189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4717,6 +4718,7 @@ MonoBehaviour:
   force: 50
   collisionSound: {fileID: 135806153}
   triggerSound: {fileID: 1337828753}
+  music: {fileID: 825583830}
 --- !u!1 &1161999829
 GameObject:
   m_ObjectHideFlags: 0

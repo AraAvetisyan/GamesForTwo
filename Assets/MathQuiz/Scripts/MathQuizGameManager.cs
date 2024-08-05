@@ -35,6 +35,7 @@ public class MathQuizGameManager : MonoBehaviour
 
     [SerializeField] private Color colorRed, colorBlue;
     [SerializeField] private AudioSource rightSound, wrongSound;
+    [SerializeField] private AudioSource music;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -166,6 +167,7 @@ public class MathQuizGameManager : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         canPress = false;
         singleCanChoose = false;
         yield return new WaitForSeconds(1f);

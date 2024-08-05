@@ -31,6 +31,7 @@ public class GuardTimer : MonoBehaviour
 
     [SerializeField] private GameObject finalPanel;
     [SerializeField] Rigidbody2D rbPlOne, rbPlTwo;
+    [SerializeField] private AudioSource music;
     void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -113,6 +114,7 @@ public class GuardTimer : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         rbPlOne.isKinematic = true;
         rbPlTwo.isKinematic = true;
         rbPlOne.velocity= Vector2.zero;

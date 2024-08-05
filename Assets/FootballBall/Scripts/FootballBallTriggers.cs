@@ -18,6 +18,7 @@ public class FootballBallTriggers : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gollTimer;
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private BoxCollider2D plOneCollider;
+    [SerializeField] private AudioSource goalSound;
     private void Start()
     {
         if(_playerTwoRun.IsMobile && !_playerTwoRun.IsSingle)
@@ -62,6 +63,7 @@ public class FootballBallTriggers : MonoBehaviour
     }
     public IEnumerator Timer()
     {
+        goalSound.Play();
         plOneCollider.enabled = false;
         _playerOneRun.MustWait = true;
         _playerTwoRun.MustWait = true;

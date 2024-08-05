@@ -10,31 +10,39 @@ public class PlayerTwoColisions : MonoBehaviour
     public int PlayerTwoPonts;
     [SerializeField] private TextMeshProUGUI playerTwoPointsText;
     [SerializeField] private AudioSource hitCorral, hitPiranha;
+    [SerializeField] private PiranhaGameManager _piranhaGameManager;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Piranha")
         {
-            hitPiranha.Play();
-            Transform playerLineHit = collision.gameObject.transform;
-            Vector2 direction = (playerLineHit.position - transform.position);
-            rb.AddForce(-direction * force, ForceMode2D.Impulse);
-            StartCoroutine(StopeForce());
-            PlayerTwoPonts--;
-            if (PlayerTwoPonts <= 0)
+            if (!_piranhaGameManager.EendGame)
             {
-                PlayerTwoPonts = 0;
+                hitPiranha.Play();
+                Transform playerLineHit = collision.gameObject.transform;
+                Vector2 direction = (playerLineHit.position - transform.position);
+                rb.AddForce(-direction * force, ForceMode2D.Impulse);
+                StartCoroutine(StopeForce());
+                PlayerTwoPonts--;
+                if (PlayerTwoPonts <= 0)
+                {
+                    PlayerTwoPonts = 0;
+                }
+                playerTwoPointsText.text = PlayerTwoPonts.ToString();
             }
-            playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
         if (collision.gameObject.tag == "Obsticle")
         {
-            hitCorral.Play();
-            PlayerTwoPonts--;
-            if (PlayerTwoPonts <= 0)
+            if (!_piranhaGameManager.EendGame)
             {
-                PlayerTwoPonts = 0;
+                hitCorral.Play();
+                PlayerTwoPonts--;
+                if (PlayerTwoPonts <= 0)
+                {
+                    PlayerTwoPonts = 0;
+                }
+                playerTwoPointsText.text = PlayerTwoPonts.ToString();
+
             }
-            playerTwoPointsText.text = PlayerTwoPonts.ToString();
         }
     }
     public IEnumerator StopeForce()

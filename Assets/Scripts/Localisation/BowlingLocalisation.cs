@@ -6,26 +6,29 @@ using UnityEngine;
 public class BowlingLocalisation : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winnerPlOne, winnerPlTwo;
-    [SerializeField] private TextMeshProUGUI instruction;
+    [SerializeField] private TextMeshProUGUI instructionRed, instructionBlue;
     private void Start()
     {
         if (Geekplay.Instance.language == "ru")
         {
             winnerPlOne.text = "ПОБЕДИТЕЛЬ";
             winnerPlTwo.text = "ПОБЕДИТЕЛЬ";
-            instruction.text = "Свайп";
+            instructionRed.text = "Свайп";
+            instructionBlue.text = "Свайп";
         }
         else if (Geekplay.Instance.language == "en")
         {
             winnerPlOne.text = "WINNER";
             winnerPlTwo.text = "WINNER";
-            instruction.text = "Swipe";
+            instructionRed.text = "Swipe";
+            instructionBlue.text = "Swipe";
         }
         else if (Geekplay.Instance.language == "tr")
         {
             winnerPlOne.text = "Kazanan";
             winnerPlTwo.text = "Kazanan";
-            instruction.text = "Kaydır";
+            instructionRed.text = "Kaydır";
+            instructionBlue.text = "Kaydır";
         }
     }
 }

@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629931110182715617, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -526.49994
+      value: -526.4999
       objectReference: {fileID: 0}
     - target: {fileID: 967854756443074334, guid: 433e3a49716e86d4f9e2407d08ddd80d, type: 3}
       propertyPath: m_fontAsset
@@ -1600,6 +1600,7 @@ MonoBehaviour:
   force: 50
   collisionSound: {fileID: 363749789}
   triggerSound: {fileID: 432065170}
+  music: {fileID: 1960991200}
 --- !u!114 &207890189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5598,6 +5599,7 @@ MonoBehaviour:
   force: 50
   collisionSound: {fileID: 363749789}
   triggerSound: {fileID: 432065170}
+  music: {fileID: 1960991200}
 --- !u!1 &1188685851
 GameObject:
   m_ObjectHideFlags: 0

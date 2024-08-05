@@ -13,6 +13,7 @@ public class CatPawEndGameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
+    [SerializeField] private AudioSource music;
     void Start()
     {
         
@@ -44,6 +45,7 @@ public class CatPawEndGameManager : MonoBehaviour
     }
     public IEnumerator WaitForEnd()
     {
+        music.Stop();
         yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)

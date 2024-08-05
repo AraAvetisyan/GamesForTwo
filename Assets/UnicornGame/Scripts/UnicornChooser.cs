@@ -199,7 +199,7 @@ public class UnicornChooser : MonoBehaviour
     public IEnumerator WaitToFinish()
     {
         music.Stop();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         finalPanel.SetActive(true);
         if (playerOnePoints > playerTwoPoints)
         {

@@ -29171,6 +29171,7 @@ MonoBehaviour:
   playerOnePointsText: {fileID: 1683696301}
   hitCorral: {fileID: 2002003089}
   hitPiranha: {fileID: 585933860}
+  _piranhaGameManager: {fileID: 1186039044}
 --- !u!1 &768613147
 GameObject:
   m_ObjectHideFlags: 0
@@ -30602,6 +30603,7 @@ MonoBehaviour:
   playerTwoPointsText: {fileID: 181822077}
   hitCorral: {fileID: 2002003089}
   hitPiranha: {fileID: 585933860}
+  _piranhaGameManager: {fileID: 1186039044}
 --- !u!50 &820494653
 Rigidbody2D:
   serializedVersion: 4
@@ -45268,7 +45270,8 @@ MonoBehaviour:
   playerOneWinPc: {fileID: 1386289022}
   playerTwoWinPc: {fileID: 1386289023}
   finalPanel: {fileID: 1386289024}
-  endGame: 0
+  EendGame: 0
+  music: {fileID: 932914089}
 --- !u!4 &1186039045
 Transform:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayersTriggers _firstPlayersTriggers, _secondPlayersTriggers;
 
-    [SerializeField] private AudioSource buttonPressed;
+    [SerializeField] private GameObject buttonSound;
 
     private void Awake()
     {
@@ -84,7 +84,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void PressedPlayerOneButton()
     {
-        buttonPressed.Play();
+        // buttonPressed.Play();
+        if (!isSingle)
+        {
+            GameObject soundOne = Instantiate(buttonSound);
+            Destroy(soundOne, 1f);
+        }
         changeOne = true;
         if (playerOneGravity == -1 && changeOne)
         {
@@ -108,7 +113,9 @@ public class PlayerMovement : MonoBehaviour
     public void PressedPlayerTwoButton()
     {
 
-        buttonPressed.Play();
+        // buttonPressed.Play();
+        GameObject soundTwo = Instantiate(buttonSound);
+        Destroy(soundTwo, 1f);
         changeTwo = true;
         if (playerTwoGravity == -1 && changeTwo)
         {
