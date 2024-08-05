@@ -23,27 +23,30 @@ public class PlayerTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "EatableFish")
         {
-            eatableSound.Play();
-            _catPawGameUIController.ButtonTwoPressed = false;
-            //   transform.position = new Vector2(6f, 6f);
-            goBack = true;
-            collision.gameObject.SetActive(false);
-            Points += 1;
-            pointsText.text = Points.ToString();
-            stanCounter = 0;
-            if (Points != 5)
+            if (collision.gameObject.activeSelf)
             {
-                StartCoroutine(_fishSpawner.WaitForSpawn());
+                collision.gameObject.SetActive(false);
+                eatableSound.Play();
+                _catPawGameUIController.ButtonTwoPressed = false;
+                //   transform.position = new Vector2(6f, 6f);
+                goBack = true;
+                Points += 1;
+                pointsText.text = Points.ToString();
+                stanCounter = 0;
+                if (Points != 5)
+                {
+                    StartCoroutine(_fishSpawner.WaitForSpawn());
+                }
+                stan.SetActive(true);
             }
-            stan.SetActive(true);
         }
         if (collision.gameObject.tag == "NoteatableFish")
         {
+            collision.gameObject.SetActive(false);
             notEatableSound.Play();
             _catPawGameUIController.ButtonTwoPressed = false;
             //  transform.position = new Vector2(6f, 6f);
             goBack = true;
-            collision.gameObject.SetActive(false);
             Points -= 2;
             pointsText.text = Points.ToString();
             stanCounter = 0;

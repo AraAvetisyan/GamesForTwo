@@ -33168,8 +33168,8 @@ MonoBehaviour:
   pointsText: {fileID: 1566350176}
   inCircle: 0
   inWrongCircle: 0
-  rightTrigger: {fileID: 1129682383}
-  wrongTrigger: {fileID: 75256951}
+  rightTrigger: {fileID: 1657568342995059087, guid: 5f86797e9857392479ec7255ec446c01, type: 3}
+  wrongTrigger: {fileID: 3901618637384471692, guid: 6650b1c23050f3b4cbef1230d3263f79, type: 3}
 --- !u!1 &1556662213
 GameObject:
   m_ObjectHideFlags: 0
@@ -34444,8 +34444,8 @@ MonoBehaviour:
   Points: 0
   pointsText: {fileID: 380554477}
   _redCircleUIController: {fileID: 1483555023}
-  rightTrigger: {fileID: 1129682383}
-  wrongTrigger: {fileID: 75256951}
+  rightTrigger: {fileID: 1657568342995059087, guid: 5f86797e9857392479ec7255ec446c01, type: 3}
+  wrongTrigger: {fileID: 3901618637384471692, guid: 6650b1c23050f3b4cbef1230d3263f79, type: 3}
 --- !u!50 &1606727035
 Rigidbody2D:
   serializedVersion: 4

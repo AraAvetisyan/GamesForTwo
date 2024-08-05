@@ -10,7 +10,8 @@ public class PiranhaGameManager : MonoBehaviour
     [SerializeField] private PriangaCameraMovement _cameraMovement, _piranhaMovement, _borderMovement;
     [SerializeField] private GameObject playerOneWinPc, playerTwoWinPc;
     [SerializeField] private GameObject finalPanel;
-    [SerializeField] private bool endGame;
+    public bool EendGame;
+    [SerializeField] private AudioSource music;
     private bool plOneWin, plTwoWin;
     void Start()
     {
@@ -20,14 +21,15 @@ public class PiranhaGameManager : MonoBehaviour
     
     void Update()
     {
-        if (!endGame)
+        if (!EendGame)
         {
             if(_playerOneColisions.PlayerOnePonts <= 0)
             {
+                music.Stop();
                 _playerOneColisions.PlayerOnePonts = 0;
                 _plOneMovement.enabled = false;
                 _playerTwoColisions.enabled = false;
-                endGame = true;
+                EendGame = true;
                 _plOneMovement.speed = 0;
                 _plTwoMovement.speed = 0;
                 _borderMovement.Speed = 0;
@@ -39,10 +41,11 @@ public class PiranhaGameManager : MonoBehaviour
             }
             if(_playerTwoColisions.PlayerTwoPonts <= 0)
             {
+                music.Stop();
                 _playerTwoColisions.PlayerTwoPonts = 0;
                 _plOneMovement.enabled = false;
                 _playerTwoColisions.enabled = false;
-                endGame = true;
+                EendGame = true;
                 _plOneMovement.speed = 0;
                 _plTwoMovement.speed = 0;
                 _borderMovement.Speed = 0;

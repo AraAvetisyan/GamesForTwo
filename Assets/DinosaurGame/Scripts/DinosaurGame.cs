@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.AudioSettings;
+using Random = UnityEngine.Random;
 
 public class DinosaurGame : MonoBehaviour
 {
@@ -281,7 +282,8 @@ public class DinosaurGame : MonoBehaviour
     public IEnumerator Single()
     {
         pressed = false;
-        yield return new WaitForSeconds(0.5f);
+        float timeToPress = Random.Range(1.2f, 1.5f);
+        yield return new WaitForSeconds(timeToPress);
         teethIndex = UnityEngine.Random.Range(0, singleTeeth.Count);
 
         teethToPress = singleTeeth[teethIndex];

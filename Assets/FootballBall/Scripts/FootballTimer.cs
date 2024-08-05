@@ -26,7 +26,7 @@ public class FootballTimer : MonoBehaviour
   
     private void Update()
     {
-        if(_footballBallTriggers.PlayerOnePoints >= 5 || _footballBallTriggers.PlayerTwoPoints >= 5)
+        if(_footballBallTriggers.PlayerOnePoints >= 3 || _footballBallTriggers.PlayerTwoPoints >= 3)
         {
             GameEnds = true;
             plOneRb.velocity = Vector2.zero;
@@ -35,43 +35,13 @@ public class FootballTimer : MonoBehaviour
             enemyBox.enabled = false;
             if (_footballBallTriggers.PlayerOnePoints > _footballBallTriggers.PlayerTwoPoints) // blue player Win
             {
-                //if (_playersRun.IsMobile && !_playersRun.IsSingle) // mobile multyplay
-                //{
-                //    playerOneWinMobile.SetActive(true);
-                //}
-                //if (!_playersRun.IsMobile && _playersRun.IsSingle) // pc singleplay
-                //{
-                //    playerOneWinPC.SetActive(true);
-                //}
-                //if (_playersRun.IsMobile && _playersRun.IsSingle) // mobile singleplay
-                //{
-                //    playerOneWinPC.SetActive(true);
-                //}
-                //if(!_playersRun.IsMobile && !_playersRun.IsSingle) // pc multyplay
-                //{
-                //    playerOneWinPC.SetActive(true);
-                //}
+                
                 playerOneWinBool = true;
                 StartCoroutine(WaitToFinish());
             }
             if (_footballBallTriggers.PlayerOnePoints < _footballBallTriggers.PlayerTwoPoints) //red player win
             {
-                //if (_playersRun.IsMobile && !_playersRun.IsSingle)// mobile multyplay
-                //{
-                //    playerTwoWinMobile.SetActive(true);
-                //}
-                //if (!_playersRun.IsMobile && _playersRun.IsSingle)// pc singleplay
-                //{
-                //    playerTwoWinPC.SetActive(true);
-                //}
-                //if (_playersRun.IsMobile && _playersRun.IsSingle)// mobile singleplay
-                //{
-                //    playerTwoWinPC.SetActive(true);
-                //}
-                //if(!_playersRun.IsMobile && !_playersRun.IsSingle)// pc multyplay
-                //{
-                //    playerTwoWinPC.SetActive(true);
-                //}
+                
                 playerTwoWinBool = true;
                     StartCoroutine(WaitToFinish());
             }

@@ -33,6 +33,8 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
 
     [SerializeField] private AudioSource ballAudio, pinAudio;
     private int pinAudioCounter;
+
+    [SerializeField] private GameObject redInstruction, blueInstruction;
     private void Awake()
     {
 
@@ -167,6 +169,8 @@ public class DragItemsPlTwo : MonoBehaviour, IPointerDownHandler, IBeginDragHand
         PlayerTwoTurn = false;
         if (!_playersPoints.GameEnds)
         {
+            redInstruction.SetActive(true);
+            blueInstruction.SetActive(false);
             playerOne.SetActive(true);
             playerOnePins.SetActive(true);
             for(int i = 0; i < PinsPlOne.Length; i++)

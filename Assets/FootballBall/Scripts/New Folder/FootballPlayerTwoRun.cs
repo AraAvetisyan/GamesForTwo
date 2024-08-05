@@ -24,7 +24,7 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
 
     [SerializeField] private GameObject redIdle, redRun;
     public bool MustWait = false;
-    [SerializeField] private AudioSource runSound;
+   // [SerializeField] private AudioSource runSound;
     private int runCounter;
     private void Awake()
     {
@@ -77,7 +77,7 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
             if (runCounter == 0)
             {
                 runCounter = 1;
-                runSound.Play();
+                //runSound.Play();
             }
             redIdle.SetActive(false);
             redRun.SetActive(true);
@@ -89,7 +89,7 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
         if (!PlayerTwoIsHolding)
         {
             runCounter = 0;
-            runSound.Stop();
+           // runSound.Stop();
             redRun.SetActive(false);
             redIdle.SetActive(true);
 

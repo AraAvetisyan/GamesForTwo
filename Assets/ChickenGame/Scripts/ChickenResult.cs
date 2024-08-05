@@ -16,6 +16,7 @@ public class ChickenResult : MonoBehaviour
     private bool draw;
     private bool isMobile;
     [SerializeField] private bool isSingle;
+    [SerializeField] private AudioSource music;
     void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -64,6 +65,7 @@ public class ChickenResult : MonoBehaviour
     }
     public IEnumerator WaitToFinal()
     {
+        music.Stop();
         plOneRb.gravityScale = 0;
         plTwoRb.gravityScale = 0;
         plOneRb.bodyType = RigidbodyType2D.Static;

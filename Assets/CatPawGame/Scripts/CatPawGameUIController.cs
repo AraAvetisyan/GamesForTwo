@@ -109,14 +109,7 @@ public class CatPawGameUIController : MonoBehaviour
             playerTwoPaw.transform.position = playerTwoPosition.position;
         }
     }
-    public IEnumerator WaitToGoBack()
-    {
-        yield return new WaitForSecondsRealtime(Timer);
-        playerOnePaw.transform.position = playerOnePosition.position;
-        playerTwoPaw.transform.position = playerTwoPosition.position;
-        ButtonTwoPressed = false;
-        ButtonOnePressed = false;
-    }
+
 
     public void PressedHomeButton()
     {

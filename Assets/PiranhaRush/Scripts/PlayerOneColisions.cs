@@ -10,6 +10,7 @@ public class PlayerOneColisions : MonoBehaviour
     public int PlayerOnePonts;
     [SerializeField] private TextMeshProUGUI playerOnePointsText;
     [SerializeField] private AudioSource hitCorral, hitPiranha;
+    [SerializeField] private PiranhaGameManager _piranhaGameManager;
     private void Update()
     {
        
@@ -18,27 +19,33 @@ public class PlayerOneColisions : MonoBehaviour
     {
         if(collision.gameObject.tag == "Piranha")
         {
-            hitPiranha.Play();
-            Transform playerLineHit = collision.gameObject.transform;
-            Vector2 direction = (playerLineHit.position - transform.position);
-            rb.AddForce(-direction * force, ForceMode2D.Impulse);
-            StartCoroutine(StopeForce());
-            PlayerOnePonts--;
-            if (PlayerOnePonts <= 0)
+            if (!_piranhaGameManager.EendGame)
             {
-                PlayerOnePonts = 0;
+                hitPiranha.Play();
+                Transform playerLineHit = collision.gameObject.transform;
+                Vector2 direction = (playerLineHit.position - transform.position);
+                rb.AddForce(-direction * force, ForceMode2D.Impulse);
+                StartCoroutine(StopeForce());
+                PlayerOnePonts--;
+                if (PlayerOnePonts <= 0)
+                {
+                    PlayerOnePonts = 0;
+                }
+                playerOnePointsText.text = PlayerOnePonts.ToString();
             }
-            playerOnePointsText.text = PlayerOnePonts.ToString();
         }
         if (collision.gameObject.tag == "Obsticle")
         {
-            hitCorral.Play();
-            PlayerOnePonts--;
-            if (PlayerOnePonts <= 0)
+            if (!_piranhaGameManager.EendGame)
             {
-                PlayerOnePonts = 0;
+                hitCorral.Play();
+                PlayerOnePonts--;
+                if (PlayerOnePonts <= 0)
+                {
+                    PlayerOnePonts = 0;
+                }
+                playerOnePointsText.text = PlayerOnePonts.ToString();
             }
-            playerOnePointsText.text = PlayerOnePonts.ToString();
         }
     }
     public IEnumerator StopeForce()

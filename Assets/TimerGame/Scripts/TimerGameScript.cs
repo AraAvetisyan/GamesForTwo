@@ -47,6 +47,7 @@ public class TimerGameScript : MonoBehaviour
     private float diferenceOne, diferenceTwo;
     [SerializeField] private GameObject timerObject;
     [SerializeField] private AudioSource music, buttonSound;
+    [SerializeField] private AudioSource buttonSoundBlue, buttonSoundRed;
 
     private void Start()
     {
@@ -113,11 +114,12 @@ public class TimerGameScript : MonoBehaviour
     }
     public IEnumerator CloseTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.25f);
         timerObject.SetActive(false);
     }
     public void PressedPlOneButton()
     {
+        buttonSoundBlue.Play();
         playerOneNotPressedImage.SetActive(false);
         playerOnePressedImage.SetActive(true);
         playerOneButton.interactable = false;
@@ -133,6 +135,7 @@ public class TimerGameScript : MonoBehaviour
     }
     public void PressedPlTwoButton()
     {
+        buttonSoundRed.Play();
         playerTwoNotPressedImage.SetActive(false);
         playerTwoPressedImage.SetActive(true);
         playerTwoButton.interactable = false;
@@ -143,7 +146,7 @@ public class TimerGameScript : MonoBehaviour
     }
     private void Update()
     {
-        if (timer >= 1 && !gameEnds && testCounter == 0)
+        if (timer >= 3 && !gameEnds && testCounter == 0)
         {
             if (playerTwoCloserOne.transform.position.y >= playerTwoCloserOneGoal.position.y)
             {
