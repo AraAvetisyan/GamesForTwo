@@ -31,6 +31,7 @@ public class DinosaurGame : MonoBehaviour
     public bool playerOneWinnerBool, playerTwoWinnerBool;
 
     [SerializeField] private AudioSource presedAudio, wrongAudio, buttonSound;
+    [SerializeField] private AudioSource music;
     private void Awake()
     {
 
@@ -292,6 +293,7 @@ public class DinosaurGame : MonoBehaviour
     }
     public IEnumerator WaitToFinal()
     {
+        music.Stop();
         yield return new WaitForSeconds(1.5f);
         finalPanel.SetActive(true);
         if (playerOneWinnerBool)

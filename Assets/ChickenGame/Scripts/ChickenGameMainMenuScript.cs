@@ -8,29 +8,62 @@ public class ChickenGameMainMenuScript : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
     [SerializeField] private GameObject disPanel1, disPanel2, disPanel3;
+    [SerializeField] private GameObject disPanel1Mobile, disPanel2Mobile, disPanel3Mobile;
     public int Index;
     [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private bool isMobile;
+
+    private void Start()
+    {
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+        }
+    }
+
+
     public void PressedChickenGameOne()
     {
         buttonSound.Play();
-        disPanel1.SetActive(true);
+        if (!isMobile)
+        {
+            disPanel1.SetActive(true);
+        }
+        if (isMobile)
+        {
+            disPanel1Mobile.SetActive(true);
+        }
         Index = 1;
-        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameTwo()
     {
         buttonSound.Play();
-
-        disPanel2.SetActive(true);
+        if (!isMobile)
+        {
+            disPanel2.SetActive(true);
+        }
+        if (isMobile)
+        {
+            disPanel2Mobile.SetActive(true);
+        }
         Index = 2;
-        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedChickenGameThree()
     {
         buttonSound.Play();
-        disPanel3.SetActive(true);
+        if (!isMobile)
+        {
+            disPanel3.SetActive(true);
+        }
+        if (isMobile)
+        {
+            disPanel3Mobile.SetActive(true);
+        }
         Index = 3;
-        //Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {

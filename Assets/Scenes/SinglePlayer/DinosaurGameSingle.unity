@@ -1344,6 +1344,7 @@ MonoBehaviour:
   presedAudio: {fileID: 193937785}
   wrongAudio: {fileID: 790959995}
   buttonSound: {fileID: 11466532}
+  music: {fileID: 824891989}
 --- !u!4 &620684058
 Transform:
   m_ObjectHideFlags: 0

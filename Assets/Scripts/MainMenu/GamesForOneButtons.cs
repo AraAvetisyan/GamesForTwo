@@ -7,7 +7,20 @@ public class GamesForOneButtons : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
     [SerializeField] private GameObject bowlingDis, catPawDis, checkersDis, dinoDis, footballDis, greenBallDis, guardGameDis, mathQuizDis, piranhaDis, racingLightDis, redCircleDis, summoDis, timerDis, unicornDis;
+    [SerializeField] private GameObject bowlingDisMobile, catPawDisMobile, checkersDisMobile, dinoDisMobile, footballDisMobile, greenBallDisMobile, guardGameDisMobile, mathQuizDisMobile, piranhaDisMobile, racingLightDisMobile, redCircleDisMobile, summoDisMobile, timerDisMobile, unicornDisMobile;
     [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private bool isMobile;
+    private void Start()
+    {
+        if (Geekplay.Instance.mobile)
+        {
+            isMobile = true;
+        }
+        else
+        {
+            isMobile = false;
+        }
+    }
     public void PressedChickenGameButton()
     {
         buttonSound.Play();
@@ -17,60 +30,130 @@ public class GamesForOneButtons : MonoBehaviour
     public void PressedGreenBallButton()
     {
         buttonSound.Play();
-        greenBallDis.SetActive(true);
+        if (!isMobile)
+        {
+            greenBallDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            greenBallDisMobile.SetActive(true);
+        }
     }
 
     public void PressedTimerGameButton()
     {
         buttonSound.Play();
-        timerDis.SetActive(true);
+        if (!isMobile)
+        {
+            timerDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            timerDisMobile.SetActive(true);
+        }
     }
 
     public void PressedRedCircleButton()
     {
         buttonSound.Play();
-        redCircleDis.SetActive(true);
+        if (!isMobile)
+        {
+            redCircleDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            redCircleDisMobile.SetActive(true);
+        }
     }
 
     public void PressedDinosaurGameButton()
     {
         buttonSound.Play();
-        dinoDis.SetActive(true);
+        if (!isMobile)
+        {
+            dinoDis.SetActive(true);
+        }
+        if(isMobile)
+        {
+            dinoDisMobile.SetActive(true);
+        }
     }
 
     public void PressedCatPawButton()
     {
         buttonSound.Play();
-        catPawDis.SetActive(true);
+        if (!isMobile)
+        {
+            catPawDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            catPawDisMobile.SetActive(true);
+        }
     }
 
     public void PressedSummoGame()
     {
         buttonSound.Play();
-        summoDis.SetActive(true);
+        if (!isMobile)
+        {
+            summoDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            summoDisMobile.SetActive(true);
+        }
     }
 
     public void PressedRacingLight()
     {
         buttonSound.Play();
-        racingLightDis.SetActive(true);
+        if (!isMobile)
+        {
+            racingLightDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            racingLightDisMobile.SetActive(true);
+        }
     }
 
     public void PressedUnicorn()
     {
         buttonSound.Play();
-        unicornDis.SetActive(true);
+        if (!isMobile)
+        {
+            unicornDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            unicornDisMobile.SetActive(true);
+        }
     }
 
     public void PressedFootballBall()
     {
         buttonSound.Play();
-        footballDis.SetActive(true);
+        if (!isMobile)
+        {
+            footballDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            footballDisMobile.SetActive(true);
+        }
     }
     public void PressedGuardGame()
     {
         buttonSound.Play();
-        guardGameDis.SetActive(true);
+        if (!isMobile)
+        {
+            guardGameDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            guardGameDisMobile.SetActive(true);
+        }
     }
     public void PressedCheckers()
     {
@@ -81,16 +164,37 @@ public class GamesForOneButtons : MonoBehaviour
     public void PressedBowling()
     {
         buttonSound.Play();
-        bowlingDis.SetActive(true);
+        if (!isMobile)
+        {
+            bowlingDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            bowlingDisMobile.SetActive(true);
+        }
     }
     public void PressedMathQuiz()
     {
         buttonSound.Play();
-        mathQuizDis.SetActive(true);
+        if (!isMobile)
+        {
+            mathQuizDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            mathQuizDisMobile.SetActive(true);
+        }
     }
     public void PressedPiranhaRush()
     {
         buttonSound.Play();
-        piranhaDis.SetActive(true);
+        if (!isMobile)
+        {
+            piranhaDis.SetActive(true);
+        }
+        if (isMobile)
+        {
+            piranhaDisMobile.SetActive(true);
+        }
     }
 }

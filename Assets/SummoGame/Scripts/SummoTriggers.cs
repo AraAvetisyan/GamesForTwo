@@ -28,6 +28,7 @@ public class SummoTriggers : MonoBehaviour
     [SerializeField] private GameObject playerOne, playerTwo;
     [SerializeField] private float force;
     [SerializeField] private AudioSource collisionSound, triggerSound;
+    [SerializeField] private AudioSource music;
 
     private void Start()
     {
@@ -149,28 +150,10 @@ public class SummoTriggers : MonoBehaviour
 
         }
     }
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (playerIndex == 1)
-    //    {
-    //        if (collision.gameObject.tag == "PlayerTwo")
-    //        {
-    //            rbPlOne.velocity = Vector2.zero;
-    //            rbPlTwo.velocity = Vector2.zero;
-    //        }
-    //    }
-    //    if (playerIndex == 2)
-    //    {
-    //        if (collision.gameObject.tag == "PlayerOne")
-    //        {
-    //            rbPlOne.velocity = Vector2.zero;
-    //            rbPlTwo.velocity = Vector2.zero;
-    //        }
-
-    //    }
-    //}
+   
     public IEnumerator WaitToWin()
     {
+        music.Stop();
         yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (plOneWin)

@@ -23,6 +23,7 @@ public class FootballTimer : MonoBehaviour
     public bool GameEnds;
     [SerializeField] private BoxCollider2D enemyBox;
     public bool playerOneWinBool, playerTwoWinBool;
+    [SerializeField] private AudioSource music;
   
     private void Update()
     {
@@ -51,6 +52,7 @@ public class FootballTimer : MonoBehaviour
    
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         plOneButton.interactable = false;
         plTwoButton.interactable = false;
 

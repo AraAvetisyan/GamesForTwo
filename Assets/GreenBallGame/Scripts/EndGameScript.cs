@@ -15,6 +15,7 @@ public class EndGameScript : MonoBehaviour
     [SerializeField] private RotatePlayers _rotatePlayers;
     [SerializeField] private GameObject greenBall;
     [SerializeField] private Button blueButton, redButton;
+    [SerializeField] private AudioSource music;
     private void OnEnable()
     {
         TimerScript.GameEnds += EndGame;
@@ -28,46 +29,21 @@ public class EndGameScript : MonoBehaviour
         GameEnds = true;
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            //{
-            //    firstPlayerWinMobile.SetActive(true);
-            //}
-            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            //{
-            //    firstPlayerWinPC.SetActive(true);
-            //}
             StartCoroutine(WaitEndGame());
         }
         if (_secondPlayerZoneTrigger.FirstPlayersPoints < _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            //{
-            //    secondPlayerWinMobile.SetActive(true);
-            //}
-            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            //{
-            //    secondPlayerWinPC.SetActive(true);
-            //}
             StartCoroutine(WaitEndGame());
         }
         if(_secondPlayerZoneTrigger.FirstPlayersPoints == _firstPlayerZoneTrigger.SecondPlayersPoints)
         {
-            //if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
-            //{
-            //    drawMobile.SetActive(true);
-            //    drawMobile2.SetActive(true);
-            //}
-            //if (_greenBallGameUIController.IsSingle || !_greenBallGameUIController.IsMobile)
-            //{
-            //    drawPC.SetActive(true);
-            //    drawPC2.SetActive(true);
-            //}
             StartCoroutine(WaitEndGame());
         }
 
     }
     public IEnumerator WaitEndGame()
     {
+        music.Stop();
         _rotatePlayers.PlayerOneRotationSpeed = 0;
         _rotatePlayers.PlayerTwoRotationSpeed = 0;
         greenBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

@@ -20,7 +20,7 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
     private bool plOneWin, plTwoWin;
-
+    [SerializeField] private AudioSource music;
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
@@ -253,7 +253,7 @@ public class RacingLightGameManager : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
-
+        music.Stop();
         _playerOneRacingButtonsHold.CantHold = true;
         _playerTwoRacingButtonsHold.CantHold = true;
         yield return new WaitForSeconds(1f);

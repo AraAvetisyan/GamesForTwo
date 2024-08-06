@@ -17,6 +17,7 @@ public class PlayersPoints : MonoBehaviour
     public bool GameEnds;
 
     private bool playerOneWin, playerTwoWin;
+    [SerializeField] private AudioSource music;
     [SerializeField] private GameObject playerOneObject, playerTwoObject;
     private void Start()
     {
@@ -130,6 +131,7 @@ public class PlayersPoints : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
+        music.Stop();
         yield return new WaitForSeconds(1f);
         finalPanel.SetActive(true);
         if (playerTwoWin)
