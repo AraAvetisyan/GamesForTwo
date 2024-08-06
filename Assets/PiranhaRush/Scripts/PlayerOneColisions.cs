@@ -10,10 +10,15 @@ public class PlayerOneColisions : MonoBehaviour
     public int PlayerOnePonts;
     [SerializeField] private TextMeshProUGUI playerOnePointsText;
     [SerializeField] private AudioSource hitCorral, hitPiranha;
+    [SerializeField] private GameObject hitCorralObject, hitPiranhaObjrct;
     [SerializeField] private PiranhaGameManager _piranhaGameManager;
     private void Update()
     {
-       
+        if (PlayerOnePonts <= 0)
+        {
+            hitCorralObject.SetActive(false);
+            hitPiranhaObjrct.SetActive(false);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,8 +28,10 @@ public class PlayerOneColisions : MonoBehaviour
             {
                 hitPiranha.Play();
                 Transform playerLineHit = collision.gameObject.transform;
-                Vector2 direction = (playerLineHit.position - transform.position);
+                Vector2 direction = (playerLineHit.position - transform.position).normalized;
+
                 rb.AddForce(-direction * force, ForceMode2D.Impulse);
+
                 StartCoroutine(StopeForce());
                 PlayerOnePonts--;
                 if (PlayerOnePonts <= 0)
@@ -51,7 +58,6 @@ public class PlayerOneColisions : MonoBehaviour
     public IEnumerator StopeForce()
     {
         yield return new WaitForSeconds(.5f);
-      
         rb.velocity = Vector2.zero;
     }
 }

@@ -29171,7 +29171,11 @@ MonoBehaviour:
   playerOnePointsText: {fileID: 1683696301}
   hitCorral: {fileID: 2002003089}
   hitPiranha: {fileID: 585933860}
+  hitCorralObject: {fileID: 2002003088}
+  hitPiranhaObjrct: {fileID: 585933859}
   _piranhaGameManager: {fileID: 1186039044}
+  joystick: {fileID: 1414467252}
+  _piranhaGamePlayerMovement: {fileID: 766647915}
 --- !u!1 &768613147
 GameObject:
   m_ObjectHideFlags: 0
@@ -30603,6 +30607,8 @@ MonoBehaviour:
   playerTwoPointsText: {fileID: 181822077}
   hitCorral: {fileID: 2002003089}
   hitPiranha: {fileID: 585933860}
+  hitCorralObject: {fileID: 2002003088}
+  hitPiranhaObjrct: {fileID: 585933859}
   _piranhaGameManager: {fileID: 1186039044}
 --- !u!50 &820494653
 Rigidbody2D:

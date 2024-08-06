@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerTwoColisions : MonoBehaviour
@@ -10,7 +11,17 @@ public class PlayerTwoColisions : MonoBehaviour
     public int PlayerTwoPonts;
     [SerializeField] private TextMeshProUGUI playerTwoPointsText;
     [SerializeField] private AudioSource hitCorral, hitPiranha;
+    [SerializeField] private GameObject hitCorralObject, hitPiranhaObjrct;
     [SerializeField] private PiranhaGameManager _piranhaGameManager;
+
+    private void Update()
+    {
+        if (PlayerTwoPonts <= 0)
+        {
+            hitCorralObject.SetActive(false);
+            hitPiranhaObjrct.SetActive(false);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Piranha")

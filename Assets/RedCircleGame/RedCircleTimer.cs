@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RedCircleTimer : MonoBehaviour
 {
-    private int seconds = 30;
+    private int seconds = 300;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject finishPanel;
     [SerializeField] private RedCirclePlayerOneScript _redCirclePlayerOneScript;

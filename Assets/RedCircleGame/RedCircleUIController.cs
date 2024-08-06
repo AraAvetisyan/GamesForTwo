@@ -70,18 +70,30 @@ public class RedCircleUIController : MonoBehaviour
     }
     public void PressedPlayerOneButton()
     {
-        if (!_redCircleTimer.PlOneCantPlay)
+        _redCirclePlayerOneScript.Pressed = true;
+
+        if (_redCirclePlayerOneScript.inCircle)
         {
-            _redCirclePlayerOneScript.PlayerCollider2D.enabled = true;
-            _redCirclePlayerOneScript.Pressed = true;
+            StartCoroutine(_redCirclePlayerOneScript.ChangeInCircle());
+        }
+        else
+        {
+            StartCoroutine(_redCirclePlayerOneScript.WaitToWrong());
         }
     }
     public void PressedPlayerTwoButton()
     {
-        if (!_redCircleTimer.PlTwoCantPlay)
+        _redCirclePlayerTwoScript.Pressed = true;
+        
+        if (_redCirclePlayerTwoScript.inCircle)
         {
-            _redCirclePlayerTwoScript.PlayerCollider2D.enabled = true;
-            _redCirclePlayerTwoScript.Pressed = true;
+            Debug.Log("Chishta");
+            StartCoroutine(_redCirclePlayerTwoScript.ChangeInCircle());
+        }
+        else
+        {
+            Debug.Log("Sxala");
+            StartCoroutine(_redCirclePlayerTwoScript.WaitToWrong());
         }
     }
 
