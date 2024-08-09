@@ -21,6 +21,10 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private GameObject playerOneTimerBG, playerTwoTimerBG;
     private bool plOneWin, plTwoWin;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    [SerializeField] private RacingLightInstruction _racingLightInstruction;
+    [SerializeField] private GameObject holdRed, holdBlue;
+    [SerializeField] private GameObject release;
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
@@ -229,6 +233,10 @@ public class RacingLightGameManager : MonoBehaviour
         _playerTwoRacingButtonsHold.PlayerTwoIsHolding = false;
         _playerOneRacingButtonsHold.PlayerOneButton.interactable = true;
         _playerTwoRacingButtonsHold.PlayerTwoButton.interactable = true;
+        release.SetActive(false);
+        holdRed.SetActive(true);
+        holdBlue.SetActive(true);
+        _racingLightInstruction.Scaler();
 
         _playerTwoRacingButtonsHold.blockerOne.SetActive(false);
         _playerTwoRacingButtonsHold.blockerTwo.SetActive(false);
@@ -257,6 +265,7 @@ public class RacingLightGameManager : MonoBehaviour
         _playerOneRacingButtonsHold.CantHold = true;
         _playerTwoRacingButtonsHold.CantHold = true;
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
         if (plOneWin)
         {

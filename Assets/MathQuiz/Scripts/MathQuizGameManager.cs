@@ -36,6 +36,8 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private Color colorRed, colorBlue;
     [SerializeField] private AudioSource rightSound, wrongSound;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    int singleAnswerRight;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -132,7 +134,7 @@ public class MathQuizGameManager : MonoBehaviour
     }
     public IEnumerator Single()
     {
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(3.5f);
         if (canPress)
         {
             singleCanChoose = true;
@@ -148,22 +150,105 @@ public class MathQuizGameManager : MonoBehaviour
     }
     public void SingleChooser()
     {
-        int rand = Random.Range(0, 3);
-        if (canPress)
+        
+
+        //taskOne.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString();
+        //taskTwo.text = partOne.ToString() + " " + sign[signInt] + " " + partTwo.ToString();
+        int rand = Random.Range(0, 101);
+
+        
+        if (signInt == 0)
         {
-            if (rand == 0)
+            singleAnswerRight = partOne + partTwo;
+        }
+        if (signInt == 1)
+        {
+            singleAnswerRight = partOne - partTwo;
+        }
+        if (signInt == 2)
+        {
+            singleAnswerRight = partOne * partTwo;
+        }
+        if (signInt == 3)
+        {
+            singleAnswerRight = partOne / partTwo;
+        }
+        if (rand <= 50)
+        {
+            Debug.Log("True");
+            //true
+            if(plTwoButtonOneAnswer == singleAnswerRight)
             {
                 PressedPlTwoButtonOne();
             }
-            if (rand == 1)
+            if(plTwoButtonTwoAnswer == singleAnswerRight)
             {
                 PressedPlTwoButtonTwo();
             }
-            if (rand == 2)
+            if(plTwoButtonThreeAnswer ==  singleAnswerRight)
             {
                 PressedPlTwoButtonThree();
             }
         }
+        if(rand > 50 &&  rand <= 101)
+        {
+            Debug.Log("False");
+            int choose = Random.Range(0, 2);
+            //false
+            if (plTwoButtonOneAnswer == singleAnswerRight)
+            {
+                //PressedPlTwoButtonOne();
+                if (choose == 0)
+                {
+                    PressedPlTwoButtonTwo();
+                }
+                if(choose == 1)
+                {
+                    PressedPlTwoButtonThree();
+                }
+            }
+            if (plTwoButtonTwoAnswer == singleAnswerRight)
+            {
+                // PressedPlTwoButtonTwo();
+                if (choose == 0)
+                {
+                    PressedPlTwoButtonOne();
+                }
+                if (choose == 1)
+                {
+                    PressedPlTwoButtonThree();
+                }
+            }
+            if (plTwoButtonThreeAnswer == singleAnswerRight)
+            {
+                //  PressedPlTwoButtonThree();
+                if (choose == 0)
+                {
+                    PressedPlTwoButtonOne();
+                }
+                if (choose == 1)
+                {
+                    PressedPlTwoButtonTwo();
+                }
+            }
+        }
+
+        //int rand = Random.Range(0, 3);
+        //if (canPress)
+        //{
+        //    if (rand == 0)
+        //    {
+        //        PressedPlTwoButtonOne();
+        //    }
+        //    if (rand == 1)
+        //    {
+        //        PressedPlTwoButtonTwo();
+        //    }
+        //    if (rand == 2)
+        //    {
+        //        PressedPlTwoButtonThree();
+        //    }
+        //}
     }
     public IEnumerator WaitToFinish()
     {
@@ -171,6 +256,7 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         singleCanChoose = false;
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
         if (plOneWin)
         {

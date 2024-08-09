@@ -29,6 +29,9 @@ TagManager:
   - Path
   - ChiskenCameraTrigger
   - Pins
+  - Audio
+  - GoBackCatTwo
+  - GoBackCatOne
   layers:
   - Default
   - TransparentFX

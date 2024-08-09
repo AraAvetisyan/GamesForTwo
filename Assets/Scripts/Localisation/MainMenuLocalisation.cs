@@ -10,21 +10,21 @@ public class MainMenuLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            title.text = "ИГРЫ НА ДВОИХ";
+            title.text = "Игры на двоих: Сборник";
             player.text = "Игрок";
             players.text = "Игрока";           
         }
         else if (Geekplay.Instance.language == "en")
         {
 
-            title.text = "GAMES FOR TWO";
-            player.text = "PLAYER";
-            players.text = "PLAYERS";           
+            title.text = "Games for Two: Collection";
+            player.text = "Player";
+            players.text = "Players";           
         }
         else if (Geekplay.Instance.language == "tr")
         {
 
-            title.text = "İki Kişilik Oyunlar";
+            title.text = "İki Kişilik Oyunlar: Koleksiyon";
             player.text = "oyuncu";
             players.text = "oyuncular";           
         }

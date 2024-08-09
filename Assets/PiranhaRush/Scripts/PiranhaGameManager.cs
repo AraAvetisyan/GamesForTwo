@@ -12,6 +12,8 @@ public class PiranhaGameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     public bool EendGame;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject hitCorral, hitPiranha;
     private bool plOneWin, plTwoWin;
     void Start()
     {
@@ -25,6 +27,8 @@ public class PiranhaGameManager : MonoBehaviour
         {
             if(_playerOneColisions.PlayerOnePonts <= 0)
             {
+                hitCorral.SetActive(false);
+                hitPiranha.SetActive(false);
                 music.Stop();
                 _playerOneColisions.PlayerOnePonts = 0;
                 _plOneMovement.enabled = false;
@@ -41,6 +45,8 @@ public class PiranhaGameManager : MonoBehaviour
             }
             if(_playerTwoColisions.PlayerTwoPonts <= 0)
             {
+                hitCorral.SetActive(false);
+                hitPiranha.SetActive(false);
                 music.Stop();
                 _playerTwoColisions.PlayerTwoPonts = 0;
                 _plOneMovement.enabled = false;
@@ -60,6 +66,7 @@ public class PiranhaGameManager : MonoBehaviour
     public IEnumerator WaitToFinish()
     {
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
         if (plOneWin)
         {

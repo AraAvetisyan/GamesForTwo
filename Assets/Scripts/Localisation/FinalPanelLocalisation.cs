@@ -14,39 +14,39 @@ public class FinalPanelLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            winnerPlOne.text = "Красный Игрок Победил";
-            winnerPlTwo.text = "Синий Игрок Победил";
-            toMenu.text = "В Меню";
-            toMenu2.text = "В Меню";
-            toMenu3.text = "В Меню";
-            playeAgain.text = "Играть Еще";
-            playeAgain2.text = "Играть Еще";
-            playeAgain3.text = "Играть Еще";
+            winnerPlOne.text = "Красный игрок победил";
+            winnerPlTwo.text = "Синий игрок победил";
+            toMenu.text = "В меню";
+            toMenu2.text = "В меню";
+            toMenu3.text = "В меню";
+            playeAgain.text = "Играть еще";
+            playeAgain2.text = "Играть еще";
+            playeAgain3.text = "Играть еще";
             draw.text = "НИЧЬЯ";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            winnerPlOne.text = "RED PLAYER WINS";
-            winnerPlTwo.text = "BLUE PLAYER WINS";
-            toMenu.text = "TO MENU";
-            playeAgain.text = "PLAY AGAIN";
-            toMenu2.text = "TO MENU";
-            playeAgain2.text = "PLAY AGAIN";
-            toMenu3.text = "TO MENU";
-            playeAgain3.text = "PLAY AGAIN";
-            draw.text = "DRAW";
+            winnerPlOne.text = "Red player wins";
+            winnerPlTwo.text = "Blue player wins";
+            toMenu.text = "To menu";
+            playeAgain.text = "Play again";
+            toMenu2.text = "To menu";
+            playeAgain2.text = "Play again";
+            toMenu3.text = "To menu";
+            playeAgain3.text = "Play again";
+            draw.text = "Draw";
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            winnerPlOne.text = "KIRMIZI OYUNCU KAZANIR";
-            winnerPlTwo.text = "MAVI OYUNCU KAZANIR";
-            toMenu.text = "MENÜYE";
-            playeAgain.text = "TEKRAR OYNA";
-            toMenu2.text = "MENÜYE";
-            playeAgain2.text = "TEKRAR OYNA";
-            toMenu3.text = "MENÜYE";
-            playeAgain3.text = "TEKRAR OYNA";
-            draw.text = "cizmek";
+            winnerPlOne.text = "Kirmizi oyuncu kazanir";
+            winnerPlTwo.text = "Mavi oyuncu kazanir";
+            toMenu.text = "Menuye";
+            playeAgain.text = "Tekrar oyna";
+            toMenu2.text = "Menuye";
+            playeAgain2.text = "Tekrar oyna";
+            toMenu3.text = "Menuye";
+            playeAgain3.text = "Tekrar oyna";
+            draw.text = "Cizmek";
         }
     }
 }

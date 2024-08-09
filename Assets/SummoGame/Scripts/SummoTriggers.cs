@@ -29,16 +29,18 @@ public class SummoTriggers : MonoBehaviour
     [SerializeField] private float force;
     [SerializeField] private AudioSource collisionSound, triggerSound;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject pointsBG;
 
     private void Start()
     {
         if(_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
         {
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         if(!_summoGameScriptPlTwo.IsMobile || _summoGameScriptPlTwo.IsSingle)
         {
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -155,6 +157,7 @@ public class SummoTriggers : MonoBehaviour
     {
         music.Stop();
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
         if (plOneWin)
         {

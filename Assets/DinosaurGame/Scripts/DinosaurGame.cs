@@ -32,6 +32,7 @@ public class DinosaurGame : MonoBehaviour
 
     [SerializeField] private AudioSource presedAudio, wrongAudio, buttonSound;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
     private void Awake()
     {
 
@@ -123,8 +124,11 @@ public class DinosaurGame : MonoBehaviour
             {
                 plOnePC.SetActive(true);
             }
-            plOneTurn.SetActive(true);
-            plTwoTurn.SetActive(false);
+            if (index != lose)
+            {
+                plOneTurn.SetActive(true);
+                plTwoTurn.SetActive(false);
+            }
             if (isSingle)
             {
                 Cursor.visible = false;
@@ -138,8 +142,11 @@ public class DinosaurGame : MonoBehaviour
             player = 1;
             plOne.SetActive(false);
             plOnePC.SetActive(false);
-            plOneTurn.SetActive(false);
-            plTwoTurn.SetActive(true);
+            if (index != lose)
+            {
+                plOneTurn.SetActive(false);
+                plTwoTurn.SetActive(true);
+            }
             plTwo.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -173,8 +180,11 @@ public class DinosaurGame : MonoBehaviour
                 plTwo.SetActive(false);
                 plOne.SetActive(false);
                 plOnePC.SetActive(false);
-                plTwoTurn.SetActive(false);
-                plOneTurn.SetActive(true);
+                if (index != lose)
+                {
+                    plTwoTurn.SetActive(false);
+                    plOneTurn.SetActive(true);
+                }
                 for (int i = 0; i < teeth.Length; i++)
                 {
                     teeth[i].interactable = false;
@@ -203,8 +213,11 @@ public class DinosaurGame : MonoBehaviour
                 plTwo.SetActive(false);
                 plOne.SetActive(false);
                 plOnePC.SetActive(false);
-                plTwoTurn.SetActive(true);
-                plOneTurn.SetActive(false);
+                if (index != lose)
+                {
+                    plTwoTurn.SetActive(true);
+                    plOneTurn.SetActive(false);
+                }
                 for (int i = 0; i < teeth.Length; i++)
                 {
                     teeth[i].interactable = false;
@@ -240,8 +253,11 @@ public class DinosaurGame : MonoBehaviour
                 plTwo.SetActive(false);
                 plOne.SetActive(false);
                 plOnePC.SetActive(false);
-                plTwoTurn.SetActive(false);
-                plOneTurn.SetActive(true);
+                if (index != lose)
+                {
+                    plTwoTurn.SetActive(false);
+                    plOneTurn.SetActive(true);
+                }
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {
@@ -269,8 +285,11 @@ public class DinosaurGame : MonoBehaviour
                 plTwo.SetActive(false);
                 plOne.SetActive(false);
                 plOnePC.SetActive(false);
-                plTwoTurn.SetActive(true);
-                plOneTurn.SetActive(false);
+                if (index != lose)
+                {
+                    plTwoTurn.SetActive(true);
+                    plOneTurn.SetActive(false);
+                }
                 StartCoroutine(WaitToFinal());
                 for (int i = 0; i < teeth.Length; i++)
                 {
@@ -294,7 +313,8 @@ public class DinosaurGame : MonoBehaviour
     public IEnumerator WaitToFinal()
     {
         music.Stop();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        end.Play();
         finalPanel.SetActive(true);
         if (playerOneWinnerBool)
         {

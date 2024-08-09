@@ -14,6 +14,9 @@ public class FireLightsScript : MonoBehaviour
     public bool CanHoldOff;
     public bool BothSoon;
     [SerializeField] private AudioSource redSound, greenSound;
+    [SerializeField] private RacingLightInstruction _racingLightInstruction;
+    [SerializeField] private GameObject holdRed, holdBlue;
+    [SerializeField] private GameObject release;
     void Start()
     {
 
@@ -45,6 +48,9 @@ public class FireLightsScript : MonoBehaviour
         Counter++;
         if (Counter == 1)
         {
+            _racingLightInstruction.Killer();
+            holdBlue.SetActive(false);
+            holdRed.SetActive(false);
             Light1.SetActive(true);
             redSound.Play();
         }
@@ -82,12 +88,14 @@ public class FireLightsScript : MonoBehaviour
     public void StartTimer()
     {
         timerToClose = Random.Range(0, 3.5f);
+
         StartCoroutine(WaitToTimer());
     }
 
     public IEnumerator WaitToTimer()
     {
         yield return new WaitForSecondsRealtime(timerToClose);
+        release.SetActive(true);
         greenSound.Play();
         Light1.SetActive(false);
         Light2.SetActive(false);

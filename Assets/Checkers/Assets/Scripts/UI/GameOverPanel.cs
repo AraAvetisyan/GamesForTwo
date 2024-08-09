@@ -10,6 +10,7 @@ public class GameOverPanel : MonoBehaviour
 
     private Animator gameOverPanelAnimator;
     [SerializeField] private GameObject blueWinner, redWinner;
+    [SerializeField] private AudioSource end;
     private void Awake()
     {
         gameOverPanelAnimator = GetComponent<Animator>();
@@ -20,6 +21,7 @@ public class GameOverPanel : MonoBehaviour
         //WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
         if (winner == 0)
         {
+            end.Play();
             redWinner.SetActive(true);
             if (Geekplay.Instance.language == "ru")
             {
@@ -36,6 +38,7 @@ public class GameOverPanel : MonoBehaviour
         }
         if (winner == 1)
         {
+            end.Play();
             blueWinner.SetActive(true);
             if(Geekplay.Instance.language == "ru")
             {

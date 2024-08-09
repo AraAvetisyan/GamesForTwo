@@ -8,12 +8,13 @@ public class CatPawEndGameManager : MonoBehaviour
     [SerializeField] private PlayerOneScript _playerOneScript;
     [SerializeField] private PlayerTwoScript _playerTwoScript;
     [SerializeField] private GameObject playerOneWinnerMobile, playerTwoWinnerMobile;
-    [SerializeField] private GameObject playerOneWinnerPC, playerTwoWinnerPC;
     [SerializeField] private CatPawGameUIController _catPawGameUIController;
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    private bool blueWin, redWin;
     void Start()
     {
         
@@ -24,6 +25,7 @@ public class CatPawEndGameManager : MonoBehaviour
     {
         if(_playerOneScript.Points == 5)
         {
+            blueWin = true;
             playerOneButton.interactable = false;
             playerTwoButton.interactable = false;
             PlOneCantPlay = true;
@@ -33,6 +35,7 @@ public class CatPawEndGameManager : MonoBehaviour
         }
         if(_playerTwoScript.Points == 5)
         {
+            redWin = true;
             playerOneButton.interactable = false;
             playerTwoButton.interactable = false;
 
@@ -47,22 +50,16 @@ public class CatPawEndGameManager : MonoBehaviour
     {
         music.Stop();
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
-        if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
+        if (blueWin)
         {
             playerOneWinnerMobile.SetActive(true);
         }
-        if (!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
-        {
-            playerOneWinnerPC.SetActive(true);
-        }
-        if (_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
+        if (redWin)
         {
             playerTwoWinnerMobile.SetActive(true);
         }
-        if (!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
-        {
-            playerTwoWinnerPC.SetActive(true);
-        }
+        
     }
 }

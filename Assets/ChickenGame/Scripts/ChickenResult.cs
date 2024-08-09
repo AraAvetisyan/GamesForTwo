@@ -17,6 +17,7 @@ public class ChickenResult : MonoBehaviour
     private bool isMobile;
     [SerializeField] private bool isSingle;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
     void Start()
     {
         if (Geekplay.Instance.mobile)

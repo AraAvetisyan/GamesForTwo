@@ -15,15 +15,17 @@ public class RedCirclePlayerOneScript : MonoBehaviour
     private bool inWrongCircle;
     [SerializeField] private RedCircleUIController _redCircleUIController;
     [SerializeField] private GameObject rightTrigger, wrongTrigger;
+    [SerializeField] private GameObject pointsBG;
+
     private void Start()
     {
         if(_redCircleUIController.IsMobile && !_redCircleUIController.IsSingle)
         {
-            pointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         if(!_redCircleUIController.IsMobile || _redCircleUIController.IsSingle) 
         {
-            pointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

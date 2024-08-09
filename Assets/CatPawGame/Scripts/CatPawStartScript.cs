@@ -9,6 +9,7 @@ public class CatPawStartScript : MonoBehaviour
     [SerializeField] private AudioSource buttonSound;
     public void PressedStart()
     {
+        Destroy(MainMenuAudioController.Instance.Music);
         buttonSound.Play();
         if (isSingle)
         {

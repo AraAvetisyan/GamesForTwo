@@ -47,6 +47,7 @@ public class TimerGameScript : MonoBehaviour
     private float diferenceOne, diferenceTwo;
     [SerializeField] private GameObject timerObject;
     [SerializeField] private AudioSource music, buttonSound;
+    [SerializeField] private AudioSource end;
     [SerializeField] private AudioSource buttonSoundBlue, buttonSoundRed;
 
     private void Start()
@@ -244,6 +245,7 @@ public class TimerGameScript : MonoBehaviour
 
 
         yield return new WaitForSeconds(1f);
+        end.Play();
         endPanel.SetActive(true);
         if (compareForOne < compareForTwo)
         {
