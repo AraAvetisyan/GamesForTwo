@@ -34,7 +34,7 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject pointsBG;
     void Start()
     {
-        seconds = 30;
+        seconds = 15;
         headInt = Random.Range(0, 4);
         hairInt = Random.Range(0, 4);
         cornInt = Random.Range(0, 5);
