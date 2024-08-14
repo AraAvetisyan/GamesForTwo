@@ -9,6 +9,7 @@ public class FootballBallStartScript : MonoBehaviour
     [SerializeField] private AudioSource buttonSound;
     public void PressedPlay()
     {
+        Destroy(MainMenuAudioController.Instance.Music);
         buttonSound.Play();
         if (isSingle)
         {

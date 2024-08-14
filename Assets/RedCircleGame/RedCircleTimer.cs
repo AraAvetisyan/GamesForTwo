@@ -24,6 +24,7 @@ public class RedCircleTimer : MonoBehaviour
     [SerializeField] private Button playerOneButton, playerTwoButton;
     public bool PlOneCantPlay, PlTwoCantPlay;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
     private void Start()
     {
         StartCoroutine(Timer());
@@ -69,6 +70,7 @@ public class RedCircleTimer : MonoBehaviour
     {
         music.Stop();
         yield return new WaitForSeconds(1f);
+        end.Play();
         finishPanel.SetActive(true);
         if (_redCirclePlayerOneScript.Points > _redCirclePlayerTwoScript.Points)
         {

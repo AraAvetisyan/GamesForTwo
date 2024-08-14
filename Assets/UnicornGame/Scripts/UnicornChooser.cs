@@ -19,7 +19,7 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject TimerToCloseBG;
     private int timer;
     public bool Closed;
-    private int counter;
+    [SerializeField] private int counter;
     private int seconds;
 
     [SerializeField] TextMeshProUGUI playerOnePointsText, playerTwoPointsText;
@@ -29,6 +29,9 @@ public class UnicornChooser : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private GameObject plOneScoreBG, plTwoScoreBG;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
+    private bool timerEnds;
+    [SerializeField] private GameObject pointsBG;
     void Start()
     {
         seconds = 30;
@@ -44,7 +47,7 @@ public class UnicornChooser : MonoBehaviour
         plTwoEyes[eyesInt].SetActive(true);
         if (_playerTwoChooser.IsMobile && !_playerTwoChooser.IsSingle)
         {
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
             plOneScoreBG.SetActive(false);
             plTwoScoreBG.SetActive(false);
             plOneHeadMobile[headInt].SetActive(true);
@@ -56,7 +59,7 @@ public class UnicornChooser : MonoBehaviour
         if (!_playerTwoChooser.IsMobile || _playerTwoChooser.IsSingle)
         {
 
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
             plOneScoreBG.SetActive(false);
             plTwoScoreBG.SetActive(false);
             plOneHeadPC[headInt].SetActive(true);
@@ -125,14 +128,33 @@ public class UnicornChooser : MonoBehaviour
                 }
             }
             counter = 3;
-
-            plOneScoreBG.SetActive(true);
-            plTwoScoreBG.SetActive(true);
-            playerOnePointsText.text = playerOnePoints.ToString();
-            playerTwoPointsText.text = playerTwoPoints.ToString();
-
-            StartCoroutine(WaitToFinish());
-
+            if (_playerOneChooser.PlayerOneEnds && _playerTwoChooser.PlayerTwoEnds)
+            {
+                if (counter == 3)
+                {
+                    counter = 4;
+                    plOneScoreBG.SetActive(true);
+                    plTwoScoreBG.SetActive(true);
+                    playerOnePointsText.text = playerOnePoints.ToString();
+                    playerTwoPointsText.text = playerTwoPoints.ToString();
+                    StartCoroutine(WaitToFinish());
+                }
+            }
+            if(seconds <= 0)
+            {
+                if (!_playerOneChooser.PlayerOneEnds || !_playerTwoChooser.PlayerTwoEnds)
+                {
+                    if (counter == 3)
+                    {
+                        counter = 4;
+                        plOneScoreBG.SetActive(true);
+                        plTwoScoreBG.SetActive(true);
+                        playerOnePointsText.text = playerOnePoints.ToString();
+                        playerTwoPointsText.text = playerTwoPoints.ToString();
+                        StartCoroutine(WaitToFinish());
+                    }
+                }
+            }
         }
     }
     public IEnumerator Timer()
@@ -150,8 +172,9 @@ public class UnicornChooser : MonoBehaviour
         }
         if (!_playerOneChooser.PlayerOneEnds || !_playerTwoChooser.PlayerTwoEnds)
         {
-            if (seconds == 0)
+            if (seconds == 0 && !timerEnds)
             {
+                timerEnds = true;
                 counter = 1;
                 secondsText.text = "0";
             }
@@ -198,8 +221,11 @@ public class UnicornChooser : MonoBehaviour
     }
     public IEnumerator WaitToFinish()
     {
-        music.Stop();
-        yield return new WaitForSeconds(2f);
+        counter = 150;
+
+        music.Stop();       
+        yield return new WaitForSeconds(2f); 
+        end.Play();
         finalPanel.SetActive(true);
         if (playerOnePoints > playerTwoPoints)
         {

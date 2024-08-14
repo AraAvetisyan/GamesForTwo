@@ -76,8 +76,8 @@ public class DragItemsPlOne : MonoBehaviour, IPointerDownHandler, IBeginDragHand
     }
     public IEnumerator Position()
     {
-        yield return new WaitForSeconds(0.25f);
-        lastRectTransform.position = rectTransform.position;
+        yield return new WaitForSeconds(0.1f);
+        lastRectTransform.position = new Vector3(lastRectTransform.position.x, transform.position.y, lastRectTransform.position.z);
         if (!cantDrag)
         {
             StartCoroutine(Position());
@@ -106,7 +106,6 @@ public class DragItemsPlOne : MonoBehaviour, IPointerDownHandler, IBeginDragHand
             {
                 StartCoroutine(WaitToStop());
             }
-            //rb.velocity = -direction * force;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

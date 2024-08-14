@@ -10,12 +10,13 @@ public class RacingLightUI : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("RacingLight");
@@ -24,6 +25,5 @@ public class RacingLightUI : MonoBehaviour
         {
             SceneManager.LoadScene("RacingLightSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

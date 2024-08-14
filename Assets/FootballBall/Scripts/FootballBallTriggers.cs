@@ -19,15 +19,16 @@ public class FootballBallTriggers : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private BoxCollider2D plOneCollider;
     [SerializeField] private AudioSource goalSound;
+    [SerializeField] private GameObject playerOnePointBG;
     private void Start()
     {
         if(_playerTwoRun.IsMobile && !_playerTwoRun.IsSingle)
         {
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            playerOnePointBG.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         }
         if(!_playerTwoRun.IsMobile || _playerTwoRun.IsSingle)
         {
-            playerOnePointsText.transform.rotation = Quaternion.Euler(0f, 0f, 0);
+            playerOnePointBG.transform.rotation = Quaternion.Euler(0f, 0f, 0);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

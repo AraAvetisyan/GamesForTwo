@@ -17,6 +17,9 @@ public class JoystickPlayerExample : MonoBehaviour
     [SerializeField] private Transform[] singlePoints;
     private int pointInd;
     private Transform targetTransform;
+    public bool IsInLight;
+    private int lightCounter;
+    [SerializeField] private Transform playerOneTransform;
     private void Start()
     {
         if (!_guardTimer.IsMobile)
@@ -42,6 +45,12 @@ public class JoystickPlayerExample : MonoBehaviour
         }
 
     }
+    public IEnumerator StopChasing()
+    {
+        yield return new WaitForSeconds(1.75f);
+        IsInLight = false;
+        lightCounter = 0;
+    }
     public void FixedUpdate()
     {
         if (_guardTimer.IsMobile && _guardTimer.IsSingle)       //mobile single game
@@ -53,7 +62,7 @@ public class JoystickPlayerExample : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 
             }
-            if (playerIndex == 2)
+            if (playerIndex == 2 && !IsInLight)
             {
                 Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
@@ -62,6 +71,22 @@ public class JoystickPlayerExample : MonoBehaviour
                 {
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+            }
+            if (playerIndex == 2 && IsInLight)
+            {
+                Vector2 moveDirection = (playerOneTransform.position - transform.position).normalized;
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+                if(lightCounter == 0)
+                {
+                    lightCounter = 1;
+                    StartCoroutine(StopChasing());
                 }
             }
         } // end
@@ -176,7 +201,7 @@ public class JoystickPlayerExample : MonoBehaviour
                 }
 
             }
-            if (playerIndex == 2)
+            if (playerIndex == 2 && !IsInLight)
             {
                 Vector2 moveDirection = (singlePoints[pointInd].position - transform.position).normalized;
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
@@ -185,6 +210,22 @@ public class JoystickPlayerExample : MonoBehaviour
                 {
                     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+            }
+            if (playerIndex == 2 && IsInLight)
+            {
+                Vector2 moveDirection = (playerOneTransform.position - transform.position).normalized;
+                transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+                if (lightCounter == 0)
+                {
+                    lightCounter = 1;
+                    StartCoroutine(StopChasing());
                 }
             }
         }//end

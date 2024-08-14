@@ -12,6 +12,7 @@ public class GuardGameStartScript : MonoBehaviour
 
     public void PressedPlay()
     {
+        Destroy(MainMenuAudioController.Instance.Music);
         buttonSound.Play();
         if (isSingle)
         {

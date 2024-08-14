@@ -153,12 +153,13 @@ public class GreenBallGameUIController : MonoBehaviour
     public void PresedFinishHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!Single)
         {
             SceneManager.LoadScene("GreenBall");
@@ -167,7 +168,6 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("GreenBallSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 

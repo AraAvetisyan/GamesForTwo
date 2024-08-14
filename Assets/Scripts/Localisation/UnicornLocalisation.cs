@@ -21,7 +21,7 @@ public class UnicornLocalisation : MonoBehaviour
             drawPlOnePC.text = "НИЧЬЯ";
             drawPlOneMobile.text = "НИЧЬЯ";
             drawPlTwo.text = "НИЧЬЯ";
-            rememberTheUnicorn.text = "Запомните Единорога ...";
+            rememberTheUnicorn.text = "Запомните единорога ...";
         }
         else if (Geekplay.Instance.language == "en")
         {

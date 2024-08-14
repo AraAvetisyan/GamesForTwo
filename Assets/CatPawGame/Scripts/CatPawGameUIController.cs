@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ public class CatPawGameUIController : MonoBehaviour
     [SerializeField] private CatPawEndGameManager _catPawEndGameManager;
     [SerializeField] private GameObject playerOneButton, playerTwoButton;
     [SerializeField] private GameObject buttonBG;
-    [SerializeField]
-    private AudioSource buttonSound;
+    [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private Transform targetPositionPlOne, targetPositionPlTwo;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -54,11 +55,17 @@ public class CatPawGameUIController : MonoBehaviour
     {
         if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
         {
-            PressedPlayerTwoButton();
+            if (!_playerTwoScript.CantPlay && !_catPawEndGameManager.PlTwoCantPlay)
+            {
+                PressedPlayerTwoButton();
+            }
         }
         if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
         {
-            PressedPlayerOneButton();
+            if (!_playerOneScript.CantPlay && !_catPawEndGameManager.PlOneCantPlay)
+            {
+                PressedPlayerOneButton();
+            }
         }
     }
     public IEnumerator SinglePlayer()
@@ -90,23 +97,32 @@ public class CatPawGameUIController : MonoBehaviour
         if (ButtonOnePressed)
         {
             //StartCoroutine(WaitToGoBack());
-            playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
-            playerOnePaw.transform.Translate(Vector3.left * speed * Time.deltaTime);
+            //playerOnePaw.transform.Translate(Vector3.down * speed * Time.deltaTime);
+            //  playerOnePaw.transform.Translate(Vector3.left * speed * Time.deltaTime);
+          //  Vector3 dir = (playerOnePaw.transform.position - targetPosition.position).normalized;
+            playerOnePaw.transform.DOMoveX(targetPositionPlOne.position.x, speed);
+            playerOnePaw.transform.DOMoveY(targetPositionPlOne.position.y, speed);
         }
         if (ButtonTwoPressed)
         {
 
-          //  StartCoroutine(WaitToGoBack());
-            playerTwoPaw.transform.Translate(Vector3.up * speed * Time.deltaTime);
-            playerTwoPaw.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            //  StartCoroutine(WaitToGoBack());
+            // playerTwoPaw.transform.Translate(Vector3.up * speed * Time.deltaTime);
+            //  playerTwoPaw.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            playerTwoPaw.transform.DOMoveX(targetPositionPlTwo.position.x, speed);
+            playerTwoPaw.transform.DOMoveY(targetPositionPlTwo.position.y, speed);
         }
         if (!ButtonOnePressed)
         {
-            playerOnePaw.transform.position = playerOnePosition.position;
+            // playerOnePaw.transform.position = playerOnePosition.position;
+            playerOnePaw.transform.DOMoveX(playerOnePosition.position.x, speed);
+            playerOnePaw.transform.DOMoveY(playerOnePosition.position.y, speed);
         }
         if(!ButtonTwoPressed)
         {
-            playerTwoPaw.transform.position = playerTwoPosition.position;
+           // playerTwoPaw.transform.position = playerTwoPosition.position;
+            playerTwoPaw.transform.DOMoveX(playerTwoPosition.position.x, speed);
+            playerTwoPaw.transform.DOMoveY(playerTwoPosition.position.y, speed);
         }
     }
 
@@ -115,13 +131,14 @@ public class CatPawGameUIController : MonoBehaviour
     {
 
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestButton()
     {
 
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!IsSingle)
         {
             SceneManager.LoadScene("CatPaw");
@@ -131,6 +148,5 @@ public class CatPawGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("CatPawSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

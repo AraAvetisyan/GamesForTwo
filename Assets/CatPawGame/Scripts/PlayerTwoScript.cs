@@ -14,7 +14,7 @@ public class PlayerTwoScript : MonoBehaviour
     [SerializeField] private CatPawGameUIController _catPawGameUIController;
     [SerializeField] private GameObject stan;
     [SerializeField] private Transform playerTwoPosition;
-    private bool goBack;
+    [SerializeField] private bool goBack;
     [SerializeField] AudioSource eatableSound, notEatableSound;
     // [SerializeField] private float speed;
     public bool CantPlay;
@@ -65,11 +65,13 @@ public class PlayerTwoScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "GoBack")
             {
+                CantPlay = false;
                 goBack = false;
             }
         }
-        if (collision.gameObject.CompareTag("Path"))
+        if (collision.gameObject.CompareTag("GoBackCatTwo"))
         {
+            CantPlay = true;
             _catPawGameUIController.ButtonTwoPressed = false;
         }
     }

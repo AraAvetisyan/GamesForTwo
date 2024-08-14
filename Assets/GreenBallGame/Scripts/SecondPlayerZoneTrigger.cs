@@ -17,6 +17,7 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     [SerializeField] private Rigidbody2D ballRigidbody;
     [SerializeField] private AudioSource goalAudio;
+    [SerializeField] private GameObject pointsBG;
     private void Start()
     {
 
@@ -24,11 +25,11 @@ public class SecondPlayerZoneTrigger : MonoBehaviour
         CanFireRed = true;
         if (!_greenBallGameUIController.IsMobile || _greenBallGameUIController.IsSingle)
         {
-            firstPlayersPointsText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
         {
-            firstPlayersPointsText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

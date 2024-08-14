@@ -16,6 +16,7 @@ public class EndGameScript : MonoBehaviour
     [SerializeField] private GameObject greenBall;
     [SerializeField] private Button blueButton, redButton;
     [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource end;
     private void OnEnable()
     {
         TimerScript.GameEnds += EndGame;
@@ -51,6 +52,7 @@ public class EndGameScript : MonoBehaviour
         blueButton.interactable = false;
         redButton.interactable = false;
         yield return new WaitForSeconds(1f);
+        end.Play();
         finalPanel.SetActive(true);
         if (_secondPlayerZoneTrigger.FirstPlayersPoints > _firstPlayerZoneTrigger.SecondPlayersPoints)
         {

@@ -47,6 +47,7 @@ public class TimerGameScript : MonoBehaviour
     private float diferenceOne, diferenceTwo;
     [SerializeField] private GameObject timerObject;
     [SerializeField] private AudioSource music, buttonSound;
+    [SerializeField] private AudioSource end;
     [SerializeField] private AudioSource buttonSoundBlue, buttonSoundRed;
 
     private void Start()
@@ -244,6 +245,7 @@ public class TimerGameScript : MonoBehaviour
 
 
         yield return new WaitForSeconds(1f);
+        end.Play();
         endPanel.SetActive(true);
         if (compareForOne < compareForTwo)
         {
@@ -289,13 +291,14 @@ public class TimerGameScript : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
 
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("TimerGame");
@@ -305,7 +308,6 @@ public class TimerGameScript : MonoBehaviour
             SceneManager.LoadScene("TimerGameSingle");
 
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

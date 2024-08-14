@@ -11,12 +11,13 @@ public class PiranhaGameUI : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (isSingle)
         {
             SceneManager.LoadScene("PiranhaRushSingle");
@@ -25,6 +26,5 @@ public class PiranhaGameUI : MonoBehaviour
         {
             SceneManager.LoadScene("PiranhaRush");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

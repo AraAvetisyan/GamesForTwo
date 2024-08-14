@@ -15,6 +15,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GreenBallGameUIController _greenBallGameUIController;
     [SerializeField] private int index;
+    [SerializeField] private GameObject timerObject;
     private void Start()
     {
         StartCoroutine(Timer());
@@ -22,11 +23,11 @@ public class TimerScript : MonoBehaviour
         {
             if (!_greenBallGameUIController.IsMobile || _greenBallGameUIController.IsSingle)
             {
-                timerText.transform.rotation = Quaternion.Euler(0, 0, 0);
+                timerObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (_greenBallGameUIController.IsMobile && !_greenBallGameUIController.IsSingle)
             {
-                timerText.transform.rotation = Quaternion.Euler(0, 0, 180);
+                timerObject.transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
 

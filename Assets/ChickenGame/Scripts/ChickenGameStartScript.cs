@@ -10,6 +10,7 @@ public class ChickenGameStartScript : MonoBehaviour
     [SerializeField] private ChickenGameMainMenuScript _chickenGameMainMenuScript;
     public void PressedPlay()
     {
+        Destroy(MainMenuAudioController.Instance.Music);
         if (isSingle)
         {
             if (_chickenGameMainMenuScript.Index == 1)

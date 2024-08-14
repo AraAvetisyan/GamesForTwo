@@ -9,7 +9,7 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
     public float rotateSpeed;
     public FloatingJoystick FloatingJoystick;
     public Rigidbody2D rb;
-    [SerializeField] private int playerIndex;
+    public int playerIndex;
     public bool IsMobile;
     [SerializeField] private GameObject joysticPlayerOne, joysticPlayerTwo;
 

@@ -10,12 +10,13 @@ public class GuardUI : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("GuardGame");
@@ -24,6 +25,5 @@ public class GuardUI : MonoBehaviour
         {
             SceneManager.LoadScene("GuardGameSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

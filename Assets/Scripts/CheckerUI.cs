@@ -9,13 +9,13 @@ public class CheckerUI : MonoBehaviour
     public void PressedHomeButton()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 }

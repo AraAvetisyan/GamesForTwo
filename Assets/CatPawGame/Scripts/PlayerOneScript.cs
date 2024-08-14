@@ -17,17 +17,18 @@ public class PlayerOneScript : MonoBehaviour
     [SerializeField] private Transform playerOnePosition;
     private bool goBack;
     [SerializeField] AudioSource eatableSound, notEatableSound;
+    [SerializeField] private GameObject pointsBG;
    // [SerializeField] private float speed;
     public bool CantPlay;
     private void Start()
     {
         if(_catPawGameUIController.IsMobile && !_catPawGameUIController.IsSingle)
         {
-            pointsText.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            pointsBG.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         }
         if(!_catPawGameUIController.IsMobile || _catPawGameUIController.IsSingle)
         {
-            pointsText.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            pointsBG.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -76,11 +77,14 @@ public class PlayerOneScript : MonoBehaviour
         {
             if(collision.gameObject.tag == "GoBack")
             {
+                CantPlay = false;
                 goBack = false;
+                
             }
         }
-        if (collision.gameObject.CompareTag("Path"))
+        if (collision.gameObject.CompareTag("GoBackCatOne"))
         {
+            CantPlay = true;
             _catPawGameUIController.ButtonOnePressed = false;
         }
     }
