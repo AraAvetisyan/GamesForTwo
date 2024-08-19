@@ -29115,7 +29115,7 @@ GameObject:
   - component: {fileID: 766647916}
   m_Layer: 0
   m_Name: PlayerOne
-  m_TagString: Untagged
+  m_TagString: PlayerOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30584,7 +30584,7 @@ GameObject:
   - component: {fileID: 820494651}
   m_Layer: 0
   m_Name: PlayerTwo
-  m_TagString: Untagged
+  m_TagString: PlayerTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45405,8 +45405,8 @@ MonoBehaviour:
   EendGame: 0
   music: {fileID: 932914089}
   end: {fileID: 269788169}
-  hitCorral: {fileID: 585933859}
-  hitPiranha: {fileID: 0}
+  hitCorral: {fileID: 2002003088}
+  hitPiranha: {fileID: 585933859}
 --- !u!4 &1186039045
 Transform:
   m_ObjectHideFlags: 0

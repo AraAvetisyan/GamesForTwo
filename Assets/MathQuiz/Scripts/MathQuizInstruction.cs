@@ -61,15 +61,15 @@ public class MathQuizInstruction : MonoBehaviour
             bluePlayerInstructionObject.SetActive(false);
             if (Geekplay.Instance.language == "ru")
             {
-                redPlayerInstruction.text = "Z X C";
+                redPlayerInstruction.text = "A S D";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                redPlayerInstruction.text = "Z X C";
+                redPlayerInstruction.text = "A S D";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Z X C";
+                redPlayerInstruction.text = "A S D";
             }
         }
         if (!isMobile && !isSingle)

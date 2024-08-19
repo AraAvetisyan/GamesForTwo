@@ -62,15 +62,15 @@ public class CatPawInstruction : MonoBehaviour
             bluePlayerInstructionObject.SetActive(false);
             if (Geekplay.Instance.language == "ru")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Пробел";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Space";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Uzay";
             }
         }
         if(!isMobile && !isSingle)

@@ -64,7 +64,11 @@ public class GreenBallGameUIController : MonoBehaviour
             _rotatePlayers.PlayerOneRotationSpeed = 0;
             _rotatePlayers.PlayerTwoRotationSpeed = 0;
         }
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !IsSingle)
+        {
+            PressedRedButton();
+        }
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && IsSingle)
         {
             PressedRedButton();
         }
@@ -153,12 +157,13 @@ public class GreenBallGameUIController : MonoBehaviour
     public void PresedFinishHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!Single)
         {
             SceneManager.LoadScene("GreenBall");
@@ -167,7 +172,6 @@ public class GreenBallGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("GreenBallSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 

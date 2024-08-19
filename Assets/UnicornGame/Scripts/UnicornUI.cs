@@ -10,12 +10,13 @@ public class UnicornUI : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("Unicorn");
@@ -24,6 +25,5 @@ public class UnicornUI : MonoBehaviour
         {
             SceneManager.LoadScene("UnicornSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

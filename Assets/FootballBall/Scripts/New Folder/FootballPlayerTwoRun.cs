@@ -47,7 +47,7 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
     private void Update()
     {
 
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !_footballTimer.GameEnds && !IsSingle)
         {
 
             if (!MustWait)
@@ -62,7 +62,32 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
             }
         }
     
-        if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && !IsSingle)
+        {
+            if (PlayerIndex == 2)
+            {
+                PlayerTwoIsHolding = false;
+                Speed = 5f;
+                _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+            }
+        }
+
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && !_footballTimer.GameEnds && IsSingle)
+        {
+
+            if (!MustWait)
+            {
+                if (PlayerIndex == 2)
+                {
+                    PlayerTwoIsHolding = true;
+                    redIdle.SetActive(false);
+                    redRun.SetActive(true);
+                    Speed = Speed * 0.8f;
+                }
+            }
+        }
+
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Space) && IsSingle)
         {
             if (PlayerIndex == 2)
             {

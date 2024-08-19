@@ -25,16 +25,17 @@ public class RacingLightGameManager : MonoBehaviour
     [SerializeField] private RacingLightInstruction _racingLightInstruction;
     [SerializeField] private GameObject holdRed, holdBlue;
     [SerializeField] private GameObject release;
+    [SerializeField] private GameObject plOneScoreBG;
     void Start()
     {
         if(_playerTwoRacingButtonsHold.IsMobile && !_playerTwoRacingButtonsHold.IsSingle)
         {
-            playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 180);
+            plOneScoreBG.transform.rotation = Quaternion.Euler(0, 0, 180);
            // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         if(!_playerTwoRacingButtonsHold.IsMobile || _playerTwoRacingButtonsHold.IsSingle)
         {
-            playerOneScoreText.transform.rotation = Quaternion.Euler(0, 0, 0);
+            plOneScoreBG.transform.rotation = Quaternion.Euler(0, 0, 0);
            // playerOneTimerText.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }

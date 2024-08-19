@@ -9,8 +9,8 @@ public class GostTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "ButtonGost")
         {
-            SceneManager.LoadScene("MainMenu");
             Geekplay.Instance.ShowInterstitialAd();
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

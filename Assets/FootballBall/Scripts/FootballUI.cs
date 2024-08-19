@@ -10,12 +10,13 @@ public class FootballUI : MonoBehaviour
     public void PresedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("FootballBall");
@@ -24,6 +25,5 @@ public class FootballUI : MonoBehaviour
         {
             SceneManager.LoadScene("FootballBallSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

@@ -87,19 +87,19 @@ public class RacingLightInstruction : MonoBehaviour
             bluePlayerInstructionObject.SetActive(false);
             if (Geekplay.Instance.language == "ru")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Пробел";
                 holdRedText.text = "Удержать";
                 releaseText.text = "Отпустить";
             }
             else if (Geekplay.Instance.language == "en")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Space";
                 holdRedText.text = "Hold";
                 releaseText.text = "Release";
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Z";
+                redPlayerInstruction.text = "Uzay";
                 holdRedText.text = "Tutun";
                 releaseText.text = "Serbest bırakma";
             }
@@ -150,12 +150,12 @@ public class RacingLightInstruction : MonoBehaviour
         while (true)
         {
 
-            holdRed.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f).SetEase(easeToSmoll);
-            holdBlue.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f).SetEase(easeToSmoll);
-            yield return new WaitForSeconds(0.5f);
-            holdRed.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f).SetEase(easeToBig);
-            holdBlue.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f).SetEase(easeToBig);
-            yield return new WaitForSeconds(0.5f);
+            holdRed.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 1f).SetEase(easeToSmoll);
+            holdBlue.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 1f).SetEase(easeToSmoll);
+            yield return new WaitForSeconds(1f);
+            holdRed.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1f).SetEase(easeToBig);
+            holdBlue.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1f).SetEase(easeToBig);
+            yield return new WaitForSeconds(1f);
 
 
         }

@@ -39,7 +39,11 @@ public class PlayerTwoChooser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !IsSingle)
+        {
+            PressedButton();
+        }
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && IsSingle)
         {
             PressedButton();
         }

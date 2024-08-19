@@ -32,7 +32,8 @@ public class GuardTimer : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] Rigidbody2D rbPlOne, rbPlTwo;
     [SerializeField] private AudioSource music;
-    [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject end;
+    [SerializeField] private AudioSource lightSound;
     void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -121,7 +122,8 @@ public class GuardTimer : MonoBehaviour
         rbPlOne.velocity= Vector2.zero;
         rbPlTwo.velocity= Vector2.zero;
         yield return new WaitForSeconds(1f);
-        end.Play();
+        lightSound.volume = 0;
+        end.SetActive(true);
         finalPanel.SetActive(true);
         if (playerOneWin)
         {

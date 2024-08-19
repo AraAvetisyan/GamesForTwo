@@ -10,12 +10,13 @@ public class SummoUI : MonoBehaviour
     public void PresedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("SummoGame");
@@ -24,7 +25,6 @@ public class SummoUI : MonoBehaviour
         {
             SceneManager.LoadScene("SummoGameSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

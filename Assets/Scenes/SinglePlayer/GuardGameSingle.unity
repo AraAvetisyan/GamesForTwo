@@ -3766,7 +3766,8 @@ MonoBehaviour:
   rbPlOne: {fileID: 1551673417}
   rbPlTwo: {fileID: 936046127}
   music: {fileID: 191080089}
-  end: {fileID: 1677725371}
+  end: {fileID: 1677725370}
+  lightSound: {fileID: 1150056854}
 --- !u!58 &990625540
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6378,7 +6379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1677725371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6390,7 +6391,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c454d36f53f548f4282ede88dda53287, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

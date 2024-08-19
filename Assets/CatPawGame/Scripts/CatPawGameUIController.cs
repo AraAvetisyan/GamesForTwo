@@ -53,7 +53,14 @@ public class CatPawGameUIController : MonoBehaviour
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !IsSingle)
+        {
+            if (!_playerTwoScript.CantPlay && !_catPawEndGameManager.PlTwoCantPlay)
+            {
+                PressedPlayerTwoButton();
+            }
+        }
+        if(!IsMobile && Input.GetKeyDown(KeyCode.Space) && IsSingle)
         {
             if (!_playerTwoScript.CantPlay && !_catPawEndGameManager.PlTwoCantPlay)
             {
@@ -131,13 +138,14 @@ public class CatPawGameUIController : MonoBehaviour
     {
 
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestButton()
     {
 
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!IsSingle)
         {
             SceneManager.LoadScene("CatPaw");
@@ -147,6 +155,5 @@ public class CatPawGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("CatPawSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

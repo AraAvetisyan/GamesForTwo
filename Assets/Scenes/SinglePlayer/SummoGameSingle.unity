@@ -3674,7 +3674,7 @@ MonoBehaviour:
   triggerSound: {fileID: 1337828753}
   music: {fileID: 825583830}
   end: {fileID: 949447799}
-  pointsBG: {fileID: 0}
+  pointsBG: {fileID: 135377950}
 --- !u!1 &1161999829
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class GameOverPanel : MonoBehaviour
         //WinnerText.text = winnerPawnColor.ToString().ToUpper() + " WINS";
         if (winner == 0)
         {
+            GameAudio.GameMusic.volume = 0;
             end.Play();
             redWinner.SetActive(true);
             if (Geekplay.Instance.language == "ru")

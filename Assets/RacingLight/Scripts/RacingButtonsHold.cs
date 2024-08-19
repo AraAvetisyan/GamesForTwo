@@ -59,7 +59,7 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2) // karmir pl pc 77
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && playerIndex == 2 && !IsSingle) // karmir pl pc 77
         {
             if (!CantHold)
             {
@@ -80,7 +80,28 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 } // 88
             }
         }// 77
-        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1 )
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && playerIndex == 2 && IsSingle) // karmir pl pc 77
+        {
+            if (!CantHold)
+            {
+                PlayerTwoIsHolding = true;
+
+                buttonRedSound.Play();
+
+                if (IsSingle) // karmir pl pc ete menak a 88
+                {
+                    if (SingleCounter == 0)
+                    {
+                        Debug.Log("Mtav");
+                        _racingButtonOneHold.PlayerOneIsHolding = true;
+                        SingleCounter++;
+                        buttonBlueSound.Play();
+                        StartCoroutine(Single());
+                    }
+                } // 88
+            }
+        }// 77
+        if (!IsMobile && Input.GetKeyDown(KeyCode.M) && playerIndex == 1)
         {
             if (!CantHold)
             {
@@ -88,7 +109,26 @@ public class RacingButtonsHold : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 buttonBlueSound.Play();
             }
         }
-        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2)
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && playerIndex == 2 && !IsSingle)
+        {
+            if (PlayerTwoIsHolding)
+            {
+                PlayerTwoIsHolding = false;
+                if (_fireLightsScript.CanHoldOff)
+                {
+                    _racingLightGameManager.counter++;
+                    PlayerTwoButton.interactable = false;
+                    PlayerTwoOnTime = true;
+                }
+                else
+                {
+                    _racingLightGameManager.counter++;
+                    PlayerTwoSoon = true;
+                    PlayerTwoButton.interactable = false;
+                }
+            }
+        }
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Space) && playerIndex == 2 && IsSingle)
         {
             if (PlayerTwoIsHolding)
             {

@@ -39,10 +39,16 @@ public class RedCircleUIController : MonoBehaviour
     }
     private void Update()
     {
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !IsSingle)
         {
             PressedPlayerTwoButton();
         }
+
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && IsSingle)
+        {
+            PressedPlayerTwoButton();
+        }
+
         if (!IsMobile && Input.GetKeyDown(KeyCode.M) && !IsSingle)
         {
 
@@ -52,6 +58,7 @@ public class RedCircleUIController : MonoBehaviour
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!IsSingle)
         {
             SceneManager.LoadScene("RedCircle");
@@ -60,13 +67,12 @@ public class RedCircleUIController : MonoBehaviour
         {
             SceneManager.LoadScene("RedCircleSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedPlayerOneButton()
     {
@@ -87,12 +93,10 @@ public class RedCircleUIController : MonoBehaviour
         
         if (_redCirclePlayerTwoScript.inCircle)
         {
-            Debug.Log("Chishta");
             StartCoroutine(_redCirclePlayerTwoScript.ChangeInCircle());
         }
         else
         {
-            Debug.Log("Sxala");
             StartCoroutine(_redCirclePlayerTwoScript.WaitToWrong());
         }
     }

@@ -330,12 +330,13 @@ public class DinosaurGame : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("DinosaurGame");
@@ -344,7 +345,6 @@ public class DinosaurGame : MonoBehaviour
         {
             SceneManager.LoadScene("DinosaurGameSingle");
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

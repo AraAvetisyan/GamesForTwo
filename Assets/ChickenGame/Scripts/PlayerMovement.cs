@@ -59,7 +59,17 @@ public class PlayerMovement : MonoBehaviour
         }
         playerOne.transform.Translate(Vector3.right * Speed * Time.deltaTime);
         playerTwo.transform.Translate(Vector3.right * Speed * Time.deltaTime);
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !isSingle)
+        {
+            if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
+            {
+
+
+                PressedPlayerTwoButton();
+
+            }
+        }
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && isSingle)
         {
             if (!_firstPlayersTriggers.EndGame && !_secondPlayersTriggers.EndGame)
             {

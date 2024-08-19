@@ -24,7 +24,7 @@ public class FootballTimer : MonoBehaviour
     [SerializeField] private BoxCollider2D enemyBox;
     public bool playerOneWinBool, playerTwoWinBool, drawBool;
     [SerializeField] private AudioSource music;
-    [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject end;
 
     private void Start()
     {
@@ -110,7 +110,7 @@ public class FootballTimer : MonoBehaviour
         plTwoButton.interactable = false;
 
         yield return new WaitForSeconds(1f);
-        end.Play();
+        end.SetActive(true);
         finalPanel.SetActive(true);
         if (playerOneWinBool)
         {

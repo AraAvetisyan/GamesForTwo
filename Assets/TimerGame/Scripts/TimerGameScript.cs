@@ -180,7 +180,11 @@ public class TimerGameScript : MonoBehaviour
             playerOneCloserTwo.SetActive(false);
             EndGame();
         }
-        if (!isMobile && Input.GetKeyDown(KeyCode.Z) && !playerTwoPressed)
+        if (!isMobile && Input.GetKeyDown(KeyCode.Z) && !playerTwoPressed && !isSingle)
+        {
+            PressedPlTwoButton();
+        }
+        if (!isMobile && Input.GetKeyDown(KeyCode.Space) && !playerTwoPressed && isSingle)
         {
             PressedPlTwoButton();
         }
@@ -291,13 +295,14 @@ public class TimerGameScript : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        SceneManager.LoadScene("MainMenu");
         Geekplay.Instance.ShowInterstitialAd();
+        SceneManager.LoadScene("MainMenu");
 
     }
     public void PressedRestart()
     {
         buttonSound.Play();
+        Geekplay.Instance.ShowInterstitialAd();
         if (!isSingle)
         {
             SceneManager.LoadScene("TimerGame");
@@ -307,7 +312,6 @@ public class TimerGameScript : MonoBehaviour
             SceneManager.LoadScene("TimerGameSingle");
 
         }
-        Geekplay.Instance.ShowInterstitialAd();
     }
 
 }

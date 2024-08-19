@@ -17,7 +17,7 @@ public class ChickenResult : MonoBehaviour
     private bool isMobile;
     [SerializeField] private bool isSingle;
     [SerializeField] private AudioSource music;
-    [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject end;
     void Start()
     {
         if (Geekplay.Instance.mobile)
@@ -72,6 +72,7 @@ public class ChickenResult : MonoBehaviour
         plOneRb.bodyType = RigidbodyType2D.Static;
         plTwoRb.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(1f);
+        end.SetActive(true);
         finalPanel.SetActive(true);
         if (plOneLose)
         {

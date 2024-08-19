@@ -36,8 +36,11 @@ public class MathQuizGameManager : MonoBehaviour
     [SerializeField] private Color colorRed, colorBlue;
     [SerializeField] private AudioSource rightSound, wrongSound;
     [SerializeField] private AudioSource music;
-    [SerializeField] private AudioSource end;
-    int singleAnswerRight;
+    //[SerializeField] private AudioSource end;
+    [SerializeField] private GameObject end;
+    private int singleAnswerRight;
+    private Coroutine enumerator;
+    private int endCounter;
     private void Awake()
     {
         if (Geekplay.Instance.mobile)
@@ -59,18 +62,32 @@ public class MathQuizGameManager : MonoBehaviour
             taskTwo.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         TaskCreator();
+        canPress = true;
         if (isSingle)
         {
-            StartCoroutine(Single());
+            StartSingle();
             plTwoButtonOne.interactable = false;
             plTwoButtonTwo.interactable = false;
             plTwoButtonThree.interactable = false;
         }
-        canPress = true;
 
 
     }
-
+    public void StartSingle()
+    {
+        if (isSingle)
+        {
+            enumerator = StartCoroutine(Single());
+        }
+    }
+    public void StopSingle()
+    {
+        if (enumerator != null)
+        {
+            StopCoroutine(enumerator);
+            enumerator = null;
+        }
+    }
     void Update()
     {
         if (!isMobile)
@@ -78,22 +95,41 @@ public class MathQuizGameManager : MonoBehaviour
             if (canPress)
             {
 
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (isSingle)
                 {
-                    PressedPlOneButtonOne();
-                }
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        PressedPlOneButtonOne();
+                    }
 
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    PressedPlOneButtonTwo();
-                }
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        PressedPlOneButtonTwo();
+                    }
 
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    PressedPlOneButtonThree();
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        PressedPlOneButtonThree();
+                    }
                 }
+                   
+                
                 if (!isSingle)
                 {
+                    if (Input.GetKeyDown(KeyCode.Z))
+                    {
+                        PressedPlOneButtonOne();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        PressedPlOneButtonTwo();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.C))
+                    {
+                        PressedPlOneButtonThree();
+                    }
                     if (Input.GetKeyDown(KeyCode.LeftArrow))
                     {
                         PressedPlTwoButtonOne();
@@ -117,9 +153,12 @@ public class MathQuizGameManager : MonoBehaviour
             //plOneWinMobile.SetActive(true);
 
             // plOneWinPC.SetActive(true);
-            plOneWin = true;
-            StartCoroutine(WaitToFinish());
-
+            if (endCounter == 0)
+            {
+                endCounter = 1;
+                plOneWin = true;
+                StartCoroutine(WaitToFinish());
+            }
         }
         if (plTwoPoints == 5)
         {
@@ -127,24 +166,29 @@ public class MathQuizGameManager : MonoBehaviour
             //plTwoWinMobile.SetActive(true);
 
             //  plTwoWinPC.SetActive(true);
-            plTwoWin = true;
-            StartCoroutine(WaitToFinish());
-
+            if (endCounter == 0)
+            {
+                endCounter = 1;
+                plTwoWin = true;
+                StartCoroutine(WaitToFinish());
+            }
         }
     }
     public IEnumerator Single()
     {
-        yield return new WaitForSecondsRealtime(3.5f);
-        if (canPress)
+
+        while (true)
         {
+            yield return new WaitForSecondsRealtime(3.5f);
+
             singleCanChoose = true;
             SingleChooser();
-        }
 
-        if (plOnePoints != 5 && plTwoPoints != 5)
-        {
-            StartCoroutine(Single());
         }
+        //if (plOnePoints != 5 && plTwoPoints != 5)
+        //{
+        //    StartCoroutine(Single());
+        //}
 
 
     }
@@ -175,7 +219,6 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if (rand <= 50)
         {
-            Debug.Log("True");
             //true
             if(plTwoButtonOneAnswer == singleAnswerRight)
             {
@@ -192,7 +235,6 @@ public class MathQuizGameManager : MonoBehaviour
         }
         if(rand > 50 &&  rand <= 101)
         {
-            Debug.Log("False");
             int choose = Random.Range(0, 2);
             //false
             if (plTwoButtonOneAnswer == singleAnswerRight)
@@ -256,15 +298,17 @@ public class MathQuizGameManager : MonoBehaviour
         canPress = false;
         singleCanChoose = false;
         yield return new WaitForSeconds(1f);
-        end.Play();
         finalPanel.SetActive(true);
+        Instantiate(end);
         if (plOneWin)
         {
             plOneWinPC.SetActive(true);
+            //end.Play();
         }
         if (plTwoWin)
         {
             plTwoWinPC.SetActive(true);
+            //end.Play();
         }
     }
     public void TaskCreator()
@@ -381,13 +425,14 @@ public class MathQuizGameManager : MonoBehaviour
             plTwoButtonOneAnswerText.text = plTwoWrongeOne.ToString();
             plTwoButtonTwoAnswerText.text = plTwoWrongeTwo.ToString();
         }
+       
 
     }
 
 
     public void PressedPlOneButtonOne()
     {
-        StopCoroutine(Single());
+        StopSingle();
         canPress = false;
         if (plOneButtonOneAnswer == answer)
         {
@@ -412,11 +457,18 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
 
     }
     public void PressedPlOneButtonTwo()
     {
-        StopCoroutine(Single());
+        StopSingle();
         canPress = false;
         if (plOneButtonTwoAnswer == answer)
         {
@@ -442,10 +494,18 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
     }
     public void PressedPlOneButtonThree()
     {
-        StopCoroutine(Single());
+        StopSingle();
+
         canPress = false;
         if (plOneButtonThreeAnswer == answer)
         {
@@ -471,10 +531,17 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
     }
     public void PressedPlTwoButtonOne()
     {
-        StopCoroutine(Single());
+        StopSingle();
         canPress = false;
         if (plTwoButtonOneAnswer == answer)
         {
@@ -500,10 +567,18 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
     }
     public void PressedPlTwoButtonTwo()
     {
-        StopCoroutine(Single());
+        StopSingle();
+
         canPress = false;
         if (plTwoButtonTwoAnswer == answer)
         {
@@ -528,10 +603,17 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
     }
     public void PressedPlTwoButtonThree()
     {
-        StopCoroutine(Single());
+        StopSingle();
         canPress = false;
         if (plTwoButtonThreeAnswer == answer)
         {
@@ -556,6 +638,13 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonTwo.interactable = false;
         plTwoButtonThree.interactable = false;
         StartCoroutine(NewTask());
+        if (plOnePoints != 5 && plTwoPoints != 5)
+        {
+            if (isSingle)
+            {
+                StartSingle();
+            }
+        }
     }
     public IEnumerator NewTask()
     {
@@ -586,9 +675,10 @@ public class MathQuizGameManager : MonoBehaviour
         plTwoButtonThreeAnswerText.color = colorBlue;
 
         canPress = true;
+
         if (plOnePoints != 5 && plTwoPoints != 5)
         {
-            TaskCreator();
+            TaskCreator();            
         }
     }
 }

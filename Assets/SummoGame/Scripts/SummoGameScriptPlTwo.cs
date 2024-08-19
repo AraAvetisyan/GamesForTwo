@@ -69,18 +69,27 @@ public class SummoGameScriptPlTwo : MonoBehaviour, IPointerDownHandler, IPointer
             Debug.Log("GameEnds");
         }
 
-        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds)
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Z) && !GameEnds && !IsSingle)
         {
             PlayerTwoIsHolding = true;
         }
 
-        if (!IsMobile && Input.GetKeyUp(KeyCode.Z))
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Z) && !IsSingle)
         {
             PlayerTwoIsHolding = false;
             _rotatePlayers.PlayerTwoRotationSpeed = 300f;
         }
 
+        if (!IsMobile && Input.GetKeyDown(KeyCode.Space) && !GameEnds && IsSingle)
+        {
+            PlayerTwoIsHolding = true;
+        }
 
+        if (!IsMobile && Input.GetKeyUp(KeyCode.Space) && IsSingle)
+        {
+            PlayerTwoIsHolding = false;
+            _rotatePlayers.PlayerTwoRotationSpeed = 300f;
+        }
 
 
         if (PlayerTwoIsHolding)
