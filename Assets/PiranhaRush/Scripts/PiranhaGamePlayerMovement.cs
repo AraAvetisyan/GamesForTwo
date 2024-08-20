@@ -7,7 +7,7 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
 {
     public float speed;
     public float rotateSpeed;
-    public FloatingJoystick FloatingJoystick;
+    public FloatingJoystick FloatingJoystickRed, FloatingJoystickBlue;
     public Rigidbody2D rb;
     public int playerIndex;
     public bool IsMobile;
@@ -70,9 +70,24 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
         {
             if (playerIndex == 1)
             {
-                rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
-                float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
-                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+                float h = FloatingJoystickRed.Horizontal;
+                float v = FloatingJoystickRed.Vertical;
+
+                Vector2 moveDirection = new Vector2(h, v);
+                float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+                moveDirection.Normalize();
+
+                transform.Translate(moveDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+
+
+                //rb.velocity = new Vector2(FloatingJoystickRed.Horizontal * speed, FloatingJoystickRed.Vertical * speed);
+                //float angle = Mathf.Atan2(-FloatingJoystickRed.Vertical, -FloatingJoystickRed.Horizontal) * Mathf.Rad2Deg;
+                //this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 
                 //Debug.Log("Mobile && single");
             }
@@ -90,10 +105,45 @@ public class PiranhaGamePlayerMovement : MonoBehaviour
 
         if (IsMobile && !IsSingle)  //mobile multyplay game
         {
+            if (playerIndex == 1)
+            {
+                float h = FloatingJoystickRed.Horizontal;
+                float v = FloatingJoystickRed.Vertical;
+            
+                Vector2 moveDirection = new Vector2(h, v);
+                float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+                moveDirection.Normalize();
 
-            rb.velocity = new Vector2(FloatingJoystick.Horizontal * speed, FloatingJoystick.Vertical * speed);
-            float angle = Mathf.Atan2(-FloatingJoystick.Vertical, -FloatingJoystick.Horizontal) * Mathf.Rad2Deg;
-            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+                transform.Translate(moveDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+
+                //rb.velocity = new Vector2(FloatingJoystickRed.Horizontal * speed, FloatingJoystickRed.Vertical * speed);
+                //float angle = Mathf.Atan2(-FloatingJoystickRed.Vertical, -FloatingJoystickRed.Horizontal) * Mathf.Rad2Deg;
+                //this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            }
+            if (playerIndex == 2)
+            {
+                float h2 = FloatingJoystickBlue.Horizontal;
+                float v2 = FloatingJoystickBlue.Vertical;
+               
+                Vector2 moveDirection = new Vector2(h2, v2);
+                float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+                moveDirection.Normalize();
+
+                transform.Translate(moveDirection * speed * inputMagnitude * Time.deltaTime, Space.World);
+                if (moveDirection != Vector2.zero)
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+                }
+                //rb.velocity = new Vector2(FloatingJoystickBlue.Horizontal * speed, FloatingJoystickBlue.Vertical * speed);
+                //float angle = Mathf.Atan2(-FloatingJoystickBlue.Vertical, -FloatingJoystickBlue.Horizontal) * Mathf.Rad2Deg;
+                //this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+            }
         }// end
 
 
