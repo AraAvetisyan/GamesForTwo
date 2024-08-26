@@ -12,18 +12,18 @@ public class MathQuizDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Вы должны ответить правильно быстрее, чем ваш соперник. Побеждает игрок, который быстрее наберёт 5 очков.";
+            discription.text = "Решай примеры правильно и быстро!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "You must answer correctly faster than your opponent. The player who gets 5 points faster wins.";
+            discription.text = "Solve examples correctly and quickly!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Rakibinizden daha hızlı dogru cevap vermelisiniz. 5 puan daha hızlı alan oyuncu kazanır.";
+            discription.text = "Örnekleri doğru ve hızlı bir şekilde çözün!";
             play.text = "Oyun";
 
         }

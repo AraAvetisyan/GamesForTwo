@@ -10,7 +10,6 @@ public class GuardUI : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()

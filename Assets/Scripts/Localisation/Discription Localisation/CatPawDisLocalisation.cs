@@ -12,18 +12,18 @@ public class CatPawDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Чтобы получить очки, нужно собирать желтых рыбок. Побеждает тот игрок, который наберет 5 очков.";
+            discription.text = "Подбирай желтых рыбок, не трогай черных!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "To get points, you need to collect yellow fish. The player who collects 5 points wins.";
+            discription.text = "Pick up the yellow fish, don't touch the black fish!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Puan kazanmak için sarı balıkları toplamanız gerekir. 5 puan toplayan oyuncu kazanır.";
+            discription.text = "Sarı balığı alın, siyah balığa dokunmayın!";
             play.text = "Oyun";
 
         }

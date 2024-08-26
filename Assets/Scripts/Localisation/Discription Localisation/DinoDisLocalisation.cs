@@ -12,18 +12,18 @@ public class DinoDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Игроки по очереди нажимают на зубы. Один из зубов не является счастливым. Тот игрок, который нажмет на этот зуб, проигрывает.";
+            discription.text = "Жми на зубы и пытайся не попасться крокодилу в пасть!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "Players take turns clicking on the teeth. One of the teeth is not a lucky tooth. The player who presses that tooth loses.";
+            discription.text = "Click on the teeth and try not to get caught in the crocodile's mouth!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular sırayla dişlerin üzerine tıklar. Dişlerden biri şanslı diş degildir. O dişe basan oyuncu kaybeder.";
+            discription.text = "Dişlere tıklayın ve timsahın ağzına yakalanmamaya çalışın!";
             play.text = "Oyun";
 
         }

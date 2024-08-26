@@ -13,11 +13,13 @@ public class CheckersStartScript : MonoBehaviour
         buttonSound.Play();
         if (isSingle)
         {
+            PlayerPrefs.SetInt("VsCPU",  1);
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
             Geekplay.Instance.ShowInterstitialAd();
         }
         else
         {
+            PlayerPrefs.SetInt("VsCPU", 0);
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
             Geekplay.Instance.ShowInterstitialAd();
         }

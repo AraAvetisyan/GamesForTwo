@@ -11,18 +11,18 @@ public class SummoGameDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Вам нужно вытолкнуть противника за край арены. Побеждает игрок, набравший 3 очка.";
+            discription.text = "Вытолкните противника за край арены!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "You need to push your opponent over the edge of the arena. The player with 3 points wins.";
+            discription.text = "Push your opponent over the edge of the arena!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Rakibinizi arenanın kenarından itmeniz gerekir. 3 puana sahip olan oyuncu kazanır.";
+            discription.text = "Rakibinizi arenanın kenarından itin!";
             play.text = "Oyun";
 
         }

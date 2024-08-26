@@ -10,7 +10,6 @@ public class FootballUI : MonoBehaviour
     public void PresedHome()
     {
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()

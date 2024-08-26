@@ -13,18 +13,18 @@ public class CheckersDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Это классические шашки. Чтобы победить, нужно съесть все шашки соперника.";
+            discription.text = "Русские шашки!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "It's classic checkers. To win, you have to eat all of your opponent's checkers.";
+            discription.text = "Russian checkers!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Klasik dama. Kazanmak için rakibinizin tüm pullarını yemelisiniz.";
+            discription.text = "Rus daması!";
             play.text = "Oyun";
 
         }

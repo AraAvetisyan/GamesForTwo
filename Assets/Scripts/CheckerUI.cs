@@ -9,7 +9,6 @@ public class CheckerUI : MonoBehaviour
     public void PressedHomeButton()
     {
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRest()

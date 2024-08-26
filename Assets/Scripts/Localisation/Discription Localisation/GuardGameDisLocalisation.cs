@@ -12,18 +12,18 @@ public class GuardGameDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Вам нужно избегать охранника и собирать монеты. если охранник поймает вора, игроки меняются ролями. побеждает тот, кто первым соберет 5 монет.";
+            discription.text = "Коп должен ловить вора, а вор собирать монеты!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "You need to avoid the guard and collect coins. if the guard catches the thief, the players switch roles. the one who collects 5 coins first wins.";
+            discription.text = "The cop has to catch the thief and the thief has to collect the coins!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Bekçiden kaçmanız ve paraları toplamanız gerekir. eger bekçi hırsızı yakalarsa, oyuncular rolleri degiştirir. 5 parayı ilk toplayan kazanır.";
+            discription.text = "Polis hırsızı yakalamalı ve hırsız da paraları toplamalıdır!";
             play.text = "Oyun";
 
         }

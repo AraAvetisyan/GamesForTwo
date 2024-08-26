@@ -12,18 +12,18 @@ public class ChickenGameDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Доберитесь до финиша, изменяя силу тяжести. Побеждает тот игрок, который первым доберется до финиша.";
+            discription.text = "Изменяй гравитацию и доберись до финиша первым!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "Get to the finish line by changing the gravity. The player who reaches the finish line first wins.";
+            discription.text = "Change the gravity and get to the finish line first!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Yerçekimini degiştirerek bitiş çizgisine ulaşın. Bitiş çizgisine ilk ulaşan oyuncu kazanır.";
+            discription.text = "Yerçekimini değiştirin ve bitiş çizgisine ilk siz ulaşın!";
             play.text = "Oyun";
 
         }

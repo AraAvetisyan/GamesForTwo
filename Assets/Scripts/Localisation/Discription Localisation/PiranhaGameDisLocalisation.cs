@@ -12,18 +12,18 @@ public class PiranhaGameDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Каждый игрок имеет 20 очков. каждый раз, когда игрок касается пираньи или коралла, у него отнимается 1 очко. игрок с 0 очками проигрывает.";
+            discription.text = "Плыви от пираний и не цепляйся за риф!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "Each player has 20 points. each time a player touches a piranha or coral, 1 point is taken away. a player with 0 points loses.";
+            discription.text = "Swim away from the piranhas and don't cling to the reef!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Her oyuncunun 20 puanı vardır. bir oyuncu bir pirana veya mercana her dokundugunda, 1 puan alınır. 0 puanı olan bir oyuncu kaybeder.";
+            discription.text = "Piranalardan yüzerek uzaklaşın ve resiflere tutunmayın!";
             play.text = "Oyun";
 
         }

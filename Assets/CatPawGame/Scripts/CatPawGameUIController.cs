@@ -138,7 +138,6 @@ public class CatPawGameUIController : MonoBehaviour
     {
 
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestButton()

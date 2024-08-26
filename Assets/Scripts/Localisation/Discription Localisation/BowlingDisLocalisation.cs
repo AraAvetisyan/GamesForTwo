@@ -12,18 +12,18 @@ public class BowlingDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Надо сбивать все кегли. Кто из игроков доходит до 60 очков тот побеждает.";
+            discription.text = "Сбивай кегли и первым набери 60 очков!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "You have to knock down all the pins. Whichever player reaches 60 points wins.";
+            discription.text = "Knock down the skittles and be the first to score 60 points!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Tüm lobutları devirmek zorundasınız. Hangi oyuncu 60 puana ulaşırsa o kazanır.";
+            discription.text = "Kukaları devir ve 60 puana ulaşan ilk kişi ol!";
             play.text = "Oyun";
 
         }

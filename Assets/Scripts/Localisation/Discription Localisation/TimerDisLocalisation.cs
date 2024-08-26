@@ -12,18 +12,18 @@ public class TimerDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Игроки должны остановить таймер как можно ближе к заявленной в начале секунде. Побеждает тот игрок, который окажется ближе всех к цели.";
+            discription.text = "Нажмите на кнопку, когда пройдет указанное время!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "Players must stop the timer as close as possible to the second declared at the beginning. The player who is closest to the goal wins.";
+            discription.text = "Press the button when the specified time has passed!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncular zamanlayıcıyı başlangıçta belirtilen saniyeye mümkün oldugunca yakın durdurmalıdır. Hedefe en yakın olan oyuncu kazanır.";
+            discription.text = "Belirtilen süre geçtiğinde düğmeye basın!";
             play.text = "Oyun";
 
         }

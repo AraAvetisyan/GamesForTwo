@@ -69,6 +69,5 @@ public class ChickenGameMainMenuScript : MonoBehaviour
     {
         buttonSound.Play();
         SceneManager.LoadScene("MainMenu");
-        Geekplay.Instance.ShowInterstitialAd();
     }
 }

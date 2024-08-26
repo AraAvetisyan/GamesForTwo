@@ -157,7 +157,6 @@ public class GreenBallGameUIController : MonoBehaviour
     public void PresedFinishHome()
     {
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
     }
     public void PressedRestart()

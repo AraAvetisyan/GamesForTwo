@@ -12,18 +12,18 @@ public class RedCircleDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Игрок должен нажать на кнопку, когда мяч окажется в выделенной области. Побеждает игрок, набравший наибольшее количество очков по истечении таймера.";
+            discription.text = "Нажимайте, когда ваш кружок находится в отмеченной зоне!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "The player must press the button when the ball is in the highlighted area. The player with the most points after the timer expires wins.";
+            discription.text = "Click when your circle is in the marked area!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Oyuncu, top vurgulanan alana geldiginde dügmeye basmalıdır. Zamanlayıcı sona erdikten sonra en çok puana sahip olan oyuncu kazanır.";
+            discription.text = "Çemberiniz işaretli alana geldiğinde tıklayın!";
             play.text = "Oyun";
 
         }

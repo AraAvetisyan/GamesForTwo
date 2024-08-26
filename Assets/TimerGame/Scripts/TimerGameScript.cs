@@ -295,7 +295,6 @@ public class TimerGameScript : MonoBehaviour
     public void PressedHome()
     {
         buttonSound.Play();
-        Geekplay.Instance.ShowInterstitialAd();
         SceneManager.LoadScene("MainMenu");
 
     }

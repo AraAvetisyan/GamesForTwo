@@ -12,18 +12,18 @@ public class FootballBallDisLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            discription.text = "Вам предстоит забивать голы в ворота соперника. Тот, кто наберет пять очков, победит.";
+            discription.text = "Это футбол! Бей мяч в ворота противника!";
             play.text = "Играть";
         }
         else if (Geekplay.Instance.language == "en")
         {
-            discription.text = "You will have to score goals in the opponent's goal. Whoever scores five points wins the game.";
+            discription.text = "It's soccer! Kick the ball into the opposing goal!";
             play.text = "Play";
 
         }
         else if (Geekplay.Instance.language == "tr")
         {
-            discription.text = "Rakibin kalesine gol atmanız gerekecek. Kim beş sayı yaparsa oyunu kazanır.";
+            discription.text = "Bu futbol! Topu rakibin kalesine at!";
             play.text = "Oyun";
 
         }
