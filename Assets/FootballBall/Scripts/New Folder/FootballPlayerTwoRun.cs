@@ -117,7 +117,8 @@ public class FootballPlayerTwoRun : MonoBehaviour, IPointerDownHandler, IPointer
            // runSound.Stop();
             redRun.SetActive(false);
             redIdle.SetActive(true);
-
+            playerTwoRB.angularVelocity = 0;
+            playerTwoRB.velocity = Vector2.zero;
         }
 
     }

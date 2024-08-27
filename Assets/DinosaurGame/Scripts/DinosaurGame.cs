@@ -33,6 +33,7 @@ public class DinosaurGame : MonoBehaviour
     [SerializeField] private AudioSource presedAudio, wrongAudio, buttonSound;
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource end;
+    [SerializeField] private GameObject pressedAudioObject;
     private void Awake()
     {
 
@@ -83,10 +84,11 @@ public class DinosaurGame : MonoBehaviour
 
     }
 
-
     public void PressedTeetth(int index)
     {
-        presedAudio.Play();
+        // presedAudio.Play();
+        GameObject pressedAudio = Instantiate(pressedAudioObject);
+        Destroy(pressedAudio, 2f);
         if (isSingle)
         {
             for (int i = 0; i < singleTeeth.Count; i++)

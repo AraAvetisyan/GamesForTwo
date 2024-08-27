@@ -104,6 +104,8 @@ public class FootballPlayerOneRun : MonoBehaviour, IPointerDownHandler, IPointer
           //  runSound.Stop();
             runCounter = 0;
             //  Debug.Log("PlayerOneIsHolding darela fales petqa poxi idle");
+            playerOneRB.angularVelocity = 0;
+            playerOneRB.velocity = Vector2.zero;
             blueRun.SetActive(false);
             blueIdle.SetActive(true);
 

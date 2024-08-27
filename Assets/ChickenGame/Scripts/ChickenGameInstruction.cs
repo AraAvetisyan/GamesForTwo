@@ -70,7 +70,7 @@ public class ChickenGameInstruction : MonoBehaviour
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Uzay";
+                redPlayerInstruction.text = "Space";
             }
         }
         if (!isMobile && !isSingle)

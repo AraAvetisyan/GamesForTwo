@@ -99,7 +99,7 @@ public class RacingLightInstruction : MonoBehaviour
             }
             else if (Geekplay.Instance.language == "tr")
             {
-                redPlayerInstruction.text = "Uzay";
+                redPlayerInstruction.text = "Space";
                 holdRedText.text = "Tutun";
                 releaseText.text = "Serbest bırakma";
             }
