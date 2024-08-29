@@ -48,7 +48,7 @@ public class RedCircleTimer : MonoBehaviour
             {
                 timerText.text = seconds.ToString();
             }
-            else
+            if(seconds > 0 && seconds < 10)
             {
                 timerText.text = "0" + seconds.ToString();
             }
@@ -56,7 +56,7 @@ public class RedCircleTimer : MonoBehaviour
         }
         if (seconds <= 0)
         {
-
+            timerText.text = "0";
             playerOneMove.Speed = 0;
             playerTwoMove.Speed = 0;
             playerOneButton.interactable = false;

@@ -34,13 +34,16 @@ public class SummoTriggers : MonoBehaviour
 
     private void Start()
     {
-        if(_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
+        if (playerIndex == 1)
         {
-            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-        if(!_summoGameScriptPlTwo.IsMobile || _summoGameScriptPlTwo.IsSingle)
-        {
-            pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (_summoGameScriptPlTwo.IsMobile && !_summoGameScriptPlTwo.IsSingle)
+            {
+                pointsBG.transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            if (!_summoGameScriptPlTwo.IsMobile || _summoGameScriptPlTwo.IsSingle)
+            {
+                pointsBG.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 

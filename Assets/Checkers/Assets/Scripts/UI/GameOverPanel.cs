@@ -22,8 +22,26 @@ public class GameOverPanel : MonoBehaviour
         if (winner == 0)
         {
             GameAudio.GameMusic.volume = 0;
+            blueWinner.SetActive(true);
             end.Play();
+            if (Geekplay.Instance.language == "ru")
+            {
+                WinnerText.text = "Синие Победили";
+            }
+            if (Geekplay.Instance.language == "en")
+            {
+                WinnerText.text = "Blues Won";
+            }
+            if (Geekplay.Instance.language == "tr")
+            {
+                WinnerText.text = "Maviler kazandı";
+            }
+        }
+        if (winner == 1)
+        {
+            GameAudio.GameMusic.volume = 0;
             redWinner.SetActive(true);
+            end.Play();
             if (Geekplay.Instance.language == "ru")
             {
                 WinnerText.text = "Красные Победили";
@@ -35,23 +53,6 @@ public class GameOverPanel : MonoBehaviour
             if (Geekplay.Instance.language == "tr")
             {
                 WinnerText.text = "Kırmızılar Kazandı";
-            }
-        }
-        if (winner == 1)
-        {
-            end.Play();
-            blueWinner.SetActive(true);
-            if(Geekplay.Instance.language == "ru")
-            {
-                WinnerText.text = "Синие Победили";
-            }
-            if (Geekplay.Instance.language == "en")
-            {
-                WinnerText.text = "Blues Won";
-            }
-            if (Geekplay.Instance.language == "tr")
-            {
-                WinnerText.text = "Maviler kazandı";
             }
         }
     }

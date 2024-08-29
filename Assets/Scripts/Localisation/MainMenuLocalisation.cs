@@ -10,14 +10,14 @@ public class MainMenuLocalisation : MonoBehaviour
     {
         if (Geekplay.Instance.language == "ru")
         {
-            title.text = "Игры на двоих: Сборник";
+            title.text = "Игры На Двоих: Сборник";
             player.text = "Игрок";
             players.text = "Игрока";           
         }
         else if (Geekplay.Instance.language == "en")
         {
 
-            title.text = "Games for Two: Collection";
+            title.text = "Games For Two: Collection";
             player.text = "Player";
             players.text = "Players";           
         }

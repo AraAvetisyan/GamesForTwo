@@ -39,8 +39,8 @@ public class RacingLightInstruction : MonoBehaviour
             if (Geekplay.Instance.language == "ru")
             {
                 redPlayerInstruction.text = "Красная кнопка";
-                holdRedText.text = "Удержать";
-                releaseText.text = "Отпустить";
+                holdRedText.text = "Удерживай";
+                releaseText.text = "Отпускай";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -61,9 +61,9 @@ public class RacingLightInstruction : MonoBehaviour
             {
                 redPlayerInstruction.text = "Красная кнопка";
                 bluePlayerInstruction.text = "Синяя кнопка";
-                holdBlueText.text = "Удержать";
-                holdRedText.text = "Удержать";
-                releaseText.text = "Отпустить";
+                holdBlueText.text = "Удерживай";
+                holdRedText.text = "Удерживай";
+                releaseText.text = "Отпускай";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -88,8 +88,8 @@ public class RacingLightInstruction : MonoBehaviour
             if (Geekplay.Instance.language == "ru")
             {
                 redPlayerInstruction.text = "Пробел";
-                holdRedText.text = "Удержать";
-                releaseText.text = "Отпустить";
+                holdRedText.text = "Удерживай";
+                releaseText.text = "Отпускай";
             }
             else if (Geekplay.Instance.language == "en")
             {
@@ -110,9 +110,9 @@ public class RacingLightInstruction : MonoBehaviour
             {
                 redPlayerInstruction.text = "Z";
                 bluePlayerInstruction.text = "M";
-                holdBlueText.text = "Удержать";
-                holdRedText.text = "Удержать";
-                releaseText.text = "Отпустить";
+                holdBlueText.text = "Удерживай";
+                holdRedText.text = "Удерживай";
+                releaseText.text = "Отпускай";
 
             }
             else if (Geekplay.Instance.language == "en")

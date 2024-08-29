@@ -12392,7 +12392,7 @@ MonoBehaviour:
   plTwoLose: 0
   isSingle: 1
   music: {fileID: 1907151677}
-  end: {fileID: 1860059856}
+  end: {fileID: 1860059855}
 --- !u!4 &1292570123
 Transform:
   m_ObjectHideFlags: 0
