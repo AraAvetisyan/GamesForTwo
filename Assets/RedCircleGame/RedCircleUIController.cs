@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,9 @@ public class RedCircleUIController : MonoBehaviour
     }
     private void Start()
     {
+        
+        Geekplay.Instance.GameReady();
+        
         if (IsSingle)
         {
             StartCoroutine(Single());
@@ -59,6 +63,12 @@ public class RedCircleUIController : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+     
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!IsSingle)
         {
             SceneManager.LoadScene("RedCircle");
@@ -103,7 +113,7 @@ public class RedCircleUIController : MonoBehaviour
     public IEnumerator Single()
     {
 
-        float timer = Random.Range(0.1f, 2f);
+        float timer = UnityEngine.Random.Range(0.1f, 2f);
         yield return new WaitForSeconds(timer);
 
         PressedPlayerOneButton();

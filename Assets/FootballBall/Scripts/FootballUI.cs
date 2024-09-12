@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,10 @@ public class FootballUI : MonoBehaviour
 {
     [SerializeField] private bool isSingle;
     [SerializeField] private AudioSource buttonSound;
+    private void Start()
+    {
+        Geekplay.Instance.GameReady();
+    }
     public void PresedHome()
     {
         buttonSound.Play();
@@ -16,6 +21,12 @@ public class FootballUI : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+      
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!isSingle)
         {
             SceneManager.LoadScene("FootballBall");

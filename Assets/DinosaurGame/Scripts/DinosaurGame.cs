@@ -48,6 +48,7 @@ public class DinosaurGame : MonoBehaviour
     }
     void Start()
     {
+        Geekplay.Instance.GameReady();
         lose = UnityEngine.Random.Range(0, 9);
         player = UnityEngine.Random.Range(0, 2);
         if (player == 0)
@@ -338,6 +339,12 @@ public class DinosaurGame : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+     
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!isSingle)
         {
             SceneManager.LoadScene("DinosaurGame");

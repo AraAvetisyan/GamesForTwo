@@ -76,6 +76,7 @@ public class Geekplay : MonoBehaviour
 
     public event Action LeaderboardValuesReady;
     public event Action ShowedAdInEditor;
+    public bool GameIsReady;
     public void RunCoroutine(IEnumerator enumerator)
     {
         StartCoroutine(enumerator);
@@ -831,6 +832,7 @@ public class Geekplay : MonoBehaviour
     //ПАУЗА И ПРОДОЛЖЕНИЕ ИГРЫ
     public void StopMusAndGame()
     {
+
         adOpen = true;
         canShowAd = false;
         StartCoroutine(CanAdShow());
@@ -843,9 +845,10 @@ public class Geekplay : MonoBehaviour
         adOpen = false;
         AudioListener.volume = 1;
         Time.timeScale = 1;
-
-
-
+        if (GameIsReady)
+        {
+            GameReady();
+        }
 
         ////////////////
     }
@@ -878,10 +881,21 @@ public class Geekplay : MonoBehaviour
     {
         mobile = true;
     }
-
-    public void GameReady()
+    public void GameStart()
     {
         if (Platform == Platform.Yandex)
+            Utils.GameStart();
+    }
+    public void GameReady()
+    {
+        GameIsReady = true;
+        if (Platform == Platform.Yandex)
             Utils.GameReady();
+    }
+    public void GameStop()
+    {
+        GameIsReady = false;
+        if (Platform == Platform.Yandex)
+            Utils.GameStop();
     }
 }

@@ -32,11 +32,23 @@ var plugin = {
 
 
   /////YANDEX//////
+   GameStart : function()
+    {
+      ysdk.features.LoadingAPI.ready();
+    },
     GameReady : function()
     {
-        ysdk.features.LoadingAPI.ready();
+      if(ysdk.features.GameplayAPI){
+        ysdk.features.GameplayAPI.start();
+      }
+       
     },
-
+    GameStop : function()
+    {
+       if(ysdk.features.GameplayAPI){
+      ysdk.features.GameplayAPI.stop();
+      }
+    },
     IsMobile : function()
     {
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -72,14 +84,17 @@ var plugin = {
         });
     },  	
     
-    AdInterstitial : function () {
+   AdInterstitial : function () {
         ysdk.adv.showFullscreenAdv({
           callbacks: {
         onOpen: function(wasShown) {
           myGameInstance.SendMessage('Init', 'StopMusAndGame');
+           if(ysdk.features.GameplayAPI){
+            ysdk.features.GameplayAPI.stop();
+            }
         },
         onClose: function(wasShown) {
-          myGameInstance.SendMessage('Init', 'ResumeMusAndGame');
+          myGameInstance.SendMessage('Init', 'ResumeMusAndGame');          
         },
         onError: function(error) {
           // some action on error
@@ -94,14 +109,16 @@ var plugin = {
         onOpen: () => {
           console.log('Video ad open.');
           myGameInstance.SendMessage('Init', 'StopMusAndGame');
+           if(ysdk.features.GameplayAPI){
+            ysdk.features.GameplayAPI.stop();
+         }
         },
         onRewarded: () => {
-          //myGameInstance.SendMessage('Init', 'OnRewarded');
+          myGameInstance.SendMessage('Init', 'OnRewarded');
         },
         onClose: () => {
           console.log('Video ad closed.');
-          myGameInstance.SendMessage('Init', 'OnRewarded');
-          myGameInstance.SendMessage('Init', 'ResumeMusAndGame');
+          myGameInstance.SendMessage('Init', 'ResumeMusAndGame');            
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);

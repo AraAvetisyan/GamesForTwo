@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,10 @@ public class ChickenGameUIController : MonoBehaviour
 {
     [SerializeField] private int sceneIndex;
     [SerializeField] private AudioSource buttonSound;
-
+    private void Start()
+    {
+        Geekplay.Instance.GameReady();
+    }
     public void PressedHomeButton()
     {
         buttonSound.Play();
@@ -17,6 +21,12 @@ public class ChickenGameUIController : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+        
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (sceneIndex == 1)
         {
             SceneManager.LoadScene("ChickenGameOne");
@@ -25,7 +35,7 @@ public class ChickenGameUIController : MonoBehaviour
         {
             SceneManager.LoadScene("ChickenGameTwo");
         }
-        if(sceneIndex == 3)
+        if (sceneIndex == 3)
         {
             SceneManager.LoadScene("ChickenGameThree");
         }

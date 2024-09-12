@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class GreenBallGameUIController : MonoBehaviour
     }
     private void Start()
     {
+        Geekplay.Instance.GameReady();
         if (Single)
         {
             StartCoroutine(SinglePlayer());
@@ -102,7 +104,7 @@ public class GreenBallGameUIController : MonoBehaviour
 
     public IEnumerator SinglePlayer()
     {
-        randomTimer = Random.Range(0.55f, 0.7f);
+        randomTimer = UnityEngine.Random.Range(0.55f, 0.7f);
         yield return new WaitForSeconds(randomTimer);
         if (!BlueBallActive)
         {
@@ -113,7 +115,7 @@ public class GreenBallGameUIController : MonoBehaviour
     {
         if (!BlueBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
-            float z = Random.Range(0, 360);
+            float z = UnityEngine.Random.Range(0, 360);
             spawnBlueSound.Play();
             GameObject ball = Instantiate(blueBallPrefab, blueBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
@@ -128,7 +130,7 @@ public class GreenBallGameUIController : MonoBehaviour
     {
         if (!RedBallActive && _firstPlayerZoneTrigger.CanFireRed && _secondPlayerZoneTrigger.CanFireRed)
         {
-            float z = Random.Range(0, 360);
+            float z = UnityEngine.Random.Range(0, 360);
             spawnRedSound.Play();
             GameObject ball = Instantiate(redBallPrefab, redBallSpawnPoint.position, Quaternion.Euler(0, 0, z));
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
@@ -163,6 +165,12 @@ public class GreenBallGameUIController : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+       
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!Single)
         {
             SceneManager.LoadScene("GreenBall");
@@ -172,6 +180,5 @@ public class GreenBallGameUIController : MonoBehaviour
             SceneManager.LoadScene("GreenBallSingle");
         }
     }
-
 
 }

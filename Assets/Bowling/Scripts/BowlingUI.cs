@@ -7,6 +7,10 @@ public class BowlingUI : MonoBehaviour
 {
     [SerializeField] bool isSingle;
     [SerializeField] private AudioSource buttonSound;
+    private void Start()
+    {
+        Geekplay.Instance.GameReady();
+    }
     public void PressedHome()
     {
         buttonSound.Play();
@@ -16,6 +20,11 @@ public class BowlingUI : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!isSingle)
         {
             SceneManager.LoadScene("Bowling");

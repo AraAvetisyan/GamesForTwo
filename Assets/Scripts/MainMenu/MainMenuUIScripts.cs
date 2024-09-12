@@ -9,7 +9,8 @@ public class MainMenuUIScripts : MonoBehaviour
 
     private void Start()
     {
-        Geekplay.Instance.GameReady();
+        Geekplay.Instance.GameStart();
+        Geekplay.Instance.GameStop();
         Geekplay.Instance.ShowInterstitialAd();
     }
     public void PressedGamesForOneButton()

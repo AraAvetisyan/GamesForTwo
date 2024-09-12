@@ -8,6 +8,7 @@ public class TurnTextChanger : MonoBehaviour
 
     private void Start()
     {
+        Geekplay.Instance.GameReady();
         turnText = GetComponent<TextMeshProUGUI>();
         textAnimator = GetComponent<Animator>();
     }

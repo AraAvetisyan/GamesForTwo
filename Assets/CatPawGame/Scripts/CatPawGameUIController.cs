@@ -1,5 +1,6 @@
 using DG.Tweening;
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,7 @@ public class CatPawGameUIController : MonoBehaviour
     }
     private void Start()
     {
+        Geekplay.Instance.GameReady();
         if (IsSingle)
         {
             StartCoroutine(SinglePlayer());
@@ -49,7 +51,6 @@ public class CatPawGameUIController : MonoBehaviour
 
             playerOneButton.SetActive(false);
         }
-        
     }
     private void Update()
     {
@@ -77,7 +78,7 @@ public class CatPawGameUIController : MonoBehaviour
     }
     public IEnumerator SinglePlayer()
     {
-        randomTimer = Random.Range(2f, 3f);
+        randomTimer = UnityEngine.Random.Range(2f, 3f);
         yield return new WaitForSeconds(randomTimer);
         PressedPlayerOneButton();
         StartCoroutine(SinglePlayer());
@@ -145,6 +146,11 @@ public class CatPawGameUIController : MonoBehaviour
 
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!IsSingle)
         {
             SceneManager.LoadScene("CatPaw");

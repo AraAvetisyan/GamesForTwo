@@ -52,6 +52,8 @@ public class TimerGameScript : MonoBehaviour
 
     private void Start()
     {
+        Geekplay.Instance.GameReady();
+        
         if (Geekplay.Instance.mobile)
         {
             isMobile = true;
@@ -302,6 +304,12 @@ public class TimerGameScript : MonoBehaviour
     {
         buttonSound.Play();
         Geekplay.Instance.ShowInterstitialAd();
+       
+        StartCoroutine(WaitForAdd());
+    }
+    public IEnumerator WaitForAdd()
+    {
+        yield return new WaitForSeconds(0.1f);
         if (!isSingle)
         {
             SceneManager.LoadScene("TimerGame");
